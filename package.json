@@ -10,13 +10,22 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@sanity/types": "^3.14.5",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
+		"@types/lodash": "^4.14.196",
+		"sass": "^1.64.2",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@sanity/block-content-to-html": "^2.0.0",
+		"@sanity/client": "^6.4.3",
+		"@sanity/image-url": "^1.0.2",
+		"lodash": "^4.17.21"
+	}
 }

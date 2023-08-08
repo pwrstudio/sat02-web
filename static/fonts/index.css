@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'ABC Diatype';
+    src: url('./ABCDiatype/ABCDiatype-RegularItalic.woff2') format('woff2'),
+        url('./ABCDiatype/ABCDiatype-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype';
+    src: url('./ABCDiatype/ABCDiatype-BoldItalic.woff2') format('woff2'),
+        url('./ABCDiatype/ABCDiatype-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype';
+    src: url('./ABCDiatype/ABCDiatype-Bold.woff2') format('woff2'),
+        url('./ABCDiatype/ABCDiatype-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype';
+    src: url('./ABCDiatype/ABCDiatype-Regular.woff2') format('woff2'),
+        url('./ABCDiatype/ABCDiatype-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Favorit Arabic';
+    src: url('./ABCFavorit/ABCFavoritArabic-Bold.woff2') format('woff2'),
+        url('./ABCFavorit/ABCFavoritArabic-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Favorit Arabic';
+    src: url('./ABCFavorit/ABCFavoritArabic-Regular.woff2') format('woff2'),
+        url('./ABCFavorit/ABCFavoritArabic-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
