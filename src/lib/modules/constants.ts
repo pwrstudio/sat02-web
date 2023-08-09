@@ -1,34 +1,34 @@
 export const MENU_ITEMS = [
     {
         title: "Projects",
-        link: "projects",
+        link: "/projects",
     },
     {
         title: "Participants",
-        link: "participants",
+        link: "/participants",
     },
     {
         title: "Field notes",
-        link: "field-notes",
+        link: "/field-notes",
     },
     {
         title: "Calendar",
-        link: "calendar",
+        link: "/calendar",
     },
     {
         title: "About",
-        link: "about",
+        link: "/about",
     },
     {
         title: "Map",
-        link: "map",
+        link: "/map",
     },
     {
         title: "Team",
-        link: "team",
+        link: "/team",
     },
     {
         title: "Contact",
-        link: "contact",
+        link: "/contact",
     },
 ]
