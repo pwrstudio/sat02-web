@@ -3,7 +3,7 @@ import { loadData } from "$lib/modules/sanity"
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-    const projects = await loadData("*[_type == 'project']", {})
+    const projects = await loadData("*[_type == 'project'] {..., participants[]->{...}, venues[]->{...}}", {})
     const participants = await loadData("*[_type == 'participant'] | order(dateTime asc)", {})
     const events = await loadData("*[_type == 'event'] | order(dateTime asc)", {})
 

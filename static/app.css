@@ -11,8 +11,11 @@
     --blue: rgba(0, 158, 180, 1);
     --purple: rgba(145, 13, 106, 1);
 
+    /* Special colors */
+    --white-transparent: rgba(255, 255, 255, 0.3);
+
     /* Sizing */
-    --default-padding: 10px;
+    --default-padding: 14px;
     --double-padding: 20px;
     --menubar-height: 42px;
     --header-height: 300px;
@@ -24,10 +27,22 @@
     --font-family-arabic: 'ABC Favorit Arabic', sans-serif;
 
     /* Font sizes */
-    --font-size-xs: 10px;
+    --font-size-xs: 12px;
     --font-size-normal: 18px;
-    --font-size-large: 28px;
+    --font-size-large: 32px;
     --font-size-xl: 56px;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: var(--color-secondary);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *::selection {
+    background: var(--grey);
   }
 
   body, html {
@@ -38,10 +53,6 @@
     color: var(--black);
     background-color: var(--white);
     overscroll-behavior-y: none;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   a {
