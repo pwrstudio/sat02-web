@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { slide } from "svelte/transition"
+  import { quadOut } from "svelte/easing"
   import { menuActive } from "$lib/modules/stores"
   import { MENU_ITEMS } from "$lib/modules/constants"
   const closeMenu = () => {
@@ -6,7 +8,7 @@
   }
 </script>
 
-<div class="menu">
+<div class="menu" transition:slide={{ duration: 200, easing: quadOut }}>
   <div class="menu-inner">
     {#each MENU_ITEMS as item}
       <div class="menu-item">
