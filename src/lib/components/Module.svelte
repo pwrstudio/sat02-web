@@ -1,42 +1,39 @@
 <script lang="ts">
   import Tag from "./Tag.svelte"
   import { urlFor } from "$lib/modules/sanity"
-  export let bgcolor: "white" | "orange" | "blue" | "green" | "purple" = "white"
-  export let width: "full" | "half" = "half"
-  export let category: "project" | "event" | "participant"
-  export let post: any
-  console.log(post)
+  import type { FrontpagePost } from "$lib/modules/types"
+  export let post: FrontpagePost
 </script>
 
-<div class="module {width} {bgcolor}">
+<div class="module {post.width} {post.bgColor}">
   <!-- META TOP -->
   <div class="meta-top">
     <Tag>
-      {post._type}
+      {post.category}
     </Tag>
-    {#if post.venues && post.venues[0] && post.venues[0].title}
+    {#if post.post.venues && post.post.venues[0] && post.post.venues[0].title}
       <Tag>
-        {post.venues[0].title}
+        {post.post.venues[0].title}
       </Tag>
     {/if}
   </div>
 
   <!-- CONTENT -->
   <div class="content">
-    <a href={category + "s/" + post.slug.current}>
-      {#if post.processMedia && post.processMedia[0]}
+    <a href={post.category + "s/" + post.post.slug.current}>
+      {#if post.post.processMedia && post.post.processMedia[0]}
         <img
-          src={urlFor(post.processMedia[0])
+          src={urlFor(post.post.processMedia[0])
             .width(500)
             .auto("format")
             .quality(100)
             .url()}
-          alt={post.title}
+          alt={post.post.title}
         />
       {/if}
 
       <h2>
-        {post.title}
+        {post.post.title}
       </h2>
     </a>
   </div>

@@ -32,3 +32,5 @@ export const MENU_ITEMS = [
         link: "/contact",
     },
 ]
+
+export const COLORS = ["white", "green", "orange", "blue", "purple"]

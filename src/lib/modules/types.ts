@@ -8,3 +8,10 @@ export enum POST_TYPE {
     PARTICIPANT,
     EVENT
 }
+
+export type FrontpagePost = {
+    post: any,
+    category: string,
+    bgColor: string,
+    width: string
+}
