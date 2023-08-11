@@ -17,7 +17,7 @@
     /* Sizing */
     --default-padding: 14px;
     --double-padding: 20px;
-    --menubar-height: 42px;
+    --menubar-height: 62px;
     --header-height: 300px;
     --footer-height: 300px;
 
@@ -36,7 +36,7 @@
   * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: var(--color-secondary);
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

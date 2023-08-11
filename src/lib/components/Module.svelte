@@ -43,6 +43,8 @@
 </div>
 
 <style lang="scss">
+  @import "../styles/responsive.scss";
+
   .module {
     height: 500px;
     padding: var(--default-padding);
@@ -75,6 +77,10 @@
 
     &.half {
       width: 50%;
+
+      @include screen-size("phone") {
+        width: 100%;
+      }
     }
 
     .meta-top {
