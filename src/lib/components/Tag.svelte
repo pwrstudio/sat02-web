@@ -14,7 +14,7 @@
     background: var(--white-transparent);
     display: inline-block;
     text-transform: uppercase;
-    // letter-spacing: 0.1em;
+    word-spacing: -0.3em;
 
     &.rounded {
       border-radius: 10px;

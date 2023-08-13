@@ -3,13 +3,13 @@
 </script>
 
 <div class="square-deco">
-  <dic class="inner">
+  <div class="inner">
     <img src={dots} alt="dots" />
-  </dic>
+  </div>
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @import "../../../styles/responsive.scss";
 
   .square-deco {
     aspect-ratio: 1;
@@ -17,9 +17,10 @@
     align-items: center;
     justify-content: center;
     color: var(--black);
-    width: 50%;
+    width: 100%;
     // padding: var(--default-padding);
     background: var(--orange);
+    overflow: hidden;
 
     .inner {
       width: 85%;
@@ -29,6 +30,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transform: rotate(45deg);
 
       img {
         aspect-ratio: 1;

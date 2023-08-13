@@ -15,3 +15,10 @@ export type FrontpagePost = {
     bgColor: string,
     width: string
 }
+
+export type Node = {
+    type: string;
+    children?: Node[];
+    post?: any;
+    bgColor?: "white" | "blue" | "green" | "orange";
+};

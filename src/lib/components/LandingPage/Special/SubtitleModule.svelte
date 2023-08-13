@@ -1,22 +1,24 @@
 <script lang="ts">
-  import dots from "$lib/assets/dots3.svg"
+  import subtitle from "$lib/assets/subtitle.svg"
+  console.log("")
 </script>
 
-<div class="full-width-deco">
+<div class="subtitle">
   <div class="inner">
-    <img src={dots} alt="dots" />
+    <img src={subtitle} alt="subtitle" />
   </div>
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @import "../../../styles/responsive.scss";
 
-  .full-width-deco {
-    width: 100%;
-    aspect-ratio: 4 / 1;
+  .subtitle {
+    height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    color: var(--black);
+    width: 100%;
+    padding: var(--default-padding);
     background: var(--green);
 
     .inner {
@@ -31,7 +33,7 @@
         aspect-ratio: 1;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         object-position: center;
       }
     }

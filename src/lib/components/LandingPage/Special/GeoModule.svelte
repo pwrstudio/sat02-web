@@ -29,12 +29,12 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @import "../../../styles/responsive.scss";
 
   .geo {
     font-size: var(--font-size-large);
     color: var(--black);
-    width: 50%;
+    width: 100%;
     padding: var(--default-padding);
     background: var(--grey);
     min-height: 220px;

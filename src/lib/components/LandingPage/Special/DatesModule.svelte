@@ -9,7 +9,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @import "../../../styles/responsive.scss";
 
   .dates {
     height: 80px;

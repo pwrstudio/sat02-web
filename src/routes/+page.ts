@@ -7,7 +7,7 @@ export async function load() {
     const participants = await loadData("*[_type == 'participant'] | order(dateTime asc)", {})
     const events = await loadData("*[_type == 'event'] | order(dateTime asc)", {})
 
-    const frontpage = buildFrontPage(projects, participants, events);
+    const frontpage = buildFrontPage({ "project": projects, "participant": participants, "event": events });
 
     return {
         frontpage
