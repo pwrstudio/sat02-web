@@ -1,9 +1,9 @@
+import { SHARJAH_COORDINATES, OWN_API_KEY } from "./constants";
 
 export async function getSharjahWeather(): Promise<string> {
-    const API_KEY = '9503055d09f6f4afda4d4e550767aa84'; // Replace with your API key
 
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=25.3463&lon=55.4209&units=metric&appid=${API_KEY}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${SHARJAH_COORDINATES.lat}&lon=${SHARJAH_COORDINATES.lon}&units=metric&appid=${OWN_API_KEY}`);
         console.log(response)
 
         if (!response.ok) {

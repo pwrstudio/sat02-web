@@ -42,6 +42,11 @@
   a {
     color: inherit;
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--orange);
+    }
   }
 
   button {

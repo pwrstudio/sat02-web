@@ -1,39 +1,67 @@
 <script lang="ts">
-  import { slide } from "svelte/transition"
+  import { afterNavigate } from "$app/navigation"
+  import { slide, fade } from "svelte/transition"
   import { quadOut } from "svelte/easing"
   import { menuActive } from "$lib/modules/stores"
   import { MENU_ITEMS } from "$lib/modules/constants"
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
   import Search from "./Search.svelte"
+  import { delay } from "lodash"
+
+  let selectedItem = ""
 
   const closeMenu = () => {
     menuActive.set(false)
   }
+
+  afterNavigate(async () => {
+    delay(closeMenu, 700)
+  })
 </script>
 
-<div class="menu" transition:slide={{ duration: 200, easing: quadOut }}>
+<div class="menu" in:slide={{ duration: 160, easing: quadOut }}>
   <!-- INNER MENU -->
   <div class="menu-inner">
     <!-- FIRST COLUMN -->
     <div class="column first">
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
-        <div class="menu-item">
-          <a href={item.link} on:click={closeMenu}>{item.title}</a>
+        <div
+          class="menu-item"
+          class:hidden={selectedItem && selectedItem != item.title}
+        >
+          <a
+            href={item.link}
+            on:click={() => {
+              selectedItem = item.title
+            }}>{item.title}</a
+          >
         </div>
       {/each}
     </div>
     <!-- SECOND COLUMN -->
     <div class="column second">
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[1] as item}
-        <div class="menu-item">
-          <a href={item.link} on:click={closeMenu}>{item.title}</a>
+        <div
+          class="menu-item"
+          class:hidden={selectedItem && selectedItem != item.title}
+        >
+          <a
+            href={item.link}
+            on:click={() => {
+              selectedItem = item.title
+            }}>{item.title}</a
+          >
         </div>
       {/each}
     </div>
   </div>
 
   <!-- SEARCH -->
-  <div class="search-container">
+  <div
+    class="search-container"
+    class:hidden={selectedItem}
+    in:fade={{ duration: 200, delay: 140 }}
+  >
     <Search />
   </div>
 </div>
@@ -60,7 +88,12 @@
       .column {
         padding: var(--default-padding);
         width: 50%;
+
         .menu-item {
+          &.hidden {
+            opacity: 0.5;
+          }
+
           a {
             color: inherit;
             text-decoration: none;
@@ -79,6 +112,10 @@
       margin-bottom: 20px;
       padding: var(--default-padding);
       width: 100%;
+
+      &.hidden {
+        opacity: 0.5;
+      }
     }
   }
 </style>

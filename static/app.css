@@ -20,6 +20,7 @@
     --menubar-height: 62px;
     --header-height: 300px;
     --footer-height: 300px;
+    --module-min-height: 300px;
 
     /* Fonts */
     --font-family: 'ABC Diatype', Helvetica, Arial, sans-serif;

@@ -10,11 +10,11 @@
   {#if node.post}
     <!-- META TOP -->
     <div class="meta-top">
-      <Tag>
+      <Tag border={node.bgColor === "white"}>
         {node.post._type}
       </Tag>
       {#if node.post.venues && node.post.venues[0] && node.post.venues[0].title}
-        <Tag>
+        <Tag border={node.bgColor === "white"}>
           {node.post.venues[0].title}
         </Tag>
       {/if}
@@ -51,7 +51,7 @@
   @import "../../styles/responsive.scss";
 
   .module {
-    min-height: 260px;
+    min-height: var(--module-min-height);
     padding: var(--default-padding);
     display: flex;
     flex-direction: column;
