@@ -2,34 +2,35 @@
   import dots from "$lib/assets/dots3.svg"
 </script>
 
-<div class="header-bar">
+<div class="full-width-deco">
   <div class="inner">
     <img src={dots} alt="dots" />
   </div>
 </div>
 
 <style lang="scss">
-  .header-bar {
-    height: var(--header-height);
-    background: var(--orange);
+  @import "../../styles/responsive.scss";
+
+  .full-width-deco {
     width: 100%;
-    overflow: hidden;
+    aspect-ratio: 4 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--green);
 
     .inner {
       width: 100%;
       height: 100%;
-      // background: var(--green);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
 
       img {
-        width: 400%;
-        height: 400%;
+        aspect-ratio: 1;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         object-position: center;
       }

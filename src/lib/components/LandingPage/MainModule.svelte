@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Tag from "./Tag.svelte"
+  import Tag from "../Tag.svelte"
   import { urlFor } from "$lib/modules/sanity"
   import type { FrontpagePost } from "$lib/modules/types"
   export let post: FrontpagePost
@@ -43,7 +43,7 @@
 </div>
 
 <style lang="scss">
-  @import "../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   .module {
     height: 500px;

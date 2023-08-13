@@ -1,0 +1,38 @@
+<script lang="ts">
+  console.log("DATES")
+</script>
+
+<div class="dates">
+  <div class="date start">11.11.2023</div>
+  <div class="line" />
+  <div class="date end">10.02.2024</div>
+</div>
+
+<style lang="scss">
+  @import "../../styles/responsive.scss";
+
+  .dates {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    color: var(--black);
+    width: 100%;
+    padding: var(--default-padding);
+    background: var(--white);
+
+    .date {
+      &.start {
+        padding-right: var(--default-padding);
+      }
+      &.end {
+        padding-left: var(--default-padding);
+      }
+    }
+
+    .line {
+      flex-grow: 1; // make the line element grow to take up all available space
+      height: 1.5px; // height of the line
+      background-color: var(--black); // color of the line
+    }
+  }
+</style>
