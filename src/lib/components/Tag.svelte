@@ -9,10 +9,12 @@
 <style lang="scss">
   .tag {
     font-size: var(--font-size-xs);
-    padding: 3px 12px;
+    font-family: var(--font-family-mono);
+    padding: 5px 12px;
     background: var(--white-transparent);
     display: inline-block;
-    text-transform: capitalize;
+    text-transform: uppercase;
+    // letter-spacing: 0.1em;
 
     &.rounded {
       border-radius: 10px;

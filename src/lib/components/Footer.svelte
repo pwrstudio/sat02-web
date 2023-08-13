@@ -74,9 +74,12 @@
 
     .title-line {
       margin-top: 20px;
-      padding: var(--default-padding);
+      height: var(--menubar-height);
+      padding-left: var(--default-padding);
+      padding-right: var(--double-padding);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
   }
 </style>

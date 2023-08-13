@@ -23,11 +23,11 @@
 
     /* Fonts */
     --font-family: 'ABC Diatype', Helvetica, Arial, sans-serif;
-    --font-family-mono: monospace;
+    --font-family-mono: 'ABC Diatype Mono', monospace;
     --font-family-arabic: 'ABC Favorit Arabic', sans-serif;
 
     /* Font sizes */
-    --font-size-xs: 12px;
+    --font-size-xs: 11px;
     --font-size-normal: 18px;
     --font-size-large: 32px;
     --font-size-xl: 56px;

@@ -51,3 +51,12 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'ABC Diatype Mono';
+    src: url('./ABCDiatypeMono/ABCDiatypeMono-Regular.woff2') format('woff2'),
+        url('./ABCDiatypeMono/ABCDiatypeMono-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
