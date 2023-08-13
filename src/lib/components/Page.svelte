@@ -1,7 +1,11 @@
 <script lang="ts">
-  import { urlFor } from "$lib/modules/sanity"
+  import { urlFor, renderBlockText } from "$lib/modules/sanity"
+  import has from "lodash/has.js"
+
   import Tag from "./Tag.svelte"
   export let page: any
+
+  console.log(page)
 </script>
 
 <div class="page">
@@ -14,7 +18,7 @@
       <!-- TITLE -->
       <h1>{page.title}</h1>
       <!-- VENUE -->
-      {#if page.venues && page.venues[0] && page.venues[0].title}
+      {#if has(page, "venues[0].title")}
         <Tag>
           {page.venues[0].title}
         </Tag>
@@ -22,25 +26,9 @@
     </div>
     <!-- CONTENT -->
     <div class="row content">
-      <p>
-        Focusing on the relationship between materials, context and landscape,
-        an installation by Angolan artist Sandra Poulson will analyse the
-        ever-present dust in Luanda to reflect on the city’s economic, social
-        and cultural framework. Ola Uduku & Michael Collins will present works
-        by British-Nigerian architect Alan Vaughan-Richards (1925-1989) and
-        review his environmentally-conscious explorations that would make up the
-        canon of West African Tropical Modernism.
-      </p>
-      <p>
-        The effect of climate change on Sharjahs biodiversity is central to
-        projects such as a fabric-based temple by London/Amazon-based architect
-        Yussef Agbo-Ola that will honour non-human life and endangered species
-        from the region. Elsewhere, Lagos-based practice MOE+ Art Architecture
-        (MOE+AA) will be embedded in Sharjah’s industrial environment – creating
-        a moment of ecological pause that will act as a counterpoint to the
-        man-made, mechanised landscapes that have become ubiquitous across the
-        Emirates.
-      </p>
+      {#if page.description}
+        {@html renderBlockText(page.description.content)}
+      {/if}
     </div>
   </div>
 

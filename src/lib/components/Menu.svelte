@@ -23,7 +23,7 @@
   <!-- INNER MENU -->
   <div class="menu-inner">
     <!-- FIRST COLUMN -->
-    <div class="column first">
+    <div class="column first" in:fade={{ duration: 400, delay: 100 }}>
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
         <div
           class="menu-item"
@@ -39,7 +39,7 @@
       {/each}
     </div>
     <!-- SECOND COLUMN -->
-    <div class="column second">
+    <div class="column second" in:fade={{ duration: 400, delay: 160 }}>
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[1] as item}
         <div
           class="menu-item"
@@ -60,7 +60,7 @@
   <div
     class="search-container"
     class:hidden={selectedItem}
-    in:fade={{ duration: 200, delay: 140 }}
+    in:fade={{ duration: 400, delay: 140 }}
   >
     <Search />
   </div>

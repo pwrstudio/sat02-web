@@ -2,6 +2,8 @@
   import type { Node } from "$lib/modules/types"
   import Tag from "../Tag.svelte"
   import { urlFor } from "$lib/modules/sanity"
+  import has from "lodash/has.js"
+
   export let node: Node
   console.log(node)
 </script>
@@ -10,10 +12,12 @@
   {#if node.post}
     <!-- META TOP -->
     <div class="meta-top">
+      <!-- TYPE -->
       <Tag border={node.bgColor === "white"}>
         {node.post._type}
       </Tag>
-      {#if node.post.venues && node.post.venues[0] && node.post.venues[0].title}
+      <!-- VENUE -->
+      {#if has(node, "post.venues[0].title")}
         <Tag border={node.bgColor === "white"}>
           {node.post.venues[0].title}
         </Tag>
@@ -22,19 +26,22 @@
 
     <!-- CONTENT -->
     <div class="content">
-      <!-- IMAGE -->
       <a href={node.post._type + "s/" + node.post.slug.current}>
-        {#if node.post.processMedia && node.post.processMedia[0]}
-          <img
-            src={urlFor(node.post.processMedia[0])
-              .width(500)
-              .auto("format")
-              .quality(100)
-              .url()}
-            alt={node.post.title}
-          />
+        <!-- IMAGE -->
+        {#if node.post.featuredImage}
+          <div class="image-container">
+            <img
+              src={urlFor(node.post.featuredImage)
+                .width(700)
+                .height(500)
+                .saturation(-100)
+                .auto("format")
+                .quality(100)
+                .url()}
+              alt={node.post.title}
+            />
+          </div>
         {/if}
-
         <!-- TITLE -->
         <h2>
           {node.post.title}
@@ -58,8 +65,9 @@
     width: 100%;
     color: var(--white);
     flex-shrink: 2;
-    flex-grow: 2;
-    flex-basis: 0;
+    flex-grow: 4;
+    flex-basis: 1;
+    overflow: hidden;
 
     &.white {
       background: var(--white);
@@ -83,7 +91,6 @@
     }
 
     .meta-top {
-      // background: yellow;
       width: 100%;
       margin-bottom: var(--default-padding);
       display: flex;
@@ -91,14 +98,24 @@
     }
 
     .content {
-      // background: red;
-      line-height: 1.4em;
-      height: 80%;
+      line-height: 1.6em;
+      height: 600px;
 
-      img {
-        max-width: 80%;
-        max-height: 60%;
+      .image-container {
+        width: 600px;
+        height: 400px;
+        max-width: 100%;
+        background: var(--grey);
+        overflow: hidden;
         margin-bottom: var(--default-padding);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin-bottom: var(--default-padding);
+          mix-blend-mode: multiply;
+        }
       }
 
       h2 {
