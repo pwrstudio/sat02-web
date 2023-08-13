@@ -118,6 +118,7 @@
           //   object-fit: contain;
           object-fit: cover;
           mix-blend-mode: multiply;
+          object-position: center center;
         }
 
         .open-slideshow {
