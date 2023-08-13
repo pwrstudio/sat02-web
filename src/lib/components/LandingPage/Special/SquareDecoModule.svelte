@@ -30,7 +30,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transform: rotate(45deg);
+      // transform: rotate(45deg);
 
       img {
         aspect-ratio: 1;

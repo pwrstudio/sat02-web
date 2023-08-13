@@ -6,7 +6,7 @@
   import { MENU_ITEMS } from "$lib/modules/constants"
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
   import Search from "./Search.svelte"
-  import { delay } from "lodash"
+  import delay from "lodash/delay.js"
 
   let selectedItem = ""
 

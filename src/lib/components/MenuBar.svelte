@@ -45,7 +45,7 @@
 
     &:hover {
       text-decoration: underline;
-      color: var(--orange);
+      // color: var(--orange);
     }
   }
 
