@@ -26,3 +26,23 @@ export function pickRandom<T>(arr: T[], count: number): T[] {
     const shuffled = shuffle(arr);
     return shuffled.slice(0, count);
 }
+
+/**
+ * Splits an array into two parts. If the array has an odd length, the first part will have one more element than the second part.
+ *
+ * @template T - The type of the elements in the input array.
+ * @param {T[]} array - The input array to be split.
+ * @returns {[T[], T[]]} An array containing two parts. The first part may have one more element than the second if the original array has an odd length.
+ * 
+ * @example
+ * const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+ * console.log(splitArrayIntoTwoParts(arr)); // [[1,2,3,4,5], [6,7,8,9]]
+ */
+export function splitArrayIntoTwoParts<T>(array: T[]): [T[], T[]] {
+    const middleIndex = Math.ceil(array.length / 2);
+
+    const firstPart = array.slice(0, middleIndex);
+    const secondPart = array.slice(middleIndex);
+
+    return [firstPart, secondPart];
+}
