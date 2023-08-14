@@ -27,25 +27,37 @@
     <!-- CONTENT -->
     <div class="content">
       <a href={node.post._type + "s/" + node.post.slug.current}>
-        <!-- IMAGE -->
-        {#if node.post.featuredImage}
-          <div class="image-container">
-            <img
-              src={urlFor(node.post.featuredImage)
-                .width(700)
-                .height(500)
-                .saturation(-100)
-                .auto("format")
-                .quality(100)
-                .url()}
-              alt={node.post.title}
-            />
-          </div>
+        <!-- QUOTE LAYOUT -->
+        {#if node.layout === "quote"}
+          <blockquote>
+            “{node.post.pullQuote}”
+          </blockquote>
+        {:else}
+          <!-- IMAGE -->
+          {#if node.post.featuredImage}
+            <div class="image-container">
+              <img
+                src={urlFor(node.post.featuredImage)
+                  .width(700)
+                  .height(500)
+                  .saturation(-100)
+                  .auto("format")
+                  .quality(100)
+                  .url()}
+                alt={node.post.title}
+              />
+            </div>
+          {/if}
+          <!-- TITLE -->
+          <h2>
+            {node.post.title}
+          </h2>
+          {#if node.type == "project"}
+            <h3>
+              {node.post.participants[0].title}
+            </h3>
+          {/if}
         {/if}
-        <!-- TITLE -->
-        <h2>
-          {node.post.title}
-        </h2>
       </a>
     </div>
 
@@ -101,6 +113,14 @@
       line-height: 1.6em;
       height: 600px;
 
+      blockquote {
+        font-size: var(--font-size-quote);
+        font-style: normal;
+        margin: 0;
+        margin-bottom: var(--default-padding);
+        line-height: 1em;
+      }
+
       .image-container {
         width: 600px;
         height: 400px;
@@ -120,6 +140,14 @@
 
       h2 {
         font-weight: normal;
+        font-size: var(--font-size-large);
+        margin: 0;
+      }
+
+      h3 {
+        padding-top: 0.5em;
+        font-weight: normal;
+        font-style: italic;
         font-size: var(--font-size-large);
         margin: 0;
       }

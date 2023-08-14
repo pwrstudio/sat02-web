@@ -15,7 +15,8 @@ export const standard: Node[] = [
                     },
                     {
                         type: "participant",
-                        bgColor: "blue"
+                        bgColor: "blue",
+                        layout: "quote"
                     },
                 ]
             },
@@ -24,14 +25,16 @@ export const standard: Node[] = [
                 children: [
                     {
                         type: "event",
-                        bgColor: "green"
+                        bgColor: "green",
+                        layout: "image"
                     },
                     {
                         type: "geo",
                     },
                     {
                         type: "project",
-                        bgColor: "white"
+                        bgColor: "white",
+                        layout: "quote"
                     },
                 ]
             }
@@ -57,10 +60,13 @@ export const standard: Node[] = [
                     {
                         type: "project",
                         bgColor: "green",
+                        layout: "image"
+
                     },
                     {
                         type: "participant",
-                        bgColor: "blue"
+                        bgColor: "blue",
+                        layout: "quote"
                     },
                 ]
             },
@@ -72,7 +78,8 @@ export const standard: Node[] = [
                     },
                     {
                         type: "project",
-                        bgColor: "white"
+                        bgColor: "white",
+                        layout: "image"
                     },
                 ]
             }

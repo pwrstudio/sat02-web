@@ -17,8 +17,9 @@ export type FrontpagePost = {
 }
 
 export type Node = {
-    type: string;
+    type: "section" | "column" | "squareDeco" | "subtitle" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates";
+    layout?: "image" | "quote";
     children?: Node[];
     post?: any;
-    bgColor?: "white" | "blue" | "green" | "orange";
+    bgColor?: "white" | "blue" | "green" | "orange" | "purple";
 };
