@@ -19,6 +19,7 @@
     user-select: none;
 
     &.rounded {
+      padding: 5px 16px;
       border-radius: 10px;
     }
 

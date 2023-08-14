@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from "svelte/transition"
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
   import has from "lodash/has.js"
 
@@ -8,7 +9,7 @@
   console.log(page)
 </script>
 
-<div class="page">
+<div class="page" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
   <div class="column left">
     <!-- TITLE -->
@@ -36,27 +37,27 @@
   <div class="column right">
     <!-- PARTICIPANTS  -->
     <div class="row header green">
-      {#if page.participants && page.participants[0] && page.participants[0].title}
+      {#if has(page, "participants[0].title")}
         <h2>
           {page.participants[0].title}
         </h2>
       {/if}
     </div>
     <!-- SLIDESHOW -->
-    {#if page.processMedia && page.processMedia[0]}
+    {#if page.featuredImage}
       <div class="row slideshow">
         <img
-          src={urlFor(page.processMedia[0])
+          src={urlFor(page.featuredImage)
             .width(800)
+            .height(600)
             .saturation(-100)
             .auto("format")
             .quality(100)
             .url()}
           alt={page.title}
         />
-        <a href="" class="open-slideshow">
-          OPEN SLIDESHOW ({page.processMedia.length})
-        </a>
+        <!-- {page.processMedia.length} -->
+        <a href="" class="open-slideshow"> OPEN SLIDESHOW (10) </a>
       </div>
     {/if}
 

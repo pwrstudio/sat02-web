@@ -3,6 +3,7 @@
   import Tag from "../Tag.svelte"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
+  import { formatDateTime, timeUntil } from "$lib/modules/date"
 
   export let node: Node
   console.log(node)
@@ -26,12 +27,20 @@
 
     <!-- CONTENT -->
     <div class="content">
-      <a href={node.post._type + "s/" + node.post.slug.current}>
+      <!-- TODO: clean up this... -->
+      <a
+        href={(node.post._type == "event"
+          ? "calendar"
+          : node.post._type + "s") +
+          "/" +
+          node.post.slug.current}
+      >
         <!-- QUOTE LAYOUT -->
         {#if node.layout === "quote"}
           <blockquote>
             “{node.post.pullQuote}”
           </blockquote>
+          <div class="quote-title">→ {node.post.title}</div>
         {:else}
           <!-- IMAGE -->
           {#if node.post.featuredImage}
@@ -52,7 +61,7 @@
           <h2>
             {node.post.title}
           </h2>
-          {#if node.type == "project"}
+          {#if node.type == "project" || node.type == "event"}
             <h3>
               {node.post.participants[0].title}
             </h3>
@@ -62,7 +71,18 @@
     </div>
 
     <!-- META BOTTOM -->
-    <div class="meta-bottom" />
+    {#if node.type == "event" && has(node, "post.dateTime")}
+      <div class="meta-bottom">
+        <!-- DATE -->
+        <Tag style="rounded" border={node.bgColor === "white"}>
+          {formatDateTime(node.post.dateTime)}
+        </Tag>
+        <!-- COUNTDOWN -->
+        <Tag style="rounded" border={node.bgColor === "white"}>
+          {timeUntil(node.post.dateTime)}
+        </Tag>
+      </div>
+    {/if}
   {/if}
 </div>
 
@@ -109,6 +129,13 @@
       justify-content: space-between;
     }
 
+    .meta-bottom {
+      width: 100%;
+      margin-bottom: var(--default-padding);
+      display: flex;
+      justify-content: space-between;
+    }
+
     .content {
       line-height: 1.6em;
       height: 600px;
@@ -119,6 +146,17 @@
         margin: 0;
         margin-bottom: var(--default-padding);
         line-height: 1em;
+        padding: var(--default-padding);
+      }
+
+      .quote-title {
+        font-size: var(--font-size-large);
+        font-style: normal;
+        font-style: italic;
+        margin: 0;
+        margin-bottom: var(--default-padding);
+        line-height: 1em;
+        padding: var(--default-padding);
       }
 
       .image-container {
