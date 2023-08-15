@@ -3,8 +3,15 @@
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
   import has from "lodash/has.js"
 
-  import Tag from "./Tag.svelte"
+  import Slideshow from "./Slideshow.svelte"
+  import Tag from "../Tag.svelte"
   export let page: any
+
+  let slideshowOpen = false
+
+  const toogleSlideshow = () => {
+    slideshowOpen = !slideshowOpen
+  }
 
   console.log(page)
 </script>
@@ -46,6 +53,8 @@
     <!-- SLIDESHOW -->
     {#if page.featuredImage}
       <div class="row slideshow">
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <img
           src={urlFor(page.featuredImage)
             .width(800)
@@ -55,21 +64,28 @@
             .quality(100)
             .url()}
           alt={page.title}
+          on:click={toogleSlideshow}
         />
         <!-- {page.processMedia.length} -->
-        <a href="" class="open-slideshow"> OPEN SLIDESHOW (10) </a>
+        <button on:click={toogleSlideshow} class="open-slideshow">
+          OPEN SLIDESHOW (10)
+        </button>
       </div>
     {/if}
 
     <!-- DIVIDER -->
     <div class="row divider" />
     <!-- EVENTS -->
-    <div class="row events">EVENTS</div>
+    <div class="row events">RELATED EVENTS</div>
   </div>
 </div>
 
+{#if slideshowOpen}
+  <Slideshow {page} on:close={toogleSlideshow} />
+{/if}
+
 <style lang="scss">
-  @import "../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   .page {
     display: flex;
@@ -120,6 +136,9 @@
           color: var(--white);
           text-decoration: none;
           text-align: center;
+          border: 0;
+          cursor: pointer;
+          font-size: var(--font-size-normal);
         }
       }
 
