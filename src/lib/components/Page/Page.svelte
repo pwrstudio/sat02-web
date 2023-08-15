@@ -68,7 +68,7 @@
         />
         <!-- {page.processMedia.length} -->
         <button on:click={toogleSlideshow} class="open-slideshow">
-          OPEN SLIDESHOW (10)
+          OPEN SLIDESHOW (10) <Tag>6.2MB</Tag>
         </button>
       </div>
     {/if}
