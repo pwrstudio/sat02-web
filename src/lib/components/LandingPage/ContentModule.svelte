@@ -190,5 +190,14 @@
         margin: 0;
       }
     }
+
+    // &:hover {
+    //   .content {
+    //     .image-container {
+    //       opacity: 0.8;
+    //       transition: opacity 0.2s ease-out;
+    //     }
+    //   }
+    // }
   }
 </style>

@@ -1,17 +1,17 @@
 <script lang="ts">
-  import dots from "$lib/assets/dots3.svg"
+  import Dots from "./Graphics/Dots.svelte"
 </script>
 
 <div class="header-bar">
   <div class="inner">
-    <img src={dots} alt="dots" />
+    <Dots />
   </div>
 </div>
 
 <style lang="scss">
   .header-bar {
     height: var(--header-height);
-    background: var(--orange);
+    background: var(--green);
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -21,18 +21,10 @@
     .inner {
       width: 100%;
       height: 100%;
-      // background: var(--green);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-
-      img {
-        width: 400%;
-        height: 400%;
-        object-fit: cover;
-        object-position: center;
-      }
     }
   }
 </style>

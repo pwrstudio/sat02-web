@@ -17,7 +17,7 @@ export type FrontpagePost = {
 }
 
 export type Node = {
-    type: "section" | "column" | "squareDeco" | "subtitle" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates";
+    type: "section" | "column" | "squareDeco" | "subtitle" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates" | "squareAnimation";
     layout?: "image" | "quote";
     children?: Node[];
     post?: any;
