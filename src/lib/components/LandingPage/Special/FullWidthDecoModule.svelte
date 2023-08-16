@@ -1,10 +1,12 @@
 <script lang="ts">
+  import Dots2 from "$lib/components/Graphics/Dots2.svelte"
   import dots from "$lib/assets/dots3.svg"
 </script>
 
 <div class="full-width-deco">
   <div class="inner">
-    <img src={dots} alt="dots" />
+    <Dots2 />
+    <!-- <img src={dots} alt="dots" /> -->
   </div>
 </div>
 

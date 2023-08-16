@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Node } from "$lib/modules/types"
   import Tag from "../Tag.svelte"
+  import Ring from "$lib/components/Graphics/Ring.svelte"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
   import { formatDateTime, timeUntil } from "$lib/modules/date"
@@ -84,6 +85,12 @@
       </div>
     {/if}
   {/if}
+  <!-- 
+  {#if node.bgColor === "green"}
+    <div class="ring">
+      <Ring />
+    </div>
+  {/if} -->
 </div>
 
 <style lang="scss">
@@ -139,6 +146,8 @@
     .content {
       line-height: 1.6em;
       height: 600px;
+      position: relative;
+      z-index: 100;
 
       blockquote {
         font-size: var(--font-size-quote);
@@ -189,6 +198,13 @@
         font-size: var(--font-size-large);
         margin: 0;
       }
+    }
+
+    .ring {
+      // position: absolute;
+      // top: -50%;
+      // left: 50%;
+      // transform: translateX(50%) translateY(-150%);
     }
 
     // &:hover {

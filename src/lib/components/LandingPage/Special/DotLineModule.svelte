@@ -4,13 +4,14 @@
 
 <div class="dot-line">
   <DotLine />
+  <!-- <DotLine /> -->
 </div>
 
 <style lang="scss">
   @import "../../../styles/responsive.scss";
 
   .dot-line {
-    height: 60px;
+    height: 80px;
     display: flex;
     align-items: center;
     color: var(--black);
