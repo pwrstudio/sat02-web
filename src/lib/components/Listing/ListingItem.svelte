@@ -1,9 +1,10 @@
 <script lang="ts">
   export let post: any
+  export let index: number
   export let category: "participants" | "calendar" | "projects"
 </script>
 
-<div class="listing-item">
+<div class="listing-item" class:even={index % 2 == 0}>
   <!-- TITLE -->
   <a
     class="title"
@@ -39,9 +40,14 @@
     min-height: 100px;
     width: 100%;
     padding: var(--default-padding);
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     border-top: 1px solid var(--black);
     align-items: center;
+    // background: var(--green);
+
+    &.even {
+      background: var(--white);
+    }
 
     .title {
       display: block;

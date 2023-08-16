@@ -37,6 +37,14 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
+        {#if page.featuredImage}
+          <div class="swiper-slide">
+            <img
+              src={urlFor(page.featuredImage.asset).width(1200).url()}
+              alt=""
+            />
+          </div>
+        {/if}
         {#if page.processMedia}
           {#each page.processMedia as media}
             {#if has(media, "asset")}

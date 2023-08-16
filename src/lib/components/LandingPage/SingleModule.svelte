@@ -6,6 +6,7 @@
   import SquareAnimationModule from "$lib/components/LandingPage/Special/SquareAnimationModule.svelte"
   import FullWidthDecoModule from "$lib/components/LandingPage/Special/FullWidthDecoModule.svelte"
   import SubtitleModule from "$lib/components/LandingPage/Special/SubtitleModule.svelte"
+  import DotLineModule from "./Special/DotLineModule.svelte"
   import MapModule from "$lib/components/LandingPage/Special/MapModule.svelte"
   export let node: any
 
@@ -31,6 +32,8 @@
         return { component: FullWidthDecoModule, props: {} }
       case "subtitle":
         return { component: SubtitleModule, props: {} }
+      case "dotLine":
+        return { component: DotLineModule, props: {} }
       default:
         return { component: null, props: {} }
     }

@@ -48,6 +48,9 @@ export const extended: Node[] = [
             },
             {
                 type: "dates",
+            },
+            {
+                type: "dotLine"
             }
         ]
     },
@@ -113,6 +116,14 @@ export const extended: Node[] = [
                         layout: "image"
                     },
                 ]
+            }
+        ]
+    },
+    {
+        type: "section",
+        children: [
+            {
+                type: "dotLine"
             }
         ]
     },
