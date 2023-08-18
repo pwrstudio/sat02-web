@@ -5,6 +5,7 @@
 
   import Slideshow from "./Slideshow.svelte"
   import Tag from "../Tag.svelte"
+  import PlaceholderText from "./PlaceholderText.svelte"
   export let page: any
 
   let slideshowOpen = false
@@ -36,6 +37,8 @@
     <div class="row content">
       {#if page.description}
         {@html renderBlockText(page.description.content)}
+      {:else}
+        <PlaceholderText />
       {/if}
     </div>
   </div>

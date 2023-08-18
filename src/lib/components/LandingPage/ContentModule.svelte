@@ -85,9 +85,8 @@
       </div>
     {/if}
   {/if}
-  <!-- 
-  {#if node.bgColor === "green"}
-    <div class="ring">
+  <!-- {#if node.bgColor === "green"}
+        <div class="ring">
       <Ring />
     </div>
   {/if} -->
@@ -175,6 +174,7 @@
         background: var(--grey);
         overflow: hidden;
         margin-bottom: var(--default-padding);
+        border-radius: 30px;
 
         img {
           width: 100%;
@@ -204,7 +204,7 @@
       // position: absolute;
       // top: -50%;
       // left: 50%;
-      // transform: translateX(50%) translateY(-150%);
+      transform: translateX(60%) translateY(-100%);
     }
 
     // &:hover {
