@@ -3,9 +3,11 @@
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
   import has from "lodash/has.js"
 
-  import Slideshow from "./Slideshow.svelte"
-  import Tag from "../Tag.svelte"
-  import PlaceholderText from "./PlaceholderText.svelte"
+  import Slideshow from "$lib/components/Page/Slideshow.svelte"
+  import Tag from "$lib/components/Tag.svelte"
+  import PlaceholderText from "$lib/components/Page/PlaceholderText.svelte"
+  import ParticipantList from "$lib/components/ParticipantList.svelte"
+  import SlidesCounter from "./SlidesCounter.svelte"
   export let page: any
 
   let slideshowOpen = false
@@ -47,16 +49,9 @@
   <div class="column right">
     <!-- PARTICIPANTS  -->
     <div class="row header green">
-      {#if has(page, "participants[0].title")}
-        <h2>
-          <a
-            href={"/participants/" + page.participants[0].slug.current}
-            data-sveltekit-preload-data
-          >
-            {page.participants[0].title}
-          </a>
-        </h2>
-      {/if}
+      <h2>
+        <ParticipantList participants={page.participants} />
+      </h2>
     </div>
     <!-- SLIDESHOW -->
     {#if page.featuredImage}
@@ -74,9 +69,8 @@
           alt={page.title}
           on:click={toogleSlideshow}
         />
-        <!-- {page.processMedia.length} -->
         <button on:click={toogleSlideshow} class="open-slideshow">
-          OPEN SLIDESHOW (10) <Tag>6.2MB</Tag>
+          OPEN SLIDESHOW <SlidesCounter {page} />
         </button>
       </div>
     {/if}

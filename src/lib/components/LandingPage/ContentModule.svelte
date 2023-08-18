@@ -1,10 +1,12 @@
 <script lang="ts">
   import type { Node } from "$lib/modules/types"
-  import Tag from "../Tag.svelte"
-  import Ring from "$lib/components/Graphics/Ring.svelte"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
   import { formatDateTime, timeUntil } from "$lib/modules/date"
+
+  import Tag from "../Tag.svelte"
+  import Ring from "$lib/components/Graphics/Ring.svelte"
+  import ParticipantList from "$lib/components/ParticipantList.svelte"
 
   export let node: Node
   console.log(node)
@@ -64,7 +66,10 @@
           </h2>
           {#if node.type == "project" || node.type == "event"}
             <h3>
-              {node.post.participants[0].title}
+              <ParticipantList
+                participants={node.post.participants}
+                linked={false}
+              />
             </h3>
           {/if}
         {/if}
@@ -106,6 +111,7 @@
     flex-grow: 4;
     flex-basis: 1;
     overflow: hidden;
+    user-select: none;
 
     &.white {
       background: var(--white);

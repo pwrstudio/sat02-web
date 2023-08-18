@@ -6,28 +6,46 @@
   import { fade } from "svelte/transition"
   import { createEventDispatcher } from "svelte"
   import { onMount } from "svelte"
-  import { urlFor, renderBlockText } from "$lib/modules/sanity"
+  import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
+  import ParticipantList from "../ParticipantList.svelte"
   export let page: any
 
   const dispatch = createEventDispatcher()
 
-  console.log("page", page)
+  let swiper: Swiper
+  let activeIndex = 1
+
+  $: isMultiSlide = has(swiper, "slides") && swiper.slides.length > 1
+  $: isBeginning = activeIndex === 1
+  $: isEnd = has(swiper, "slides") && activeIndex === swiper.slides.length
 
   const sendClose = () => {
     dispatch("close")
   }
 
-  let swiper
+  const nextSlide = () => {
+    swiper.slideNext()
+  }
+
+  const prevSlide = () => {
+    swiper.slidePrev()
+  }
 
   onMount(() => {
     swiper = new Swiper(".swiper")
+    swiper.on("slideChange", () => {
+      activeIndex = swiper.activeIndex + 1
+    })
   })
 </script>
 
 <div class="slideshow" in:fade={{ duration: 100 }}>
   <div class="top-bar">
-    <div class="title">{page.title}</div>
+    <div class="title">
+      {page.title},&nbsp;
+      <ParticipantList participants={page.participants} />
+    </div>
     <button class="close" on:click={sendClose}>CLOSE</button>
   </div>
 
@@ -37,14 +55,6 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
-        {#if page.featuredImage}
-          <div class="swiper-slide">
-            <img
-              src={urlFor(page.featuredImage.asset).width(1200).url()}
-              alt=""
-            />
-          </div>
-        {/if}
         {#if page.processMedia}
           {#each page.processMedia as media}
             {#if has(media, "asset")}
@@ -53,15 +63,36 @@
               </div>
             {/if}
           {/each}
+        {:else if page.featuredImage}
+          <div class="swiper-slide">
+            <img
+              src={urlFor(page.featuredImage.asset).width(1200).url()}
+              alt=""
+            />
+          </div>
         {/if}
       </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination" />
-
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev" />
-      <div class="swiper-button-next" />
     </div>
+  </div>
+
+  {#if isMultiSlide}
+    <button
+      class="arrow left"
+      class:disabled={isBeginning}
+      on:click={prevSlide}
+    >
+      ←
+    </button>
+    <button class="arrow right" class:disabled={isEnd} on:click={nextSlide}>
+      →
+    </button>
+  {/if}
+
+  <div class="caption">
+    {#if isMultiSlide}
+      <div>{activeIndex}/{swiper.slides.length}</div>
+    {/if}
+    <div>Caption, credits, etc...</div>
   </div>
 </div>
 
@@ -76,6 +107,7 @@
     left: 0;
     background: var(--green);
     z-index: 10000;
+    color: var(--white);
     // display: flex;
     // justify-content: center;
     // align-items: center;
@@ -96,9 +128,33 @@
     }
   }
 
+  .counter {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: var(--menubar-height);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .caption {
+    position: fixed;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .swiper {
     margin-top: 10vh;
-    height: 80vh;
+    height: 75vh;
 
     .swiper-wrapper {
       height: 100%;
@@ -110,7 +166,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
         font-size: 5rem;
         user-select: none;
 
@@ -130,5 +185,37 @@
     cursor: pointer;
     padding: 0;
     line-height: 1em;
+    color: var(--white);
+  }
+
+  .close {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--font-size-large);
+    z-index: 10000;
+    &.left {
+      left: 10vw;
+      padding: var(--double-padding);
+    }
+    &.right {
+      right: 10vw;
+      padding: var(--double-padding);
+    }
+
+    &:hover {
+      color: var(--black);
+    }
+
+    &.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
   }
 </style>
