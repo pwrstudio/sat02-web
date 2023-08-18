@@ -20,6 +20,9 @@ dependencies:
   mapbox-gl:
     specifier: ^2.15.0
     version: 2.15.0
+  scroll-lock:
+    specifier: ^2.1.5
+    version: 2.1.5
   swiper:
     specifier: ^10.2.0
     version: 10.2.0
@@ -1285,6 +1288,10 @@ packages:
       immutable: 4.3.2
       source-map-js: 1.0.2
     dev: true
+
+  /scroll-lock@2.1.5:
+    resolution: {integrity: sha512-GN8Lp0AzXbkrPFUUNkMUruiiv019UvarNKE/SnXi+AxZRjMnDc2R22VB9RcUtL4P/uub04cKibmpHKIKTyWwYQ==}
+    dev: false
 
   /set-cookie-parser@2.6.0:
     resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}

@@ -1,12 +1,11 @@
 <script lang="ts">
-  // import Swiper JS
-  import Swiper from "swiper"
-  // import Swiper styles
-  import "swiper/css"
   import { fade } from "svelte/transition"
-  import { createEventDispatcher } from "svelte"
+  import { createEventDispatcher, onDestroy } from "svelte"
   import { onMount } from "svelte"
   import { urlFor } from "$lib/modules/sanity"
+  import Swiper from "swiper"
+  import "swiper/css"
+  import { disablePageScroll, enablePageScroll } from "scroll-lock"
   import has from "lodash/has.js"
   import ParticipantList from "../ParticipantList.svelte"
   export let page: any
@@ -33,10 +32,15 @@
   }
 
   onMount(() => {
+    disablePageScroll()
     swiper = new Swiper(".swiper")
     swiper.on("slideChange", () => {
       activeIndex = swiper.activeIndex + 1
     })
+  })
+
+  onDestroy(() => {
+    enablePageScroll()
   })
 </script>
 
@@ -108,6 +112,7 @@
     background: var(--green);
     z-index: 10000;
     color: var(--white);
+    overflow: hidden;
     // display: flex;
     // justify-content: center;
     // align-items: center;
