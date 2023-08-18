@@ -17,7 +17,7 @@
   console.log(page)
 </script>
 
-<div class="page" in:fade={{ duration: 200 }}>
+<div class="page {page._type}" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
   <div class="column left">
     <!-- TITLE -->
@@ -49,7 +49,12 @@
     <div class="row header green">
       {#if has(page, "participants[0].title")}
         <h2>
-          {page.participants[0].title}
+          <a
+            href={"/participants/" + page.participants[0].slug.current}
+            data-sveltekit-preload-data
+          >
+            {page.participants[0].title}
+          </a>
         </h2>
       {/if}
     </div>
@@ -173,5 +178,13 @@
   h2 {
     font-size: var(--font-size-large);
     font-weight: normal;
+
+    a {
+      color: var(--white);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 </style>
