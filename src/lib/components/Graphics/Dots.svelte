@@ -10,6 +10,8 @@
   class={color}
   id="Layer_2"
   data-name="Layer 2"
+  height="100%"
+  width="100%"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 808.54 808.72"
 >
