@@ -15,12 +15,14 @@
     --white-transparent: rgba(255, 255, 255, 0.3);
 
     /* Sizing */
-    --default-padding: 14px;
-    --double-padding: 20px;
+    /* --default-padding: 14px; */
+    --default-padding: 20px;
+    --double-padding: calc(var(--default-padding) * 2);
+    --triple-padding: calc(var(--default-padding) * 3);
     --menubar-height: 62px;
     --header-height: 300px;
     --footer-height: 300px;
-    --module-min-height: 300px;
+    --module-min-height: 360px;
 
     /* Z-index */
     --z-back: 10;
@@ -40,8 +42,9 @@
     --font-size-xs: 11px;
     --font-size-normal: 18px;
     --font-size-large: 32px;
-    --font-size-quote: 46px;
-    --font-size-xl: 56px;
+    --font-size-quote: 32px;
+    --font-size-xl: 46px;
+    --font-size-menu: 56px;
   }
 
   * {

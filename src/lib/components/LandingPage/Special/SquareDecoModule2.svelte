@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import dots from "$lib/assets/dots3.svg"
   import Dots from "$lib/components/Graphics/Dots.svelte"
+  export let node: Node
 </script>
 
-<div class="square-deco">
+<div
+  class="square-deco"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <Dots />
 </div>
 

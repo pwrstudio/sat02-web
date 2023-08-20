@@ -1,7 +1,6 @@
 <script lang="ts">
   export let participants: any[]
   export let linked = true
-  console.log("participants", participants)
 </script>
 
 {#if participants && participants.length > 0}

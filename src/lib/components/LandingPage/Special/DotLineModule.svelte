@@ -1,6 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte"
+  import { COLOR, type Node } from "$lib/modules/types"
   import { createDottedLine } from "$lib/modules/graphics"
+
+  export let node: Node
 
   let dotLineEl: HTMLDivElement
 
@@ -9,7 +12,12 @@
   })
 </script>
 
-<div class="dot-line" bind:this={dotLineEl} />
+<div
+  class="dot-line"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+  bind:this={dotLineEl}
+/>
 
 <style lang="scss">
   @import "../../../styles/responsive.scss";

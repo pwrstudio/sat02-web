@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import { onMount } from "svelte"
   import { createDottedCircle, createDottedLine } from "$lib/modules/graphics"
+  export let node: Node
+
   let circleOneEl: HTMLDivElement
   let circleTwoEl: HTMLDivElement
   let circleThreeEl: HTMLDivElement
@@ -14,7 +17,11 @@
   })
 </script>
 
-<div class="square-deco">
+<div
+  class="square-deco"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <div class="circle one" bind:this={circleOneEl} />
   <div class="circle two" bind:this={circleTwoEl} />
   <div class="circle three" bind:this={circleThreeEl} />

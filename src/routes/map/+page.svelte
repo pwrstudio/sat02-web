@@ -2,7 +2,6 @@
   import Map from "$lib/components/Map.svelte"
   export let data
   const { venues } = data
-  console.log(venues)
 </script>
 
 <div class="map-container">

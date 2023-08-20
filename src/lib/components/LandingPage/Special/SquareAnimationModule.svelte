@@ -1,8 +1,14 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import ani from "$lib/assets/ani.mp4"
+  export let node: Node
 </script>
 
-<div class="square-deco">
+<div
+  class="square-deco"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <video src={ani} autoplay loop muted />
 </div>
 

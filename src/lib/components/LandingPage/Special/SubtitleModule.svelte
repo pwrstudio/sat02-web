@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import subtitle from "$lib/assets/subtitle.svg"
-  console.log("")
+  export let node: Node
 </script>
 
 <div class="subtitle">
@@ -9,7 +10,11 @@
   </div>
 </div>
 
-<style lang="scss">
+<style
+  lang="scss"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   @import "../../../styles/responsive.scss";
 
   .subtitle {

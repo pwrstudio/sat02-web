@@ -1,0 +1,43 @@
+<script lang="ts">
+  import type { Node } from "$lib/modules/types"
+  export let node: Node
+</script>
+
+<div class="layout quote">
+  <blockquote>
+    “{node.post.pullQuote}”
+  </blockquote>
+  <div class="quote-title">→ {node.post.title}</div>
+</div>
+
+<style lang="scss">
+  @import "../../../styles/responsive.scss";
+
+  .quote {
+    blockquote {
+      font-size: var(--font-size-quote);
+      font-style: normal;
+      margin: 0;
+      margin-bottom: var(--default-padding);
+      line-height: 1em;
+      padding: var(--triple-padding);
+      padding: 28px;
+      position: relative;
+      z-index: var(--z-content);
+    }
+
+    .quote-title {
+      font-size: var(--font-size-large);
+      font-style: normal;
+      font-style: italic;
+      margin: 0;
+      margin-bottom: var(--default-padding);
+      line-height: 1em;
+      padding: var(--default-padding);
+      padding-top: 0;
+      padding-left: 0;
+      position: relative;
+      z-index: var(--z-content);
+    }
+  }
+</style>

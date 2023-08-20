@@ -1,8 +1,13 @@
 <script lang="ts">
-  console.log("DATES")
+  import { COLOR, type Node } from "$lib/modules/types"
+  export let node: Node
 </script>
 
-<div class="dates">
+<div
+  class="dates"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <div class="date start">11.11.2023</div>
   <div class="line" />
   <div class="date end">10.02.2024</div>

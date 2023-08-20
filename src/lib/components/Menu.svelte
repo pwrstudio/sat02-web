@@ -80,7 +80,7 @@
     flex-direction: column;
 
     .menu-inner {
-      font-size: var(--font-size-xl);
+      font-size: var(--font-size-menu);
       line-height: 1.2em;
       display: flex;
       width: 100%;
@@ -108,7 +108,7 @@
     }
 
     .search-container {
-      font-size: var(--font-size-xl);
+      font-size: var(--font-size-menu);
       margin-bottom: 20px;
       padding: var(--default-padding);
       width: 100%;

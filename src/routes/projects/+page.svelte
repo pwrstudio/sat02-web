@@ -3,7 +3,6 @@
   import Listing from "$lib/components/Listing/Listing.svelte"
   export let data
   const { projects } = data
-  console.log(projects)
 </script>
 
 <HeaderBar />

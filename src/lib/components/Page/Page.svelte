@@ -15,8 +15,6 @@
   const toogleSlideshow = () => {
     slideshowOpen = !slideshowOpen
   }
-
-  console.log(page)
 </script>
 
 <div class="page {page._type}" in:fade={{ duration: 200 }}>

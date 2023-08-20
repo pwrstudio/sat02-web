@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import Dots2 from "$lib/components/Graphics/Dots2.svelte"
   import dots from "$lib/assets/dots3.svg"
+  export let node: Node
 </script>
 
-<div class="full-width-deco">
+<div
+  class="full-width-deco"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <div class="inner">
     <Dots2 />
     <!-- <img src={dots} alt="dots" /> -->

@@ -2,7 +2,7 @@
   import ContentModule from "$lib/components/LandingPage/ContentModule/ContentModule.svelte"
   import DatesModule from "$lib/components/LandingPage/Special/DatesModule.svelte"
   import GeoModule from "$lib/components/LandingPage/Special/GeoModule.svelte"
-  import SquareDecoModule from "$lib/components/LandingPage/Special/SquareDecoModule3.svelte"
+  import SquareDecoModule from "$lib/components/LandingPage/Special/SquareDecoModule2.svelte"
   import SquareAnimationModule from "$lib/components/LandingPage/Special/SquareAnimationModule.svelte"
   import FullWidthDecoModule from "$lib/components/LandingPage/Special/FullWidthDecoModule.svelte"
   import SubtitleModule from "$lib/components/LandingPage/Special/SubtitleModule.svelte"
@@ -19,23 +19,23 @@
       case "event":
         return { component: ContentModule, props: { node } }
       case "dates":
-        return { component: DatesModule, props: {} }
+        return { component: DatesModule, props: { node } }
       case "geo":
-        return { component: GeoModule, props: {} }
+        return { component: GeoModule, props: { node } }
       case "map":
-        return { component: MapModule, props: {} }
+        return { component: MapModule, props: { node } }
       case "squareDeco":
-        return { component: SquareDecoModule, props: {} }
+        return { component: SquareDecoModule, props: { node } }
       case "squareAnimation":
-        return { component: SquareAnimationModule, props: {} }
+        return { component: SquareAnimationModule, props: { node } }
       case "fullWidthDeco":
-        return { component: FullWidthDecoModule, props: {} }
+        return { component: FullWidthDecoModule, props: { node } }
       case "subtitle":
-        return { component: SubtitleModule, props: {} }
+        return { component: SubtitleModule, props: { node } }
       case "dotLine":
-        return { component: DotLineModule, props: {} }
+        return { component: DotLineModule, props: { node } }
       default:
-        return { component: null, props: {} }
+        return { component: null, props: { node } }
     }
   }
 

@@ -70,8 +70,13 @@ export function timeUntil(targetDateTime: string): string {
     const currentTime = new Date();
     const diffInMilliseconds = targetDate.getTime() - currentTime.getTime();
 
-    // Check if the difference is less than one day.
-    if (diffInMilliseconds < 24 * 60 * 60 * 1000) {
+    // Check if the difference is less than one hour.
+    if (diffInMilliseconds < 60 * 60 * 1000) {
+        const diffInMinutes = Math.round(diffInMilliseconds / (60 * 1000));
+        return `Starts in ${diffInMinutes} minutes`;
+    }
+    // Check if the difference is less than one day but more than one hour.
+    else if (diffInMilliseconds < 24 * 60 * 60 * 1000) {
         const diffInHours = Math.round(diffInMilliseconds / (60 * 60 * 1000));
         return `Starts in ${diffInHours} hours`;
     } else {
@@ -79,9 +84,6 @@ export function timeUntil(targetDateTime: string): string {
         return `Starts in ${diffInDays} days`;
     }
 }
-
-// Example usage:
-console.log(timeUntil("2023-11-22T15:37:00.000Z"));
 
 
 export function getSharjahTime() {

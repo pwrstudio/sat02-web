@@ -23,7 +23,7 @@
   .image-container {
     width: 600px;
     height: 400px;
-    max-width: 100%;
+    max-width: 90%;
     background: var(--grey);
     overflow: hidden;
     margin-bottom: var(--default-padding);

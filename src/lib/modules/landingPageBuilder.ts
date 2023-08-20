@@ -8,48 +8,33 @@ type Posts = {
     "event": any[];
 }
 
-function getPostBySlug(posts: Posts, type: keyof Posts, slug: string) {
-    return posts[type].find((post: any) => post.slug?.current === slug);
+type Indices = {
+    "project": number;
+    "participant": number;
+    "event": number;
 }
 
-function addPostToNode(node: Node, posts: Posts) {
+// function getPostBySlug(posts: Posts, type: keyof Posts, slug: string) {
+//     return posts[type].find((post: any) => post.slug?.current === slug);
+// }
 
-    let selectedProjectSlugs = [
-        "return-to-sender",
-        "africa-a-designers-utopia-lagos-chapter",
-        "anthropocene-museum-9-0-sharjah-s-old-slaughterhouse-tour",
-        "time-transitions",
-        "la-balsanera-productive-floating-house",
-        "power-shifts",
-        "mud-walks-provisional-title",
-        "jabala-9-ash-cleansing-temple"
-    ];
-
-    let selectedParticipantSlugs = [
-        "thomas-egoumenides",
-        "nifemi-marcus-bello",
-        "papa-omotayo-and-eve-nnaji-moeaaadd-apt",
-        "yussef-agbo-ola-olaniyi-studio",
-        "thao-nguyen-phan",
-        "ruina-architecture-julia-peres-and-victoria-braga"
-    ]
+function addPostToNode(node: Node, posts: Posts, indices: Indices) {
 
     if (node.type === "event") {
-        node.post = pickRandom(posts["event"], 1)[0];
+        node.post = posts.event[indices.event++ % posts.event.length]
     }
 
     if (node.type === "participant") {
-        node.post = getPostBySlug(posts, "participant", selectedParticipantSlugs.shift() || "");
+        node.post = posts.participant[indices.participant++ % posts.participant.length]
     }
 
     if (node.type === "project") {
-        node.post = getPostBySlug(posts, "project", selectedProjectSlugs.shift() || "");
+        node.post = posts.project[indices.project++ % posts.project.length]
     }
-
 
     if (node.children) {
         for (let child of node.children) {
-            addPostToNode(child, posts);
+            addPostToNode(child, posts, indices);
         }
     }
 }
@@ -57,8 +42,14 @@ function addPostToNode(node: Node, posts: Posts) {
 export function buildFrontPage(posts: Posts) {
     let frontpage: any[] = demo;
 
+    let indicides: Indices = {
+        "project": 0,
+        "participant": 0,
+        "event": 0
+    }
+
     for (let root of frontpage) {
-        addPostToNode(root, posts);
+        addPostToNode(root, posts, indicides);
     }
 
     return frontpage;

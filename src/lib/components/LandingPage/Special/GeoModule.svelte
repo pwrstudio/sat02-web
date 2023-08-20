@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import { getSharjahTime } from "$lib/modules/date"
   import { getSharjahWeather } from "$lib/modules/weather"
+
+  export let node: Node
 
   let currentTime: string = ""
   let currentWeather: string = "..."
@@ -20,7 +23,11 @@
   setInterval(updateWeather, 60000)
 </script>
 
-<div class="geo">
+<div
+  class="geo"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <div class="inner">
     <div class="location">Sharjah, UAE</div>
     <div class="time">{currentTime}</div>
@@ -47,6 +54,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      z-index: var(--z-content);
     }
   }
 </style>

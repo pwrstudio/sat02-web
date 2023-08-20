@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
   //   import { pickRandom } from "$lib/modules/utils"
-  export let color = "orange"
+  export let color = "blue"
   //   let color = pickRandom(["orange", "blue", "black", "purple"], 1)[0]
 </script>
 

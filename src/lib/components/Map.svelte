@@ -11,7 +11,7 @@
   import mapboxgl from "mapbox-gl"
   import "mapbox-gl/dist/mapbox-gl.css"
 
-  export let venues: any[]
+  export let venues: any[] = []
 
   let map: mapboxgl.Map
 

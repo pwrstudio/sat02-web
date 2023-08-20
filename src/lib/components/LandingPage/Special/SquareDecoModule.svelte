@@ -1,8 +1,14 @@
 <script lang="ts">
+  import { COLOR, type Node } from "$lib/modules/types"
   import dots from "$lib/assets/dots3.svg"
+  export let node: Node
 </script>
 
-<div class="square-deco">
+<div
+  class="square-deco"
+  class:white={node.bgColor == COLOR.WHITE}
+  style={"background-color: " + node.bgColor + ";"}
+>
   <div class="inner">
     <img src={dots} alt="dots" />
   </div>

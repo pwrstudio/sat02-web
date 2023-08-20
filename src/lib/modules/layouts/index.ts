@@ -1,16 +1,17 @@
 import type { Node } from "$lib/modules/types";
-import { COLOR } from "$lib/modules/types";
-
+import { COLOR, DECO_TYPE, LAYOUT, ALIGNMENT } from "$lib/modules/types";
 
 export const demo: Node[] = [
     {
         type: "section",
         decoColor: COLOR.ORANGE,
+        decoType: DECO_TYPE.CIRCLE_ONE,
         children: [
             {
                 type: "event",
                 bgColor: COLOR.GREEN,
-                layout: "image"
+                layout: LAYOUT.FULL,
+                alignment: ALIGNMENT.LEFT
             },
             {
                 type: "dates",
@@ -21,6 +22,7 @@ export const demo: Node[] = [
     {
         type: "section",
         decoColor: COLOR.BLUE,
+        decoType: DECO_TYPE.CIRCLE_TWO,
         children: [
             {
                 type: "column",
@@ -28,12 +30,12 @@ export const demo: Node[] = [
                     {
                         type: "project",
                         bgColor: COLOR.GREEN,
-                        layout: "image"
+                        layout: LAYOUT.IMAGE,
                     },
                     {
                         type: "participant",
                         bgColor: COLOR.GREEN,
-                        layout: "image"
+                        layout: LAYOUT.QUOTE
                     },
                 ]
             },
@@ -41,22 +43,96 @@ export const demo: Node[] = [
                 type: "column",
                 children: [
                     {
-                        type: "project",
-                        bgColor: COLOR.GREEN,
-                        layout: "image"
-                    },
-                    {
                         type: "geo",
                     },
                     {
+                        type: "participant",
+                        bgColor: COLOR.GREEN,
+                        layout: LAYOUT.QUOTE
+                    },
+
+                    {
                         type: "project",
                         bgColor: COLOR.WHITE,
-                        layout: "quote"
+                        layout: LAYOUT.IMAGE,
                     },
+
+                ]
+            }
+        ]
+    },
+    {
+        type: "section",
+        decoColor: COLOR.BLUE,
+        decoType: DECO_TYPE.LINE_ONE,
+        children: [
+            {
+                type: "dates",
+                bgColor: COLOR.WHITE
+            },
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "project",
+                        bgColor: COLOR.WHITE,
+                        layout: LAYOUT.IMAGE,
+                    },
+
+                ]
+            },
+            {
+                type: "column",
+                children: [
+
+                    {
+                        type: "participant",
+                        bgColor: COLOR.WHITE,
+                        layout: LAYOUT.QUOTE,
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        type: "section",
+        decoColor: COLOR.ORANGE,
+        decoType: DECO_TYPE.LINE_TWO,
+        children: [
+            {
+                type: "project",
+                bgColor: COLOR.GREEN,
+                layout: LAYOUT.FULL,
+                alignment: ALIGNMENT.RIGHT
+            },
+        ]
+    },
+    {
+        type: "section",
+        decoType: DECO_TYPE.NONE,
+        children: [
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "squareDeco",
+                        bgColor: COLOR.GREEN,
+                        layout: LAYOUT.IMAGE,
+                    },
+                ]
+            },
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "map",
+                    }
                 ]
             }
         ]
     }
+
+
 ];
 
 // export const extended: Node[] = [

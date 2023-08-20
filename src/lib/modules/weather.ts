@@ -4,7 +4,6 @@ export async function getSharjahWeather(): Promise<string> {
 
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${SHARJAH_COORDINATES.lat}&lon=${SHARJAH_COORDINATES.lon}&units=metric&appid=${OWN_API_KEY}`);
-        console.log(response)
 
         if (!response.ok) {
             throw new Error('Network response was not ok');
