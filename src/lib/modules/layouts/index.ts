@@ -43,14 +43,13 @@ export const demo: Node[] = [
                 type: "column",
                 children: [
                     {
-                        type: "geo",
-                    },
-                    {
                         type: "participant",
                         bgColor: COLOR.GREEN,
                         layout: LAYOUT.QUOTE
                     },
-
+                    {
+                        type: "geo",
+                    },
                     {
                         type: "project",
                         bgColor: COLOR.WHITE,

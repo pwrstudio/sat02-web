@@ -57,6 +57,73 @@ export function formatDateTime(dateTime: string): string {
 }
 
 /**
+ * Formats a given datetime string into the format "Thursday 8th Nov. 19:00".
+ *
+ * @param {string} dateTime - An ISO datetime string to format.
+ * @returns {string} The formatted datetime string.
+ *
+ * @example
+ * formatDateTime("2023-11-08T19:00:00.000Z"); 
+ * // returns "Thursday 8th Nov. 19:00" (given that CET is UTC+1)
+ */
+export function formatFullDateTime(dateTime: string): string {
+    // Create a new date object
+    const myDate = new Date(dateTime);
+
+    // Get day of the week (e.g., Thursday)
+    const dayOfWeek = myDate.toLocaleString('en-US', {
+        weekday: 'long',
+        timeZone: 'CET'
+    });
+
+    // Get numeric day of the month
+    const numericDayOfMonth = myDate.toLocaleString('en-US', {
+        day: 'numeric',
+        timeZone: 'CET'
+    });
+
+    // Get day of the month with ordinal suffix (e.g., 8th)
+    const dayOfMonth = numericDayOfMonth + getOrdinalSuffix(Number(numericDayOfMonth));
+
+
+    // Get month (e.g., Nov)
+    const month = myDate.toLocaleString('en-US', {
+        month: 'short',
+        timeZone: 'CET'
+    });
+
+    // Convert time to HH:mm format in CET timezone
+    const formattedTime = myDate.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+        timeZone: 'CET'
+    });
+
+    // Return formatted string
+    return `${dayOfWeek} ${dayOfMonth} ${month}. ${formattedTime}`;
+}
+
+/**
+ * Returns the ordinal suffix for a given number.
+ * 
+ * @param {number} n - The number for which to determine the ordinal suffix.
+ * @returns {string} The ordinal suffix (e.g., "st", "nd", "rd", "th").
+ */
+function getOrdinalSuffix(n: number): string {
+    if (n >= 11 && n <= 13) {
+        return 'th';
+    }
+    switch (n % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+    }
+}
+
+
+/**
  * Calculate the time remaining until the specified datetime.
  *
  * @param targetDateTime - The target datetime string in the format "YYYY-MM-DDTHH:mm:ss.sssZ"

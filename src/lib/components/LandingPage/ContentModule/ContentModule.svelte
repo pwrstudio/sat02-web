@@ -84,6 +84,7 @@
     flex-grow: 4;
     flex-basis: 1;
     overflow: hidden;
+    user-select: none;
 
     &.white {
       background: var(--white);

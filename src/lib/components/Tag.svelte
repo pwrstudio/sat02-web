@@ -1,9 +1,10 @@
 <script lang="ts">
   export let style: "rounded" | "square" = "square"
   export let border: boolean = false
+  export let caps: boolean = true
 </script>
 
-<div class="tag {style}" class:border>
+<div class="tag {style}" class:border class:caps>
   <slot />
 </div>
 
@@ -14,7 +15,6 @@
     padding: 5px 12px;
     background: var(--white-transparent);
     display: inline-block;
-    text-transform: uppercase;
     word-spacing: -0.3em;
     user-select: none;
     position: relative;
@@ -27,6 +27,10 @@
 
     &.border {
       border: 1px solid var(--black);
+    }
+
+    &.caps {
+      text-transform: uppercase;
     }
   }
 </style>

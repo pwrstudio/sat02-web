@@ -1,16 +1,27 @@
 <script lang="ts">
+  import { goto } from "$app/navigation"
+  import { page } from "$app/stores"
+
   import Menu from "$lib/components/Menu.svelte"
   import { menuActive } from "$lib/modules/stores"
 
   const toggleMenu = () => {
     menuActive.set(!$menuActive)
   }
+
+  const handleLogoClick = () => {
+    if ($page.route.id === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } else {
+      goto("/")
+    }
+  }
 </script>
 
 <nav>
-  <a href="/" class="title" data-sveltekit-preload-data>
+  <button class="title" on:click={handleLogoClick}>
     SHARJAH ARCHITECTURE TRIENNIAL 02
-  </a>
+  </button>
   <div>
     <button class="menu-toggle" on:click={toggleMenu}>
       {$menuActive ? "CLOSE" : "MENU"}
@@ -39,16 +50,6 @@
     z-index: var(--z-nav);
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-      // color: var(--orange);
-    }
-  }
-
   button {
     border: 0;
     background: transparent;
@@ -59,8 +60,20 @@
     line-height: 1em;
   }
 
+  .title {
+    border-bottom: 1.5px solid transparent;
+
+    &:hover {
+      border-bottom: 1.5px solid var(--black);
+    }
+  }
+
   .menu-toggle {
-    border-bottom: 1.5px solid var(--black);
+    border-bottom: 1.5px solid transparent;
+
+    &:hover {
+      border-bottom: 1.5px solid var(--black);
+    }
   }
 
   .language-toggle {

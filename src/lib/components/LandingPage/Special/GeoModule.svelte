@@ -49,6 +49,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    // border-radius: 40px;
 
     .inner {
       display: flex;

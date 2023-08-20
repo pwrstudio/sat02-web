@@ -19,7 +19,7 @@
       font-style: normal;
       margin: 0;
       margin-bottom: var(--default-padding);
-      line-height: 1em;
+      line-height: 1.2em;
       padding: var(--triple-padding);
       padding: 28px;
       position: relative;

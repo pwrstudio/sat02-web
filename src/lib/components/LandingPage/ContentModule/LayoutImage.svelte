@@ -25,6 +25,7 @@
   @import "../../../styles/responsive.scss";
 
   .image {
+    padding-top: 0.5em;
     h2 {
       font-weight: normal;
       font-size: var(--font-size-large);
@@ -41,7 +42,7 @@
       margin: 0;
       position: relative;
       z-index: var(--z-content);
-      margin-bottom: var(--default-padding);
+      margin-bottom: var(--double-padding);
     }
   }
 </style>

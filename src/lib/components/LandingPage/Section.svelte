@@ -8,6 +8,7 @@
   import Column from "./Column.svelte"
   import SingleModule from "./SingleModule.svelte"
   export let node: Node
+  export let venues: any
 
   const getDecoComponent = (decoType: DECO_TYPE) => {
     switch (decoType) {
@@ -32,9 +33,9 @@
     <svelte:component this={decoComponent.component} {...decoComponent.props} />
     {#each node.children as child}
       {#if child.type === "column"}
-        <Column node={child} />
+        <Column node={child} {venues} />
       {:else}
-        <SingleModule node={child} />
+        <SingleModule node={child} {venues} />
       {/if}
     {/each}
   </section>
@@ -47,5 +48,6 @@
     display: flex;
     flex-wrap: wrap;
     position: relative;
+    background: var(--green);
   }
 </style>

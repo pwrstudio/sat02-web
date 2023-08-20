@@ -43,10 +43,11 @@
     padding-bottom: 10px;
     border-top: 1px solid var(--black);
     align-items: center;
-    // background: var(--green);
+    position: relative;
+    z-index: var(--z-content);
 
     &.even {
-      background: var(--white);
+      // background: var(--white);
     }
 
     .title {

@@ -206,12 +206,12 @@
     z-index: var(--z-modal);
 
     &.left {
-      left: 10vw;
+      left: 7vw;
       padding: var(--double-padding);
     }
 
     &.right {
-      right: 10vw;
+      right: 7vw;
       padding: var(--double-padding);
     }
 

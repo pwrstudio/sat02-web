@@ -71,6 +71,46 @@ export function createDottedLine(
     element.appendChild(svg);
 }
 
+/**
+ * Generates an SVG containing a series of filled circles forming a vertical line that are randomly shifted.
+ * 
+ * @param {HTMLDivElement} element - The div element to append the SVG to.
+ * @param {number} height - The height for the line to fill in pixels.
+ * @param {number} radius - The radius of the circles.
+ * @param {number} baseDistance - The base distance between circles.
+ * @param {string} color - The color of the circles.
+ * @param {number} verticalShiftRange - Range of random shift of the dots in vertical position.
+ * @param {number} horizontalShiftRange - Range of random shift of the dots in horizontal position.
+ */
+export function createVerticalDottedLine(
+    element: HTMLDivElement,
+    height: number,
+    radius: number,
+    baseDistance: number,
+    color: string,
+    verticalShiftRange: number,
+    horizontalShiftRange: number
+) {
+    // Calculate the number of circles to fit within the height
+    const numberOfCircles = Math.floor(height / baseDistance);
+
+    // Create an SVG element to contain the circles
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', `${2 * radius + 2 * horizontalShiftRange}`);
+    svg.setAttribute('height', `${height}`);
+
+    // Create the circles using the createDistortedDot function
+    for (let i = 0; i < numberOfCircles; i++) {
+        const cy = i * baseDistance + baseDistance / 2 + (Math.random() - 0.5) * verticalShiftRange;
+        const cx = radius + horizontalShiftRange + (Math.random() - 0.5) * horizontalShiftRange;
+
+        const dot = createDistortedDot(cx, cy, radius, color, DISTORTION_AMOUNT);
+        svg.appendChild(dot);
+    }
+
+    // Append the SVG to the specified div element
+    element.appendChild(svg);
+}
 
 /**
  * Generates an SVG containing a circle of filled dots, with each dot potentially randomly shifted.

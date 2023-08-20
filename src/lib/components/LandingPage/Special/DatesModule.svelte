@@ -24,6 +24,7 @@
     width: 100%;
     padding: var(--default-padding);
     background: var(--white);
+    // color: var(--white);
 
     .date {
       position: relative;
@@ -43,6 +44,7 @@
       flex-grow: 1; // make the line element grow to take up all available space
       height: 1.5px; // height of the line
       background-color: var(--black); // color of the line
+      // background: var(--white);
     }
   }
 </style>

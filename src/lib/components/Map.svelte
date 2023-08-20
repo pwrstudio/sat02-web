@@ -58,7 +58,8 @@
       accessToken: MAPBOXGL_ACCESS_TOKEN,
       center: Al_QASIMIA_SCHOOL_COORDINATES,
       zoom: 13.5,
-      style: "mapbox://styles/mapbox/light-v11",
+      // style: "mapbox://styles/mapbox/light-v11",
+      style: "mapbox://styles/pwrstudio/clljm4fgz019d01pl73yighlc",
     })
 
     // map.on("load", () => {
@@ -143,17 +144,5 @@
     mix-blend-mode: multiply;
     height: 100%;
     width: 100%;
-  }
-
-  :global(.marker) {
-    width: 30px;
-    height: 30px;
-    background: var(--orange);
-    border-radius: 50%;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 </style>

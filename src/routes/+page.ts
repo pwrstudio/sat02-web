@@ -6,6 +6,7 @@ export async function load() {
     let projects = await loadData("*[_type == 'project'] {..., participants[]->{...}, venues[]->{...}}", {})
     let participants = await loadData("*[_type == 'participant']", {})
     const events = await loadData("*[_type == 'event'] {..., participants[]->{...}, venues[]->{...}} | order(dateTime asc)", {})
+    const venues = await loadData("*[_type == 'venue']", {})
 
     const selectedProjectSlugs = [
         "return-to-sender",
@@ -32,6 +33,7 @@ export async function load() {
     const frontpage = buildFrontPage({ "project": projects, "participant": participants, "event": events });
 
     return {
-        frontpage
+        frontpage,
+        venues
     };
 }

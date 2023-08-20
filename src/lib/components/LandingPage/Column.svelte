@@ -2,12 +2,13 @@
   import type { Node } from "$lib/modules/types"
   import SingleModule from "./SingleModule.svelte"
   export let node: Node
+  export let venues: any[]
 </script>
 
 {#if node.children}
   <div class="column">
     {#each node.children as child}
-      <SingleModule node={child} />
+      <SingleModule node={child} {venues} />
     {/each}
   </div>
 {/if}

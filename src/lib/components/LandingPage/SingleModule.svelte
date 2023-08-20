@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Node } from "$lib/modules/types"
   import ContentModule from "$lib/components/LandingPage/ContentModule/ContentModule.svelte"
   import DatesModule from "$lib/components/LandingPage/Special/DatesModule.svelte"
   import GeoModule from "$lib/components/LandingPage/Special/GeoModule.svelte"
@@ -8,7 +9,8 @@
   import SubtitleModule from "$lib/components/LandingPage/Special/SubtitleModule.svelte"
   import DotLineModule from "./Special/DotLineModule.svelte"
   import MapModule from "$lib/components/LandingPage/Special/MapModule.svelte"
-  export let node: any
+  export let node: Node
+  export let venues: any[]
 
   const getComponent = (type: string) => {
     switch (type) {
@@ -23,7 +25,7 @@
       case "geo":
         return { component: GeoModule, props: { node } }
       case "map":
-        return { component: MapModule, props: { node } }
+        return { component: MapModule, props: { node, venues } }
       case "squareDeco":
         return { component: SquareDecoModule, props: { node } }
       case "squareAnimation":

@@ -27,7 +27,6 @@
     background: var(--grey);
     overflow: hidden;
     margin-bottom: var(--default-padding);
-    // border-radius: 30px;
     position: relative;
     z-index: var(--z-content);
 
@@ -39,7 +38,6 @@
       mix-blend-mode: multiply;
       position: relative;
       z-index: var(--z-content);
-      //   border-radius: 30px;
     }
   }
 </style>

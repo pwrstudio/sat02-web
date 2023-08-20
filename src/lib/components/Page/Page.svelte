@@ -8,20 +8,37 @@
   import PlaceholderText from "$lib/components/Page/PlaceholderText.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import SlidesCounter from "./SlidesCounter.svelte"
+  import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
+  import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
+  import { onMount } from "svelte"
   export let page: any
 
   let slideshowOpen = false
+  let height = 0
 
   const toogleSlideshow = () => {
     slideshowOpen = !slideshowOpen
   }
+
+  onMount(() => {
+    height = document.body.scrollHeight
+  })
 </script>
+
+<!-- DECO -->
+<div class="deco-container" style={"height:" + height + "px;"}>
+  {#if page._type == "participant"}
+    <DecoPageTwo />
+  {:else}
+    <DecoPage />
+  {/if}
+</div>
 
 <div class="page {page._type}" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
   <div class="column left">
     <!-- TITLE -->
-    <div class="row header orange">
+    <div class="row header green">
       <!-- TYPE -->
       <Tag>{page._type}</Tag>
       <!-- TITLE -->
@@ -46,13 +63,13 @@
   <!-- RIGHT -->
   <div class="column right">
     <!-- PARTICIPANTS  -->
-    <div class="row header green">
+    <div class="row header right green">
       <h2>
         <ParticipantList participants={page.participants} />
       </h2>
     </div>
     <!-- SLIDESHOW -->
-    {#if page.featuredImage}
+    {#if page.featuredImage?.asset}
       <div class="row slideshow">
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -104,6 +121,10 @@
       .row {
         width: 100%;
         padding: var(--default-padding);
+
+        &.right {
+          padding-top: 53px;
+        }
       }
 
       .header {
@@ -112,10 +133,11 @@
 
       .slideshow {
         background: var(--grey);
-        height: 500px;
+        height: 600px;
         position: relative;
         padding: 0;
         cursor: pointer;
+        z-index: var(--z-content);
 
         img {
           width: 100%;
@@ -131,7 +153,7 @@
           bottom: 0;
           right: 0;
           width: 100%;
-          padding: var(--double-padding);
+          padding: var(--default-padding);
           background: var(--orange);
           color: var(--white);
           text-decoration: none;
@@ -164,12 +186,16 @@
 
   .green {
     background: var(--green);
+    color: var(--white);
+    line-height: 1.6em;
   }
 
   h1,
   h2 {
     font-size: var(--font-size-large);
     font-weight: normal;
+    position: relative;
+    z-index: var(--z-content);
 
     a {
       color: var(--white);
@@ -178,5 +204,12 @@
         text-decoration: underline;
       }
     }
+  }
+
+  .deco-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>
