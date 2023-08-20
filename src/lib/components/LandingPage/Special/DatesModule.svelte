@@ -21,6 +21,9 @@
     background: var(--white);
 
     .date {
+      position: relative;
+      z-index: var(--z-content);
+
       &.start {
         padding-right: var(--default-padding);
       }
@@ -30,6 +33,8 @@
     }
 
     .line {
+      position: relative;
+      z-index: var(--z-content);
       flex-grow: 1; // make the line element grow to take up all available space
       height: 1.5px; // height of the line
       background-color: var(--black); // color of the line

@@ -14,7 +14,6 @@
     height: 100vh;
     width: 100vw;
     position: relative;
-    z-index: 1;
     background: var(--green);
   }
 </style>

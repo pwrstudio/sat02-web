@@ -42,12 +42,13 @@
 
 <style lang="scss">
   footer {
-    // height: var(--footer-height);
     background: var(--grey);
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    z-index: var(--z-nav);
 
     .menu-inner {
       font-size: var(--font-size-small);

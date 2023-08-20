@@ -74,7 +74,7 @@
     width: 100vw;
     height: calc(100vh - var(--menubar-height));
     background: var(--grey);
-    z-index: 1000;
+    z-index: var(--z-nav);
     display: flex;
     justify-content: space-between;
     flex-direction: column;

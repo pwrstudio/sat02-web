@@ -17,6 +17,8 @@
     text-transform: uppercase;
     word-spacing: -0.3em;
     user-select: none;
+    position: relative;
+    z-index: var(--z-content);
 
     &.rounded {
       padding: 5px 16px;

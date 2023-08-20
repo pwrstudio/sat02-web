@@ -110,7 +110,7 @@
     top: 0;
     left: 0;
     background: var(--green);
-    z-index: 10000;
+    z-index: var(--z-modal);
     color: var(--white);
     overflow: hidden;
     // display: flex;
@@ -129,7 +129,6 @@
       padding-left: var(--default-padding);
       padding-right: var(--double-padding);
       justify-content: space-between;
-      z-index: 1000;
     }
   }
 
@@ -204,11 +203,13 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: var(--font-size-large);
-    z-index: 10000;
+    z-index: var(--z-modal);
+
     &.left {
       left: 10vw;
       padding: var(--double-padding);
     }
+
     &.right {
       right: 10vw;
       padding: var(--double-padding);

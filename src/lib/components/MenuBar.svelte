@@ -36,7 +36,7 @@
     padding-left: var(--default-padding);
     padding-right: var(--double-padding);
     justify-content: space-between;
-    z-index: 1000;
+    z-index: var(--z-nav);
   }
 
   a {
