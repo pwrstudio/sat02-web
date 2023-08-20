@@ -1,6 +1,5 @@
 <script lang="ts">
   import { COLOR, type Node } from "$lib/modules/types"
-  import dots from "$lib/assets/dots3.svg"
   import Dots from "$lib/components/Graphics/Dots.svelte"
   export let node: Node
 </script>
@@ -26,6 +25,8 @@
     width: 100%;
     background: var(--green);
     overflow: hidden;
+    position: relative;
+    z-index: var(--z-content);
 
     img {
       aspect-ratio: 1;

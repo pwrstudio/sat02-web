@@ -1,5 +1,4 @@
 import { pickRandom } from "$lib/modules/utils"
-import { demo } from "$lib/modules/layouts"
 import type { Node } from "$lib/modules/types"
 
 type Posts = {
@@ -39,8 +38,8 @@ function addPostToNode(node: Node, posts: Posts, indices: Indices) {
     }
 }
 
-export function buildFrontPage(posts: Posts) {
-    let frontpage: any[] = demo;
+export function buildFrontPage(layout: any[], posts: Posts) {
+    let frontpage: any[] = layout;
 
     let indicides: Indices = {
         "project": 0,

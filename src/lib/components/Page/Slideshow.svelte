@@ -12,6 +12,8 @@
 
   const dispatch = createEventDispatcher()
 
+  let mediaList = page.processMedia || page.media || []
+
   let swiper: Swiper
   let activeIndex = 1
 
@@ -59,8 +61,8 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
-        {#if page.processMedia}
-          {#each page.processMedia as media}
+        {#if mediaList.length > 0}
+          {#each mediaList as media}
             {#if has(media, "asset")}
               <div class="swiper-slide">
                 <img src={urlFor(media.asset).width(1200).url()} alt="" />

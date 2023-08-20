@@ -130,6 +130,126 @@ export const demo: Node[] = [
             }
         ]
     }
+];
+
+export const demo2: Node[] = [
+    {
+        type: "section",
+        decoColor: COLOR.BLUE,
+        decoType: DECO_TYPE.CIRCLE_TWO,
+        children: [
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "squareDeco",
+                        bgColor: COLOR.GREEN,
+                        layout: LAYOUT.IMAGE,
+                    },
+                    {
+                        type: "geo",
+                    },
+                ]
+            },
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "project",
+                        bgColor: COLOR.WHITE,
+                        layout: LAYOUT.IMAGE,
+                    },
+                    {
+                        type: "subtitle",
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        type: "section",
+        decoColor: COLOR.ORANGE,
+        decoType: DECO_TYPE.CIRCLE_ONE,
+        children: [
+            {
+                type: "event",
+                bgColor: COLOR.GREEN,
+                layout: LAYOUT.FULL,
+                alignment: ALIGNMENT.LEFT
+            },
+            {
+                type: "dates",
+                bgColor: COLOR.GREEN
+            }
+        ]
+    },
+    {
+        type: "section",
+        decoColor: COLOR.PURPLE,
+        decoType: DECO_TYPE.LINE_ONE,
+        children: [
+
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "project",
+                        bgColor: COLOR.WHITE,
+                        layout: LAYOUT.IMAGE,
+                    },
+
+                ]
+            },
+            {
+                type: "column",
+                children: [
+
+                    {
+                        type: "participant",
+                        bgColor: COLOR.WHITE,
+                        layout: LAYOUT.QUOTE,
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        type: "section",
+        decoColor: COLOR.ORANGE,
+        decoType: DECO_TYPE.LINE_TWO,
+        children: [
+            {
+                type: "project",
+                bgColor: COLOR.GREEN,
+                layout: LAYOUT.FULL,
+                alignment: ALIGNMENT.RIGHT
+            },
+        ]
+    },
+    {
+        type: "section",
+        decoType: DECO_TYPE.NONE,
+        children: [
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "squareDeco",
+                        bgColor: COLOR.GREEN,
+                        layout: LAYOUT.IMAGE,
+                    },
+                ]
+            },
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "map",
+                    }
+                ]
+            }
+        ]
+    }
 
 
 ];

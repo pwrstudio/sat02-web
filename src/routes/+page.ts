@@ -1,8 +1,9 @@
 import { buildFrontPage } from "$lib/modules/landingPageBuilder"
 import { loadData } from "$lib/modules/sanity"
+import { demo, demo2 } from "$lib/modules/layouts"
 
 /** @type {import('./$types').PageLoad} */
-export async function load() {
+export async function load({ url }) {
     let projects = await loadData("*[_type == 'project'] {..., participants[]->{...}, venues[]->{...}}", {})
     let participants = await loadData("*[_type == 'participant']", {})
     const events = await loadData("*[_type == 'event'] {..., participants[]->{...}, venues[]->{...}} | order(dateTime asc)", {})
@@ -30,7 +31,9 @@ export async function load() {
     projects = projects.filter((project: any) => selectedProjectSlugs.includes(project.slug?.current));
     participants = participants.filter((participant: any) => selectedParticipantSlugs.includes(participant.slug?.current));
 
-    const frontpage = buildFrontPage({ "project": projects, "participant": participants, "event": events });
+    const layout = url.searchParams.get('layout') == "demo2" ? demo2 : demo;
+
+    const frontpage = buildFrontPage(layout, { "project": projects, "participant": participants, "event": events });
 
     return {
         frontpage,

@@ -2,10 +2,12 @@
   import Tag from "$lib/components/Tag.svelte"
   export let page: any
 
+  let mediaList = page.processMedia || page.media || []
+
   let slideCount = 1
 
-  if (page.processMedia?.length > 0) {
-    slideCount = page.processMedia.length
+  if (mediaList?.length > 0) {
+    slideCount = mediaList.length
   }
 </script>
 
