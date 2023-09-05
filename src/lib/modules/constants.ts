@@ -17,7 +17,7 @@ export const MENU_ITEMS = [
     },
     {
         title: "About",
-        link: "/about",
+        link: "/page/about",
     },
     {
         title: "Map",
@@ -25,11 +25,11 @@ export const MENU_ITEMS = [
     },
     {
         title: "Team",
-        link: "/team",
+        link: "/page/team",
     },
     {
         title: "Contact",
-        link: "/contact",
+        link: "/page/contact",
     },
 ]
 
