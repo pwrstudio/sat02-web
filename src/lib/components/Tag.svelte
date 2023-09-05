@@ -19,6 +19,7 @@
     user-select: none;
     position: relative;
     z-index: var(--z-content);
+    color: var(--black);
 
     &.rounded {
       padding: 5px 16px;

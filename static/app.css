@@ -12,7 +12,8 @@
     --purple: rgb(210, 85, 173);
 
     /* Special colors */
-    --white-transparent: rgba(255, 255, 255, 0.3);
+    --white-transparent: rgba(255, 255, 255, 0.4);
+    --black-transparent: rgba(0, 0, 0, 0.8);
 
     /* Sizing */
     /* --default-padding: 14px; */

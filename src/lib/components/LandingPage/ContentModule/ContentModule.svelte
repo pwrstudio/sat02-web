@@ -4,6 +4,7 @@
   import { formatDateTime, timeUntil } from "$lib/modules/date"
 
   import Tag from "$lib/components/Tag.svelte"
+  import Borders from "$lib/components/LandingPage/ContentModule/Borders.svelte"
   import LayoutQuote from "$lib/components/LandingPage/ContentModule/LayoutQuote.svelte"
   import LayoutImage from "$lib/components/LandingPage/ContentModule/LayoutImage.svelte"
   import LayoutFull from "$lib/components/LandingPage/ContentModule/LayoutFull.svelte"
@@ -54,7 +55,7 @@
       </a>
     </div>
 
-    <!-- META BOTTOM -->
+    <!-- DIVIDER BOTTOM -->
     {#if node.layout != LAYOUT.FULL && node.type == "event" && has(node, "post.dateTime")}
       <div class="meta-bottom">
         <!-- DATE -->
@@ -67,6 +68,13 @@
         </Tag>
       </div>
     {/if}
+
+    {#if node.border}
+      <Borders
+        border={node.border}
+        color={node.bgColor == COLOR.WHITE ? COLOR.BLACK : COLOR.WHITE}
+      />
+    {/if}
   {/if}
 </div>
 
@@ -75,16 +83,16 @@
 
   .module {
     min-height: var(--module-min-height);
-    padding: var(--default-padding);
+    padding: var(--double-padding);
     display: flex;
     flex-direction: column;
     width: 100%;
     color: var(--white);
     flex-shrink: 2;
     flex-grow: 4;
-    flex-basis: 1;
     overflow: hidden;
     user-select: none;
+    position: relative;
 
     &.white {
       background: var(--white);

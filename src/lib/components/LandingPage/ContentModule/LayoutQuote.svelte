@@ -20,8 +20,8 @@
       margin: 0;
       margin-bottom: var(--default-padding);
       line-height: 1.2em;
-      padding: var(--triple-padding);
-      padding: 28px;
+      padding: var(--default-padding);
+      padding-left: 0;
       position: relative;
       z-index: var(--z-content);
     }

@@ -127,7 +127,7 @@ function getOrdinalSuffix(n: number): string {
  * Calculate the time remaining until the specified datetime.
  *
  * @param targetDateTime - The target datetime string in the format "YYYY-MM-DDTHH:mm:ss.sssZ"
- * @returns A string representing the time remaining until the target datetime.
+ * @returns A string representing the time remaining until the target datetime or its status if it has already started.
  */
 export function timeUntil(targetDateTime: string): string {
     // Parse the provided date-time string into a Date object.
@@ -137,20 +137,33 @@ export function timeUntil(targetDateTime: string): string {
     const currentTime = new Date();
     const diffInMilliseconds = targetDate.getTime() - currentTime.getTime();
 
-    // Check if the difference is less than one hour.
-    if (diffInMilliseconds < 60 * 60 * 1000) {
-        const diffInMinutes = Math.round(diffInMilliseconds / (60 * 1000));
-        return `Starts in ${diffInMinutes} minutes`;
-    }
-    // Check if the difference is less than one day but more than one hour.
-    else if (diffInMilliseconds < 24 * 60 * 60 * 1000) {
-        const diffInHours = Math.round(diffInMilliseconds / (60 * 60 * 1000));
-        return `Starts in ${diffInHours} hours`;
+    // If the event is in the future
+    if (diffInMilliseconds > 0) {
+        // Check if the difference is less than one hour.
+        if (diffInMilliseconds < 60 * 60 * 1000) {
+            const diffInMinutes = Math.round(diffInMilliseconds / (60 * 1000));
+            return `Starts in ${diffInMinutes} minutes`;
+        }
+        // Check if the difference is less than one day but more than one hour.
+        else if (diffInMilliseconds < 24 * 60 * 60 * 1000) {
+            const diffInHours = Math.round(diffInMilliseconds / (60 * 60 * 1000));
+            return `Starts in ${diffInHours} hours`;
+        } else {
+            const diffInDays = Math.round(diffInMilliseconds / (24 * 60 * 60 * 1000));
+            return `Starts in ${diffInDays} days`;
+        }
     } else {
-        const diffInDays = Math.round(diffInMilliseconds / (24 * 60 * 60 * 1000));
-        return `Starts in ${diffInDays} days`;
+        // If the event has already started but is less than 2 hours past.
+        if (Math.abs(diffInMilliseconds) < 2 * 60 * 60 * 1000) {
+            return "In progress";
+        }
+        // If the event started more than 2 hours ago.
+        else {
+            return "Past";
+        }
     }
 }
+
 
 
 export function getSharjahTime() {

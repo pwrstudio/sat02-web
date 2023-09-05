@@ -51,6 +51,13 @@ export type FrontpagePost = {
 
 export type NodeType = "section" | "column" | "squareDeco" | "subtitle" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates" | "squareAnimation" | "dotLine" | "map";
 
+export type BorderOption = {
+    top?: boolean,
+    bottom?: boolean,
+    left?: boolean,
+    right?: boolean
+}
+
 export type Node = {
     type: NodeType;
     layout?: LAYOUT;
@@ -60,4 +67,5 @@ export type Node = {
     decoColor?: COLOR;
     decoType?: DECO_TYPE;
     bgColor?: COLOR;
+    border?: BorderOption;
 };

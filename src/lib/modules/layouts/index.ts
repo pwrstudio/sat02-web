@@ -35,7 +35,10 @@ export const demo: Node[] = [
                     {
                         type: "participant",
                         bgColor: COLOR.GREEN,
-                        layout: LAYOUT.QUOTE
+                        layout: LAYOUT.QUOTE,
+                        border: {
+                            top: true,
+                        }
                     },
                 ]
             },
@@ -45,7 +48,10 @@ export const demo: Node[] = [
                     {
                         type: "participant",
                         bgColor: COLOR.GREEN,
-                        layout: LAYOUT.QUOTE
+                        layout: LAYOUT.QUOTE,
+                        border: {
+                            left: true,
+                        }
                     },
                     {
                         type: "geo",
@@ -88,6 +94,9 @@ export const demo: Node[] = [
                         type: "participant",
                         bgColor: COLOR.WHITE,
                         layout: LAYOUT.QUOTE,
+                        border: {
+                            left: true,
+                        }
                     },
                 ]
             },
