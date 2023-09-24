@@ -9,7 +9,7 @@
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
   import Search from "./Search.svelte"
   import delay from "lodash/delay.js"
-  import { disablePageScroll, enablePageScroll } from "scroll-lock"
+  // import { disablePageScroll, enablePageScroll } from "scroll-lock"
 
   let selectedItem = ""
 
@@ -21,13 +21,13 @@
     delay(closeMenu, 700)
   })
 
-  onMount(() => {
-    disablePageScroll()
-  })
+  // onMount(() => {
+  //   disablePageScroll()
+  // })
 
-  onDestroy(() => {
-    enablePageScroll()
-  })
+  // onDestroy(() => {
+  //   enablePageScroll()
+  // })
 </script>
 
 <div

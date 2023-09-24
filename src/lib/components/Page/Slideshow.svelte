@@ -7,7 +7,7 @@
   import { urlFor } from "$lib/modules/sanity"
   import Swiper from "swiper"
   import "swiper/css"
-  import { disablePageScroll, enablePageScroll } from "scroll-lock"
+  // import { disablePageScroll, enablePageScroll } from "scroll-lock"
   import has from "lodash/has.js"
   import ParticipantList from "../ParticipantList.svelte"
   export let page: any
@@ -36,16 +36,16 @@
   }
 
   onMount(() => {
-    disablePageScroll()
+    // disablePageScroll()
     swiper = new Swiper(".swiper")
     swiper.on("slideChange", () => {
       activeIndex = swiper.activeIndex + 1
     })
   })
 
-  onDestroy(() => {
-    enablePageScroll()
-  })
+  // onDestroy(() => {
+  //   enablePageScroll()
+  // })
 </script>
 
 <div class="slideshow" in:fade={{ duration: 100 }}>
