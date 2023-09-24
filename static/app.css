@@ -79,3 +79,7 @@
     position: relative;
     z-index: var(--z-content);
   }
+
+  body.ARABIC {
+    font-family: var(--font-family-arabic);
+  } 

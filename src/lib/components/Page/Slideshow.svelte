@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { LANGUAGE } from "$lib/modules/types"
+  import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { createEventDispatcher, onDestroy } from "svelte"
   import { onMount } from "svelte"
@@ -52,7 +54,9 @@
       {page.title},&nbsp;
       <ParticipantList participants={page.participants} />
     </div>
-    <button class="close" on:click={sendClose}>CLOSE</button>
+    <button class="close" on:click={sendClose}>
+      {$languageStore === LANGUAGE.ENGLISH ? "Close" : "أغلق"}
+    </button>
   </div>
 
   <div class="inner">

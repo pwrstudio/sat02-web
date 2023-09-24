@@ -1,37 +1,52 @@
+import { LANGUAGE } from "./types"
+
 export const MENU_ITEMS = [
     {
         title: "Projects",
-        link: "/projects",
+        ar: "المشاريع",
+        link: "projects",
     },
     {
         title: "Participants",
-        link: "/participants",
+        ar: "المشاركون",
+        link: "participants",
     },
     {
         title: "Field notes",
-        link: "/field-notes",
+        ar: "مذكرات الميدان",
+        link: "field-notes",
     },
     {
         title: "Calendar",
-        link: "/calendar",
+        ar: "التقويم",
+        link: "calendar",
     },
     {
         title: "About",
-        link: "/page/about",
+        ar: "عنا",
+        link: "page/about",
     },
     {
         title: "Map",
-        link: "/map",
+        ar: "الخريطة",
+        link: "map",
     },
     {
         title: "Team",
-        link: "/page/team",
+        ar: "الفريق",
+        link: "page/team",
     },
     {
         title: "Contact",
-        link: "/page/contact",
+        ar: "اتصل بنا",
+        link: "page/contact",
     },
 ]
+
+export const siteTitle = {
+    en: "SHARJAH ARCHITECTURE TRIENNIAL 02",
+    ar: "ترينالي الشارقة للعمارة",
+}
 
 export const COLORS = ["white", "green", "orange", "blue", "purple"]
 

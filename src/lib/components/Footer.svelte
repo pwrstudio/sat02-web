@@ -1,15 +1,22 @@
 <script lang="ts">
   import { MENU_ITEMS } from "$lib/modules/constants"
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
+  import { languageStore, urlPrefix } from "$lib/modules/stores"
+  import { LANGUAGE } from "$lib/modules/types"
+  import { siteTitle } from "$lib/modules/constants"
+  import Borders from "./LandingPage/ContentModule/Borders.svelte"
 </script>
 
-<footer>
-  <div class="menu-inner">
+<footer class={LANGUAGE[$languageStore]}>
+  <!-- INNER MENU -->
+  <div class="menu-inner {LANGUAGE[$languageStore]}">
     <!-- FIRST COLUMN -->
     <div class="column first">
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
         <div class="menu-item">
-          <a href={item.link}>{item.title}</a>
+          <a href={$urlPrefix + item.link}>
+            {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
+          </a>
         </div>
       {/each}
     </div>
@@ -17,22 +24,26 @@
     <div class="column second">
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[1] as item}
         <div class="menu-item">
-          <a href={item.link}>{item.title}</a>
+          <a href={$urlPrefix + item.link}>
+            {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
+          </a>
         </div>
       {/each}
     </div>
     <!-- THIRD COLUMN -->
     <div class="column second">
       <div class="menu-item">
-        <a href="/search">Search...</a>
+        <a href="/search">
+          {$languageStore === LANGUAGE.ENGLISH ? "Search..." : "يبحث"}
+        </a>
       </div>
     </div>
   </div>
-  <div class="title-line">
+  <div class="title-line {LANGUAGE[$languageStore]}">
     <!-- TITLE -->
     <div>
       <a href="/" class="title" data-sveltekit-preload-data>
-        SHARJAH ARCHITECTURE TRIENNIAL 02
+        {$languageStore == LANGUAGE.ENGLISH ? siteTitle.en : siteTitle.ar}
       </a>
     </div>
     <!-- DATES -->
@@ -48,13 +59,21 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    z-index: var(--z-nav);
+
+    &.ARABIC {
+      font-family: var(--font-family-arabic);
+      text-align: right;
+    }
 
     .menu-inner {
       font-size: var(--font-size-small);
       line-height: 1.2em;
       display: flex;
       width: 100%;
+
+      &.ARABIC {
+        flex-direction: row-reverse;
+      }
 
       .column {
         padding: var(--default-padding);
@@ -81,6 +100,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &.ARABIC {
+        flex-direction: row-reverse;
+        padding-left: var(--double-padding);
+        padding-right: var(--default-padding);
+      }
     }
   }
 </style>

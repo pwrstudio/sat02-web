@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { LANGUAGE } from "$lib/modules/types"
   import { fade } from "svelte/transition"
   import { urlFor, renderBlockText } from "$lib/modules/sanity"
   import has from "lodash/has.js"
@@ -11,6 +12,7 @@
   import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
   import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
   import { onMount } from "svelte"
+  import { languageStore } from "$lib/modules/stores"
   export let page: any
 
   let slideshowOpen = false
@@ -85,7 +87,11 @@
           on:click={toogleSlideshow}
         />
         <button on:click={toogleSlideshow} class="open-slideshow">
-          OPEN SLIDESHOW <SlidesCounter {page} />
+          {#if $languageStore === LANGUAGE.ARABIC}
+            فتح العرض التقديمي <SlidesCounter {page} />
+          {:else}
+            OPEN SLIDESHOW <SlidesCounter {page} />
+          {/if}
         </button>
       </div>
     {/if}

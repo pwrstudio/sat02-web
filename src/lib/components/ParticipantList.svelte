@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { urlPrefix } from "$lib/modules/stores"
   export let participants: any[]
   export let linked = true
 </script>
@@ -8,7 +9,7 @@
     {#if linked}
       <a
         class="participant"
-        href={"/participants/" + participant.slug.current}
+        href={$urlPrefix + "participants/" + participant.slug.current}
         data-sveltekit-preload-data
       >
         {participant.title}

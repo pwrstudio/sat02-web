@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { LANGUAGE } from "$lib/modules/types"
+  import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
 
   import PlaceholderText from "$lib/components/Page/PlaceholderText.svelte"
-  import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
   import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
   import { onMount } from "svelte"
   export let page: any
@@ -25,7 +26,15 @@
   <div class="column one">
     <!-- CONTENT -->
     <div class="content">
-      {#if page.content}
+      {#if $languageStore == LANGUAGE.ARABIC}
+        <!-- ARABIC -->
+        {#if page.content_ar}
+          {@html renderBlockText(page.content_ar.content)}
+        {:else}
+          <PlaceholderText />
+        {/if}
+        <!-- ENGLISH -->
+      {:else if page.content}
         {@html renderBlockText(page.content.content)}
       {:else}
         <PlaceholderText />
@@ -53,7 +62,7 @@
 
   .deco-container {
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
   }

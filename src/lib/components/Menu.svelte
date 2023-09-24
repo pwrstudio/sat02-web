@@ -1,12 +1,15 @@
 <script lang="ts">
+  import { onMount, onDestroy } from "svelte"
   import { afterNavigate } from "$app/navigation"
   import { slide, fade } from "svelte/transition"
   import { quadOut } from "svelte/easing"
-  import { menuActive } from "$lib/modules/stores"
+  import { LANGUAGE } from "$lib/modules/types"
+  import { menuActive, languageStore, urlPrefix } from "$lib/modules/stores"
   import { MENU_ITEMS } from "$lib/modules/constants"
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
   import Search from "./Search.svelte"
   import delay from "lodash/delay.js"
+  import { disablePageScroll, enablePageScroll } from "scroll-lock"
 
   let selectedItem = ""
 
@@ -17,11 +20,22 @@
   afterNavigate(async () => {
     delay(closeMenu, 700)
   })
+
+  onMount(() => {
+    disablePageScroll()
+  })
+
+  onDestroy(() => {
+    enablePageScroll()
+  })
 </script>
 
-<div class="menu" in:slide={{ duration: 160, easing: quadOut }}>
+<div
+  class="menu {LANGUAGE[$languageStore]}"
+  in:slide={{ duration: 160, easing: quadOut }}
+>
   <!-- INNER MENU -->
-  <div class="menu-inner">
+  <div class="menu-inner {LANGUAGE[$languageStore]}">
     <!-- FIRST COLUMN -->
     <div class="column first" in:fade={{ duration: 400, delay: 100 }}>
       {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
@@ -30,11 +44,13 @@
           class:hidden={selectedItem && selectedItem != item.title}
         >
           <a
-            href={item.link}
+            href={$urlPrefix + item.link}
             on:click={() => {
               selectedItem = item.title
-            }}>{item.title}</a
+            }}
           >
+            {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
+          </a>
         </div>
       {/each}
     </div>
@@ -46,11 +62,13 @@
           class:hidden={selectedItem && selectedItem != item.title}
         >
           <a
-            href={item.link}
+            href={$urlPrefix + item.link}
             on:click={() => {
               selectedItem = item.title
-            }}>{item.title}</a
+            }}
           >
+            {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
+          </a>
         </div>
       {/each}
     </div>
@@ -79,11 +97,20 @@
     justify-content: space-between;
     flex-direction: column;
 
+    &.ARABIC {
+      font-family: var(--font-family-arabic);
+      text-align: right;
+    }
+
     .menu-inner {
       font-size: var(--font-size-menu);
       line-height: 1.2em;
       display: flex;
       width: 100%;
+
+      &.ARABIC {
+        flex-direction: row-reverse;
+      }
 
       .column {
         padding: var(--default-padding);

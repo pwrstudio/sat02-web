@@ -8,10 +8,12 @@
   import LayoutQuote from "$lib/components/LandingPage/ContentModule/LayoutQuote.svelte"
   import LayoutImage from "$lib/components/LandingPage/ContentModule/LayoutImage.svelte"
   import LayoutFull from "$lib/components/LandingPage/ContentModule/LayoutFull.svelte"
+  import { urlPrefix } from "$lib/modules/stores"
 
   export let node: Node
 
   let url =
+    $urlPrefix +
     (node.post._type == "event" ? "calendar" : node.post._type + "s") +
     "/" +
     node.post.slug.current

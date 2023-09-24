@@ -2,9 +2,11 @@
   // Set language
   import { LANGUAGE } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
-  languageStore.set(LANGUAGE.ENGLISH)
+  languageStore.set(LANGUAGE.ARABIC)
   // ...
-  import Placeholder from "$lib/components/Placeholder.svelte"
+  import Page from "$lib/components/Page/Page.svelte"
+  export let data
+  const { page } = data
 </script>
 
-<Placeholder />
+<Page {page} />
