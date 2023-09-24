@@ -85,6 +85,8 @@
 </div>
 
 <style lang="scss">
+  @import "../styles/responsive.scss";
+
   .menu {
     position: fixed;
     top: var(--menubar-height);
@@ -97,6 +99,11 @@
     justify-content: space-between;
     flex-direction: column;
 
+    @include screen-size("small") {
+      top: var(--menubar-height-phone);
+      height: calc(100vh - var(--menubar-height-phone));
+    }
+
     &.ARABIC {
       font-family: var(--font-family-arabic);
       text-align: right;
@@ -108,8 +115,16 @@
       display: flex;
       width: 100%;
 
+      @include screen-size("small") {
+        flex-direction: column;
+        font-size: var(--font-size-large);
+      }
+
       &.ARABIC {
         flex-direction: row-reverse;
+        @include screen-size("small") {
+          flex-direction: column-reverse;
+        }
       }
 
       .column {

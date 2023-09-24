@@ -48,6 +48,11 @@
     display: flex;
     padding-top: 2em;
 
+    @include screen-size("small") {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
     .column {
       &.text {
         padding: var(--default-padding);
@@ -62,6 +67,10 @@
           position: relative;
           z-index: var(--z-content);
           font-size: var(--font-size-xl);
+
+          @include screen-size("small") {
+            font-size: var(--font-size-large);
+          }
         }
 
         h3 {
@@ -72,6 +81,10 @@
           position: relative;
           z-index: var(--z-content);
           font-size: var(--font-size-xl);
+
+          @include screen-size("small") {
+            font-size: var(--font-size-large);
+          }
         }
       }
     }

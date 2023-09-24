@@ -57,6 +57,10 @@
     .column {
       width: 50%;
       padding: var(--default-padding);
+
+      @include screen-size("small") {
+        width: 100%;
+      }
     }
   }
 

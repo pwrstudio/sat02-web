@@ -33,7 +33,7 @@
     {$languageStore == LANGUAGE.ENGLISH ? siteTitle.en : siteTitle.ar}
   </button>
   <div class="actions {LANGUAGE[$languageStore]}">
-    <!-- MENU TOGGLE -->
+    <!-- MENU TOGGLE: DESKTOP -->
     <button
       class="menu-toggle {LANGUAGE[$languageStore]}"
       on:click={toggleMenu}
@@ -51,6 +51,29 @@
     >
       {$languageStore == LANGUAGE.ENGLISH ? "ع" : "EN"}
     </button>
+    <!-- MENU TOGGLE: PHONE -->
+    <button
+      class="menu-toggle-phone {LANGUAGE[$languageStore]}"
+      on:click={toggleMenu}
+    >
+      <!-- {#if $menuActive}
+        &#xE000;
+      {:else}
+        &#xE002;
+      {/if} -->
+      {#if $menuActive}
+        &#xE000; {$languageStore == LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
+      {:else}
+        &#xE002; {$languageStore == LANGUAGE.ENGLISH ? "MENU" : "قائمة"}
+      {/if}
+    </button>
+    <!-- LANGUAGE TOGGLE: PHONE -->
+    <!-- <button
+      class="language-toggle-phone {LANGUAGE[$languageStore]}"
+      on:click={toggleLanguage}
+    >
+      {$languageStore == LANGUAGE.ENGLISH ? "ع" : "EN"}
+    </button> -->
   </div>
 </nav>
 
@@ -59,6 +82,8 @@
 {/if}
 
 <style lang="scss">
+  @import "../styles/responsive.scss";
+
   nav {
     position: fixed;
     top: 0;
@@ -76,6 +101,13 @@
     &.ARABIC {
       flex-direction: row-reverse;
       font-family: var(--font-family-arabic);
+    }
+
+    @include screen-size("small") {
+      flex-wrap: wrap;
+      height: var(--menubar-height-phone);
+      padding-left: var(--default-padding);
+      padding-right: var(--default-padding);
     }
   }
 
@@ -97,6 +129,13 @@
   .title {
     border-bottom: 1.5px solid transparent;
 
+    @include screen-size("small") {
+      width: 100%;
+      text-align: left;
+      height: 41px;
+      line-height: 51px;
+    }
+
     &:hover {
       border-bottom: 1.5px solid var(--black);
     }
@@ -110,6 +149,12 @@
   .actions {
     display: flex;
     align-items: center;
+    @include screen-size("small") {
+      width: 100%;
+      // background: yellow;
+      justify-content: space-between;
+      padding-bottom: 10px;
+    }
 
     &.ARABIC {
       flex-direction: row-reverse;
@@ -120,6 +165,28 @@
 
       &:hover {
         border-bottom: 1.5px solid var(--black);
+      }
+
+      @include screen-size("small") {
+        display: none;
+      }
+    }
+
+    .menu-toggle-phone {
+      border-bottom: 1.5px solid transparent;
+      display: none;
+      height: 100%;
+      width: 100%;
+      height: 41px;
+      line-height: 31px;
+      position: relative;
+      top: -2px;
+      text-align: right;
+      // border-right: 1.5px solid var(--black);
+      // font-size: var(--font-size-large);
+
+      @include screen-size("small") {
+        display: block;
       }
     }
 
@@ -139,6 +206,37 @@
         margin-left: var(--double-padding);
         font-family: var(--font-family-arabic);
         top: -4px;
+      }
+      @include screen-size("small") {
+        display: none;
+      }
+    }
+
+    .language-toggle-phone {
+      position: relative;
+      font-weight: normal;
+      display: none;
+      height: 40px;
+      width: 100%;
+      // background: green;
+      text-align: center;
+
+      // English text is shown when in arabic mode
+      &.ARABIC {
+        margin-right: var(--default-padding);
+        margin-left: 0;
+      }
+
+      // Arabic text is shown when in english mode
+      &.ENGLISH {
+        margin-right: 0;
+        margin-left: var(--double-padding);
+        font-family: var(--font-family-arabic);
+        // top: -4px;
+      }
+
+      @include screen-size("small") {
+        display: block;
       }
     }
   }

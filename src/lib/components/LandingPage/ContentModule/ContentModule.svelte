@@ -96,6 +96,10 @@
     user-select: none;
     position: relative;
 
+    @include screen-size("small") {
+      min-height: unset;
+    }
+
     &.white {
       background: var(--white);
       color: var(--black);

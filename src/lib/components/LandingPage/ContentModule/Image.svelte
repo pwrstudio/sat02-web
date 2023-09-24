@@ -30,6 +30,13 @@
     position: relative;
     z-index: var(--z-content);
 
+    @include screen-size("small") {
+      width: 100%;
+      height: auto;
+      max-width: unset;
+      background: unset;
+    }
+
     img {
       width: 100%;
       height: 100%;

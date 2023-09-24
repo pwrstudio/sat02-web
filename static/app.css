@@ -21,6 +21,7 @@
     --double-padding: calc(var(--default-padding) * 2);
     --triple-padding: calc(var(--default-padding) * 3);
     --menubar-height: 62px;
+    --menubar-height-phone: 82px;
     --header-height: 300px;
     --footer-height: 300px;
     --module-min-height: 360px;
