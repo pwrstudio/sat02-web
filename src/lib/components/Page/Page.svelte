@@ -88,7 +88,10 @@
           alt={page.title}
           on:click={toogleSlideshow}
         />
-        <button on:click={toogleSlideshow} class="open-slideshow">
+        <button
+          on:click={toogleSlideshow}
+          class="open-slideshow {LANGUAGE[$languageStore]}"
+        >
           {#if $languageStore === LANGUAGE.ARABIC}
             فتح العرض التقديمي <SlidesCounter {page} />
           {:else}
@@ -174,6 +177,10 @@
           border: 0;
           cursor: pointer;
           font-size: var(--font-size-normal);
+
+          &.ARABIC {
+            font-family: var(--font-family-arabic);
+          }
         }
       }
 
