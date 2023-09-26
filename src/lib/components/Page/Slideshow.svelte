@@ -55,7 +55,7 @@
       <ParticipantList participants={page.participants} />
     </div>
     <button class="close" on:click={sendClose}>
-      {$languageStore === LANGUAGE.ENGLISH ? "Close" : "أغلق"}
+      {$languageStore === LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
     </button>
   </div>
 

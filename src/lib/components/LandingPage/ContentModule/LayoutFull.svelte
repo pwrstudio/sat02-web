@@ -1,23 +1,25 @@
 <script lang="ts">
-  import { COLOR, ALIGNMENT, type Node } from "$lib/modules/types"
+  import { languageStore } from "$lib/modules/stores"
+  import { COLOR, ALIGNMENT, LANGUAGE, type Node } from "$lib/modules/types"
   import Image from "$lib/components/LandingPage/ContentModule/Image.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import Tag from "$lib/components/Tag.svelte"
+  import Title from "$lib/components/Title.svelte"
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
 </script>
 
 <div class="layout full" class:reversed={node.alignment == ALIGNMENT.LEFT}>
-  <div class="column image">
+  <div class="column image {LANGUAGE[$languageStore]}">
     {#if node.post.featuredImage}
       <Image {node} />
     {/if}
   </div>
 
-  <div class="column text">
+  <div class="column text {LANGUAGE[$languageStore]}">
     <!-- TITLE -->
     <h2>
-      {node.post.title}
+      <Title page={node.post} />
     </h2>
     <!-- PARTICIPANTS -->
     {#if node.type == "project" || node.type == "event"}
@@ -60,6 +62,11 @@
         padding-right: 40px;
         line-height: 1.1em;
         font-size: var(--font-size-xl);
+
+        &.ARABIC {
+          padding-right: unset;
+          padding-left: 40px;
+        }
 
         h2 {
           font-weight: normal;

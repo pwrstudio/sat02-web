@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { languageStore } from "$lib/modules/stores"
   import type { BorderOption } from "$lib/modules/types"
+  import { LANGUAGE } from "$lib/modules/types"
   import { COLOR } from "$lib/modules/types"
 
   export let border: BorderOption
@@ -10,16 +12,24 @@
   console.log("border", border)
 </script>
 
-<!-- DIVIDER LEFT -->
+<!-- DIVIDER: ENGLISH => LEFT, ARABIC => RIGHT -->
 {#if border.left}
-  <div class="divider left {colorClass}">
+  <div
+    class="divider {$languageStore === LANGUAGE.ARABIC
+      ? 'right'
+      : 'left'} {colorClass}"
+  >
     <div class="line" />
   </div>
 {/if}
 
-<!-- DIVIDER RIGHT -->
+<!-- DIVIDER: ENGLISH => RIGHT, ARABIC => LEFT -->
 {#if border.right}
-  <div class="divider right {colorClass}">
+  <div
+    class="divider {$languageStore === LANGUAGE.ARABIC
+      ? 'left'
+      : 'right'}  {colorClass}"
+  >
     <div class="line" />
   </div>
 {/if}

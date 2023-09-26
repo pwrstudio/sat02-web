@@ -1,12 +1,13 @@
 <script lang="ts">
   import { LANGUAGE } from "$lib/modules/types"
   import { fade } from "svelte/transition"
-  import { urlFor, renderBlockText } from "$lib/modules/sanity"
+  import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
 
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
   import Tag from "$lib/components/Tag.svelte"
-  import PlaceholderText from "$lib/components/Page/PlaceholderText.svelte"
+  import Title from "$lib/components/Title.svelte"
+  import Content from "$lib/components/Content.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import SlidesCounter from "./SlidesCounter.svelte"
   import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
@@ -22,8 +23,13 @@
     slideshowOpen = !slideshowOpen
   }
 
-  onMount(() => {
+  const handleResize = () => {
     height = document.body.scrollHeight
+  }
+
+  onMount(() => {
+    handleResize()
+    window.addEventListener("resize", handleResize)
   })
 </script>
 
@@ -44,7 +50,7 @@
       <!-- TYPE -->
       <Tag>{page._type}</Tag>
       <!-- TITLE -->
-      <h1>{page.title}</h1>
+      <h1><Title {page} /></h1>
       <!-- VENUE -->
       {#if has(page, "venues[0].title")}
         <Tag>
@@ -54,11 +60,7 @@
     </div>
     <!-- CONTENT -->
     <div class="row content">
-      {#if page.description}
-        {@html renderBlockText(page.description.content)}
-      {:else}
-        <PlaceholderText />
-      {/if}
+      <Content {page} />
     </div>
   </div>
 
@@ -99,7 +101,9 @@
     <!-- DIVIDER -->
     <div class="row divider" />
     <!-- EVENTS -->
-    <div class="row events">RELATED EVENTS</div>
+    <div class="row events">
+      <!-- RELATED EVENTS -->
+    </div>
   </div>
 </div>
 
@@ -119,6 +123,9 @@
 
     .column {
       width: 50%;
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
 
       @include screen-size("phone") {
         width: 100%;
@@ -176,12 +183,13 @@
       }
 
       .events {
-        height: 500px;
+        min-height: 500px;
         background: var(--green);
+        flex-grow: 1;
       }
 
       .content {
-        padding: var(--double-padding);
+        padding: var(--default-padding);
       }
     }
   }

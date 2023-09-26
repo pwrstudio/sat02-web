@@ -57,7 +57,7 @@
       </a>
     </div>
 
-    <!-- DIVIDER BOTTOM -->
+    <!-- DATE & COUNTDOWN -->
     {#if node.layout != LAYOUT.FULL && node.type == "event" && has(node, "post.dateTime")}
       <div class="meta-bottom">
         <!-- DATE -->
@@ -71,6 +71,7 @@
       </div>
     {/if}
 
+    <!-- BORDERS -->
     {#if node.border}
       <Borders
         border={node.border}

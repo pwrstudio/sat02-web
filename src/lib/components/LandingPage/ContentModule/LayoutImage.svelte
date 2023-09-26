@@ -2,6 +2,7 @@
   import type { Node } from "$lib/modules/types"
   import Image from "$lib/components/LandingPage/ContentModule/Image.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
+  import Title from "$lib/components/Title.svelte"
   export let node: Node
 </script>
 
@@ -11,7 +12,7 @@
   {/if}
   <!-- TITLE -->
   <h2>
-    {node.post.title}
+    <Title page={node.post} />
   </h2>
   <!-- PARTICIPANTS -->
   {#if node.type == "project" || node.type == "event"}

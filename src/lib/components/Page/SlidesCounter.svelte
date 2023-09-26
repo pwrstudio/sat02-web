@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Tag from "$lib/components/Tag.svelte"
+  import RoundTag from "$lib/components/RoundTag.svelte"
   export let page: any
 
   let mediaList = page.processMedia || page.media || []
@@ -11,4 +11,4 @@
   }
 </script>
 
-<span>({slideCount}) <Tag>6.2MB</Tag></span>
+<span><RoundTag>{slideCount}</RoundTag></span>

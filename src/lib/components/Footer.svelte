@@ -4,7 +4,6 @@
   import { languageStore, urlPrefix } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
   import { siteTitle } from "$lib/modules/constants"
-  import Borders from "./LandingPage/ContentModule/Borders.svelte"
 </script>
 
 <footer class={LANGUAGE[$languageStore]}>
@@ -47,7 +46,7 @@
       </a>
     </div>
     <!-- DATES -->
-    <div>11.11.2023 – 10.02.2024</div>
+    <div dir="ltr">11.11.2023 – 10.02.2024</div>
   </div>
 </footer>
 
@@ -59,6 +58,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    z-index: var(--z-content);
 
     &.ARABIC {
       font-family: var(--font-family-arabic);

@@ -56,24 +56,12 @@
       class="menu-toggle-phone {LANGUAGE[$languageStore]}"
       on:click={toggleMenu}
     >
-      <!-- {#if $menuActive}
-        &#xE000;
-      {:else}
-        &#xE002;
-      {/if} -->
       {#if $menuActive}
         &#xE000; {$languageStore == LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
       {:else}
         &#xE002; {$languageStore == LANGUAGE.ENGLISH ? "MENU" : "قائمة"}
       {/if}
     </button>
-    <!-- LANGUAGE TOGGLE: PHONE -->
-    <!-- <button
-      class="language-toggle-phone {LANGUAGE[$languageStore]}"
-      on:click={toggleLanguage}
-    >
-      {$languageStore == LANGUAGE.ENGLISH ? "ع" : "EN"}
-    </button> -->
   </div>
 </nav>
 

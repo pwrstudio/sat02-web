@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Title from "$lib/components/Title.svelte"
   import type { Node } from "$lib/modules/types"
   export let node: Node
 </script>
@@ -7,7 +8,10 @@
   <blockquote>
     “{node.post.pullQuote}”
   </blockquote>
-  <div class="quote-title">→ {node.post.title}</div>
+  <div class="quote-title">
+    → <Title page={node.post} />
+    />
+  </div>
 </div>
 
 <style lang="scss">

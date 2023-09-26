@@ -18,6 +18,7 @@
     /* Sizing */
     /* --default-padding: 14px; */
     --default-padding: 20px;
+    --half-padding: calc(var(--default-padding) / 2);
     --double-padding: calc(var(--default-padding) * 2);
     --triple-padding: calc(var(--default-padding) * 3);
     --menubar-height: 62px;
@@ -42,6 +43,7 @@
 
     /* Font sizes */
     --font-size-xs: 11px;
+    --font-size-small: 14px;
     --font-size-normal: 18px;
     --font-size-large: 32px;
     --font-size-quote: 32px;
