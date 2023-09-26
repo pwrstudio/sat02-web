@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { languageStore } from "$lib/modules/stores"
+  import { LANGUAGE, type Node } from "$lib/modules/types"
   import Title from "$lib/components/Title.svelte"
-  import type { Node } from "$lib/modules/types"
   export let node: Node
 </script>
 
@@ -9,8 +10,9 @@
     “{node.post.pullQuote}”
   </blockquote>
   <div class="quote-title">
-    → <Title page={node.post} />
-    />
+    {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+    <Title page={node.post} />
+    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
   </div>
 </div>
 

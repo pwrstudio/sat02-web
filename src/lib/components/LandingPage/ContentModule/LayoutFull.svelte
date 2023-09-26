@@ -31,13 +31,15 @@
     {#if node.type == "event"}
       <div class="time">
         <!-- DATE -->
-        <Tag style="rounded" border={node.bgColor === COLOR.WHITE} caps={false}>
+        <div class="date">
           {formatFullDateTime(node.post.dateTime)}
-        </Tag>
+        </div>
         <!-- COUNTDOWN -->
-        <Tag style="rounded" border={node.bgColor === COLOR.WHITE} caps={false}>
+        <div class="countdown">
+          {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
           {timeUntil(node.post.dateTime)}
-        </Tag>
+          {#if $languageStore == LANGUAGE.ARABIC}→{/if}
+        </div>
       </div>
     {/if}
   </div>
@@ -68,12 +70,25 @@
           padding-left: 40px;
         }
 
+        .time {
+          z-index: var(--z-content);
+          position: relative;
+          .date {
+            margin-top: 0.5em;
+          }
+          .countdown {
+            // margin-top: 0.5em;
+            font-style: italic;
+          }
+        }
+
         h2 {
           font-weight: normal;
           margin: 0;
           position: relative;
           z-index: var(--z-content);
           font-size: var(--font-size-xl);
+          text-transform: uppercase;
 
           @include screen-size("small") {
             font-size: var(--font-size-large);

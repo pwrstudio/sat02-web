@@ -220,6 +220,14 @@
     }
   }
 
+  h1 {
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-style: italic;
+  }
+
   .deco-container {
     width: 100%;
     position: absolute;
