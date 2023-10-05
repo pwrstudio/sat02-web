@@ -12,34 +12,44 @@ export const MENU_ITEMS = [
         link: "participants",
     },
     {
-        title: "Field notes",
-        ar: "مذكرات الميدان",
-        link: "field-notes",
-    },
-    {
         title: "Calendar",
         ar: "التقويم",
         link: "calendar",
     },
     {
-        title: "About",
-        ar: "عنا",
-        link: "page/about",
+        title: "Design store",
+        ar: "متجر التصميم",
+        link: "design-store",
     },
     {
-        title: "Map",
-        ar: "الخريطة",
-        link: "map",
+        title: "Field Notes: On Scarcity",
+        ar: "مذكرات الميدان",
+        link: "field-notes",
+    },
+    {
+        title: "About",
+        ar: "عنا",
+        link: "about",
+    },
+    {
+        title: "Venues",
+        ar: "الأماكن",
+        link: "venues",
     },
     {
         title: "Team",
         ar: "الفريق",
-        link: "page/team",
+        link: "team",
+    },
+    {
+        title: "Press",
+        ar: "صحافة",
+        link: "press",
     },
     {
         title: "Contact",
         ar: "اتصل بنا",
-        link: "page/contact",
+        link: "contact",
     },
 ]
 

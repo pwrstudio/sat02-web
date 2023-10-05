@@ -4,7 +4,9 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ENGLISH)
   // ...
-  import Placeholder from "$lib/components/Placeholder.svelte"
+  import DesignStore from "$lib/components/DesignStore/DesignStore.svelte"
+  export let data
+  const { page, storeItems } = data
 </script>
 
-<Placeholder />
+<DesignStore {page} {storeItems} />

@@ -66,7 +66,7 @@
     }
 
     .menu-inner {
-      font-size: var(--font-size-small);
+      font-size: var(--font-size-normal);
       line-height: 1.2em;
       display: flex;
       width: 100%;
