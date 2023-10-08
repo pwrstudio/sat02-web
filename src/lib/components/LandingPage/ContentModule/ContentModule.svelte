@@ -85,18 +85,34 @@
     &.white {
       background: var(--white);
       color: var(--black);
+
+      &:hover {
+        color: var(--orange);
+      }
     }
 
     &.orange {
       background: var(--orange);
+
+      &:hover {
+        color: var(--grey);
+      }
     }
 
     &.blue {
       background: var(--blue);
+
+      &:hover {
+        color: var(--grey);
+      }
     }
 
     &.green {
       background: var(--green);
+
+      &:hover {
+        color: var(--grey);
+      }
     }
 
     &.purple {
