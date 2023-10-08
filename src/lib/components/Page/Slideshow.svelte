@@ -9,7 +9,7 @@
   import "swiper/css"
   // import { disablePageScroll, enablePageScroll } from "scroll-lock"
   import has from "lodash/has.js"
-  import ParticipantList from "../ParticipantList.svelte"
+  // import ParticipantList from "../ParticipantList.svelte"
   export let page: any
 
   const dispatch = createEventDispatcher()
@@ -51,8 +51,10 @@
 <div class="slideshow" in:fade={{ duration: 100 }}>
   <div class="top-bar">
     <div class="title">
-      {page.title},&nbsp;
-      <ParticipantList participants={page.participants} />
+      {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+      <strong>{page.title}</strong>
+      {#if $languageStore == LANGUAGE.ARABIC}→{/if}&nbsp;
+      <!-- <ParticipantList participants={page.participants} /> -->
     </div>
     <button class="close" on:click={sendClose}>
       {$languageStore === LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
