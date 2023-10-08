@@ -1,37 +1,28 @@
 <script lang="ts">
-  export let style: "rounded" | "square" = "square"
-  export let border: boolean = false
-  export let caps: boolean = true
+  import { COLOR } from "$lib/modules/types"
+  export let color: COLOR = COLOR.WHITE
 </script>
 
-<div class="tag {style}" class:border class:caps>
+<div class="tag" class:black={color === COLOR.BLACK}>
   <slot />
 </div>
 
 <style lang="scss">
   .tag {
-    font-size: var(--font-size-xs);
-    font-family: var(--font-family-mono);
+    font-size: var(--font-size-small);
+    font-family: var(--font-family);
     padding: 5px 12px;
-    background: var(--white-transparent);
     display: inline-block;
-    word-spacing: -0.3em;
     user-select: none;
     position: relative;
     z-index: var(--z-content);
-    color: var(--black);
+    text-transform: capitalize;
+    color: var(--white);
+    border: 1px solid var(--white);
 
-    &.rounded {
-      padding: 5px 16px;
-      border-radius: 10px;
-    }
-
-    &.border {
+    &.black {
+      color: var(--black);
       border: 1px solid var(--black);
-    }
-
-    &.caps {
-      text-transform: uppercase;
     }
   }
 </style>

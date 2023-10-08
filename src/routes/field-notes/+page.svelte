@@ -11,13 +11,4 @@
 </script>
 
 <HeaderBar />
-
-<header>Field notes ({fieldNotes.length})</header>
-
 <Listing posts={fieldNotes} category="calendar" />
-
-<style lang="scss">
-  header {
-    padding: var(--default-padding);
-  }
-</style>

@@ -3,6 +3,7 @@
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
+  import { formatFullDateTime } from "$lib/modules/date"
 
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
   import Tag from "$lib/components/Tag.svelte"
@@ -48,15 +49,19 @@
     <!-- TITLE -->
     <div class="row header green">
       <!-- TYPE -->
-      <Tag>{page._type}</Tag>
+      <div class="tag">
+        <Tag>{page._type}</Tag>
+      </div>
       <!-- TITLE -->
-      <h1><Title {page} /></h1>
-      <!-- VENUE -->
-      {#if has(page, "venues[0].title")}
-        <Tag>
-          {page.venues[0].title}
-        </Tag>
-      {/if}
+      <h1>
+        {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+        <Title {page} />
+        {#if $languageStore == LANGUAGE.ARABIC}→{/if}
+      </h1>
+      <!-- PARTICIPANTS -->
+      <h2>
+        <ParticipantList participants={page.participants} />
+      </h2>
     </div>
     <!-- CONTENT -->
     <div class="row content">
@@ -68,9 +73,22 @@
   <div class="column right">
     <!-- PARTICIPANTS  -->
     <div class="row header right green">
-      <h2>
-        <ParticipantList participants={page.participants} />
-      </h2>
+      <!-- VENUE -->
+      {#if has(page, "venues[0].title")}
+        <div class="venue">
+          {page.venues[0].title}
+        </div>
+      {/if}
+
+      <!-- TIME -->
+      {#if page._type == "event"}
+        <div class="time">
+          <!-- DATE -->
+          <div class="date">
+            {formatFullDateTime(page.dateTime)}
+          </div>
+        </div>
+      {/if}
     </div>
     <!-- SLIDESHOW -->
     {#if page.featuredImage?.asset}
@@ -124,6 +142,12 @@
       flex-wrap: wrap;
     }
 
+    .tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
     .column {
       width: 50%;
       display: flex;
@@ -139,12 +163,56 @@
         padding: var(--default-padding);
 
         &.right {
-          padding-top: 53px;
+          // padding-top: 8em;
         }
       }
 
       .header {
         height: var(--header-height);
+        position: relative;
+        padding-top: 5em;
+
+        h1,
+        h2 {
+          font-size: var(--font-size-xlarge);
+          font-weight: normal;
+          position: relative;
+          z-index: var(--z-content);
+          line-height: 1.1em;
+          padding: 0;
+          margin: 0;
+          margin-bottom: 0.5em;
+
+          a {
+            color: var(--white);
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        h2 {
+          font-style: italic;
+        }
+
+        .time {
+          font-size: var(--font-size-xlarge);
+          font-weight: normal;
+          position: relative;
+          z-index: var(--z-content);
+          line-height: 1.1em;
+          margin-bottom: 0.5em;
+        }
+
+        .venue {
+          font-size: var(--font-size-xlarge);
+          font-weight: normal;
+          position: relative;
+          z-index: var(--z-content);
+          line-height: 1.1em;
+          margin-bottom: 0.5em;
+        }
       }
 
       .slideshow {
@@ -209,30 +277,6 @@
     background: var(--green);
     color: var(--white);
     line-height: 1.6em;
-  }
-
-  h1,
-  h2 {
-    font-size: var(--font-size-large);
-    font-weight: normal;
-    position: relative;
-    z-index: var(--z-content);
-
-    a {
-      color: var(--white);
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  h1 {
-    text-transform: uppercase;
-  }
-
-  h2 {
-    font-style: italic;
   }
 
   .deco-container {

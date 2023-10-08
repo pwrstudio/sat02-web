@@ -101,6 +101,10 @@
       justify-content: space-between;
       align-items: center;
 
+      .title {
+        font-weight: bold;
+      }
+
       &.ARABIC {
         flex-direction: row-reverse;
         padding-left: var(--double-padding);

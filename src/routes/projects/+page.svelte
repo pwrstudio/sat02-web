@@ -10,14 +10,5 @@
   const { projects } = data
 </script>
 
-<HeaderBar />
-
-<header>PROJECTS ({projects.length})</header>
-
+<HeaderBar title="Projects" />
 <Listing posts={projects} category="projects" />
-
-<style lang="scss">
-  header {
-    padding: var(--default-padding);
-  }
-</style>

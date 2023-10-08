@@ -110,7 +110,7 @@
     }
 
     .menu-inner {
-      font-size: var(--font-size-menu);
+      font-size: var(--font-size-xlarge);
       line-height: 1.2em;
       display: flex;
       width: 100%;
@@ -150,7 +150,7 @@
     }
 
     .search-container {
-      font-size: var(--font-size-menu);
+      font-size: var(--font-size-xlarge);
       margin-bottom: 20px;
       padding: var(--default-padding);
       width: 100%;

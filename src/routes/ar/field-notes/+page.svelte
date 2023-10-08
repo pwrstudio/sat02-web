@@ -10,14 +10,5 @@
   const { fieldNotes } = data
 </script>
 
-<HeaderBar />
-
-<header>Field notes ({fieldNotes.length})</header>
-
+<HeaderBar title="Field Notes" />
 <Listing posts={fieldNotes} category="calendar" />
-
-<style lang="scss">
-  header {
-    padding: var(--default-padding);
-  }
-</style>

@@ -17,19 +17,20 @@
 </div>
 
 <style lang="scss">
-  @import "../../../styles/responsive.scss";
+  @import "../../../../styles/responsive.scss";
 
   .quote {
     blockquote {
-      font-size: var(--font-size-quote);
+      font-size: var(--font-size-large);
       font-style: normal;
       margin: 0;
-      margin-bottom: var(--default-padding);
-      line-height: 1.2em;
+      margin-bottom: 0.5em;
+      line-height: 1.1em;
       padding: var(--default-padding);
       padding-left: 0;
       position: relative;
       z-index: var(--z-content);
+      padding-bottom: 0;
     }
 
     .quote-title {
@@ -37,8 +38,7 @@
       font-style: normal;
       font-style: italic;
       margin: 0;
-      margin-bottom: var(--default-padding);
-      line-height: 1em;
+      line-height: 1.1em;
       padding: var(--default-padding);
       padding-top: 0;
       padding-left: 0;

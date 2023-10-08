@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Node } from "$lib/modules/types"
+  import { LANGUAGE } from "$lib/modules/types"
+  import { languageStore } from "$lib/modules/stores"
   import Image from "$lib/components/LandingPage/ContentModule/Image.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import Title from "$lib/components/Title.svelte"
@@ -12,7 +14,9 @@
   {/if}
   <!-- TITLE -->
   <h2>
+    {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
     <Title page={node.post} />
+    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
   </h2>
   <!-- PARTICIPANTS -->
   {#if node.type == "project" || node.type == "event"}
@@ -23,7 +27,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../../styles/responsive.scss";
+  @import "../../../../styles/responsive.scss";
 
   .image {
     padding-top: 0.5em;
@@ -33,10 +37,10 @@
       margin: 0;
       position: relative;
       z-index: var(--z-content);
+      margin-bottom: 0.5em;
     }
 
     h3 {
-      padding-top: 0.5em;
       font-weight: normal;
       font-style: italic;
       font-size: var(--font-size-large);

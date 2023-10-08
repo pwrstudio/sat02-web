@@ -1,7 +1,7 @@
 :root {
     /* Base colors */
     --white: rgba(255, 255, 255, 1);
-    /* --black: rgba(0, 0, 0, 1); */
+    --white-select: rgba(240, 240, 240, 1);
     --black: rgba(30, 30, 30, 1);
     --green: rgba(125, 117, 71, 1);
     --grey: rgba(211, 211, 211, 1);
@@ -23,7 +23,9 @@
     --triple-padding: calc(var(--default-padding) * 3);
     --menubar-height: 62px;
     --menubar-height-phone: 82px;
-    --header-height: 300px;
+    --header-height: 400px;
+    --headerbar-height: 200px;
+
     --footer-height: 300px;
     --module-min-height: 360px;
 
@@ -31,7 +33,6 @@
     --z-back: 10;
     --z-deco: 100;
     --z-image-container: 500;
-
     --z-content: 1000;
     --z-nav: 10000;
     --z-modal: 100000;
@@ -42,13 +43,10 @@
     --font-family-arabic: 'ABC Favorit Arabic', sans-serif;
 
     /* Font sizes */
-    --font-size-xs: 11px;
     --font-size-small: 14px;
     --font-size-normal: 18px;
     --font-size-large: 32px;
-    --font-size-quote: 32px;
-    --font-size-xl: 46px;
-    --font-size-menu: 56px;
+    --font-size-xlarge: 42px;
   }
 
   * {

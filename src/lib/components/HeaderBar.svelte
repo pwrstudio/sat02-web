@@ -2,6 +2,7 @@
   import { onMount } from "svelte"
   import { COLOR } from "$lib/modules/types"
   import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
+  export let title = ""
 
   let height = 0
 
@@ -16,29 +17,21 @@
 </div>
 
 <div class="header-bar">
-  <div class="inner" />
+  <!-- <div class="inner">
+    {title}
+  </div> -->
 </div>
 
 <style lang="scss">
   @import "../styles/responsive.scss";
 
   .header-bar {
-    height: var(--header-height);
+    height: var(--headerbar-height);
     background: var(--green);
     width: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .inner {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    padding: var(--double-padding);
+    font-size: var(--font-size-xlarge);
   }
 
   .deco-container {

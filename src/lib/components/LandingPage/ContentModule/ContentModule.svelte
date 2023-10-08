@@ -1,13 +1,10 @@
 <script lang="ts">
   import { COLOR, LAYOUT, type Node } from "$lib/modules/types"
-  import has from "lodash/has.js"
-  import { formatDateTime, timeUntil } from "$lib/modules/date"
-
   import Tag from "$lib/components/Tag.svelte"
   import Borders from "$lib/components/LandingPage/ContentModule/Borders.svelte"
-  import LayoutQuote from "$lib/components/LandingPage/ContentModule/LayoutQuote.svelte"
-  import LayoutImage from "$lib/components/LandingPage/ContentModule/LayoutImage.svelte"
-  import LayoutFull from "$lib/components/LandingPage/ContentModule/LayoutFull.svelte"
+  import LayoutQuote from "$lib/components/LandingPage/ContentModule/Layouts/LayoutQuote.svelte"
+  import LayoutImage from "$lib/components/LandingPage/ContentModule/Layouts/LayoutImage.svelte"
+  import LayoutFull from "$lib/components/LandingPage/ContentModule/Layouts/LayoutFull.svelte"
   import { urlPrefix } from "$lib/modules/stores"
 
   export let node: Node
@@ -22,21 +19,18 @@
 <div
   class="module"
   class:white={node.bgColor == COLOR.WHITE}
-  style={"background-color: " + node.bgColor + ";"}
+  class:green={node.bgColor == COLOR.GREEN}
+  class:blue={node.bgColor == COLOR.BLUE}
+  class:orange={node.bgColor == COLOR.ORANGE}
+  class:purple={node.bgColor == COLOR.PURPLE}
 >
   {#if node.post}
     <!-- META TOP -->
     <div class="meta-top">
       <!-- TYPE -->
-      <Tag border={node.bgColor === COLOR.WHITE}>
+      <Tag color={node.bgColor === COLOR.WHITE ? COLOR.BLACK : COLOR.WHITE}>
         {node.post._type}
       </Tag>
-      <!-- VENUE -->
-      {#if has(node, "post.venues[0].title")}
-        <Tag border={node.bgColor === COLOR.WHITE}>
-          {node.post.venues[0].title}
-        </Tag>
-      {/if}
     </div>
 
     <!-- CONTENT -->
@@ -57,20 +51,6 @@
       </a>
     </div>
 
-    <!-- DATE & COUNTDOWN -->
-    {#if node.layout != LAYOUT.FULL && node.type == "event" && has(node, "post.dateTime")}
-      <div class="meta-bottom">
-        <!-- DATE -->
-        <Tag style="rounded" border={node.bgColor === COLOR.WHITE}>
-          {formatDateTime(node.post.dateTime)}
-        </Tag>
-        <!-- COUNTDOWN -->
-        <Tag style="rounded" border={node.bgColor === COLOR.WHITE}>
-          {timeUntil(node.post.dateTime)}
-        </Tag>
-      </div>
-    {/if}
-
     <!-- BORDERS -->
     {#if node.border}
       <Borders
@@ -87,6 +67,7 @@
   .module {
     min-height: var(--module-min-height);
     padding: var(--double-padding);
+    padding-top: var(--default-padding);
     display: flex;
     flex-direction: column;
     width: 100%;

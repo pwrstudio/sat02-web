@@ -1,25 +1,35 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
+  import Select from "svelte-select"
+  export let posts: any[] = []
+  export let category: "participants" | "calendar" | "projects"
 
-  export let sortOptions = [
-    {
-      value: "alphabetical",
-      label: "Alphabetical",
-    },
-    {
-      value: "newest",
-      label: "Newest",
-    },
-    {
-      value: "oldest",
-      label: "Oldest",
-    },
-  ]
+  const itemId = "id"
+  const label = "title"
 
-  let sortOrder = "alphabetical"
+  // const items = [
+  //   { id: 0, title: "Foo" },
+  //   { id: 1, title: "Bar" },
+  // ]
+
+  // export let items = [
+  //   {
+  //     id: "title",
+  //     title: "title",
+  //   },
+  //   {
+  //     id: "participant",
+  //     title: "Participant",
+  //   },
+  //   {
+  //     id: "venue",
+  //     title: "Venue",
+  //   },
+  // ]
+
+  let sortOrder = "title"
   let showImages = false
-  let searchQuery = ""
 
   function setSortOrder() {
     console.log("sortOrder", sortOrder)
@@ -32,6 +42,8 @@
   }
 </script>
 
+<header><strong>{category}</strong> ({posts.length})</header>
+
 <div class="listing-header">
   <div class="image-toggle">
     <input
@@ -43,25 +55,90 @@
     />
     <label for="images">Show images</label>
   </div>
-  <div class="sort">
-    <select bind:value={sortOrder} on:change={setSortOrder}>
-      {#each sortOptions as option}
-        <option value={option.value}>{option.label}</option>
-      {/each}
-    </select>
-  </div>
-  <div class="search">Search</div>
+  <!-- <div class="order">
+    <label for="order">Order by</label>
+    <Select
+      name="order"
+      {items}
+      {itemId}
+      {label}
+      searchable={false}
+      showChevron={true}
+      clearable={false}
+      --border-radius="0"
+      --width="200px"
+    />
+  </div> -->
+  <!-- <div class="search">Search</div> -->
 </div>
 
 <style lang="scss">
+  header {
+    padding: var(--default-padding);
+    text-transform: uppercase;
+  }
+
   .listing-header {
     display: flex;
-    justify-content: space-between;
     padding: var(--default-padding);
     padding-top: 0;
     padding-bottom: var(--double-padding);
     padding-right: var(--double-padding);
     position: relative;
     z-index: var(--z-content);
+
+    .image-toggle {
+      margin-right: var(--double-padding);
+      display: flex;
+      label {
+        margin-left: 10px;
+      }
+    }
+
+    .order {
+      display: flex;
+      position: relative;
+      z-index: var(--z-modal);
+      label {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--form-background);
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: none; /* Remove border */
+    border-radius: 0; /* Remove border radius */
+    display: grid;
+    place-content: center;
+    outline: 1px solid var(--black);
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%; /* Make it a circle */
+    transform: scale(0);
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: CanvasText;
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  input[type="checkbox"]:disabled {
+    --form-control-color: var(--form-control-disabled);
+    color: var(--form-control-disabled);
+    cursor: not-allowed;
   }
 </style>

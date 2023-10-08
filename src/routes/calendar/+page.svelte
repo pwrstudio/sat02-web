@@ -11,13 +11,4 @@
 </script>
 
 <HeaderBar />
-
-<header>CALENDAR ({events.length})</header>
-
 <Listing posts={events} category="calendar" />
-
-<style lang="scss">
-  header {
-    padding: var(--default-padding);
-  }
-</style>

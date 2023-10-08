@@ -5,14 +5,5 @@
   const { events } = data
 </script>
 
-<HeaderBar />
-
-<header>CALENDAR ({events.length})</header>
-
+<HeaderBar title="Events" />
 <Listing posts={events} category="calendar" />
-
-<style lang="scss">
-  header {
-    padding: var(--default-padding);
-  }
-</style>
