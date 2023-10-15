@@ -30,7 +30,7 @@
 >
   <div class="inner">
     <div class="location">Sharjah, UAE</div>
-    <div class="time">{currentTime}</div>
+    <div class="time"> {currentTime}</div>
     <div class="weather">{currentWeather}</div>
   </div>
 </div>
@@ -50,6 +50,7 @@
     align-items: center;
     justify-content: center;
     // border-radius: 40px;
+    margin-bottom: 40px;
 
     .inner {
       display: flex;
@@ -57,6 +58,10 @@
       align-items: center;
       position: relative;
       z-index: var(--z-content);
+
+      .time {
+        font-weight: bold;
+      }
     }
   }
 </style>

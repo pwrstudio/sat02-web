@@ -37,7 +37,7 @@ export const demo: Node[] = [
                     {
                         type: "participant",
                         bgColor: COLOR.GREEN,
-                        layout: LAYOUT.QUOTE,
+                        layout: LAYOUT.IMAGE,
                         border: {
                             top: true,
                         }
@@ -62,7 +62,7 @@ export const demo: Node[] = [
                         type: "project",
                         // bgColor: COLOR.WHITE,
                         bgColor: COLOR.GREEN,
-                        layout: LAYOUT.IMAGE,
+                        layout: LAYOUT.QUOTE,
                         border: {
                             left: true,
                         }
