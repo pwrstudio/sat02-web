@@ -4,9 +4,9 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ARABIC)
   // ...
-  import Listing from "$lib/components/Listing/Listing.svelte"
+  import Page from "$lib/components/Page/Page.svelte"
   export let data
-  const { page, storeItems } = data
+  const { page } = data
 </script>
 
-<Listing posts={storeItems} {page} />
+<Page {page} />

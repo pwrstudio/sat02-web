@@ -60,6 +60,7 @@
       zoom: 13.5,
       style: "mapbox://styles/mapbox/light-v11",
       // style: "mapbox://styles/pwrstudio/clljm4fgz019d01pl73yighlc",
+      // style: "mapbox://styles/pwrstudio/clljm4fgz019d01pl73yighlc",
     })
 
     // map.on("load", () => {

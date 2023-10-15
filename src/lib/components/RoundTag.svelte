@@ -1,8 +1,11 @@
 <script lang="ts">
+  export let black = false
 </script>
 
-<div class="round-tag">
-  <slot />
+<div class="round-tag" class:black>
+  <div>
+    <slot />
+  </div>
 </div>
 
 <style lang="scss">
@@ -24,5 +27,12 @@
     margin-right: var(--half-padding);
     position: relative;
     top: -2px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &.black {
+      background: var(--black);
+    }
   }
 </style>

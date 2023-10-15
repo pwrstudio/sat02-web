@@ -4,9 +4,9 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ARABIC)
   // ...
-  import Press from "$lib/components/Press/Press.svelte"
+  import OneColumn from "$lib/components/OneColumn/OneColumn.svelte"
   export let data
   const { page, pressReleases, pressCoverage } = data
 </script>
 
-<Press {page} {pressReleases} {pressCoverage} />
+<OneColumn {page} {pressReleases} {pressCoverage} />

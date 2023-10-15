@@ -31,7 +31,7 @@
     color: var(--black);
     width: 100%;
     height: 100%;
-    background: var(--green);
+    background: var(--orange);
 
     .meta-top {
       position: absolute;

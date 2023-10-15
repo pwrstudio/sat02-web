@@ -1,4 +1,5 @@
 <script lang="ts">
+  import RoundTag from "../RoundTag.svelte"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
   import Select from "svelte-select"
@@ -43,7 +44,10 @@
 </script>
 
 <div class="listing-header">
-  <div class="title"><strong>{page.title}</strong> ({posts.length})</div>
+  <div class="title">
+    <strong>{page.title}</strong>
+    <RoundTag black={true}>{posts.length}</RoundTag>
+  </div>
   <div class="image-toggle">
     <label for="images">Show images</label>
     <input
