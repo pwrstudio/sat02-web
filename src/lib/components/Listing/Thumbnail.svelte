@@ -1,10 +1,12 @@
 <script lang="ts">
   import { urlFor } from "$lib/modules/sanity"
   export let post: any
+  let imageLoaded: boolean = false
 </script>
 
 <div class="image-container">
   <img
+    class:loaded={imageLoaded}
     src={urlFor(post.featuredImage)
       .width(300)
       .height(200)
@@ -13,6 +15,7 @@
       .quality(100)
       .url()}
     alt={post.title}
+    on:load={() => (imageLoaded = true)}
   />
 </div>
 
@@ -20,7 +23,7 @@
   //   @import "../../../../styles/responsive.scss";
 
   .image-container {
-    width: 200px;
+    width: 160px;
     height: 160px;
     background: var(--grey);
     overflow: hidden;
@@ -36,6 +39,11 @@
       mix-blend-mode: multiply;
       position: relative;
       z-index: var(--z-content);
+      opacity: 0;
+      transition: opacity 0.2s ease-in;
+      &.loaded {
+        opacity: 1;
+      }
     }
   }
 </style>

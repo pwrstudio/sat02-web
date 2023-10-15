@@ -1,49 +1,20 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
-  import Select from "svelte-select"
   export let posts: any[] = []
-  export let page: any = {}
+  export let category: string
+  export let opening = false
+  export let closing = false
 
-  const itemId = "id"
-  const label = "title"
-
-  // const items = [
-  //   { id: 0, title: "Foo" },
-  //   { id: 1, title: "Bar" },
-  // ]
-
-  // export let items = [
-  //   {
-  //     id: "title",
-  //     title: "title",
-  //   },
-  //   {
-  //     id: "participant",
-  //     title: "Participant",
-  //   },
-  //   {
-  //     id: "venue",
-  //     title: "Venue",
-  //   },
-  // ]
-
-  let sortOrder = "title"
   let showImages = false
 
-  function setSortOrder() {
-    console.log("sortOrder", sortOrder)
-    dispatch("sort", sortOrder)
-  }
-
   function setImageDisplay() {
-    console.log("showImages", showImages)
     dispatch("images", showImages)
   }
 </script>
 
-<div class="listing-header">
-  <div class="title"><strong>{page.title}</strong> ({posts.length})</div>
+<div class="listing-header" class:closing class:opening>
+  <div class="title"><strong>{category}</strong> ({posts.length})</div>
   <div class="image-toggle">
     <label for="images">Show images</label>
     <input
@@ -56,28 +27,19 @@
   </div>
 </div>
 
-<!-- <div class="order">
-    <label for="order">Order by</label>
-    <Select
-      name="order"
-      {items}
-      {itemId}
-      {label}
-      searchable={false}
-      showChevron={true}
-      clearable={false}
-      --border-radius="0"
-      --width="200px"
-    />
-  </div> -->
-<!-- <div class="search">Search</div> -->
-
 <style lang="scss">
   .listing-header {
     display: flex;
     padding: var(--default-padding);
     min-height: 100px;
-    background: var(--orange);
+
+    &.opening {
+      background: var(--orange);
+    }
+
+    &.closing {
+      background: var(--orange);
+    }
 
     .title {
       text-transform: uppercase;

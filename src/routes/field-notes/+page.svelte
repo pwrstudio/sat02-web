@@ -4,11 +4,9 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ENGLISH)
   // ...
-  import HeaderBar from "$lib/components/HeaderBar.svelte"
   import Listing from "$lib/components/Listing/Listing.svelte"
   export let data
-  const { fieldNotes } = data
+  const { fieldNotes, page } = data
 </script>
 
-<HeaderBar />
-<Listing posts={fieldNotes} category="calendar" />
+<Listing posts={fieldNotes} {page} />

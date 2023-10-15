@@ -6,16 +6,35 @@
   export let post: any
   export let index: number
   export let showImages: boolean = false
-  export let category: "participants" | "calendar" | "projects"
 
   console.log(post)
-  console.log("showImages", showImages)
+
+  const getPath = (post: any) => {
+    switch (post._type) {
+      case "event":
+        return "/calendar"
+      case "storeItem":
+        return "/design-store"
+      case "fieldNote":
+        return "/field-notes"
+      case "project":
+        return "/projects"
+      case "participant":
+        return "/participants"
+      case "venue":
+        return "/venues"
+      default:
+        return ""
+    }
+  }
+
+  const href = getPath(post) + "/" + post.slug.current
 </script>
 
 <a
   class="listing-item {post._type}"
   class:images={showImages}
-  href={category + "/" + post.slug.current}
+  {href}
   data-sveltekit-preload-data
 >
   <!-- DATE -->
@@ -31,7 +50,7 @@
   {/if}
 
   <!-- TITLE -->
-  <a class="title" href={category + "/" + post.slug.current}>
+  <a class="title" {href}>
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
     {post.title}
     {#if $languageStore == LANGUAGE.ARABIC}→{/if}
@@ -47,13 +66,13 @@
   {/if}
 
   <!-- VENUES -->
-  {#if post.venues}
+  <!-- {#if post.venues}
     <div class="venues">
       {#each post.venues as item}
         <div>{item.title}</div>
       {/each}
     </div>
-  {/if}
+  {/if} -->
 </a>
 
 <style lang="scss">
@@ -66,8 +85,13 @@
     font-size: var(--font-size-normal);
     padding-bottom: 10px;
     border-top: 1px solid var(--black);
+    background: var(--white);
     // align-items: center;
     // position: relative;
+
+    &:first-child {
+      border-top: none;
+    }
 
     &:hover {
       background: var(--white-select);
@@ -75,11 +99,11 @@
 
     .title {
       display: block;
-      width: 40%;
       padding-right: 30px;
       font-weight: bold;
       z-index: var(--z-content);
       position: relative;
+      width: 60%;
     }
 
     .participants {
@@ -91,74 +115,28 @@
       position: relative;
     }
 
-    .venues {
-      display: block;
-      width: 20%;
-      padding-right: 30px;
-      z-index: var(--z-content);
-      position: relative;
-    }
+    // .venues {
+    //   display: block;
+    //   width: 20%;
+    //   padding-right: 30px;
+    //   z-index: var(--z-content);
+    //   position: relative;
+    //   font-size: var(--font-size-small);
+    // }
 
     &.images {
       .image {
-        width: 20%;
+        width: 180px;
         z-index: var(--z-content);
         position: relative;
       }
 
       .title {
-        // padding-top: 60px;
-        width: 30%;
+        width: calc(60% - 90px);
       }
 
       .participants {
-        // padding-top: 60px;
-        width: 30%;
-      }
-
-      .venues {
-        // padding-top: 60px;
-        width: 20%;
-      }
-    }
-
-    &.event {
-      .date {
-        width: 20%;
-      }
-      .title {
-        width: 30%;
-      }
-
-      .participants {
-        width: 30%;
-      }
-
-      .venues {
-        width: 20%;
-      }
-
-      &.images {
-        .date {
-          width: 10%;
-        }
-
-        .image {
-          width: 20%;
-        }
-
-        .title {
-          width: 30%;
-        }
-
-        .participants {
-          width: 30%;
-        }
-
-        .venues {
-          // padding-top: 60px;
-          width: 10%;
-        }
+        width: calc(40% - 90px);
       }
     }
   }

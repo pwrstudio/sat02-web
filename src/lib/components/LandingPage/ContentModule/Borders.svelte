@@ -8,8 +8,6 @@
   export let color: COLOR
 
   let colorClass = color === COLOR.WHITE ? "white" : "black"
-
-  console.log("border", border)
 </script>
 
 <!-- DIVIDER: ENGLISH => LEFT, ARABIC => RIGHT -->

@@ -7,8 +7,8 @@
   import HeaderBar from "$lib/components/HeaderBar.svelte"
   import Listing from "$lib/components/Listing/Listing.svelte"
   export let data
-  const { fieldNotes } = data
+  const { page, fieldNotes } = data
 </script>
 
 <HeaderBar title="Field Notes" />
-<Listing posts={fieldNotes} category="calendar" />
+<Listing posts={fieldNotes} {page} />

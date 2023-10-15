@@ -2,10 +2,12 @@
   import type { Node } from "$lib/modules/types"
   import { urlFor } from "$lib/modules/sanity"
   export let node: Node
+  let imageLoaded: boolean = true
 </script>
 
 <div class="image-container">
   <img
+    class:loaded={imageLoaded}
     src={urlFor(node.post.featuredImage)
       .width(700)
       .height(500)
@@ -14,6 +16,7 @@
       .quality(100)
       .url()}
     alt={node.post.title}
+    on:load={() => (imageLoaded = true)}
   />
 </div>
 
@@ -45,6 +48,11 @@
       mix-blend-mode: multiply;
       position: relative;
       z-index: var(--z-content);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      &.loaded {
+        opacity: 1;
+      }
     }
   }
 </style>

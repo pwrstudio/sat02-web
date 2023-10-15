@@ -1,13 +1,21 @@
 <script lang="ts">
+  import { COLOR } from "$lib/modules/types"
   import { formatCalendarDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
-  import ListingItem from "../Listing/ListingItem.svelte"
-  import ListingHeader from "../Listing/ListingHeader.svelte"
+  import CalendarListingItem from "./CalendarListingItem.svelte"
+  import CalendarListingHeader from "./CalendarListingHeader.svelte"
+  import DecoLineTwo from "$lib/components/LandingPage/Deco/DecoLineTwo.svelte"
+  import DecoLineOne from "$lib/components/LandingPage/Deco/DecoLineOne.svelte"
+  import DecoCircleTwo from "../LandingPage/Deco/DecoCircleTwo.svelte"
+  import { renderBlockText } from "$lib/modules/sanity"
+  import { languageStore } from "$lib/modules/stores"
+  import { LANGUAGE } from "$lib/modules/types"
   export let posts: any[] = []
-  export let category: "participants" | "calendar" | "projects"
+  export let page: any = {}
 
   let sortOrder = "title"
-  let showImages = false
+  let showOpeningImages = false
+  let showClosingImages = false
 
   interface Event {
     dateTime: string
@@ -88,39 +96,100 @@
   }
 
   const organizedEvents = organizeAndSortEvents(posts)
-  console.log(organizedEvents)
 </script>
 
-<ListingHeader
-  {category}
-  {posts}
-  on:sort={e => {
-    sortOrder = e.detail
-  }}
-  on:images={e => {
-    showImages = e.detail
-  }}
-/>
+<DecoLineTwo />
 
-<div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-  <div class="period-header opening">Opening</div>
-  {#each organizedEvents.openingEvents as openingEvent}
-    <div class="date-header">{formatCalendarDateTime(openingEvent.date)}</div>
-    {#each openingEvent.events as post, index (index)}
-      <ListingItem {post} {category} {index} {showImages} />
-    {/each}
-  {/each}
+<div class="calendar">
+  <!-- TEXT -->
+  <div class="column text">
+    <div class="inner">
+      {#if $languageStore == LANGUAGE.ARABIC}
+        {#if page.content_ar}
+          {@html renderBlockText(page.content_ar.content)}
+        {/if}
+      {:else if page.content}
+        {@html renderBlockText(page.content.content)}
+      {/if}
+    </div>
+  </div>
 
-  <div class="period-header closing">Closing</div>
-  {#each organizedEvents.closingEvents as closingEvent}
-    <div class="date-header">{formatCalendarDateTime(closingEvent.date)}</div>
-    {#each closingEvent.events as post, index (index)}
-      <ListingItem {post} {category} {index} {showImages} />
-    {/each}
-  {/each}
+  <div class="column list">
+    <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
+      <!-- OPENING -->
+      <CalendarListingHeader
+        category="Opening"
+        opening={true}
+        {posts}
+        on:sort={e => {
+          sortOrder = e.detail
+        }}
+        on:images={e => {
+          showOpeningImages = e.detail
+        }}
+      />
+      {#each organizedEvents.openingEvents as openingEvent}
+        <div class="date-header">
+          <div class="inner">
+            {formatCalendarDateTime(openingEvent.date)}
+          </div>
+        </div>
+        {#each openingEvent.events as post, index (index)}
+          <CalendarListingItem {post} {index} showImages={showOpeningImages} />
+        {/each}
+      {/each}
+
+      <!-- CLOSING -->
+      <CalendarListingHeader
+        category="Closing"
+        closing={true}
+        {posts}
+        on:sort={e => {
+          sortOrder = e.detail
+        }}
+        on:images={e => {
+          showClosingImages = e.detail
+        }}
+      />
+      {#each organizedEvents.closingEvents as closingEvent}
+        <div class="date-header">
+          <div class="inner">
+            {formatCalendarDateTime(closingEvent.date)}
+          </div>
+        </div>
+        {#each closingEvent.events as post, index (index)}
+          <CalendarListingItem {post} {index} showImages={showClosingImages} />
+        {/each}
+      {/each}
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
+  .calendar {
+    display: flex;
+    .column {
+      width: 50%;
+
+      &.list {
+        background: var(--orange);
+        padding-bottom: 200px;
+      }
+
+      &.text {
+        background: var(--green);
+        padding-bottom: 200px;
+
+        .inner {
+          color: var(--white);
+          font-size: var(--font-size-large);
+          padding: var(--default-padding);
+          line-height: 1.1em;
+        }
+      }
+    }
+  }
+
   .period-header {
     padding: var(--default-padding);
     font-weight: bold;
@@ -140,5 +209,9 @@
     padding: var(--default-padding);
     background: var(--grey);
     font-weight: bold;
+    .inner {
+      z-index: var(--z-content);
+      position: relative;
+    }
   }
 </style>

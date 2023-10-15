@@ -4,11 +4,9 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ENGLISH)
   // ...
-  import HeaderBar from "$lib/components/HeaderBar.svelte"
   import Calendar from "$lib/components/Calendar/Calendar.svelte"
   export let data
-  const { events } = data
+  const { events, page } = data
 </script>
 
-<!-- <HeaderBar /> -->
-<Calendar posts={events} category="calendar" />
+<Calendar posts={events} {page} />

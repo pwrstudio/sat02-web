@@ -6,7 +6,7 @@
   // ...
   import Venues from "$lib/components/Venues/Venues.svelte"
   export let data
-  const { venues } = data
+  const { posts, page } = data
 </script>
 
-<Venues {venues} />
+<Venues {posts} {page} />

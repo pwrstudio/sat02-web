@@ -1,65 +1,70 @@
 <script lang="ts">
-  import { LANGUAGE } from "$lib/modules/types"
-  import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
+  import ListingItem from "$lib/components/Listing/ListingItem.svelte"
+  import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
+  import DecoLineTwo from "../LandingPage/Deco/DecoLineTwo.svelte"
   import Map from "$lib/components/Map.svelte"
-  //   import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
-  import { onMount } from "svelte"
-  export let venues: any
+  import { renderBlockText } from "$lib/modules/sanity"
+  import { languageStore } from "$lib/modules/stores"
+  import { LANGUAGE } from "$lib/modules/types"
+  export let posts: any[] = []
+  export let page: any = {}
 
-  let height = 0
-
-  onMount(() => {
-    height = document.body.scrollHeight
-  })
-
-  console.log("venues", venues)
+  let sortOrder = "title"
+  let showImages = false
 </script>
 
-<!-- DECO -->
-<!-- <div class="deco-container" style={"height:" + height + "px;"}>
-  <DecoPageTwo />
-</div> -->
+<DecoLineTwo />
 
-<div class="venues" in:fade={{ duration: 200 }}>
-  <!-- LEFT -->
-  <div class="column one">
-    <div class="header">Venues</div>
-    <div class="listing">
-      {#each venues as venue, index (index)}
-        <a href={"/venues/" + venue.slug.current} class="item">
-          {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
-          {venue.title}
-          {#if $languageStore == LANGUAGE.ARABIC}→{/if}
-        </a>
-      {/each}
+<div class="list-page">
+  <!-- TEXT -->
+  <div class="column text">
+    <div class="map-container">
+      <Map venues={posts} />
     </div>
   </div>
-  <div class="column two">
-    <div class="map-container">
-      <Map {venues} />
+
+  <!-- LIST -->
+  <div class="column list">
+    <ListingHeader
+      {page}
+      {posts}
+      on:sort={e => {
+        sortOrder = e.detail
+      }}
+      on:images={e => {
+        showImages = e.detail
+      }}
+    />
+    <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
+      {#each posts as post, index}
+        <ListingItem {post} {index} {showImages} />
+      {/each}
     </div>
   </div>
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
-
-  .venues {
+  .list-page {
     display: flex;
-
-    @include screen-size("phone") {
-      flex-wrap: wrap;
-    }
-
     .column {
       width: 50%;
-      @include screen-size("small") {
-        width: 100%;
+
+      &.list {
+        background: var(--orange);
+        padding-bottom: 200px;
       }
 
-      &.two {
-        min-height: calc(100vh - 62px);
+      &.text {
+        background: var(--green);
+        padding-bottom: 200px;
+
+        .inner {
+          color: var(--white);
+          font-size: var(--font-size-large);
+          padding: var(--default-padding);
+          line-height: 1.1em;
+        }
       }
     }
   }
@@ -68,30 +73,5 @@
     width: 100%;
     height: 100%;
     background: var(--green);
-  }
-
-  .deco-container {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  .header {
-    padding: var(--default-padding);
-    font-weight: bold;
-    border-bottom: 1.5px solid var(--black);
-  }
-
-  .listing {
-    .item {
-      display: block;
-      padding: var(--default-padding);
-      border-bottom: 1.5px solid var(--black);
-
-      &:hover {
-        background: var(--white-select);
-      }
-    }
   }
 </style>
