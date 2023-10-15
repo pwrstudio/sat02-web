@@ -142,7 +142,6 @@
 
             &:hover {
               color: var(--orange);
-              text-decoration: underline;
             }
           }
         }

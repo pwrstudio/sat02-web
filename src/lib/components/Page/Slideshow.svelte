@@ -202,7 +202,7 @@
 
   .close {
     &:hover {
-      text-decoration: underline;
+      color: var(--orange);
     }
   }
 

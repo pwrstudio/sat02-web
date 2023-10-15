@@ -85,7 +85,6 @@
 
             &:hover {
               color: var(--orange);
-              text-decoration: underline;
             }
           }
         }
@@ -103,6 +102,10 @@
 
       .title {
         font-weight: bold;
+
+        &:hover {
+          color: var(--orange);
+        }
       }
 
       &.ARABIC {

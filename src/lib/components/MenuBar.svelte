@@ -126,7 +126,8 @@
     }
 
     &:hover {
-      border-bottom: 1.5px solid var(--black);
+      // border-bottom: 1.5px solid var(--black);
+      color: var(--orange);
     }
 
     &.ARABIC {
@@ -153,7 +154,8 @@
       border-bottom: 1.5px solid transparent;
 
       &:hover {
-        border-bottom: 1.5px solid var(--black);
+        color: var(--orange);
+        // border-bottom: 1.5px solid var(--black);
       }
 
       @include screen-size("small") {
@@ -196,8 +198,13 @@
         font-family: var(--font-family-arabic);
         top: -4px;
       }
+
       @include screen-size("small") {
         display: none;
+      }
+
+      &:hover {
+        color: var(--orange);
       }
     }
 

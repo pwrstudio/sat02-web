@@ -103,7 +103,7 @@
 />
 
 <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-  <div class="period-header opening">OPENING</div>
+  <div class="period-header opening">Opening</div>
   {#each organizedEvents.openingEvents as openingEvent}
     <div class="date-header">{formatCalendarDateTime(openingEvent.date)}</div>
     {#each openingEvent.events as post, index (index)}
@@ -111,7 +111,7 @@
     {/each}
   {/each}
 
-  <div class="period-header closing">CLOSING</div>
+  <div class="period-header closing">Closing</div>
   {#each organizedEvents.closingEvents as closingEvent}
     <div class="date-header">{formatCalendarDateTime(closingEvent.date)}</div>
     {#each closingEvent.events as post, index (index)}

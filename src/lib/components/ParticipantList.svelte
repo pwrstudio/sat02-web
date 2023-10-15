@@ -33,7 +33,7 @@
 <style lang="scss">
   a {
     &:hover {
-      text-decoration: underline;
+      color: var(--orange);
     }
   }
 </style>
