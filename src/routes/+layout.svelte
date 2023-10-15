@@ -19,14 +19,12 @@
     if (!bodyElement) return
 
     if (language === LANGUAGE.ARABIC) {
-      console.log("ARABIC")
       bodyElement.classList.remove("ENGLISH")
       bodyElement.classList.add("ARABIC")
       htmlElement.setAttribute("lang", "ar")
     }
 
     if (language === LANGUAGE.ENGLISH) {
-      console.log("ENGLISH")
       bodyElement.classList.remove("ARABIC")
       bodyElement.classList.add("ENGLISH")
       htmlElement.setAttribute("lang", "en")

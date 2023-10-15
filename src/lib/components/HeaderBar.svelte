@@ -16,7 +16,6 @@
   })
 
   const getDecoComponent = (title: string) => {
-    console.log("title", title)
     switch (title) {
       case "Participants":
         return { component: DecoCircleTwo, props: { color: COLOR.BLUE } }

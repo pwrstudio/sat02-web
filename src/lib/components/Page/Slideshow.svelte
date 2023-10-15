@@ -104,7 +104,18 @@
     {#if isMultiSlide}
       <div>{activeIndex}/{swiper.slides.length}</div>
     {/if}
-    <div>Caption, credits, etc...</div>
+    <!-- CAPTION ENGLISH -->
+    {#if $languageStore == LANGUAGE.ENGLISH}
+      {#if mediaList[activeIndex]?.caption}
+        <div class="caption-text">{mediaList[activeIndex].caption}</div>
+      {/if}
+    {/if}
+    <!-- CAPTION: ARABIC -->
+    {#if $languageStore == LANGUAGE.ARABIC}
+      {#if mediaList[activeIndex]?.caption_ar}
+        <div class="caption-text">{mediaList[activeIndex].caption_ar}</div>
+      {/if}
+    {/if}
   </div>
 </div>
 
@@ -162,6 +173,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-size: var(--font-size-small);
   }
 
   .swiper {

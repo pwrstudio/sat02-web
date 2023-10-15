@@ -7,8 +7,6 @@
   export let index: number
   export let showImages: boolean = false
 
-  console.log(post)
-
   const getPath = (post: any) => {
     switch (post._type) {
       case "event":

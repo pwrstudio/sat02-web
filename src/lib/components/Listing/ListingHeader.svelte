@@ -33,12 +33,10 @@
   let showImages = false
 
   function setSortOrder() {
-    console.log("sortOrder", sortOrder)
     dispatch("sort", sortOrder)
   }
 
   function setImageDisplay() {
-    console.log("showImages", showImages)
     dispatch("images", showImages)
   }
 </script>

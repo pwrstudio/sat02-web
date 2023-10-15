@@ -6,9 +6,6 @@
   export let post: any
   export let index: number
   export let showImages: boolean = false
-
-  console.log(post)
-  console.log("showImages", showImages)
 </script>
 
 <a
