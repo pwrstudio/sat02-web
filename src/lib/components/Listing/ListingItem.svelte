@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { languageStore } from "$lib/modules/stores"
+  import { LANGUAGE } from "$lib/modules/types"
+  import { formatTime } from "$lib/modules/date"
   import Thumbnail from "./Thumbnail.svelte"
   export let post: any
   export let index: number
@@ -10,12 +13,16 @@
 </script>
 
 <a
-  class="listing-item"
+  class="listing-item {post._type}"
   class:images={showImages}
-  class:even={index % 2 == 0}
   href={category + "/" + post.slug.current}
   data-sveltekit-preload-data
 >
+  <!-- DATE -->
+  {#if post._type === "event"}
+    <div class="date">{formatTime(post.dateTime)}</div>
+  {/if}
+
   <!-- IMAGE -->
   {#if showImages && post.featuredImage && post.featuredImage.asset}
     <div class="image">
@@ -25,7 +32,9 @@
 
   <!-- TITLE -->
   <a class="title" href={category + "/" + post.slug.current}>
+    {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
     {post.title}
+    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
   </a>
 
   <!-- PARTICIPANTS -->
@@ -110,6 +119,46 @@
       .venues {
         // padding-top: 60px;
         width: 20%;
+      }
+    }
+
+    &.event {
+      .date {
+        width: 20%;
+      }
+      .title {
+        width: 30%;
+      }
+
+      .participants {
+        width: 30%;
+      }
+
+      .venues {
+        width: 20%;
+      }
+
+      &.images {
+        .date {
+          width: 10%;
+        }
+
+        .image {
+          width: 20%;
+        }
+
+        .title {
+          width: 30%;
+        }
+
+        .participants {
+          width: 30%;
+        }
+
+        .venues {
+          // padding-top: 60px;
+          width: 10%;
+        }
       }
     }
   }

@@ -17,6 +17,5 @@
 <style lang="scss">
   .title {
     font-weight: bold;
-    // text-transform: uppercase;
   }
 </style>

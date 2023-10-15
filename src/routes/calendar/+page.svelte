@@ -5,10 +5,10 @@
   languageStore.set(LANGUAGE.ENGLISH)
   // ...
   import HeaderBar from "$lib/components/HeaderBar.svelte"
-  import Listing from "$lib/components/Listing/Listing.svelte"
+  import Calendar from "$lib/components/Calendar/Calendar.svelte"
   export let data
   const { events } = data
 </script>
 
-<HeaderBar />
-<Listing posts={events} category="calendar" />
+<!-- <HeaderBar /> -->
+<Calendar posts={events} category="calendar" />

@@ -57,6 +57,60 @@ export function formatDateTime(dateTime: string): string {
 }
 
 /**
+ * Formats a date and time string to the HH:mm format in the CET (Central European Time) timezone.
+ *
+ * @param {string} dateTime - The date and time string in ISO 8601 format (e.g., "2023-10-17T17:00:00.000Z").
+ * @returns {string} The formatted time string in the "HH:mm" format.
+ */
+export function formatTime(dateTime: string): string {
+    // Create a new date object
+    const myDate = new Date(dateTime);
+
+    // Convert time to HH:mm format in CET timezone
+    const formattedTime = myDate.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+        timeZone: 'CET'
+    });
+
+    // Return formatted string as HH:mm
+    return `${formattedTime}`;
+}
+
+/**
+ * Converts a date and time string to the format "Day DD/MM" (e.g., "Sunday 15/10").
+ *
+ * @param {string} dateTime - The date and time string in ISO 8601 format (e.g., "2023-10-15T17:00:00.000Z").
+ * @param {string} language - The language for the output ('en' for English or 'ar' for Arabic).
+ * @returns {string} The formatted date string in the "Day DD/MM" format.
+ */
+export function formatCalendarDateTime(dateTime: string, language: string = 'en'): string {
+    // Create a new date object
+    const myDate = new Date(dateTime);
+
+    // Define day names for English and Arabic
+    const dayNames = {
+        en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        ar: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
+    };
+
+    // Get the day of the week (0 = Sunday, 1 = Monday, etc.)
+    const dayOfWeek = myDate.getUTCDay();
+
+    // Get the day and month as two-digit numbers
+    const day = myDate.getUTCDate().toString().padStart(2, "0");
+    const month = (myDate.getUTCMonth() + 1).toString().padStart(2, "0");
+
+    // Determine the day name based on the selected language
+    const dayName = dayNames[language][dayOfWeek];
+
+    // Build and return the formatted string
+    return `${dayName} ${day}/${month}`;
+}
+
+
+/**
  * Formats a given datetime string into the format "Thursday 8th Nov. 19:00".
  *
  * @param {string} dateTime - An ISO datetime string to format.
@@ -163,8 +217,6 @@ export function timeUntil(targetDateTime: string): string {
         }
     }
 }
-
-
 
 export function getSharjahTime() {
     const now = new Date()

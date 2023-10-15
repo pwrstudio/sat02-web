@@ -42,10 +42,10 @@
   }
 </script>
 
-<header><strong>{category}</strong> ({posts.length})</header>
-
 <div class="listing-header">
+  <div class="title"><strong>{category}</strong> ({posts.length})</div>
   <div class="image-toggle">
+    <label for="images">Show images</label>
     <input
       type="checkbox"
       id="images"
@@ -53,9 +53,10 @@
       bind:checked={showImages}
       on:change={setImageDisplay}
     />
-    <label for="images">Show images</label>
   </div>
-  <!-- <div class="order">
+</div>
+
+<!-- <div class="order">
     <label for="order">Order by</label>
     <Select
       name="order"
@@ -69,29 +70,26 @@
       --width="200px"
     />
   </div> -->
-  <!-- <div class="search">Search</div> -->
-</div>
+<!-- <div class="search">Search</div> -->
 
 <style lang="scss">
-  header {
-    padding: var(--default-padding);
-    text-transform: uppercase;
-  }
-
   .listing-header {
     display: flex;
-    padding: var(--default-padding);
-    padding-top: 0;
-    padding-bottom: var(--double-padding);
-    padding-right: var(--double-padding);
     position: relative;
     z-index: var(--z-content);
+    padding: var(--default-padding);
+
+    .title {
+      text-transform: uppercase;
+      margin-right: 30px;
+    }
 
     .image-toggle {
       margin-right: var(--double-padding);
       display: flex;
       label {
-        margin-left: 10px;
+        display: block;
+        margin-right: 5px;
       }
     }
 
@@ -120,6 +118,8 @@
     place-content: center;
     outline: 1px solid var(--black);
     cursor: pointer;
+    position: relative;
+    top: 3px;
   }
 
   input[type="checkbox"]::before {
