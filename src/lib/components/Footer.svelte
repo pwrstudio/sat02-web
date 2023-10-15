@@ -29,20 +29,15 @@
         </div>
       {/each}
     </div>
-    <!-- THIRD COLUMN -->
-    <!-- <div class="column second">
-      <div class="menu-item">
-        <a href="/search">
-          {$languageStore === LANGUAGE.ENGLISH ? "Search..." : "يبحث"}
-        </a>
-      </div>
-    </div> -->
   </div>
   <div class="title-line {LANGUAGE[$languageStore]}">
     <!-- TITLE -->
     <div>
       <a href="/" class="title" data-sveltekit-preload-data>
-        {$languageStore == LANGUAGE.ENGLISH ? siteTitle.en : siteTitle.ar}
+        <div class="full-title">
+          {$languageStore == LANGUAGE.ENGLISH ? siteTitle.en : siteTitle.ar}
+        </div>
+        <div class="short-title">SAT02</div>
       </a>
     </div>
     <!-- DATES -->
@@ -51,6 +46,8 @@
 </footer>
 
 <style lang="scss">
+  @import "../styles/responsive.scss";
+
   footer {
     background: var(--grey);
     width: 100%;
@@ -78,6 +75,11 @@
       .column {
         padding: var(--default-padding);
         width: 33%;
+
+        @include screen-size("phone") {
+          width: 50%;
+        }
+
         .menu-item {
           a {
             color: inherit;
@@ -100,6 +102,11 @@
       justify-content: space-between;
       align-items: center;
 
+      @include screen-size("small") {
+        flex-wrap: wrap;
+        padding-right: var(--default-padding);
+      }
+
       .title {
         // font-weight: bold;
 
@@ -112,6 +119,21 @@
         flex-direction: row-reverse;
         padding-left: var(--double-padding);
         padding-right: var(--default-padding);
+      }
+    }
+
+    .short-title {
+      display: none;
+      @include screen-size("small") {
+        display: block;
+        font-weight: bold;
+      }
+    }
+
+    .full-title {
+      display: block;
+      @include screen-size("small") {
+        display: none;
       }
     }
   }

@@ -74,6 +74,8 @@
 </a>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .listing-item {
     display: flex;
     flex-wrap: wrap;
@@ -97,7 +99,7 @@
 
     .title {
       display: block;
-      padding-right: 30px;
+      padding-right: 20px;
       font-weight: bold;
       z-index: var(--z-content);
       position: relative;
@@ -107,7 +109,7 @@
     .participants {
       display: block;
       width: 40%;
-      padding-right: 30px;
+      padding-right: 20px;
       font-style: italic;
       z-index: var(--z-content);
       position: relative;
@@ -131,10 +133,16 @@
 
       .title {
         width: calc(60% - 90px);
+        @include screen-size("phone") {
+          width: calc(100% - 180px);
+        }
       }
 
       .participants {
         width: calc(40% - 90px);
+        @include screen-size("phone") {
+          display: none;
+        }
       }
     }
   }

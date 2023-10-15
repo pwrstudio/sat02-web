@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy } from "svelte"
+  // import { onMount, onDestroy } from "svelte"
   import { afterNavigate } from "$app/navigation"
   import { slide, fade } from "svelte/transition"
   import { quadOut } from "svelte/easing"
@@ -7,7 +7,6 @@
   import { menuActive, languageStore, urlPrefix } from "$lib/modules/stores"
   import { MENU_ITEMS } from "$lib/modules/constants"
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
-  import Search from "./Search.svelte"
   import delay from "lodash/delay.js"
   // import { disablePageScroll, enablePageScroll } from "scroll-lock"
 
@@ -73,15 +72,6 @@
       {/each}
     </div>
   </div>
-
-  <!-- SEARCH -->
-  <!-- <div
-    class="search-container"
-    class:hidden={selectedItem}
-    in:fade={{ duration: 400, delay: 140 }}
-  >
-    <Search />
-  </div> -->
 </div>
 
 <style lang="scss">
@@ -131,6 +121,11 @@
         padding: var(--default-padding);
         width: 50%;
 
+        @include screen-size("small") {
+          width: 100%;
+          padding-top: 0;
+        }
+
         .menu-item {
           &.hidden {
             opacity: 0.5;
@@ -145,17 +140,6 @@
             }
           }
         }
-      }
-    }
-
-    .search-container {
-      font-size: var(--font-size-xlarge);
-      margin-bottom: 20px;
-      padding: var(--default-padding);
-      width: 100%;
-
-      &.hidden {
-        opacity: 0.5;
       }
     }
   }

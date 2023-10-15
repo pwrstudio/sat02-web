@@ -30,7 +30,10 @@
 <nav class={LANGUAGE[$languageStore]}>
   <!-- TITLE -->
   <button class="title {LANGUAGE[$languageStore]}" on:click={handleLogoClick}>
-    {$languageStore == LANGUAGE.ENGLISH ? siteTitle.en : siteTitle.ar}
+    <div class="full-title">
+      {$languageStore == LANGUAGE.ENGLISH ? siteTitle.en : siteTitle.ar}
+    </div>
+    <div class="short-title">SAT02</div>
   </button>
   <div class="actions {LANGUAGE[$languageStore]}">
     <!-- MENU TOGGLE: DESKTOP -->
@@ -76,7 +79,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: var(--menubar-height);
     background: var(--grey);
     display: flex;
@@ -118,12 +121,27 @@
     border-bottom: 1.5px solid transparent;
     // font-weight: bold;
 
-    @include screen-size("small") {
-      width: 100%;
-      text-align: left;
-      height: 41px;
-      line-height: 51px;
+    .short-title {
+      display: none;
+      @include screen-size("small") {
+        display: block;
+        font-weight: bold;
+      }
     }
+
+    .full-title {
+      display: block;
+      @include screen-size("small") {
+        display: none;
+      }
+    }
+
+    // @include screen-size("small") {
+    //   width: 100%;
+    //   text-align: left;
+    //   height: 41px;
+    //   line-height: 51px;
+    // }
 
     &:hover {
       // border-bottom: 1.5px solid var(--black);
@@ -139,12 +157,13 @@
   .actions {
     display: flex;
     align-items: center;
-    @include screen-size("small") {
-      width: 100%;
-      // background: yellow;
-      justify-content: space-between;
-      padding-bottom: 10px;
-    }
+
+    // @include screen-size("small") {
+    //   width: 100%;
+    //   // background: yellow;
+    //   justify-content: space-between;
+    //   padding-bottom: 10px;
+    // }
 
     &.ARABIC {
       flex-direction: row-reverse;

@@ -63,6 +63,27 @@
       <h2>
         <ParticipantList participants={page.participants} />
       </h2>
+
+      <div class="phone-info">
+        <!-- VENUE -->
+        {#if has(page, "venues[0].title")}
+          <div class="venue">
+            <a href={"/venues/" + page.venues[0].slug.current}>
+              {page.venues[0].title}
+            </a>
+          </div>
+        {/if}
+
+        <!-- TIME -->
+        {#if page._type == "event"}
+          <div class="time">
+            <!-- DATE -->
+            <div class="date">
+              {formatFullDateTime(page.dateTime)}
+            </div>
+          </div>
+        {/if}
+      </div>
     </div>
     <div class="row content">
       <!-- CONTENT -->
@@ -74,7 +95,6 @@
 
   <!-- RIGHT -->
   <div class="column right">
-    <!-- PARTICIPANTS  -->
     <div class="row header right green">
       <!-- VENUE -->
       {#if has(page, "venues[0].title")}
@@ -175,6 +195,10 @@
         position: relative;
         padding-top: 5em;
 
+        @include screen-size("phone") {
+          height: unset;
+        }
+
         h1,
         h2 {
           font-size: var(--font-size-xlarge);
@@ -185,6 +209,11 @@
           padding: 0;
           margin: 0;
           margin-bottom: 0.5em;
+
+          @include screen-size("phone") {
+            font-size: var(--font-size-large);
+            line-height: 0.9em;
+          }
 
           a {
             color: var(--white);
@@ -206,6 +235,10 @@
           z-index: var(--z-content);
           line-height: 1.1em;
           margin-bottom: 0.5em;
+
+          @include screen-size("phone") {
+            font-size: var(--font-size-large);
+          }
         }
 
         .venue {
@@ -215,6 +248,16 @@
           z-index: var(--z-content);
           line-height: 1.1em;
           margin-bottom: 0.5em;
+
+          @include screen-size("phone") {
+            font-size: var(--font-size-large);
+          }
+        }
+
+        &.right {
+          @include screen-size("phone") {
+            display: none;
+          }
         }
       }
 
@@ -226,6 +269,10 @@
         cursor: pointer;
         z-index: var(--z-content);
 
+        @include screen-size("phone") {
+          height: 400px;
+        }
+
         img {
           width: 100%;
           height: 100%;
@@ -233,6 +280,10 @@
           object-fit: cover;
           mix-blend-mode: multiply;
           object-position: center center;
+
+          @include screen-size("phone") {
+            object-fit: contain;
+          }
         }
 
         .open-slideshow {
@@ -287,5 +338,12 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .phone-info {
+    display: none;
+    @include screen-size("phone") {
+      display: block;
+    }
   }
 </style>

@@ -196,6 +196,10 @@
         img {
           max-height: 100%;
           max-width: 100%;
+
+          @include screen-size("phone") {
+            max-width: 80%;
+          }
         }
       }
     }
@@ -224,6 +228,11 @@
     transform: translateY(-50%);
     font-size: var(--font-size-large);
     z-index: var(--z-modal);
+
+    @include screen-size("phone") {
+      top: unset;
+      bottom: 5vh;
+    }
 
     &.left {
       left: 7vw;

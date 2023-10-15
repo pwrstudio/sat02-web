@@ -80,6 +80,7 @@
 
     @include screen-size("small") {
       min-height: unset;
+      padding: var(--default-padding);
     }
 
     &.white {
@@ -137,6 +138,10 @@
       line-height: 1.6em;
       min-height: 500px;
       position: relative;
+
+      @include screen-size("small") {
+        min-height: unset;
+      }
     }
   }
 </style>

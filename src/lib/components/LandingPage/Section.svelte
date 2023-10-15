@@ -42,6 +42,8 @@
 {/if}
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   section {
     width: 100%;
     height: 100%;
@@ -52,6 +54,9 @@
 
     &.spaced {
       padding-top: 100px;
+      @include screen-size("small") {
+        padding-top: 25px;
+      }
     }
   }
 </style>

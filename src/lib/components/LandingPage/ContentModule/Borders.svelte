@@ -56,6 +56,10 @@
     --line-width: 1.5px;
     --padding: var(--double-padding);
 
+    @include screen-size("small") {
+      --padding: var(--default-padding);
+    }
+
     &.white {
       background: var(--white-transparent);
     }

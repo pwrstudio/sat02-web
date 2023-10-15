@@ -67,6 +67,7 @@
     @include screen-size("small") {
       flex-direction: row;
       flex-wrap: wrap;
+      padding-top: 0;
     }
 
     .column {
@@ -76,6 +77,12 @@
         padding-right: 40px;
         line-height: 1.1em;
         font-size: var(--font-size-xlarge);
+
+        @include screen-size("small") {
+          font-size: var(--font-size-large);
+          line-height: 1em;
+          padding-right: var(--default-padding);
+        }
 
         &.ARABIC {
           padding-right: unset;
@@ -87,10 +94,6 @@
           position: relative;
           .date {
             margin-top: 0.5em;
-          }
-          .countdown {
-            // margin-top: 0.5em;
-            // font-style: italic;
           }
         }
 
@@ -107,9 +110,11 @@
           z-index: var(--z-content);
           font-size: var(--font-size-xlarge);
           margin-bottom: 0.5em;
+          line-height: 1.1em;
 
           @include screen-size("small") {
             font-size: var(--font-size-large);
+            line-height: 1em;
           }
         }
 
@@ -121,7 +126,6 @@
           position: relative;
           z-index: var(--z-content);
           font-size: var(--font-size-xlarge);
-
           @include screen-size("small") {
             font-size: var(--font-size-large);
           }

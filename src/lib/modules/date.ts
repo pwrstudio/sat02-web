@@ -109,7 +109,6 @@ export function formatCalendarDateTime(dateTime: string, language: string = 'en'
     return `${dayName} ${day}/${month}`;
 }
 
-
 /**
  * Formats a given datetime string into the format "Thursday 8th Nov. 19:00".
  *
@@ -175,7 +174,6 @@ function getOrdinalSuffix(n: number): string {
         default: return 'th';
     }
 }
-
 
 /**
  * Calculate the time remaining until the specified datetime.

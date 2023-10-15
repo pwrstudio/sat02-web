@@ -3,11 +3,8 @@
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
-
   import ListingHeader from "../Listing/ListingHeader.svelte"
   import ListingItem from "../Listing/ListingItem.svelte"
-
-  import PlaceholderText from "$lib/components/Page/PlaceholderText.svelte"
   import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
   import DecoCircleTwo from "../LandingPage/Deco/DecoCircleTwo.svelte"
   import { onMount } from "svelte"
@@ -39,14 +36,10 @@
         <!-- ARABIC -->
         {#if page.content_ar}
           {@html renderBlockText(page.content_ar.content)}
-        {:else}
-          <PlaceholderText />
         {/if}
         <!-- ENGLISH -->
       {:else if page.content}
         {@html renderBlockText(page.content.content)}
-      {:else}
-        <PlaceholderText />
       {/if}
     </div>
 

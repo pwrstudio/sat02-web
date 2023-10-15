@@ -166,10 +166,21 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .calendar {
     display: flex;
+
+    @include screen-size("phone") {
+      flex-wrap: wrap;
+    }
+
     .column {
       width: 50%;
+
+      @include screen-size("phone") {
+        width: 100%;
+      }
 
       &.list {
         background: var(--orange);

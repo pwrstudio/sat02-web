@@ -51,25 +51,48 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .list-page {
     display: flex;
+
+    @include screen-size("phone") {
+      flex-wrap: wrap;
+    }
+
     .column {
       width: 50%;
+
+      @include screen-size("phone") {
+        width: 100%;
+      }
 
       &.list {
         background: var(--orange);
         padding-bottom: 200px;
+
+        @include screen-size("phone") {
+          padding-bottom: 50px;
+        }
       }
 
       &.text {
         background: var(--green);
         padding-bottom: 200px;
 
+        @include screen-size("phone") {
+          padding-bottom: 50px;
+        }
+
         .inner {
           color: var(--white);
           font-size: var(--font-size-large);
           padding: var(--default-padding);
           line-height: 1.1em;
+
+          @include screen-size("phone") {
+            font-size: var(--font-size-normal);
+          }
         }
       }
     }
