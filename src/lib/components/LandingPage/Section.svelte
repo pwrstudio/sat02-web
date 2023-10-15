@@ -28,7 +28,7 @@
 </script>
 
 {#if node.children}
-  <section>
+  <section class:spaced={node.spaced}>
     <!-- Deco -->
     <svelte:component this={decoComponent.component} {...decoComponent.props} />
     {#each node.children as child}
@@ -49,5 +49,9 @@
     flex-wrap: wrap;
     position: relative;
     background: var(--green);
+
+    &.spaced {
+      padding-top: 100px;
+    }
   }
 </style>

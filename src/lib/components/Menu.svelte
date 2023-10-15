@@ -75,13 +75,13 @@
   </div>
 
   <!-- SEARCH -->
-  <div
+  <!-- <div
     class="search-container"
     class:hidden={selectedItem}
     in:fade={{ duration: 400, delay: 140 }}
   >
     <Search />
-  </div>
+  </div> -->
 </div>
 
 <style lang="scss">

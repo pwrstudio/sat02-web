@@ -17,7 +17,7 @@ export const MENU_ITEMS = [
         link: "calendar",
     },
     {
-        title: "Design store",
+        title: "Design Store",
         ar: "متجر التصميم",
         link: "design-store",
     },

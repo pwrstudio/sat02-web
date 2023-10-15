@@ -68,4 +68,5 @@ export type Node = {
     decoType?: DECO_TYPE;
     bgColor?: COLOR;
     border?: BorderOption;
+    spaced?: boolean;
 };

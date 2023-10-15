@@ -116,7 +116,7 @@
 
   .title {
     border-bottom: 1.5px solid transparent;
-    font-weight: bold;
+    // font-weight: bold;
 
     @include screen-size("small") {
       width: 100%;

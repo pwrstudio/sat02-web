@@ -9,6 +9,7 @@
   import Tag from "$lib/components/Tag.svelte"
   import Title from "$lib/components/Title.svelte"
   import Content from "$lib/components/Content.svelte"
+  import Credits from "$lib/components/Credits.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import SlidesCounter from "./SlidesCounter.svelte"
   import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
@@ -63,9 +64,11 @@
         <ParticipantList participants={page.participants} />
       </h2>
     </div>
-    <!-- CONTENT -->
     <div class="row content">
+      <!-- CONTENT -->
       <Content {page} />
+      <!-- CREDITS -->
+      <Credits {page} />
     </div>
   </div>
 
@@ -76,7 +79,9 @@
       <!-- VENUE -->
       {#if has(page, "venues[0].title")}
         <div class="venue">
-          {page.venues[0].title}
+          <a href={"/venues/" + page.venues[0].slug.current}>
+            {page.venues[0].title}
+          </a>
         </div>
       {/if}
 
@@ -90,6 +95,7 @@
         </div>
       {/if}
     </div>
+
     <!-- SLIDESHOW -->
     {#if page.featuredImage?.asset}
       <div class="row slideshow">
@@ -118,9 +124,6 @@
         </button>
       </div>
     {/if}
-
-    <!-- DIVIDER -->
-    <div class="row divider" />
     <!-- EVENTS -->
     <div class="row events">
       <!-- RELATED EVENTS -->

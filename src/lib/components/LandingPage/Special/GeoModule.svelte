@@ -40,10 +40,10 @@
 
   .geo {
     font-size: var(--font-size-large);
-    color: var(--black);
+    color: var(--white);
     width: 100%;
     padding: var(--default-padding);
-    background: var(--grey);
+    background: var(--orange);
     min-height: 220px;
     display: flex;
     flex-direction: column;

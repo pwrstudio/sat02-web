@@ -30,13 +30,13 @@
       {/each}
     </div>
     <!-- THIRD COLUMN -->
-    <div class="column second">
+    <!-- <div class="column second">
       <div class="menu-item">
         <a href="/search">
           {$languageStore === LANGUAGE.ENGLISH ? "Search..." : "يبحث"}
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="title-line {LANGUAGE[$languageStore]}">
     <!-- TITLE -->
@@ -101,7 +101,7 @@
       align-items: center;
 
       .title {
-        font-weight: bold;
+        // font-weight: bold;
 
         &:hover {
           color: var(--orange);

@@ -24,10 +24,14 @@
 <div class="venues" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
   <div class="column one">
-    <div class="header">VENUES LIST</div>
+    <div class="header">Venues</div>
     <div class="listing">
       {#each venues as venue, index (index)}
-        <a href={"/venues/" + venue.slug.current} class="item">{venue.title}</a>
+        <a href={"/venues/" + venue.slug.current} class="item">
+          {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+          {venue.title}
+          {#if $languageStore == LANGUAGE.ARABIC}→{/if}
+        </a>
       {/each}
     </div>
   </div>
@@ -63,6 +67,7 @@
   .map-container {
     width: 100%;
     height: 100%;
+    background: var(--green);
   }
 
   .deco-container {
@@ -72,10 +77,21 @@
     left: 0;
   }
 
+  .header {
+    padding: var(--default-padding);
+    font-weight: bold;
+    border-bottom: 1.5px solid var(--black);
+  }
+
   .listing {
     .item {
       display: block;
       padding: var(--default-padding);
+      border-bottom: 1.5px solid var(--black);
+
+      &:hover {
+        background: var(--white-select);
+      }
     }
   }
 </style>

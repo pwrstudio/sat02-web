@@ -62,6 +62,7 @@
   .full {
     display: flex;
     padding-top: 2em;
+    min-height: 80vh;
 
     @include screen-size("small") {
       flex-direction: row;
