@@ -50,7 +50,7 @@
     <!-- TITLE -->
     <div class="row header green">
       <!-- TYPE -->
-      <div class="tag">
+      <div class="tag {LANGUAGE[$languageStore]}">
         <Tag>{page._type}</Tag>
       </div>
       <!-- TITLE -->
@@ -67,6 +67,7 @@
       <div class="phone-info">
         <!-- VENUE -->
         {#if has(page, "venues[0].title")}
+          <div class="line" />
           <div class="venue">
             <a href={"/venues/" + page.venues[0].slug.current}>
               {page.venues[0].title}
@@ -76,6 +77,7 @@
 
         <!-- TIME -->
         {#if page._type == "event"}
+          <div class="line" />
           <div class="time">
             <!-- DATE -->
             <div class="date">
@@ -84,6 +86,18 @@
           </div>
         {/if}
       </div>
+    </div>
+    <div class="row phone-slideshow">
+      <button
+        on:click={toogleSlideshow}
+        class="open-slideshow {LANGUAGE[$languageStore]}"
+      >
+        {#if $languageStore === LANGUAGE.ARABIC}
+          فتح العرض التقديمي <SlidesCounter {page} />
+        {:else}
+          OPEN SLIDESHOW <SlidesCounter {page} />
+        {/if}
+      </button>
     </div>
     <div class="row content">
       <!-- CONTENT -->
@@ -169,6 +183,11 @@
       position: absolute;
       top: 20px;
       left: 20px;
+
+      &.ARABIC {
+        left: unset;
+        right: 20px;
+      }
     }
 
     .column {
@@ -181,6 +200,11 @@
         width: 100%;
       }
 
+      &.right {
+        @include screen-size("phone") {
+          display: none;
+        }
+      }
       .row {
         width: 100%;
         padding: var(--default-padding);
@@ -270,6 +294,7 @@
         z-index: var(--z-content);
 
         @include screen-size("phone") {
+          display: none;
           height: 400px;
         }
 
@@ -292,6 +317,34 @@
           right: 0;
           width: 100%;
           padding: var(--default-padding);
+          background: var(--orange);
+          color: var(--white);
+          text-decoration: none;
+          text-align: center;
+          border: 0;
+          cursor: pointer;
+          font-size: var(--font-size-normal);
+
+          &.ARABIC {
+            font-family: var(--font-family-arabic);
+          }
+        }
+      }
+
+      .phone-slideshow {
+        position: relative;
+        padding: 0;
+        cursor: pointer;
+        z-index: var(--z-content);
+        display: none;
+
+        @include screen-size("phone") {
+          display: block;
+        }
+
+        .open-slideshow {
+          width: 100%;
+          padding: var(--double-padding) var(--default-padding);
           background: var(--orange);
           color: var(--white);
           text-decoration: none;
@@ -345,5 +398,12 @@
     @include screen-size("phone") {
       display: block;
     }
+  }
+
+  .line {
+    width: 100%;
+    height: 1.5px;
+    background: var(--white-transparent);
+    margin-bottom: 10px;
   }
 </style>

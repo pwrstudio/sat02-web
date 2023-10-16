@@ -12,20 +12,14 @@
         href={$urlPrefix + "participants/" + participant.slug.current}
         data-sveltekit-preload-data
       >
-        {participant.title}{index < participants.length - 2
-          ? ", "
-          : index === participants.length - 2
-          ? " &"
-          : ""}
+        {participant.title}{index < participants.length - 2 ? "," : ""}
       </a>
+      {index === participants.length - 2 ? " & " : ""}
     {:else}
       <span class="participant">
-        {participant.title}{index < participants.length - 2
-          ? ", "
-          : index === participants.length - 2
-          ? " &"
-          : ""}
+        {participant.title}{index < participants.length - 2 ? "," : ""}
       </span>
+      {index === participants.length - 2 ? " & " : ""}
     {/if}
   {/each}
 {/if}

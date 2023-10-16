@@ -49,9 +49,9 @@
 
   main {
     width: 100vw;
-    min-height: 80vh;
     padding-top: var(--menubar-height);
     overflow-x: hidden;
+    overflow-y: hidden;
 
     @include screen-size("small") {
       padding-top: var(--menubar-height-phone);
