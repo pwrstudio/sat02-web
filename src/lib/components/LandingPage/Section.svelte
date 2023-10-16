@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { Node } from "$lib/modules/types"
   import { DECO_TYPE } from "$lib/modules/types"
-  import DecoCircleOne from "$lib/components/LandingPage/Deco/DecoCircleOne.svelte"
-  import DecoCircleTwo from "$lib/components/LandingPage/Deco/DecoCircleTwo.svelte"
-  import DecoLineOne from "$lib/components/LandingPage/Deco/DecoLineOne.svelte"
-  import DecoLineTwo from "$lib/components/LandingPage/Deco/DecoLineTwo.svelte"
+  import DecoCircleOne from "$lib/components/Deco/DecoCircleOne.svelte"
+  import DecoCircleTwo from "$lib/components/Deco/DecoCircleTwo.svelte"
+  import DecoLineOne from "$lib/components/Deco/DecoLineOne.svelte"
+  import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
   import Column from "./Column.svelte"
   import SingleModule from "./SingleModule.svelte"
   export let node: Node

@@ -1,3 +1,5 @@
+import type { CircleGroup } from "./types";
+
 const DISTORTION_AMOUNT = 0.7;
 
 /**
@@ -163,3 +165,208 @@ export function createDottedCircle(
     element.appendChild(svg);
 }
 
+/**
+ * Creates a circular pattern of dots within an SVG element.
+ *
+ * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
+ * @param {number} circleWidth - The width of the circular pattern.
+ * @param {number} dotRadius - The radius of each dot in the pattern.
+ * @param {number} baseDistance - The base distance between dots on the circumference of the circle.
+ * @param {string} color - The color of the dots.
+ * @param {number} verticalShiftRange - The range of vertical shift for each dot.
+ * @param {number} horizontalShiftRange - The range of horizontal shift for each dot.
+ */
+export function createCircularPattern(
+    element: HTMLElement,
+    circleWidth: number,
+    dotRadius: number,
+    baseDistance: number,
+    color: string,
+    verticalShiftRange: number,
+    horizontalShiftRange: number
+) {
+    // Calculate the maximum shift range between dots.
+    const maxShiftRange = Math.max(verticalShiftRange, horizontalShiftRange);
+
+    // Calculate the SVG width and height.
+    const svgWidth = circleWidth + 2 * (dotRadius + maxShiftRange);
+    const svgHeight = svgWidth;
+
+    // Create an SVG element.
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', `${svgWidth}`);
+    svg.setAttribute('height', `${svgHeight}`);
+
+    // Calculate the center coordinates of the SVG.
+    const centerX = svgWidth / 2;
+    const centerY = svgHeight / 2;
+
+    // Calculate the circumference of the circle and the number of dots to create.
+    const circumference = Math.PI * circleWidth;
+    const numberOfDots = Math.floor(circumference / baseDistance);
+
+    // Generate and append dots to the SVG.
+    for (let i = 0; i < numberOfDots; i++) {
+        // Calculate the angle for placing dots evenly around the circle.
+        const angle = (i / numberOfDots) * 2 * Math.PI;
+
+        // Calculate the base coordinates of the dot on the circle's circumference.
+        const cxBase = centerX + (circleWidth / 2) * Math.cos(angle);
+        const cyBase = centerY + (circleWidth / 2) * Math.sin(angle);
+
+        // Apply random horizontal and vertical shifts within the specified ranges.
+        const cx = cxBase + (Math.random() - 0.5) * horizontalShiftRange;
+        const cy = cyBase + (Math.random() - 0.5) * verticalShiftRange;
+
+        // Create a distorted dot and append it to the SVG.
+        const dot = createDistortedDot(cx, cy, dotRadius, color, DISTORTION_AMOUNT);
+        svg.appendChild(dot);
+    }
+
+    // Append the SVG to the specified HTML element.
+    element.appendChild(svg);
+}
+
+/**
+ * Creates a pattern of nested circles with dots within an SVG element.
+ *
+ * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
+ * @param {number} outerCircleWidth - The width of the outer circle.
+ * @param {number} dotRadius - The radius of each dot in the pattern.
+ * @param {number} baseDistance - The base distance between dots on the circumference of the circles.
+ * @param {string} color - The color of the dots.
+ * @param {number} verticalShiftRange - The range of vertical shift for each dot.
+ * @param {number} horizontalShiftRange - The range of horizontal shift for each dot.
+ */
+export function createNestedCircularPattern(
+    element: HTMLElement,
+    outerCircleWidth: number,
+    dotRadius: number,
+    baseDistance: number,
+    color: string,
+    verticalShiftRange: number,
+    horizontalShiftRange: number
+) {
+    // Calculate the maximum shift range between dots.
+    const maxShiftRange = Math.max(verticalShiftRange, horizontalShiftRange);
+
+    // Calculate the SVG width and height based on the outer circle width.
+    const svgWidth = outerCircleWidth + 2 * (dotRadius + maxShiftRange);
+    const svgHeight = svgWidth;
+
+    // Create an SVG element.
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', `${svgWidth}`);
+    svg.setAttribute('height', `${svgHeight}`);
+
+    // Calculate the center coordinates of the SVG.
+    const centerX = svgWidth / 2;
+    const centerY = svgHeight / 2;
+
+    // Generate and append nested circles with dots to the SVG.
+    let currentCircleWidth = outerCircleWidth;
+    let numberOfDots = 0;
+
+    while (currentCircleWidth > dotRadius * 2) {
+        // Calculate the circumference of the current circle and the number of dots to create.
+        const circumference = Math.PI * currentCircleWidth;
+        numberOfDots = Math.floor(circumference / baseDistance);
+
+        for (let j = 0; j < numberOfDots; j++) {
+            // Calculate the angle for placing dots evenly around the circle.
+            const angle = (j / numberOfDots) * 2 * Math.PI;
+
+            // Calculate the base coordinates of the dot on the circle's circumference.
+            const cxBase = centerX + (currentCircleWidth / 2) * Math.cos(angle);
+            const cyBase = centerY + (currentCircleWidth / 2) * Math.sin(angle);
+
+            // Apply random horizontal and vertical shifts within the specified ranges.
+            const cx = cxBase + (Math.random() - 0.5) * horizontalShiftRange;
+            const cy = cyBase + (Math.random() - 0.5) * verticalShiftRange;
+
+            // Create a distorted dot and append it to the SVG.
+            const dot = createDistortedDot(cx, cy, dotRadius, color, DISTORTION_AMOUNT);
+            svg.appendChild(dot);
+        }
+
+        // Reduce the current circle width for the next inner circle.
+        currentCircleWidth -= 2 * baseDistance;
+    }
+
+    // Append the SVG to the specified HTML element.
+    element.appendChild(svg);
+}
+
+/**
+ * Creates a nested circular pattern of groups with distorted dots within an SVG element.
+ *
+ * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
+ * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
+ * @param {string} color - The color of the dots.
+ */
+export function createNestedCircularPatternWithGroups(
+    element: HTMLElement,
+    circleGroups: CircleGroup[],
+    color: string
+) {
+    const rotationIncrement = Math.PI / 36;  // For example, 5 degrees. Adjust as needed.
+
+    // Calculate the outermost circle's radius as the sum of the baseDistance times circleCount, dotRadius, and maxShiftRange.
+    const maxShiftRange = Math.max(
+        ...circleGroups.map(group =>
+            Math.max(group.verticalShiftRange, group.horizontalShiftRange)
+        )
+    );
+
+    let accumulatedRadius = 0;  // This will help us determine where each group starts.
+    const outermostCircleRadius = circleGroups.reduce((maxRadius, group) => {
+        const groupRadius = accumulatedRadius + group.dotRadius + (group.baseDistance * group.circleCount) + maxShiftRange;
+        accumulatedRadius = groupRadius;  // Update accumulatedRadius for the next group
+        return Math.max(maxRadius, groupRadius);
+    }, 0);
+
+    const totalWidth = outermostCircleRadius * 2;
+
+    // Create an SVG element.
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', `${totalWidth}`);
+    svg.setAttribute('height', `${totalWidth}`);
+
+    // Calculate the center coordinates of the SVG.
+    const centerX = totalWidth / 2;
+    const centerY = totalWidth / 2;
+
+    // Placing a single dot at the center
+    const centerDotRadius = circleGroups[0].dotRadius; // Assuming the first circle group has the desired specs for the center dot
+    const centerDot = createDistortedDot(centerX, centerY, centerDotRadius, color, 0); // No distortion for the center dot
+    svg.appendChild(centerDot);
+
+    let startingRadius = 0;  // This will help us determine where each group's circle starts.
+    let accumulatedRotation = 0;  // This will accumulate the rotation for each circle.
+
+    for (const group of circleGroups) {
+        for (let i = 0; i < group.circleCount; i++) {
+            const currentCircleRadius = startingRadius + group.baseDistance * (i + 1);
+            const circumference = Math.PI * currentCircleRadius * 2;
+            const numberOfDots = Math.floor(circumference / group.baseDistance);
+
+            for (let j = 0; j < numberOfDots; j++) {
+                const angle = ((j / numberOfDots) * 2 * Math.PI) + accumulatedRotation;  // Added rotation here
+
+                const cxBase = centerX + currentCircleRadius * Math.cos(angle);
+                const cyBase = centerY + currentCircleRadius * Math.sin(angle);
+
+                const cx = cxBase + (Math.random() - 0.5) * group.horizontalShiftRange;
+                const cy = cyBase + (Math.random() - 0.5) * group.verticalShiftRange;
+
+                const dot = createDistortedDot(cx, cy, group.dotRadius, color, DISTORTION_AMOUNT);
+                svg.appendChild(dot);
+            }
+
+            accumulatedRotation += rotationIncrement;  // Increase rotation for the next circle.
+        }
+        startingRadius += group.baseDistance * group.circleCount;
+    }
+
+    element.appendChild(svg);
+}

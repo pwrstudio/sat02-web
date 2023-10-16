@@ -1,29 +1,64 @@
 <script lang="ts">
-  import { COLOR, LANGUAGE } from "$lib/modules/types"
+  import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
+  import {
+    createNestedCircularPattern,
+    createNestedCircularPatternWithGroups,
+  } from "$lib/modules/graphics"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
   import ListingHeader from "../Listing/ListingHeader.svelte"
   import ListingItem from "../Listing/ListingItem.svelte"
-  import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
-  import DecoCircleTwo from "../LandingPage/Deco/DecoCircleTwo.svelte"
+  import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
+  import DecoCircleTwo from "../Deco/DecoCircleTwo.svelte"
   import { onMount } from "svelte"
   export let page: any
   export let pressReleases: any[] = []
   export let pressCoverage: any[] = []
   let showPressReleaseImages = false
   let showPressCoverageImages = false
+  export let color: COLOR = COLOR.GREEN
 
   let height = 0
+  let circularOneEl: HTMLDivElement
 
   onMount(() => {
     height = document.body.scrollHeight
+
+    const circleGroups: CircleGroup[] = [
+      {
+        circleCount: 2,
+        dotRadius: 10,
+        baseDistance: 30,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+      {
+        circleCount: 10,
+        dotRadius: 7,
+        baseDistance: 30,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+      {
+        circleCount: 10,
+        dotRadius: 15,
+        baseDistance: 40,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+    ]
+    if (circularOneEl) {
+      createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
+    }
   })
 </script>
 
 <!-- DECO -->
 <div class="deco-container" style={"height:" + height + "px;"}>
-  <DecoPageTwo />
+  {#if page._id === "press"}
+    <DecoPageTwo />
+  {/if}
   <!-- <DecoCircleTwo color={COLOR.GREY} /> -->
 </div>
 
@@ -83,6 +118,10 @@
           <ListingItem {post} {index} showImages={showPressCoverageImages} />
         {/each}
       </div>
+    {:else}
+      <div class="pattern-container">
+        <div bind:this={circularOneEl} />
+      </div>
     {/if}
   </div>
 </div>
@@ -116,6 +155,21 @@
         color: var(--white);
         padding: var(--default-padding);
       }
+    }
+  }
+
+  .pattern-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: var(--z-index-content);
+
+    div {
+      position: relative;
+      z-index: var(--z-index-content);
     }
   }
 

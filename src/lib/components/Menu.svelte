@@ -1,14 +1,16 @@
 <script lang="ts">
-  // import { onMount, onDestroy } from "svelte"
+  import { onMount } from "svelte"
   import { afterNavigate } from "$app/navigation"
   import { slide, fade } from "svelte/transition"
   import { quadOut } from "svelte/easing"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
   import { menuActive, languageStore, urlPrefix } from "$lib/modules/stores"
   import { MENU_ITEMS } from "$lib/modules/constants"
   import { splitArrayIntoTwoParts } from "$lib/modules/utils"
+  import { createNestedCircularPatternWithGroups } from "$lib/modules/graphics"
   import delay from "lodash/delay.js"
   // import { disablePageScroll, enablePageScroll } from "scroll-lock"
+  let color: COLOR = COLOR.GREEN
 
   let selectedItem = ""
 
@@ -20,13 +22,36 @@
     delay(closeMenu, 700)
   })
 
-  // onMount(() => {
-  //   disablePageScroll()
-  // })
+  let circularOneEl: HTMLDivElement
 
-  // onDestroy(() => {
-  //   enablePageScroll()
-  // })
+  onMount(() => {
+    const circleGroups: CircleGroup[] = [
+      {
+        circleCount: 2,
+        dotRadius: 10,
+        baseDistance: 30,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+      {
+        circleCount: 10,
+        dotRadius: 7,
+        baseDistance: 30,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+      {
+        circleCount: 10,
+        dotRadius: 15,
+        baseDistance: 40,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+    ]
+    if (circularOneEl) {
+      createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
+    }
+  })
 </script>
 
 <div

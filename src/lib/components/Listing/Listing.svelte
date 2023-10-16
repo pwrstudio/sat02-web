@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition"
   import ListingItem from "./ListingItem.svelte"
   import ListingHeader from "./ListingHeader.svelte"
-  import DecoLineTwo from "../LandingPage/Deco/DecoLineTwo.svelte"
+  import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"

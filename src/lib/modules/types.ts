@@ -70,3 +70,11 @@ export type Node = {
     border?: BorderOption;
     spaced?: boolean;
 };
+
+export type CircleGroup = {
+    circleCount: number;
+    dotRadius: number;
+    baseDistance: number;
+    verticalShiftRange: number;
+    horizontalShiftRange: number;
+};

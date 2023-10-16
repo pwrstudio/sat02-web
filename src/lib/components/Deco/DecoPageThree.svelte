@@ -7,13 +7,17 @@
   let lineOneEl: HTMLDivElement
   let lineTwoEl: HTMLDivElement
   let lineThreeEl: HTMLDivElement
+  let lineFourEl: HTMLDivElement
+  let lineFiveEl: HTMLDivElement
 
   export let color: COLOR = COLOR.ORANGE
 
   onMount(() => {
     createVerticalDottedLine(lineOneEl, 2000, 10, 60, color, 2, 2)
-    createVerticalDottedLine(lineTwoEl, 2000, 5, 60, color, 2, 2)
-    createVerticalDottedLine(lineThreeEl, 2000, 5, 60, color, 2, 2)
+    createVerticalDottedLine(lineTwoEl, 2000, 5, 60, color, 5, 5)
+    createVerticalDottedLine(lineThreeEl, 2000, 10, 60, color, 2, 2)
+    createVerticalDottedLine(lineFourEl, 2000, 5, 60, color, 2, 2)
+    createVerticalDottedLine(lineFiveEl, 2000, 10, 60, color, 2, 2)
   })
 </script>
 
@@ -21,10 +25,12 @@
   <div class="line one" bind:this={lineOneEl} />
   <div class="line two" bind:this={lineTwoEl} />
   <div class="line three" bind:this={lineThreeEl} />
+  <div class="line four" bind:this={lineFourEl} />
+  <div class="line five" bind:this={lineFiveEl} />
 </div>
 
 <style lang="scss">
-  @import "../../../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   .deco {
     position: absolute;
@@ -44,20 +50,32 @@
 
       &.one {
         position: absolute;
-        left: calc(50% - 10px);
+        left: -15px;
         top: 0;
       }
 
       &.two {
         position: absolute;
         top: 0;
-        left: calc(25% - 10px);
+        left: calc(50% - 10px);
       }
 
       &.three {
         position: absolute;
         top: 0;
         left: calc(75% - 15px);
+      }
+
+      &.four {
+        position: absolute;
+        top: 0;
+        left: calc(25% - 15px);
+      }
+
+      &.five {
+        position: absolute;
+        top: 0;
+        left: calc(100% - 5px);
       }
     }
 

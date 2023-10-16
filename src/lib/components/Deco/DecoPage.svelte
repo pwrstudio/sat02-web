@@ -27,7 +27,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   .deco {
     position: absolute;

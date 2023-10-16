@@ -1,8 +1,15 @@
 <script lang="ts">
-  import { COLOR, type Node } from "$lib/modules/types"
-  import Dots2 from "$lib/components/Graphics/Dots2.svelte"
-  import dots from "$lib/assets/dots3.svg"
+  import { onMount } from "svelte"
+  import { COLOR } from "$lib/modules/types"
+  import { createNestedCircularPattern } from "$lib/modules/graphics"
+  let circularOneEl: HTMLDivElement
   export let node: Node
+
+  export let color: COLOR = COLOR.BLUE
+
+  onMount(() => {
+    createNestedCircularPattern(circularOneEl, 1000, 10, 30, color, 0, 0)
+  })
 </script>
 
 <div
@@ -10,10 +17,11 @@
   class:white={node.bgColor == COLOR.WHITE}
   style={"background-color: " + node.bgColor + ";"}
 >
-  <div class="inner">
-    <Dots2 />
-    <!-- <img src={dots} alt="dots" /> -->
-  </div>
+  <div
+    class:white={node.bgColor == COLOR.WHITE}
+    style={"background-color: " + node.bgColor + ";"}
+    bind:this={circularOneEl}
+  />
 </div>
 
 <style lang="scss">
@@ -26,22 +34,5 @@
     align-items: center;
     justify-content: center;
     background: var(--green);
-
-    .inner {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        aspect-ratio: 1;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-    }
   }
 </style>

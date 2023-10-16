@@ -3,7 +3,7 @@
   import ContentModule from "$lib/components/LandingPage/ContentModule/ContentModule.svelte"
   import DatesModule from "$lib/components/LandingPage/Special/DatesModule.svelte"
   import GeoModule from "$lib/components/LandingPage/Special/GeoModule.svelte"
-  import SquareDecoModule from "$lib/components/LandingPage/Special/SquareDecoModule2.svelte"
+  import SquareDecoModule from "$lib/components/LandingPage/Special/SquareDecoModule.svelte"
   import FullWidthDecoModule from "$lib/components/LandingPage/Special/FullWidthDecoModule.svelte"
   import SubtitleModule from "$lib/components/LandingPage/Special/SubtitleModule.svelte"
   import DotLineModule from "./Special/DotLineModule.svelte"

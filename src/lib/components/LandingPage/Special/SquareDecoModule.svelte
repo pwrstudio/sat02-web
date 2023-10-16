@@ -1,7 +1,41 @@
 <script lang="ts">
-  import { COLOR, type Node } from "$lib/modules/types"
-  import dots from "$lib/assets/dots3.svg"
+  import { onMount } from "svelte"
+  import { COLOR, type CircleGroup } from "$lib/modules/types"
+  import {
+    createNestedCircularPattern,
+    createNestedCircularPatternWithGroups,
+  } from "$lib/modules/graphics"
+  let circularOneEl: HTMLDivElement
   export let node: Node
+
+  export let color: COLOR = COLOR.BLUE
+
+  onMount(() => {
+    const circleGroups: CircleGroup[] = [
+      {
+        circleCount: 2,
+        dotRadius: 20,
+        baseDistance: 50,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+      {
+        circleCount: 6,
+        dotRadius: 12,
+        baseDistance: 40,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+      {
+        circleCount: 3,
+        dotRadius: 20,
+        baseDistance: 45,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
+    ]
+    createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
+  })
 </script>
 
 <div
@@ -9,9 +43,7 @@
   class:white={node.bgColor == COLOR.WHITE}
   style={"background-color: " + node.bgColor + ";"}
 >
-  <div class="inner">
-    <img src={dots} alt="dots" />
-  </div>
+  <div bind:this={circularOneEl} />
 </div>
 
 <style lang="scss">
@@ -25,27 +57,17 @@
     justify-content: center;
     color: var(--black);
     width: 100%;
-    // padding: var(--default-padding);
-    background: var(--orange);
+    background: var(--green);
     overflow: hidden;
+    position: relative;
+    z-index: var(--z-content);
 
-    .inner {
-      width: 85%;
-      height: 85%;
-      background: var(--green);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      // transform: rotate(45deg);
-
-      img {
-        aspect-ratio: 1;
-        width: 260%;
-        height: 260%;
-        object-fit: cover;
-        object-position: center;
-      }
+    img {
+      aspect-ratio: 1;
+      width: 260%;
+      height: 260%;
+      object-fit: cover;
+      object-position: center;
     }
   }
 </style>

@@ -12,8 +12,9 @@
   import Credits from "$lib/components/Credits.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import SlidesCounter from "./SlidesCounter.svelte"
-  import DecoPage from "$lib/components/LandingPage/Deco/DecoPage.svelte"
-  import DecoPageTwo from "$lib/components/LandingPage/Deco/DecoPageTwo.svelte"
+  import DecoPage from "$lib/components/Deco/DecoPage.svelte"
+  import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
+  import DecoPageThree from "$lib/components/Deco/DecoPageThree.svelte"
   import { onMount } from "svelte"
   import { languageStore } from "$lib/modules/stores"
   export let page: any
@@ -39,6 +40,8 @@
 <div class="deco-container" style={"height:" + height + "px;"}>
   {#if page._type == "participant"}
     <DecoPageTwo />
+  {:else if page._type == "event"}
+    <DecoPageThree />
   {:else}
     <DecoPage />
   {/if}
