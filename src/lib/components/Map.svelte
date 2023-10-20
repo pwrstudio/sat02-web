@@ -100,8 +100,8 @@
   }
 
   :global(.venue-marker) {
-    background-color: #000000;
-    border: 2px solid #ffffff;
+    background-color: var(--black);
+    border: 2px solid var(--white);
     border-radius: 50%;
     width: 35px;
     height: 35px;
@@ -109,13 +109,13 @@
   }
 
   :global(.venue-marker.active) {
-    background-color: #ffffff;
-    border-color: #000000;
+    background-color: var(--white);
+    border-color: var(--black);
   }
 
   .custom-popup {
     position: absolute;
-    background-color: white;
+    background-color: var(--white);
     padding: 5px 10px;
     z-index: 1000;
     pointer-events: none; // Make sure this doesn't interfere with map interactions

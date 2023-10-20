@@ -31,14 +31,27 @@
     }
   }
 
-  const href = getPath(post) + "/" + post.slug.current
+  const getUrl = () => {
+    console.log(post)
+    if (post._type == "pressCoverage" || post._type == "pressRelease") {
+      if (post.targetType === "link") {
+        return post.link
+      } else if (post.targetType === "pdf") {
+        return post.pdf_url
+      } else {
+        return ""
+      }
+    } else {
+      return getPath(post) + "/" + post.slug.current
+    }
+  }
 </script>
 
 <a
   class="listing-item {post._type}"
   class:images={showImages && post.featuredImage && post.featuredImage.asset}
   class:active={activeItem === post._id}
-  {href}
+  href={getUrl()}
   data-sveltekit-preload-data
   on:mouseenter={() => {
     dispatch("hoverstart", post._id)
@@ -60,7 +73,13 @@
   {/if}
 
   <!-- TITLE -->
-  <a class="title" {href}>
+  <a
+    class="title"
+    href={getUrl()}
+    target={post._type == "pressCoverage" || post._type == "pressRelease"
+      ? "_blank"
+      : "_self"}
+  >
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
     {post.title}
     {#if $languageStore == LANGUAGE.ARABIC}→{/if}
@@ -75,14 +94,12 @@
     </div>
   {/if}
 
-  <!-- VENUES -->
-  <!-- {#if post.venues}
-    <div class="venues">
-      {#each post.venues as item}
-        <div>{item.title}</div>
-      {/each}
+  <!-- Publication -->
+  {#if post.publication}
+    <div class="publication">
+      <div>{post.publication}</div>
     </div>
-  {/if} -->
+  {/if}
 </a>
 
 <style lang="scss">
