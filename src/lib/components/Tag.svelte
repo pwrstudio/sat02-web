@@ -18,7 +18,7 @@
     z-index: var(--z-content);
     text-transform: capitalize;
     color: var(--white);
-    border: 1px solid var(--white);
+    border: 1px solid var(--white-transparent);
 
     &.black {
       color: var(--black);

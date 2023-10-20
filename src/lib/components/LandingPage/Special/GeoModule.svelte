@@ -2,6 +2,7 @@
   import { COLOR, type Node } from "$lib/modules/types"
   import { getSharjahTime } from "$lib/modules/date"
   import { getSharjahWeather } from "$lib/modules/weather"
+  import Blinker from "$lib/components/Blinker.svelte"
 
   export let node: Node
 
@@ -30,7 +31,7 @@
 >
   <div class="inner">
     <div class="location">Sharjah, UAE</div>
-    <div class="time"> {currentTime}</div>
+    <div class="time"><Blinker /> {currentTime}</div>
     <div class="weather">{currentWeather}</div>
   </div>
 </div>

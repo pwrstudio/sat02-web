@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte"
+
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
   import { formatTime } from "$lib/modules/date"
@@ -6,6 +8,9 @@
   export let post: any
   export let index: number
   export let showImages: boolean = false
+  export let activeItem = ""
+
+  const dispatch = createEventDispatcher()
 
   const getPath = (post: any) => {
     switch (post._type) {
@@ -31,9 +36,16 @@
 
 <a
   class="listing-item {post._type}"
-  class:images={showImages}
+  class:images={showImages && post.featuredImage && post.featuredImage.asset}
+  class:active={activeItem === post._id}
   {href}
   data-sveltekit-preload-data
+  on:mouseenter={() => {
+    dispatch("hoverstart", post._id)
+  }}
+  on:mouseleave={() => {
+    dispatch("hoverend")
+  }}
 >
   <!-- DATE -->
   {#if post._type === "event"}
@@ -86,8 +98,10 @@
     padding-bottom: 10px;
     border-top: 1px solid var(--black);
     background: var(--white);
-    // align-items: center;
-    // position: relative;
+
+    &.active {
+      background: var(--white-select);
+    }
 
     &:first-child {
       border-top: none;

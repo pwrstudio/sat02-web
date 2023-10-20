@@ -17,7 +17,7 @@
     <Tag color={COLOR.WHITE}>Venues</Tag>
   </div>
 
-  <Map {venues} />
+  <Map {venues} disableZoom={true} />
 </div>
 
 <style lang="scss">

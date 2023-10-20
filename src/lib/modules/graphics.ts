@@ -1,6 +1,6 @@
 import type { CircleGroup } from "./types";
 
-const DISTORTION_AMOUNT = 0.7;
+const DISTORTION_AMOUNT = 1.4;
 
 /**
  * Generates a distorted dot as an SVG path element.
@@ -304,69 +304,100 @@ export function createNestedCircularPattern(
  * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
  * @param {string} color - The color of the dots.
  */
+/**
+ * Creates a nested circular pattern of groups with distorted dots within an SVG element.
+ *
+ * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
+ * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
+ * @param {string} color - The color of the dots.
+ */
+/**
+ * Creates a nested circular pattern of groups with distorted dots within an SVG element.
+ *
+ * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
+ * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
+ * @param {string} color - The color of the dots.
+ */
 export function createNestedCircularPatternWithGroups(
     element: HTMLElement,
     circleGroups: CircleGroup[],
     color: string
 ) {
-    const rotationIncrement = Math.PI / 36;  // For example, 5 degrees. Adjust as needed.
+    // Define a constant for rotation increments (e.g., 5 degrees in radians).
+    const rotationIncrement = Math.PI / 76;
 
-    // Calculate the outermost circle's radius as the sum of the baseDistance times circleCount, dotRadius, and maxShiftRange.
+    // Calculate the maximum possible shift range from all circle groups.
     const maxShiftRange = Math.max(
         ...circleGroups.map(group =>
             Math.max(group.verticalShiftRange, group.horizontalShiftRange)
         )
     );
 
-    let accumulatedRadius = 0;  // This will help us determine where each group starts.
+    // Initialize the accumulated radius which will help track the radius as circles are added.
+    let accumulatedRadius = 0;
+
+    // Determine the radius of the outermost circle based on all provided circle groups.
     const outermostCircleRadius = circleGroups.reduce((maxRadius, group) => {
         const groupRadius = accumulatedRadius + group.dotRadius + (group.baseDistance * group.circleCount) + maxShiftRange;
         accumulatedRadius = groupRadius;  // Update accumulatedRadius for the next group
         return Math.max(maxRadius, groupRadius);
     }, 0);
 
+    // Calculate the total width (or height) of the SVG based on the outermost circle.
     const totalWidth = outermostCircleRadius * 2;
 
-    // Create an SVG element.
+    // Create an SVG element and set its width and height.
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('width', `${totalWidth}`);
     svg.setAttribute('height', `${totalWidth}`);
 
-    // Calculate the center coordinates of the SVG.
+    // Define center coordinates for the SVG.
     const centerX = totalWidth / 2;
     const centerY = totalWidth / 2;
 
-    // Placing a single dot at the center
-    const centerDotRadius = circleGroups[0].dotRadius; // Assuming the first circle group has the desired specs for the center dot
-    const centerDot = createDistortedDot(centerX, centerY, centerDotRadius, color, 0); // No distortion for the center dot
+    // Place a single dot at the center of the SVG.
+    const centerDotRadius = circleGroups[0].dotRadius; // Assuming the first circle group has the desired specs for the center dot.
+    const centerDot = createDistortedDot(centerX, centerY, centerDotRadius, color, 0); // No distortion for the center dot.
     svg.appendChild(centerDot);
 
-    let startingRadius = 0;  // This will help us determine where each group's circle starts.
-    let accumulatedRotation = 0;  // This will accumulate the rotation for each circle.
+    // Initialize variables to track the starting radius and accumulated rotation for each circle group.
+    let startingRadius = 0;
+    let accumulatedRotation = 0;
 
+    // Loop through each circle group to create the pattern.
     for (const group of circleGroups) {
         for (let i = 0; i < group.circleCount; i++) {
-            const currentCircleRadius = startingRadius + group.baseDistance * (i + 1);
+            // Randomly increase the distance between the circles.
+            const randomIncrease = Math.random() * 2;  // Adjust this value to control the random increase.
+            const currentCircleRadius = startingRadius + group.baseDistance * (i + 1) + randomIncrease;
+
+            // Calculate the circumference for the current circle.
             const circumference = Math.PI * currentCircleRadius * 2;
+
+            // Determine the number of dots based on the circumference and base distance.
             const numberOfDots = Math.floor(circumference / group.baseDistance);
 
+            // Place dots around the current circle.
             for (let j = 0; j < numberOfDots; j++) {
-                const angle = ((j / numberOfDots) * 2 * Math.PI) + accumulatedRotation;  // Added rotation here
-
+                const angle = ((j / numberOfDots) * 2 * Math.PI) + accumulatedRotation;
                 const cxBase = centerX + currentCircleRadius * Math.cos(angle);
                 const cyBase = centerY + currentCircleRadius * Math.sin(angle);
-
                 const cx = cxBase + (Math.random() - 0.5) * group.horizontalShiftRange;
                 const cy = cyBase + (Math.random() - 0.5) * group.verticalShiftRange;
 
+                // Create a distorted dot and add it to the SVG.
                 const dot = createDistortedDot(cx, cy, group.dotRadius, color, DISTORTION_AMOUNT);
                 svg.appendChild(dot);
             }
 
-            accumulatedRotation += rotationIncrement;  // Increase rotation for the next circle.
+            // Increment the accumulated rotation for staggered circle placement.
+            accumulatedRotation += rotationIncrement;
         }
+        // Update the starting radius for the next group.
         startingRadius += group.baseDistance * group.circleCount;
     }
 
+    // Append the constructed SVG to the provided HTML element.
     element.appendChild(svg);
 }
+

@@ -79,7 +79,7 @@ export const demo: Node[] = [
     },
     {
         type: "section",
-        decoColor: COLOR.BLUE,
+        decoColor: COLOR.ORANGE,
         decoType: DECO_TYPE.LINE_ONE,
         spaced: true,
         children: [
@@ -113,19 +113,17 @@ export const demo: Node[] = [
                     },
                 ]
             },
-        ]
-    },
-    {
-        type: "section",
-        decoColor: COLOR.ORANGE,
-        decoType: DECO_TYPE.LINE_TWO,
-        children: [
             {
                 type: "project",
                 bgColor: COLOR.GREEN,
                 layout: LAYOUT.FULL,
                 alignment: ALIGNMENT.RIGHT,
             },
+            {
+                type: "dates",
+                // bgColor: COLOR.WHITE
+                bgColor: COLOR.ORANGE
+            }
         ]
     },
     {

@@ -4,14 +4,12 @@
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
   import Map from "$lib/components/Map.svelte"
-  import { renderBlockText } from "$lib/modules/sanity"
-  import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
   export let posts: any[] = []
   export let page: any = {}
 
   let sortOrder = "title"
   let showImages = false
+  let activeItem = ""
 </script>
 
 <DecoLineTwo />
@@ -20,7 +18,7 @@
   <!-- TEXT -->
   <div class="column text">
     <div class="map-container">
-      <Map venues={posts} />
+      <Map venues={posts} {activeItem} />
     </div>
   </div>
 
@@ -38,7 +36,17 @@
     />
     <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
       {#each posts as post, index}
-        <ListingItem {post} {index} {showImages} />
+        <ListingItem
+          {post}
+          {index}
+          {showImages}
+          on:hoverstart={e => {
+            activeItem = e.detail
+          }}
+          on:hoverend={e => {
+            activeItem = ""
+          }}
+        />
       {/each}
     </div>
   </div>
@@ -56,6 +64,7 @@
 
     .column {
       width: 50%;
+      position: relative;
 
       @include screen-size("phone") {
         width: 100%;
@@ -81,6 +90,9 @@
   }
 
   .map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: var(--green);

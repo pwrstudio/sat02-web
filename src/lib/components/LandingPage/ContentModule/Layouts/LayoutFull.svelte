@@ -5,6 +5,7 @@
   import Image from "$lib/components/LandingPage/ContentModule/Image.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import Title from "$lib/components/Title.svelte"
+  import Blinker from "$lib/components/Blinker.svelte"
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
 </script>
@@ -33,6 +34,7 @@
 
     <!-- VENUE -->
     {#if has(node, "post.venues[0].title")}
+      <div class="divider" />
       <div class="venue">
         {node.post.venues[0].title}
       </div>
@@ -40,6 +42,7 @@
 
     <!-- TIME -->
     {#if node.type == "event"}
+      <div class="divider" />
       <div class="time">
         <!-- DATE -->
         <div class="date">
@@ -47,9 +50,13 @@
         </div>
         <!-- COUNTDOWN -->
         <div class="countdown">
-          {#if $languageStore == LANGUAGE.ENGLISH}{/if}
+          {#if $languageStore == LANGUAGE.ENGLISH}
+            <Blinker />
+          {/if}
           {timeUntil(node.post.dateTime)}
-          {#if $languageStore == LANGUAGE.ARABIC}{/if}
+          {#if $languageStore == LANGUAGE.ARABIC}
+            <Blinker />
+          {/if}
         </div>
       </div>
     {/if}
@@ -93,14 +100,14 @@
           z-index: var(--z-content);
           position: relative;
           .date {
-            margin-top: 0.5em;
+            // margin-top: 0.5em;
           }
         }
 
         .venue {
           z-index: var(--z-content);
           position: relative;
-          margin-top: 0.5em;
+          // margin-top: 0.5em;
         }
 
         h2 {
@@ -131,6 +138,14 @@
           }
         }
       }
+    }
+
+    .divider {
+      width: 70%;
+      background: var(--white-transparent);
+      height: 1.5px;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
     }
 
     &.reversed {

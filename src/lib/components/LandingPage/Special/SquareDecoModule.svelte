@@ -1,10 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import { COLOR, type CircleGroup } from "$lib/modules/types"
-  import {
-    createNestedCircularPattern,
-    createNestedCircularPatternWithGroups,
-  } from "$lib/modules/graphics"
+  import { createNestedCircularPatternWithGroups } from "$lib/modules/graphics"
   let circularOneEl: HTMLDivElement
   export let node: Node
 
@@ -15,7 +12,7 @@
       {
         circleCount: 2,
         dotRadius: 20,
-        baseDistance: 50,
+        baseDistance: 48,
         verticalShiftRange: 1,
         horizontalShiftRange: 1,
       },
@@ -29,7 +26,7 @@
       {
         circleCount: 3,
         dotRadius: 20,
-        baseDistance: 45,
+        baseDistance: 50,
         verticalShiftRange: 1,
         horizontalShiftRange: 1,
       },
