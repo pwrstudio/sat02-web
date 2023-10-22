@@ -32,6 +32,7 @@
     width: 100%;
     height: 100%;
     background: var(--orange);
+    background: var(--green);
 
     .meta-top {
       position: absolute;

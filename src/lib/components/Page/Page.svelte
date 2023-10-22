@@ -17,6 +17,8 @@
   import DecoPageThree from "$lib/components/Deco/DecoPageThree.svelte"
   import { onMount } from "svelte"
   import { languageStore } from "$lib/modules/stores"
+  import CalendarGfx from "../CalendarGfx.svelte"
+  import PinGfx from "../PinGfx.svelte"
   export let page: any
 
   let slideshowOpen = false
@@ -117,6 +119,7 @@
       {#if has(page, "venues[0].title")}
         <div class="venue">
           <a href={"/venues/" + page.venues[0].slug.current}>
+            <PinGfx />
             {page.venues[0].title}
           </a>
         </div>
@@ -127,6 +130,7 @@
         <div class="time">
           <!-- DATE -->
           <div class="date">
+            <CalendarGfx />
             {formatFullDateTime(page.dateTime)}
           </div>
         </div>
@@ -279,9 +283,16 @@
           @include screen-size("phone") {
             font-size: var(--font-size-large);
           }
+
+          a {
+            &:hover {
+              color: var(--orange);
+            }
+          }
         }
 
         &.right {
+          // border-left: 1.5px solid var(--white-transparent);
           @include screen-size("phone") {
             display: none;
           }

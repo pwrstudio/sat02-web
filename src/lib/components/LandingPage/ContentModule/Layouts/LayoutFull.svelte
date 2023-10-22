@@ -6,6 +6,8 @@
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import Title from "$lib/components/Title.svelte"
   import Blinker from "$lib/components/Blinker.svelte"
+  import PinGfx from "$lib/components/PinGfx.svelte"
+  import CalendarGfx from "$lib/components/CalendarGfx.svelte"
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
 </script>
@@ -36,6 +38,7 @@
     {#if has(node, "post.venues[0].title")}
       <div class="divider" />
       <div class="venue">
+        <PinGfx />
         {node.post.venues[0].title}
       </div>
     {/if}
@@ -46,6 +49,7 @@
       <div class="time">
         <!-- DATE -->
         <div class="date">
+          <CalendarGfx />
           {formatFullDateTime(node.post.dateTime)}
         </div>
         <!-- COUNTDOWN -->
