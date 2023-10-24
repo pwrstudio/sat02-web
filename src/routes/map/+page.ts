@@ -2,8 +2,10 @@ import { loadData } from "$lib/modules/sanity"
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-    const venues = await loadData("*[_type == 'venue']", {})
+    const posts = await loadData("*[_type == 'venue']", {})
+    const page = await loadData("*[_type == 'page' && _id == 'venues'][0]", {})
     return {
-        venues
+        posts,
+        page
     };
 }

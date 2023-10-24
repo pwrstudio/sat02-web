@@ -4,20 +4,9 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ENGLISH)
   // ...
-  import Map from "$lib/components/Map/Map.svelte"
+  import Venues from "$lib/components/Venues/Venues.svelte"
   export let data
-  const { venues } = data
+  const { posts, page } = data
 </script>
 
-<div class="map-container">
-  <Map {venues} />
-</div>
-
-<style lang="scss">
-  .map-container {
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-    background: var(--green);
-  }
-</style>
+<Venues {posts} {page} />

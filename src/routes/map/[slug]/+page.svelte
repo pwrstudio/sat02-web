@@ -6,7 +6,7 @@
   // ...
   import Page from "$lib/components/Page/Page.svelte"
   export let data
-  const { page } = data
+  const { page, posts } = data
 </script>
 
-<Page {page} />
+<Page {page} {posts} />
