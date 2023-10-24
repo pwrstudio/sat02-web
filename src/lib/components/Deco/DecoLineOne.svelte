@@ -2,7 +2,11 @@
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
   import { COLOR } from "$lib/modules/types"
-  import { createDottedCircle, createDottedLine } from "$lib/modules/graphics"
+  import {
+    createDottedCircle,
+    createDottedLine,
+    createVerticalDottedLine,
+  } from "$lib/modules/graphics"
   let circleOneEl: HTMLDivElement
   let circleTwoEl: HTMLDivElement
   let circleThreeEl: HTMLDivElement
@@ -16,6 +20,7 @@
     // createDottedCircle(circleTwoEl, 2000, 20, 80, color, 5, 5)
     // createDottedCircle(circleThreeEl, 1000, 10, 80, color, 5, 5)
     createDottedLine(lineOneEl, 2000, 5, 40, color, 5, 5)
+    createVerticalDottedLine(lineTwoEl, 6000, 5, 40, color, 5, 5)
     createDottedCircle(circleOneEl, 2600, 10, 80, color, 5, 5)
     // createDottedLine(lineTwoEl, 2000, 5, 40, color, 5, 5)
   })
@@ -23,6 +28,7 @@
 
 <div class="deco" in:fade={{ delay: 1000 }}>
   <div class="line one" bind:this={lineOneEl} />
+  <div class="line two" bind:this={lineTwoEl} />
   <div class="circle one" bind:this={circleOneEl} />
   <!-- <div class="line two" bind:this={lineTwoEl} /> -->
 </div>
@@ -51,7 +57,7 @@
 
       &.two {
         position: absolute;
-        bottom: 10%;
+        left: 50%;
       }
 
       &.three {
