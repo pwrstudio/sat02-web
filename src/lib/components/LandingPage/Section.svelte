@@ -53,10 +53,10 @@
     background: var(--green);
 
     &.spaced {
-      padding-top: 100px;
-      @include screen-size("small") {
-        padding-top: 25px;
-      }
+      // padding-top: 100px;
+      // @include screen-size("small") {
+      //   padding-top: 25px;
+      // }
     }
   }
 </style>

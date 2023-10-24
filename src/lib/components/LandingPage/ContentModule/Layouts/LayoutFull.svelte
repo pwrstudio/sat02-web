@@ -36,7 +36,7 @@
 
     <!-- VENUE -->
     {#if has(node, "post.venues[0].title")}
-      <div class="divider" />
+      <!-- <div class="divider" /> -->
       <div class="venue">
         <PinGfx />
         {node.post.venues[0].title}
@@ -45,7 +45,7 @@
 
     <!-- TIME -->
     {#if node.type == "event"}
-      <div class="divider" />
+      <!-- <div class="divider" /> -->
       <div class="time">
         <!-- DATE -->
         <div class="date">
@@ -104,14 +104,14 @@
           z-index: var(--z-content);
           position: relative;
           .date {
-            // margin-top: 0.5em;
+            margin-top: 0.75em;
           }
         }
 
         .venue {
           z-index: var(--z-content);
           position: relative;
-          // margin-top: 0.5em;
+          margin-top: 0.75em;
         }
 
         h2 {
@@ -120,7 +120,7 @@
           position: relative;
           z-index: var(--z-content);
           font-size: var(--font-size-xlarge);
-          margin-bottom: 0.5em;
+          margin-bottom: 0.75em;
           line-height: 1.1em;
 
           @include screen-size("small") {

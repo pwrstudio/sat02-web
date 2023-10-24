@@ -49,7 +49,7 @@ export type FrontpagePost = {
     width: string
 }
 
-export type NodeType = "section" | "column" | "squareDeco" | "subtitle" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates" | "dotLine" | "map";
+export type NodeType = "section" | "column" | "squareDeco" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates" | "dotLine" | "map";
 
 export type BorderOption = {
     top?: boolean,

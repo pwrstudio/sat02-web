@@ -19,7 +19,9 @@
   import { languageStore } from "$lib/modules/stores"
   import CalendarGfx from "../CalendarGfx.svelte"
   import PinGfx from "../PinGfx.svelte"
+
   export let page: any
+  export let posts: any[]
 
   let slideshowOpen = false
   let height = 0
@@ -165,9 +167,9 @@
         </button>
       </div>
     {/if}
-    <!-- EVENTS -->
-    <div class="row events">
-      <!-- RELATED EVENTS -->
+    <!-- LISTING -->
+    <div class="row listing">
+      <!-- ... -->
     </div>
   </div>
 </div>
@@ -378,7 +380,7 @@
         background: var(--grey);
       }
 
-      .events {
+      .listing {
         min-height: 500px;
         background: var(--green);
         flex-grow: 1;

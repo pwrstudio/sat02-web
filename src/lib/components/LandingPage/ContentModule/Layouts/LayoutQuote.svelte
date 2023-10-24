@@ -31,6 +31,8 @@
       position: relative;
       z-index: var(--z-content);
       padding-bottom: 0;
+      margin-top: 0;
+      padding-top: 0;
     }
 
     .quote-title {

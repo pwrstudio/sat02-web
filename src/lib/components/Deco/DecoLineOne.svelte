@@ -44,7 +44,7 @@
     .line {
       &.one {
         position: absolute;
-        top: 10%;
+        top: 3%;
         // left: 50px;
         // top: 100px;
       }

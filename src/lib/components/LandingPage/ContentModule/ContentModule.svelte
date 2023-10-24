@@ -67,7 +67,7 @@
   .module {
     min-height: var(--module-min-height);
     padding: var(--double-padding);
-    padding-top: var(--default-padding);
+    // padding-top: var(--default-padding);
     display: flex;
     flex-direction: column;
     width: 100%;

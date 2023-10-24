@@ -51,7 +51,7 @@
     align-items: center;
     justify-content: center;
     // border-radius: 40px;
-    margin-bottom: 40px;
+    // margin-bottom: var(--default-padding);
 
     .inner {
       display: flex;

@@ -5,7 +5,6 @@
   import GeoModule from "$lib/components/LandingPage/Special/GeoModule.svelte"
   import SquareDecoModule from "$lib/components/LandingPage/Special/SquareDecoModule.svelte"
   import FullWidthDecoModule from "$lib/components/LandingPage/Special/FullWidthDecoModule.svelte"
-  import SubtitleModule from "$lib/components/LandingPage/Special/SubtitleModule.svelte"
   import DotLineModule from "./Special/DotLineModule.svelte"
   import MapModule from "$lib/components/LandingPage/Special/MapModule.svelte"
   export let node: Node
@@ -29,8 +28,6 @@
         return { component: SquareDecoModule, props: { node } }
       case "fullWidthDeco":
         return { component: FullWidthDecoModule, props: { node } }
-      case "subtitle":
-        return { component: SubtitleModule, props: { node } }
       case "dotLine":
         return { component: DotLineModule, props: { node } }
       default:

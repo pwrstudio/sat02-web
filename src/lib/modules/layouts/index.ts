@@ -92,7 +92,7 @@ export const demo: Node[] = [
                         bgColor: COLOR.GREEN,
                         layout: LAYOUT.IMAGE,
                         border: {
-                            left: true,
+                            bottom: true,
                         }
                     },
 
@@ -109,6 +109,7 @@ export const demo: Node[] = [
                         layout: LAYOUT.QUOTE,
                         border: {
                             left: true,
+                            bottom: true
                         }
                     },
                 ]

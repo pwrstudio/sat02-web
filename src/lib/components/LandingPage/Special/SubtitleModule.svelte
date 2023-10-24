@@ -1,12 +1,12 @@
 <script lang="ts">
   import { COLOR, type Node } from "$lib/modules/types"
-  import subtitle from "$lib/assets/subtitle.svg"
+  // import subtitle from "$lib/assets/subtitle.svg"
   export let node: Node
 </script>
 
 <div class="subtitle">
   <div class="inner">
-    <img src={subtitle} alt="subtitle" />
+    <!-- <img src={subtitle} alt="subtitle" /> -->
   </div>
 </div>
 
