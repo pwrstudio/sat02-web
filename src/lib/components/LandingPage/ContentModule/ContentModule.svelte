@@ -1,6 +1,6 @@
 <script lang="ts">
   import { COLOR, LAYOUT, type Node } from "$lib/modules/types"
-  import Tag from "$lib/components/Tag.svelte"
+  import Tag from "$lib/components/Elements/Tag.svelte"
   import Borders from "$lib/components/LandingPage/ContentModule/Borders.svelte"
   import LayoutQuote from "$lib/components/LandingPage/ContentModule/Layouts/LayoutQuote.svelte"
   import LayoutImage from "$lib/components/LandingPage/ContentModule/Layouts/LayoutImage.svelte"

@@ -3,7 +3,7 @@
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"
 
-  import Metadata from "$lib/components/Metadata.svelte"
+  import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingComponent from "./ListingComponent.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
 

@@ -100,7 +100,7 @@
 </div>
 
 <style lang="scss">
-  @import "../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   .menu {
     position: fixed;

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, type Node } from "$lib/modules/types"
-  import Title from "$lib/components/Title.svelte"
+  import Title from "$lib/components/Elements/Title.svelte"
   export let node: Node
 </script>
 

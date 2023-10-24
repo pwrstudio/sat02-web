@@ -42,7 +42,7 @@
           .addTo(map)
 
         element.addEventListener("click", () => {
-          goto("map/" + venue.slug.current)
+          goto("/venues/" + venue.slug.current)
         })
 
         element.addEventListener("mouseenter", e => {
@@ -93,6 +93,8 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .map {
     mix-blend-mode: multiply;
     height: 100%;

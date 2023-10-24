@@ -8,6 +8,8 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .tag {
     font-size: var(--font-size-small);
     font-family: var(--font-family);

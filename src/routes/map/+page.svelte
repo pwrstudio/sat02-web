@@ -4,7 +4,7 @@
   import { languageStore } from "$lib/modules/stores"
   languageStore.set(LANGUAGE.ENGLISH)
   // ...
-  import Map from "$lib/components/Map.svelte"
+  import Map from "$lib/components/Map/Map.svelte"
   export let data
   const { venues } = data
 </script>

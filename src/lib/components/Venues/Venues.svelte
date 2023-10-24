@@ -1,15 +1,14 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
 
-  import Metadata from "$lib/components/Metadata.svelte"
+  import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
-  import Map from "$lib/components/Map.svelte"
+  import Map from "$lib/components/Map/Map.svelte"
   export let posts: any[] = []
   export let page: any = {}
 
-  let sortOrder = "title"
   let showImages = false
   let activeItem = ""
 </script>
@@ -32,9 +31,6 @@
     <ListingHeader
       {page}
       {posts}
-      on:sort={e => {
-        sortOrder = e.detail
-      }}
       on:images={e => {
         showImages = e.detail
       }}

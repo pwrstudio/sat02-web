@@ -1,7 +1,7 @@
 <script lang="ts">
   import { COLOR, type Node } from "$lib/modules/types"
-  import Tag from "$lib/components/Tag.svelte"
-  import Map from "$lib/components/Map.svelte"
+  import Tag from "$lib/components/Elements/Tag.svelte"
+  import Map from "$lib/components/Map/Map.svelte"
   export let node: Node
   export let venues: any[]
 </script>

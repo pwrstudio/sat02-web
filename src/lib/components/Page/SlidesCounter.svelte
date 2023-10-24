@@ -1,5 +1,5 @@
 <script lang="ts">
-  import RoundTag from "$lib/components/RoundTag.svelte"
+  import RoundTag from "$lib/components/Elements/RoundTag.svelte"
   export let page: any
 
   let mediaList = page.processMedia || page.media || []

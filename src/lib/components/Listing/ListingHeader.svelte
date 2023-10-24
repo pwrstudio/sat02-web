@@ -1,7 +1,7 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"
-  import RoundTag from "../RoundTag.svelte"
+  import RoundTag from "../Elements/RoundTag.svelte"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
   export let posts: any[] = []

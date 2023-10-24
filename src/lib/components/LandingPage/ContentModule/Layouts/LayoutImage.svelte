@@ -3,8 +3,8 @@
   import { LANGUAGE } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
   import Image from "$lib/components/LandingPage/ContentModule/Image.svelte"
-  import ParticipantList from "$lib/components/ParticipantList.svelte"
-  import Title from "$lib/components/Title.svelte"
+  import ParticipantList from "$lib/components/Elements/ParticipantList.svelte"
+  import Title from "$lib/components/Elements/Title.svelte"
   export let node: Node
 </script>
 

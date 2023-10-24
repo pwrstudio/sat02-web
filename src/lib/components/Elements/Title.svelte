@@ -13,6 +13,8 @@
 {/if}
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .title {
     font-weight: bold;
   }

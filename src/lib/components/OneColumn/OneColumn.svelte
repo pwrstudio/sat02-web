@@ -6,7 +6,7 @@
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
 
-  import Metadata from "$lib/components/Metadata.svelte"
+  import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingHeader from "../Listing/ListingHeader.svelte"
   import ListingItem from "../Listing/ListingItem.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import MenuBar from "$lib/components/MenuBar.svelte"
-  import Footer from "$lib/components/Footer.svelte"
+  import MenuBar from "$lib/components/Menu/MenuBar.svelte"
+  import Footer from "$lib/components/Elements/Footer.svelte"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
 

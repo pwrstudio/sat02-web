@@ -9,6 +9,8 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .round-tag {
     font-size: var(--font-size-small);
     color: var(--orange);

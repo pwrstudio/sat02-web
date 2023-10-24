@@ -7,13 +7,13 @@
   import { formatFullDateTime } from "$lib/modules/date"
   import { languageStore } from "$lib/modules/stores"
 
-  import Metadata from "$lib/components/Metadata.svelte"
+  import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
-  import Tag from "$lib/components/Tag.svelte"
-  import Title from "$lib/components/Title.svelte"
-  import Content from "$lib/components/Content.svelte"
-  import Credits from "$lib/components/Credits.svelte"
-  import ParticipantList from "$lib/components/ParticipantList.svelte"
+  import Tag from "$lib/components/Elements/Tag.svelte"
+  import Title from "$lib/components/Elements/Title.svelte"
+  import Content from "$lib/components/Elements/Content.svelte"
+  import Credits from "$lib/components/Elements/Credits.svelte"
+  import ParticipantList from "$lib/components/Elements/ParticipantList.svelte"
   import SlidesCounter from "./SlidesCounter.svelte"
   import DecoPage from "$lib/components/Deco/DecoPage.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
@@ -116,11 +116,11 @@
       <Content {page} />
 
       <!-- ADDRESS -->
-      {#if page._type === "venue"}
+      <!-- {#if page._type === "venue"}
         <div class="adress">
           {$languageStore == LANGUAGE.ENGLISH ? page.address : page.address_ar}
         </div>
-      {/if}
+      {/if} -->
 
       <!-- CREDITS -->
       <Credits {page} />

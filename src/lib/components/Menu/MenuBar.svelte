@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation"
   import { page } from "$app/stores"
 
-  import Menu from "$lib/components/Menu.svelte"
+  import Menu from "$lib/components/Menu/Menu.svelte"
   import { menuActive, languageStore, urlPrefix } from "$lib/modules/stores"
   import { siteTitle } from "$lib/modules/constants"
   import { LANGUAGE } from "$lib/modules/types"
@@ -73,7 +73,7 @@
 {/if}
 
 <style lang="scss">
-  @import "../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   nav {
     position: fixed;

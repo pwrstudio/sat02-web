@@ -46,7 +46,7 @@
 </footer>
 
 <style lang="scss">
-  @import "../styles/responsive.scss";
+  @import "../../styles/responsive.scss";
 
   footer {
     background: var(--grey);

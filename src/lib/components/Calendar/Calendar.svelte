@@ -5,7 +5,7 @@
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
 
-  import Metadata from "$lib/components/Metadata.svelte"
+  import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import CalendarListingItem from "./CalendarListingItem.svelte"
   import CalendarListingHeader from "./CalendarListingHeader.svelte"
   import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
