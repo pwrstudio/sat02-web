@@ -1,16 +1,11 @@
 <script lang="ts">
-  import { fade } from "svelte/transition"
-  import ListingItem from "./ListingItem.svelte"
-  import ListingHeader from "./ListingHeader.svelte"
+  import ListingComponent from "./ListingComponent.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"
   export let posts: any[] = []
   export let page: any = {}
-
-  let sortOrder = "title"
-  let showImages = false
 </script>
 
 <DecoLineTwo color={COLOR.GREY} />
@@ -31,22 +26,7 @@
 
   <!-- LIST -->
   <div class="column list">
-    <ListingHeader
-      {page}
-      {posts}
-      on:sort={e => {
-        sortOrder = e.detail
-      }}
-      on:images={e => {
-        showImages = e.detail
-      }}
-    />
-
-    <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-      {#each posts as post, index}
-        <ListingItem {post} {index} {showImages} />
-      {/each}
-    </div>
+    <ListingComponent {posts} {page} />
   </div>
 </div>
 
@@ -86,7 +66,6 @@
 
         .inner {
           color: var(--white);
-          font-size: var(--font-size-large);
           padding: var(--default-padding);
           line-height: 1.1em;
 

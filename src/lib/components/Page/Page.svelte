@@ -19,6 +19,7 @@
   import { languageStore } from "$lib/modules/stores"
   import CalendarGfx from "../CalendarGfx.svelte"
   import PinGfx from "../PinGfx.svelte"
+  import ListingComponent from "../Listing/ListingComponent.svelte"
 
   export let page: any
   export let posts: any[]
@@ -109,6 +110,14 @@
     <div class="row content">
       <!-- CONTENT -->
       <Content {page} />
+
+      <!-- ADDRESS -->
+      {#if page._type === "venue"}
+        <div class="adress">
+          {$languageStore == LANGUAGE.ENGLISH ? page.address : page.address_ar}
+        </div>
+      {/if}
+
       <!-- CREDITS -->
       <Credits {page} />
     </div>
@@ -140,7 +149,7 @@
     </div>
 
     <!-- SLIDESHOW -->
-    {#if page.featuredImage?.asset}
+    {#if page._type != "venue" && page.featuredImage?.asset}
       <div class="row slideshow">
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -167,9 +176,12 @@
         </button>
       </div>
     {/if}
+
     <!-- LISTING -->
     <div class="row listing">
-      <!-- ... -->
+      {#if page._type == "venue" && posts.length > 0}
+        <ListingComponent page={{ title: "Projects" }} {posts} />
+      {/if}
     </div>
   </div>
 </div>
@@ -293,6 +305,25 @@
           }
         }
 
+        .adress {
+          font-size: var(--font-size-xlarge);
+          font-weight: normal;
+          position: relative;
+          z-index: var(--z-content);
+          line-height: 1.1em;
+          margin-bottom: 0.5em;
+
+          @include screen-size("phone") {
+            font-size: var(--font-size-large);
+          }
+
+          a {
+            &:hover {
+              color: var(--orange);
+            }
+          }
+        }
+
         &.right {
           // border-left: 1.5px solid var(--white-transparent);
           @include screen-size("phone") {
@@ -384,10 +415,18 @@
         min-height: 500px;
         background: var(--green);
         flex-grow: 1;
+        padding: 0;
       }
 
       .content {
         padding: var(--default-padding);
+      }
+    }
+
+    &.venue {
+      .left {
+        background: var(--green);
+        color: var(--white);
       }
     }
   }
@@ -421,5 +460,9 @@
     height: 1.5px;
     background: var(--white-transparent);
     margin-bottom: 10px;
+  }
+
+  :global(.venue .content p:first-child) {
+    margin-top: 0;
   }
 </style>

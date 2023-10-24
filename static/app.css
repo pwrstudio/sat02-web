@@ -84,4 +84,9 @@
 
   body.ARABIC {
     font-family: var(--font-family-arabic);
-  } 
+  }
+
+  p.large {
+    font-size: var(--font-size-large);
+    line-height: 1.1em;
+  }

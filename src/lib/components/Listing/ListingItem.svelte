@@ -32,7 +32,6 @@
   }
 
   const getUrl = () => {
-    console.log(post)
     if (post._type == "pressCoverage" || post._type == "pressRelease") {
       if (post.targetType === "link") {
         return post.link

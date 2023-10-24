@@ -1,40 +1,14 @@
 <script lang="ts">
+  import { languageStore } from "$lib/modules/stores"
+  import { LANGUAGE, COLOR } from "$lib/modules/types"
   import RoundTag from "../RoundTag.svelte"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
-  import Select from "svelte-select"
   export let posts: any[] = []
   export let page: any = {}
 
-  const itemId = "id"
-  const label = "title"
-
-  // const items = [
-  //   { id: 0, title: "Foo" },
-  //   { id: 1, title: "Bar" },
-  // ]
-
-  // export let items = [
-  //   {
-  //     id: "title",
-  //     title: "title",
-  //   },
-  //   {
-  //     id: "participant",
-  //     title: "Participant",
-  //   },
-  //   {
-  //     id: "venue",
-  //     title: "Venue",
-  //   },
-  // ]
-
   let sortOrder = "title"
   let showImages = false
-
-  function setSortOrder() {
-    dispatch("sort", sortOrder)
-  }
 
   function setImageDisplay() {
     dispatch("images", showImages)
@@ -46,7 +20,7 @@
     <strong>{page.title}</strong>
     <RoundTag black={true}>{posts.length}</RoundTag>
   </div>
-  <div class="image-toggle">
+  <div class="image-toggle {LANGUAGE[$languageStore]}">
     <label for="images">Show images</label>
     <input
       type="checkbox"
@@ -57,22 +31,6 @@
     />
   </div>
 </div>
-
-<!-- <div class="order">
-    <label for="order">Order by</label>
-    <Select
-      name="order"
-      {items}
-      {itemId}
-      {label}
-      searchable={false}
-      showChevron={true}
-      clearable={false}
-      --border-radius="0"
-      --width="200px"
-    />
-  </div> -->
-<!-- <div class="search">Search</div> -->
 
 <style lang="scss">
   .listing-header {
@@ -96,6 +54,13 @@
       label {
         display: block;
         margin-right: 5px;
+      }
+
+      &.ARABIC {
+        label {
+          margin-left: 5px;
+          margin-right: unset;
+        }
       }
     }
 
