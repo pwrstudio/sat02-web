@@ -5,9 +5,9 @@
   import Image from "$lib/components/LandingPage/ContentModule/Image.svelte"
   import ParticipantList from "$lib/components/ParticipantList.svelte"
   import Title from "$lib/components/Title.svelte"
-  import Blinker from "$lib/components/Blinker.svelte"
-  import PinGfx from "$lib/components/PinGfx.svelte"
-  import CalendarGfx from "$lib/components/CalendarGfx.svelte"
+  import Blinker from "$lib/components/Graphics/Blinker.svelte"
+  import PinGfx from "$lib/components/Graphics/PinGfx.svelte"
+  import CalendarGfx from "$lib/components/Graphics/CalendarGfx.svelte"
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
 </script>

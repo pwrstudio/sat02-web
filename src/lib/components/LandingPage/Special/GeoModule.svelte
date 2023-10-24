@@ -2,7 +2,7 @@
   import { COLOR, type Node } from "$lib/modules/types"
   import { getSharjahTime } from "$lib/modules/date"
   import { getSharjahWeather } from "$lib/modules/weather"
-  import Blinker from "$lib/components/Blinker.svelte"
+  import Blinker from "$lib/components/Graphics/Blinker.svelte"
 
   export let node: Node
 
