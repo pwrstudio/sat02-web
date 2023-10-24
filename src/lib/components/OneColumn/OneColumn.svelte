@@ -1,23 +1,23 @@
 <script lang="ts">
+  import { onMount } from "svelte"
   import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
-  import {
-    createNestedCircularPattern,
-    createNestedCircularPatternWithGroups,
-  } from "$lib/modules/graphics"
+  import { createNestedCircularPatternWithGroups } from "$lib/modules/graphics"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
+
+  import Metadata from "$lib/components/Metadata.svelte"
   import ListingHeader from "../Listing/ListingHeader.svelte"
   import ListingItem from "../Listing/ListingItem.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
-  import DecoCircleTwo from "../Deco/DecoCircleTwo.svelte"
-  import { onMount } from "svelte"
+
   export let page: any
   export let pressReleases: any[] = []
   export let pressCoverage: any[] = []
+  export let color: COLOR = COLOR.GREEN
+
   let showPressReleaseImages = false
   let showPressCoverageImages = false
-  export let color: COLOR = COLOR.GREEN
 
   let height = 0
   let circularOneEl: HTMLDivElement
@@ -53,6 +53,8 @@
     }
   })
 </script>
+
+<Metadata {page} />
 
 <!-- DECO -->
 <div class="deco-container" style={"height:" + height + "px;"}>

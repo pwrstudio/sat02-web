@@ -1,10 +1,13 @@
 <script lang="ts">
+  import { onMount } from "svelte"
   import { LANGUAGE } from "$lib/modules/types"
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
   import { formatFullDateTime } from "$lib/modules/date"
+  import { languageStore } from "$lib/modules/stores"
 
+  import Metadata from "$lib/components/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
   import Tag from "$lib/components/Tag.svelte"
   import Title from "$lib/components/Title.svelte"
@@ -15,10 +18,8 @@
   import DecoPage from "$lib/components/Deco/DecoPage.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
   import DecoPageThree from "$lib/components/Deco/DecoPageThree.svelte"
-  import { onMount } from "svelte"
-  import { languageStore } from "$lib/modules/stores"
-  import CalendarGfx from "../CalendarGfx.svelte"
-  import PinGfx from "../PinGfx.svelte"
+  import CalendarGfx from "../Graphics/CalendarGfx.svelte"
+  import PinGfx from "../Graphics/PinGfx.svelte"
   import ListingComponent from "../Listing/ListingComponent.svelte"
 
   export let page: any
@@ -40,6 +41,9 @@
     window.addEventListener("resize", handleResize)
   })
 </script>
+
+<!-- METADATA -->
+<Metadata {page} />
 
 <!-- DECO -->
 <div class="deco-container" style={"height:" + height + "px;"}>

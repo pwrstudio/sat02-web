@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { COLOR } from "$lib/modules/types"
   import { formatCalendarDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
-  import CalendarListingItem from "./CalendarListingItem.svelte"
-  import CalendarListingHeader from "./CalendarListingHeader.svelte"
-  import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
-  import DecoLineOne from "$lib/components/Deco/DecoLineOne.svelte"
-  import DecoCircleTwo from "../Deco/DecoCircleTwo.svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
+
+  import Metadata from "$lib/components/Metadata.svelte"
+  import CalendarListingItem from "./CalendarListingItem.svelte"
+  import CalendarListingHeader from "./CalendarListingHeader.svelte"
+  import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
+
   export let posts: any[] = []
   export let page: any = {}
 
@@ -97,6 +97,9 @@
 
   const organizedEvents = organizeAndSortEvents(posts)
 </script>
+
+<!-- METADATA -->
+<Metadata {page} />
 
 <DecoLineTwo />
 

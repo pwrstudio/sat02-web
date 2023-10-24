@@ -1,5 +1,7 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
+
+  import Metadata from "$lib/components/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
@@ -11,6 +13,9 @@
   let showImages = false
   let activeItem = ""
 </script>
+
+<!-- METADATA -->
+<Metadata {page} />
 
 <DecoLineTwo />
 

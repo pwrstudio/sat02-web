@@ -1,12 +1,18 @@
 <script lang="ts">
-  import ListingComponent from "./ListingComponent.svelte"
-  import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"
+
+  import Metadata from "$lib/components/Metadata.svelte"
+  import ListingComponent from "./ListingComponent.svelte"
+  import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
+
   export let posts: any[] = []
   export let page: any = {}
 </script>
+
+<!-- METADATA -->
+<Metadata {page} />
 
 <DecoLineTwo color={COLOR.GREY} />
 
