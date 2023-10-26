@@ -93,7 +93,7 @@
     </div>
   {/if}
 
-  <!-- Publication -->
+  <!-- PUBLICATION -->
   {#if post.publication}
     <div class="publication">
       <div>{post.publication}</div>
