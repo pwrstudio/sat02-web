@@ -91,7 +91,7 @@
     </div>
 
     {#if page._id === "press"}
-      <PressKitForm />
+      <PressKitForm pressKitLink={page.pressKitLink} />
     {/if}
   </div>
 
