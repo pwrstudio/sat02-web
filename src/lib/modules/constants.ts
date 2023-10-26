@@ -27,9 +27,9 @@ export const MENU_ITEMS = [
         link: "field-notes",
     },
     {
-        title: "About",
+        title: "Theme",
         ar: "عنا",
-        link: "about",
+        link: "theme",
     },
     {
         title: "Venues",
