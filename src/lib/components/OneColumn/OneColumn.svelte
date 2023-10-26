@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
-  import { createNestedCircularPatternWithGroups } from "$lib/modules/graphics"
+  import {
+    createNestedCircularPatternWithGroups,
+    createAnimatedNestedCircularPatternWithDots,
+  } from "$lib/modules/graphics"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
@@ -10,6 +13,7 @@
   import ListingHeader from "../Listing/ListingHeader.svelte"
   import ListingItem from "../Listing/ListingItem.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
+  import PressKitForm from "../Elements/PressKitForm.svelte"
 
   export let page: any
   export let pressReleases: any[] = []
@@ -50,6 +54,12 @@
     ]
     if (circularOneEl) {
       createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
+      // createAnimatedNestedCircularPatternWithDots(
+      //   circularOneEl,
+      //   circleGroups,
+      //   color,
+      //   1
+      // )
     }
   })
 </script>
@@ -81,14 +91,7 @@
     </div>
 
     {#if page._id === "press"}
-      <div class="press-kit">
-        <a
-          href="https://www.sharjaharchitecture.org/pages/media/press-kit"
-          target="_blank"
-        >
-          Request press kit
-        </a>
-      </div>
+      <PressKitForm />
     {/if}
   </div>
 
@@ -185,23 +188,5 @@
   .content {
     position: relative;
     z-index: var(--z-index-content);
-  }
-
-  .press-kit {
-    position: relative;
-    z-index: var(--z-index-content);
-
-    a {
-      display: inline-block;
-      margin-top: 2em;
-      padding: var(--default-padding);
-      background: var(--white);
-      color: var(--black);
-
-      &:hover {
-        background: var(--orange);
-        color: var(--white);
-      }
-    }
   }
 </style>

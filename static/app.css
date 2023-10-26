@@ -90,3 +90,12 @@
     font-size: var(--font-size-large);
     line-height: 1.1em;
   }
+
+  p a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+
+  p a:hover {
+    text-decoration: none;
+  }

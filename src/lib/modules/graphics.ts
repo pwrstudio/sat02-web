@@ -304,20 +304,6 @@ export function createNestedCircularPattern(
  * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
  * @param {string} color - The color of the dots.
  */
-/**
- * Creates a nested circular pattern of groups with distorted dots within an SVG element.
- *
- * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
- * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
- * @param {string} color - The color of the dots.
- */
-/**
- * Creates a nested circular pattern of groups with distorted dots within an SVG element.
- *
- * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
- * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
- * @param {string} color - The color of the dots.
- */
 export function createNestedCircularPatternWithGroups(
     element: HTMLElement,
     circleGroups: CircleGroup[],
@@ -400,4 +386,113 @@ export function createNestedCircularPatternWithGroups(
     // Append the constructed SVG to the provided HTML element.
     element.appendChild(svg);
 }
+
+/**
+ * Creates a nested circular pattern of groups with distorted dots within an SVG element, animated from inside to out.
+ *
+ * @param {HTMLElement} element - The HTML element to which the SVG will be appended.
+ * @param {CircleGroup[]} circleGroups - An array of CircleGroup objects specifying each group's properties.
+ * @param {string} color - The color of the dots.
+ * @param {number} delay - Delay in milliseconds between drawing each circle.
+ */
+export function createAnimatedNestedCircularPatternWithDots(
+    element: HTMLElement,
+    circleGroups: CircleGroup[],
+    color: string,
+    delay: number
+) {
+    // Define a constant for rotation increments (e.g., 5 degrees in radians).
+    const rotationIncrement = Math.PI / 76;
+
+    // Calculate the maximum possible shift range from all circle groups.
+    const maxShiftRange = Math.max(
+        ...circleGroups.map(group =>
+            Math.max(group.verticalShiftRange, group.horizontalShiftRange)
+        )
+    );
+
+    // Initialize the accumulated radius which will help track the radius as circles are added.
+    let accumulatedRadius = 0;
+
+    // Determine the radius of the outermost circle based on all provided circle groups.
+    const outermostCircleRadius = circleGroups.reduce((maxRadius, group) => {
+        const groupRadius = accumulatedRadius + group.dotRadius + (group.baseDistance * group.circleCount) + maxShiftRange;
+        accumulatedRadius = groupRadius;  // Update accumulatedRadius for the next group
+        return Math.max(maxRadius, groupRadius);
+    }, 0);
+
+    // Calculate the total width (or height) of the SVG based on the outermost circle.
+    const totalWidth = outermostCircleRadius * 2;
+
+    // Create an SVG element and set its width and height.
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', `${totalWidth}`);
+    svg.setAttribute('height', `${totalWidth}`);
+
+    // Define center coordinates for the SVG.
+    const centerX = totalWidth / 2;
+    const centerY = totalWidth / 2;
+
+    // Place a single dot at the center of the SVG.
+    const centerDotRadius = circleGroups[0].dotRadius; // Assuming the first circle group has the desired specs for the center dot.
+    const centerDot = createDistortedDot(centerX, centerY, centerDotRadius, color, 0); // No distortion for the center dot.
+    svg.appendChild(centerDot);
+
+    // Initialize variables to track the starting radius and accumulated rotation for each circle group.
+    let startingRadius = 0;
+    let accumulatedRotation = 0;
+
+    let dotsQueue: { cx: number, cy: number, radius: number }[] = [];
+
+    for (const group of circleGroups) {
+        for (let i = 0; i < group.circleCount; i++) {
+            // Randomly increase the distance between the circles.
+            const randomIncrease = Math.random() * 2;  // Adjust this value to control the random increase.
+            const currentCircleRadius = startingRadius + group.baseDistance * (i + 1) + randomIncrease;
+
+            // Calculate the circumference for the current circle.
+            const circumference = Math.PI * currentCircleRadius * 2;
+
+            // Determine the number of dots based on the circumference and base distance.
+            const numberOfDots = Math.floor(circumference / group.baseDistance);
+
+            // Add dots information to dotsQueue.
+            for (let j = 0; j < numberOfDots; j++) {
+                const angle = ((j / numberOfDots) * 2 * Math.PI) + accumulatedRotation;
+                const cxBase = centerX + currentCircleRadius * Math.cos(angle);
+                const cyBase = centerY + currentCircleRadius * Math.sin(angle);
+                const cx = cxBase + (Math.random() - 0.5) * group.horizontalShiftRange;
+                const cy = cyBase + (Math.random() - 0.5) * group.verticalShiftRange;
+
+                dotsQueue.push({
+                    cx: cx,
+                    cy: cy,
+                    radius: group.dotRadius
+                });
+            }
+
+            // Increment the accumulated rotation for staggered circle placement.
+            accumulatedRotation += rotationIncrement;
+        }
+        // Update the starting radius for the next group.
+        startingRadius += group.baseDistance * group.circleCount;
+    }
+
+    // Function to draw dots one by one with a delay.
+    function drawDot() {
+        const dotInfo = dotsQueue.shift();  // Get the next dot from the queue
+        if (dotInfo) {
+            const dot = createDistortedDot(dotInfo.cx, dotInfo.cy, dotInfo.radius, color, DISTORTION_AMOUNT);
+            svg.appendChild(dot);
+            setTimeout(drawDot, delay);  // Schedule the next dot drawing
+        } else {
+            // Append the constructed SVG to the provided HTML element once all dots are drawn.
+            element.appendChild(svg);
+        }
+    }
+
+    drawDot();  // Start the drawing process
+}
+
+
 
