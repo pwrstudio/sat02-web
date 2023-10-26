@@ -10,27 +10,27 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sanity/types": "^3.18.0",
+		"@sanity/types": "^3.18.1",
 		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/kit": "^1.25.2",
-		"@types/lodash": "^4.14.199",
-		"@types/mapbox-gl": "^2.7.15",
-		"sass": "^1.68.0",
-		"svelte": "^4.2.1",
+		"@sveltejs/kit": "^1.27.1",
+		"@types/lodash": "^4.14.200",
+		"@types/mapbox-gl": "^2.7.17",
+		"sass": "^1.69.5",
+		"svelte": "^4.2.2",
 		"svelte-check": "^3.5.2",
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.11"
+		"vite": "^4.5.0"
 	},
 	"type": "module",
 	"dependencies": {
 		"@sanity/block-content-to-html": "^2.0.0",
-		"@sanity/client": "^6.6.0",
+		"@sanity/client": "^6.7.0",
 		"@sanity/image-url": "^1.0.2",
 		"lodash": "^4.17.21",
 		"mapbox-gl": "^2.15.0",
 		"scroll-lock": "^2.1.5",
 		"svelte-select": "^5.7.0",
-		"swiper": "^10.3.1"
+		"swiper": "^11.0.2"
 	}
 }
