@@ -49,10 +49,12 @@
       position: relative;
       z-index: var(--z-content);
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
       &.loaded {
         opacity: 1;
       }
+      // &:hover {
+      //   opacity: 0.9;
+      // }
     }
   }
 </style>

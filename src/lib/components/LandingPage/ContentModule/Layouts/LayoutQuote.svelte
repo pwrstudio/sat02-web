@@ -3,23 +3,32 @@
   import { LANGUAGE, type Node } from "$lib/modules/types"
   import Title from "$lib/components/Elements/Title.svelte"
   export let node: Node
+  export let href = ""
 </script>
 
 <div class="layout quote">
-  <blockquote>
-    “{node.post.pullQuote}”
-  </blockquote>
-  <div class="quote-title">
-    {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
-    <Title page={node.post} />
-    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
-  </div>
+  <a {href} data-sveltekit-preload-data>
+    <blockquote>
+      “{node.post.pullQuote}”
+    </blockquote>
+    <div class="quote-title">
+      {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+      <Title page={node.post} />
+      {#if $languageStore == LANGUAGE.ARABIC}→{/if}
+    </div>
+  </a>
 </div>
 
 <style lang="scss">
   @import "../../../../styles/responsive.scss";
 
   .quote {
+    a {
+      &:hover {
+        color: var(--grey);
+      }
+    }
+
     blockquote {
       font-size: var(--font-size-large);
       font-style: normal;

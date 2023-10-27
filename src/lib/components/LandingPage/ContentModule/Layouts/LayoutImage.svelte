@@ -6,24 +6,29 @@
   import ParticipantList from "$lib/components/Elements/ParticipantList.svelte"
   import Title from "$lib/components/Elements/Title.svelte"
   export let node: Node
+  export let href = ""
 </script>
 
 <div class="layout image">
   {#if node.post.featuredImage}
-    <Image {node} />
+    <a {href} data-sveltekit-preload-data>
+      <Image {node} />
+    </a>
   {/if}
   <!-- TITLE -->
-  <h2>
-    {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
-    <Title page={node.post} />
-    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
-  </h2>
-  <!-- PARTICIPANTS -->
-  {#if node.type == "project" || node.type == "event"}
-    <h3>
-      <ParticipantList participants={node.post.participants} linked={false} />
-    </h3>
-  {/if}
+  <a {href} data-sveltekit-preload-data>
+    <h2>
+      {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+      <Title page={node.post} />
+      {#if $languageStore == LANGUAGE.ARABIC}→{/if}
+    </h2>
+    <!-- PARTICIPANTS -->
+    {#if node.type == "project" || node.type == "event"}
+      <h3>
+        <ParticipantList participants={node.post.participants} linked={false} />
+      </h3>
+    {/if}
+  </a>
 </div>
 
 <style lang="scss">
@@ -31,6 +36,16 @@
 
   .image {
     padding-top: 0.5em;
+
+    a {
+      &:hover {
+        color: var(--grey);
+        img {
+          opacity: 0.8;
+        }
+      }
+    }
+
     h2 {
       font-weight: normal;
       font-size: var(--font-size-large);

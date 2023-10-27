@@ -10,60 +10,68 @@
   import CalendarGfx from "$lib/components/Graphics/CalendarGfx.svelte"
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
+  export let href = ""
 </script>
 
 <div class="layout full" class:reversed={node.alignment == ALIGNMENT.LEFT}>
   <div class="column image {LANGUAGE[$languageStore]}">
-    {#if node.post.featuredImage}
-      <Image {node} />
-    {/if}
+    <a {href} data-sveltekit-preload-data>
+      {#if node.post.featuredImage}
+        <Image {node} />
+      {/if}
+    </a>
   </div>
 
   <div class="column text {LANGUAGE[$languageStore]}">
-    <!-- TITLE -->
-    <h2>
-      {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
-      <Title page={node.post} />
-      {#if $languageStore == LANGUAGE.ARABIC}→{/if}
-    </h2>
+    <a {href} data-sveltekit-preload-data>
+      <!-- TITLE -->
+      <h2>
+        {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+        <Title page={node.post} />
+        {#if $languageStore == LANGUAGE.ARABIC}→{/if}
+      </h2>
 
-    <!-- PARTICIPANTS -->
-    {#if node.type == "project" || node.type == "event"}
-      <h3>
-        <ParticipantList participants={node.post.participants} linked={false} />
-      </h3>
-    {/if}
+      <!-- PARTICIPANTS -->
+      {#if node.type == "project" || node.type == "event"}
+        <h3>
+          <ParticipantList
+            participants={node.post.participants}
+            linked={false}
+          />
+        </h3>
+      {/if}
 
-    <!-- VENUE -->
-    {#if has(node, "post.venues[0].title")}
-      <!-- <div class="divider" /> -->
-      <div class="venue">
-        <PinGfx />
-        {node.post.venues[0].title}
-      </div>
-    {/if}
-
-    <!-- TIME -->
-    {#if node.type == "event"}
-      <!-- <div class="divider" /> -->
-      <div class="time">
-        <!-- DATE -->
-        <div class="date">
-          <CalendarGfx />
-          {formatFullDateTime(node.post.dateTime)}
+      <!-- VENUE -->
+      {#if has(node, "post.venues[0].title")}
+        <!-- <div class="divider" /> -->
+        <div class="venue">
+          <PinGfx />
+          {node.post.venues[0].title}
         </div>
-        <!-- COUNTDOWN -->
-        <div class="countdown">
-          {#if $languageStore == LANGUAGE.ENGLISH}
-            <Blinker />
-          {/if}
-          {timeUntil(node.post.dateTime)}
-          {#if $languageStore == LANGUAGE.ARABIC}
-            <Blinker />
-          {/if}
+      {/if}
+
+      <!-- TIME -->
+      {#if node.type == "event"}
+        <!-- <div class="divider" /> -->
+        <div class="time">
+          <!-- DATE -->
+          <div class="date">
+            <CalendarGfx />
+            {formatFullDateTime(node.post.dateTime)}
+          </div>
+          <!-- COUNTDOWN -->
+          <div class="countdown">
+            {#if $languageStore == LANGUAGE.ENGLISH}
+              <Blinker />
+            {/if}
+            {timeUntil(node.post.dateTime)}
+            {#if $languageStore == LANGUAGE.ARABIC}
+              <Blinker />
+            {/if}
+          </div>
         </div>
-      </div>
-    {/if}
+      {/if}
+    </a>
   </div>
 </div>
 
@@ -79,6 +87,15 @@
       flex-direction: row;
       flex-wrap: wrap;
       padding-top: 0;
+    }
+
+    a {
+      &:hover {
+        color: var(--grey);
+        .image-container {
+          opacity: 0.8 !important;
+        }
+      }
     }
 
     .column {
