@@ -194,9 +194,12 @@
         background: var(--green);
         padding-bottom: 200px;
 
+        @include screen-size("phone") {
+          padding-bottom: 0px;
+        }
+
         .inner {
           color: var(--white);
-          font-size: var(--font-size-large);
           padding: var(--default-padding);
           line-height: 1.1em;
         }

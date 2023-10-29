@@ -89,6 +89,10 @@
   p.large {
     font-size: var(--font-size-large);
     line-height: 1.1em;
+
+    @media (max-width: 768px) {
+      font-size: var(--font-size-normal);
+    }
   }
 
   p a {

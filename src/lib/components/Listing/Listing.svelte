@@ -58,7 +58,7 @@
         padding-bottom: 200px;
 
         @include screen-size("phone") {
-          padding-bottom: 50px;
+          padding-bottom: 60px;
         }
       }
 
@@ -67,7 +67,7 @@
         padding-bottom: 200px;
 
         @include screen-size("phone") {
-          padding-bottom: 50px;
+          padding-bottom: 0px;
         }
 
         .inner {

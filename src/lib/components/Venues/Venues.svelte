@@ -74,11 +74,19 @@
       &.list {
         background: var(--orange);
         padding-bottom: 200px;
+        @include screen-size("phone") {
+          padding-bottom: 60px;
+        }
       }
 
       &.text {
         background: var(--green);
         padding-bottom: 200px;
+
+        @include screen-size("phone") {
+          min-height: 500px;
+          padding-bottom: 60px;
+        }
 
         .inner {
           color: var(--white);

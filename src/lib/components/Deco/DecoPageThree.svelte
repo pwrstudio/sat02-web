@@ -64,12 +64,18 @@
         position: absolute;
         top: 0;
         left: calc(75% - 15px);
+        @include screen-size("phone") {
+          display: none;
+        }
       }
 
       &.four {
         position: absolute;
         top: 0;
         left: calc(25% - 15px);
+        @include screen-size("phone") {
+          display: none;
+        }
       }
 
       &.five {

@@ -225,11 +225,18 @@
         width: 100%;
       }
 
-      &.right {
+      &.left {
         @include screen-size("phone") {
-          display: none;
+          min-height: 90vh;
         }
       }
+
+      &.right {
+        @include screen-size("phone") {
+          // display: none;
+        }
+      }
+
       .row {
         width: 100%;
         padding: var(--default-padding);
@@ -420,6 +427,10 @@
         background: var(--green);
         flex-grow: 1;
         padding: 0;
+
+        @include screen-size("phone") {
+          min-height: unset;
+        }
       }
 
       .content {

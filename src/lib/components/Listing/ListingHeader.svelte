@@ -33,11 +33,18 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .listing-header {
     display: flex;
     padding: var(--default-padding);
     min-height: 100px;
     background: var(--orange);
+
+    @include screen-size("phone") {
+      font-size: var(--font-size-small);
+      min-height: 60px;
+    }
 
     .title {
       text-transform: uppercase;
