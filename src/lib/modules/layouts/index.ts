@@ -115,10 +115,35 @@ export const demo: Node[] = [
                 ]
             },
             {
-                type: "project",
-                bgColor: COLOR.GREEN,
-                layout: LAYOUT.FULL,
-                alignment: ALIGNMENT.RIGHT,
+                type: "column",
+                children: [
+                    {
+
+                        type: "participant",
+                        // bgColor: COLOR.WHITE,
+                        bgColor: COLOR.GREEN,
+                        layout: LAYOUT.QUOTE,
+                        border: {
+                            bottom: true,
+                        }
+                    },
+
+                ]
+            },
+            {
+                type: "column",
+                children: [
+                    {
+                        type: "project",
+                        // bgColor: COLOR.WHITE,
+                        bgColor: COLOR.GREEN,
+                        layout: LAYOUT.IMAGE,
+                        border: {
+                            left: true,
+                            bottom: true
+                        }
+                    },
+                ]
             },
             {
                 type: "dates",
