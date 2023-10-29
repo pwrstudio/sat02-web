@@ -189,4 +189,11 @@
     position: relative;
     z-index: var(--z-index-content);
   }
+
+  .deco-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 </style>

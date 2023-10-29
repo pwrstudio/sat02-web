@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"
@@ -9,12 +10,25 @@
 
   export let posts: any[] = []
   export let page: any = {}
+
+  let height = 0
+
+  const handleResize = () => {
+    height = document.body.scrollHeight
+  }
+
+  onMount(() => {
+    handleResize()
+    window.addEventListener("resize", handleResize)
+  })
 </script>
 
 <!-- METADATA -->
 <Metadata {page} />
 
-<DecoLineTwo color={COLOR.GREY} />
+<div class="deco-container" style={"height:" + height + "px;"}>
+  <DecoLineTwo color={COLOR.GREY} />
+</div>
 
 <div class="list-page">
   <!-- TEXT -->
@@ -81,5 +95,12 @@
         }
       }
     }
+  }
+
+  .deco-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>

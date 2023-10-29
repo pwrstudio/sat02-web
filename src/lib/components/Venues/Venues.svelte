@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
-
+  import { onMount } from "svelte"
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
@@ -11,12 +11,25 @@
 
   let showImages = false
   let activeItem = ""
+
+  let height = 0
+
+  const handleResize = () => {
+    height = document.body.scrollHeight
+  }
+
+  onMount(() => {
+    handleResize()
+    window.addEventListener("resize", handleResize)
+  })
 </script>
 
 <!-- METADATA -->
 <Metadata {page} />
 
-<DecoLineTwo />
+<div class="deco-container" style={"height:" + height + "px;"}>
+  <DecoLineTwo />
+</div>
 
 <div class="list-page">
   <!-- TEXT -->
@@ -105,5 +118,12 @@
     width: 100%;
     height: 100%;
     background: var(--green);
+  }
+
+  .deco-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>

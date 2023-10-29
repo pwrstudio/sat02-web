@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte"
   import { formatCalendarDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
@@ -96,12 +97,25 @@
   }
 
   const organizedEvents = organizeAndSortEvents(posts)
+
+  let height = 0
+
+  const handleResize = () => {
+    height = document.body.scrollHeight
+  }
+
+  onMount(() => {
+    handleResize()
+    window.addEventListener("resize", handleResize)
+  })
 </script>
 
 <!-- METADATA -->
 <Metadata {page} />
 
-<DecoLineTwo />
+<div class="deco-container" style={"height:" + height + "px;"}>
+  <DecoLineTwo />
+</div>
 
 <div class="calendar">
   <!-- TEXT -->
@@ -230,5 +244,12 @@
       z-index: var(--z-content);
       position: relative;
     }
+  }
+
+  .deco-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>
