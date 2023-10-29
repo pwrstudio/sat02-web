@@ -18,6 +18,12 @@
     menuActive.set(false)
   }
 
+  const toggleLanguage = () => {
+    languageStore.set(
+      $languageStore == LANGUAGE.ENGLISH ? LANGUAGE.ARABIC : LANGUAGE.ENGLISH
+    )
+  }
+
   afterNavigate(async () => {
     delay(closeMenu, 700)
   })
@@ -60,41 +66,54 @@
 >
   <!-- INNER MENU -->
   <div class="menu-inner {LANGUAGE[$languageStore]}">
-    <!-- FIRST COLUMN -->
-    <div class="column first" in:fade={{ duration: 400, delay: 100 }}>
-      {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
-        <div
-          class="menu-item"
-          class:hidden={selectedItem && selectedItem != item.title}
-        >
-          <a
-            href={$urlPrefix + item.link}
-            on:click={() => {
-              selectedItem = item.title
-            }}
-          >
-            {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
-          </a>
-        </div>
-      {/each}
+    <div class="language-switch-phone">
+      <!-- LANGUAGE TOGGLE -->
+      <button
+        class="language-toggle {LANGUAGE[$languageStore]}"
+        on:click={toggleLanguage}
+      >
+        {$languageStore == LANGUAGE.ENGLISH ? "ع" : "EN"}
+      </button>
     </div>
-    <!-- SECOND COLUMN -->
-    <div class="column second" in:fade={{ duration: 400, delay: 160 }}>
-      {#each splitArrayIntoTwoParts(MENU_ITEMS)[1] as item}
-        <div
-          class="menu-item"
-          class:hidden={selectedItem && selectedItem != item.title}
-        >
-          <a
-            href={$urlPrefix + item.link}
-            on:click={() => {
-              selectedItem = item.title
-            }}
+
+    <div class="column-container">
+      <!-- FIRST COLUMN -->
+      <div class="column first" in:fade={{ duration: 400, delay: 100 }}>
+        {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
+          <div
+            class="menu-item"
+            class:hidden={selectedItem && selectedItem != item.title}
           >
-            {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
-          </a>
-        </div>
-      {/each}
+            <a
+              href={$urlPrefix + item.link}
+              on:click={() => {
+                selectedItem = item.title
+              }}
+            >
+              {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
+            </a>
+          </div>
+        {/each}
+      </div>
+
+      <!-- SECOND COLUMN -->
+      <div class="column second" in:fade={{ duration: 400, delay: 160 }}>
+        {#each splitArrayIntoTwoParts(MENU_ITEMS)[1] as item}
+          <div
+            class="menu-item"
+            class:hidden={selectedItem && selectedItem != item.title}
+          >
+            <a
+              href={$urlPrefix + item.link}
+              on:click={() => {
+                selectedItem = item.title
+              }}
+            >
+              {$languageStore === LANGUAGE.ENGLISH ? item.title : item.ar}
+            </a>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </div>
@@ -129,42 +148,96 @@
       line-height: 1.2em;
       display: flex;
       width: 100%;
+      position: relative;
 
       @include screen-size("small") {
-        flex-direction: column;
-        font-size: var(--font-size-large);
+        height: 100%;
       }
 
-      &.ARABIC {
-        flex-direction: row-reverse;
-        @include screen-size("small") {
-          flex-direction: column-reverse;
-        }
-      }
-
-      .column {
-        padding: var(--default-padding);
-        width: 50%;
+      .column-container {
+        font-size: var(--font-size-xlarge);
+        line-height: 1.2em;
+        display: flex;
+        width: 100%;
+        position: relative;
 
         @include screen-size("small") {
-          width: 100%;
-          padding-top: 0;
+          flex-direction: column;
+          font-size: var(--font-size-large);
+          height: calc(100% - 46px);
         }
 
-        .menu-item {
-          &.hidden {
-            opacity: 0.5;
+        &.ARABIC {
+          flex-direction: row-reverse;
+          @include screen-size("small") {
+            flex-direction: column-reverse;
+          }
+        }
+
+        .column {
+          padding: var(--default-padding);
+          width: 50%;
+
+          @include screen-size("small") {
+            width: 100%;
+            padding-top: 0;
           }
 
-          a {
-            color: inherit;
-            text-decoration: none;
+          .menu-item {
+            &.hidden {
+              opacity: 0.5;
+            }
 
-            &:hover {
-              color: var(--orange);
+            a {
+              color: inherit;
+              text-decoration: none;
+
+              &:hover {
+                color: var(--orange);
+              }
             }
           }
         }
+      }
+    }
+  }
+
+  .language-switch-phone {
+    display: none;
+    width: 100%;
+    justify-content: flex-end;
+    position: absolute;
+
+    @include screen-size("small") {
+      display: flex;
+      bottom: 0;
+      left: 0;
+      background: var(--orange);
+      height: 82px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      display: block;
+      margin-right: var(--default-padding);
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font-size: var(--font-size-large);
+      font-family: var(--font-family);
+      color: var(--grey);
+      cursor: pointer;
+      user-select: none;
+      width: 100%;
+      height: 100%;
+      line-height: 82px;
+      // line-height: 1em;
+
+      &.ARABIC {
+        flex-direction: row-reverse;
+        font-family: var(--font-family-arabic);
       }
     }
   }

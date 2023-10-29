@@ -60,9 +60,11 @@
       on:click={toggleMenu}
     >
       {#if $menuActive}
-        &#xE000; {$languageStore == LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
+        <span class="icon">&#xE000;</span>
+        {$languageStore == LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
       {:else}
-        &#xE002; {$languageStore == LANGUAGE.ENGLISH ? "MENU" : "قائمة"}
+        <span class="icon"> &#xE002;</span>
+        {$languageStore == LANGUAGE.ENGLISH ? "MENU" : "قائمة"}
       {/if}
     </button>
   </div>
@@ -254,5 +256,9 @@
         display: block;
       }
     }
+  }
+
+  .icon {
+    font-family: var(--font-family);
   }
 </style>
