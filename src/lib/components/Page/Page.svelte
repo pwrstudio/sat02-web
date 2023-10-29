@@ -79,8 +79,8 @@
       <div class="phone-info">
         <!-- VENUE -->
         {#if has(page, "venues[0].title")}
-          <div class="line" />
           <div class="venue">
+            <PinGfx />
             <a href={"/venues/" + page.venues[0].slug.current}>
               {page.venues[0].title}
             </a>
@@ -89,10 +89,10 @@
 
         <!-- TIME -->
         {#if page._type == "event"}
-          <div class="line" />
           <div class="time">
             <!-- DATE -->
             <div class="date">
+              <CalendarGfx />
               {formatFullDateTime(page.dateTime)}
             </div>
           </div>
