@@ -97,7 +97,7 @@
         padding-bottom: 200px;
 
         @include screen-size("phone") {
-          min-height: 500px;
+          min-height: 60vh;
           padding-bottom: 60px;
         }
 
