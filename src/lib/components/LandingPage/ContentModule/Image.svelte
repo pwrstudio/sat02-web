@@ -32,6 +32,11 @@
     margin-bottom: var(--default-padding);
     position: relative;
     z-index: var(--z-content);
+    outline: 0;
+
+    &:hover {
+      outline: 2px solid var(--white-transparent);
+    }
 
     @include screen-size("small") {
       width: 100%;
@@ -49,12 +54,10 @@
       position: relative;
       z-index: var(--z-content);
       opacity: 0;
+
       &.loaded {
         opacity: 1;
       }
-      // &:hover {
-      //   opacity: 0.9;
-      // }
     }
   }
 </style>
