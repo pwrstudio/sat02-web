@@ -1,54 +1,82 @@
-import { LANGUAGE } from "./types"
+export enum ArabicTerms {
+    MENU = 'القائمة',
+    CLOSE = 'أغلق',
+    PROJECT_S = 'المشروع',
+    PARTICIPANT_S = 'المشاركين',
+    FIELD_NOTE_S = 'ملاحظات',
+    CALENDAR = 'التقويم',
+    ABOUT = 'عن الترينالي',
+    VENUE_S = 'المواقع',
+    TEAM = 'الفريق',
+    CONTACT = 'معلومات التواصل',
+    EVENT = 'الفعالية',
+    RELATED_EVENTS = 'فعاليات مشابهة',
+    PAST = 'فعاليات سابقة',
+    UPCOMING = 'فعاليات قادمة',
+    NOW = 'الفعاليات الحالية',
+    STARTS_IN_X_DAY_S = 'يبدأ يوم',
+    STARTS_IN_X_HOUR_S = 'يبدأ في الساعة',
+    SEARCH = 'ابحث',
+    RESULTS = 'النتائج',
+    OPEN = 'افتح',
+    OPEN_SLIDESHOW = 'افتح العرض',
+    SHOW_IMAGES = 'عرض الصور',
+    REQUEST_PRESS_KIT = 'طلب المعلومات الصحفية',
+    FIELD_NOTES_ON_SCARCITY = 'ملاحظات ميدانية: عن الندرة',
+    // !!!
+    PRESS = "press",
+    DESIGN_STORE = "design store",
+}
 
 export const MENU_ITEMS = [
     {
         title: "Projects",
-        ar: "المشاريع",
+        ar: ArabicTerms.PROJECT_S,
         link: "projects",
     },
     {
         title: "Participants",
-        ar: "المشاركون",
+        ar: ArabicTerms.PARTICIPANT_S,
         link: "participants",
     },
     {
         title: "Calendar",
-        ar: "التقويم",
+        ar: ArabicTerms.CALENDAR,
         link: "calendar",
     },
     {
         title: "Design Store",
-        ar: "متجر التصميم",
+        ar: ArabicTerms.DESIGN_STORE,
         link: "design-store",
     },
     {
         title: "Field Notes: On Scarcity",
-        ar: "مذكرات الميدان",
+        ar: ArabicTerms.FIELD_NOTES_ON_SCARCITY,
         link: "field-notes",
     },
     {
         title: "Theme",
-        ar: "عنا",
+        ar: ArabicTerms.ABOUT,
         link: "theme",
     },
     {
         title: "Venues",
-        ar: "الأماكن",
+        ar: ArabicTerms.VENUE_S,
         link: "venues",
     },
     {
         title: "Team",
-        ar: "الفريق",
+        ar: ArabicTerms.TEAM,
         link: "team",
     },
     {
         title: "Press",
-        ar: "صحافة",
+        ar: ArabicTerms.PRESS,
         link: "press",
     },
     {
         title: "Contact",
-        ar: "اتصل بنا",
+        ar: ArabicTerms.CONTACT,
         link: "contact",
     },
 ]

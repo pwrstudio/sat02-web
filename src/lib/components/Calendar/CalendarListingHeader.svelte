@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { languageStore } from "$lib/modules/stores"
+  import { LANGUAGE } from "$lib/modules/types"
+  import { ArabicTerms } from "$lib/modules/constants"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
   export let posts: any[] = []
@@ -15,8 +18,12 @@
 
 <div class="listing-header" class:closing class:opening>
   <div class="title"><strong>{category}</strong> ({posts.length})</div>
-  <div class="image-toggle">
-    <label for="images">Show images</label>
+  <div class="image-toggle {LANGUAGE[$languageStore]}">
+    <label for="images">
+      {$languageStore == LANGUAGE.ARABIC
+        ? ArabicTerms.SHOW_IMAGES
+        : "Show images"}
+    </label>
     <input
       type="checkbox"
       id="images"
@@ -56,6 +63,13 @@
       label {
         display: block;
         margin-right: 5px;
+      }
+
+      &.ARABIC {
+        label {
+          margin-left: 5px;
+          margin-right: unset;
+        }
       }
     }
 

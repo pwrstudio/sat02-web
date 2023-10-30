@@ -1,19 +1,33 @@
 <script lang="ts">
-  import { COLOR, LAYOUT, type Node } from "$lib/modules/types"
+  import { COLOR, LANGUAGE, LAYOUT, type Node } from "$lib/modules/types"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Borders from "$lib/components/LandingPage/ContentModule/Borders.svelte"
   import LayoutQuote from "$lib/components/LandingPage/ContentModule/Layouts/LayoutQuote.svelte"
   import LayoutImage from "$lib/components/LandingPage/ContentModule/Layouts/LayoutImage.svelte"
   import LayoutFull from "$lib/components/LandingPage/ContentModule/Layouts/LayoutFull.svelte"
-  import { urlPrefix } from "$lib/modules/stores"
+  import { languageStore, urlPrefix } from "$lib/modules/stores"
+  import { ArabicTerms } from "$lib/modules/constants"
 
   export let node: Node
 
-  let href =
+  const getTagText = (text: string, language: LANGUAGE) => {
+    console.log(text)
+    if (language === LANGUAGE.ENGLISH) return text
+    if (text === "project") return ArabicTerms.PROJECT_S
+    if (text === "event") return ArabicTerms.EVENT
+    if (text === "participant") return ArabicTerms.PARTICIPANT_S
+    return ""
+  }
+
+  let href = ""
+  $: href =
     $urlPrefix +
     (node.post._type == "event" ? "calendar" : node.post._type + "s") +
     "/" +
     node.post.slug.current
+
+  let tagText = getTagText(node.post._type, $languageStore)
+  $: tagText = getTagText(node.post._type, $languageStore)
 </script>
 
 <div
@@ -29,7 +43,7 @@
     <div class="meta-top">
       <!-- TYPE -->
       <Tag color={node.bgColor === COLOR.WHITE ? COLOR.BLACK : COLOR.WHITE}>
-        {node.post._type}
+        {tagText}
       </Tag>
     </div>
 

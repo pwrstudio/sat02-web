@@ -4,7 +4,6 @@
   import { formatTime } from "$lib/modules/date"
   import Thumbnail from "$lib/components/Listing/Thumbnail.svelte"
   export let post: any
-  export let index: number
   export let showImages: boolean = false
 </script>
 

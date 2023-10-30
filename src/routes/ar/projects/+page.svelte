@@ -6,7 +6,7 @@
   // ...
   import Listing from "$lib/components/Listing/Listing.svelte"
   export let data
-  const { projects } = data
+  const { projects, page } = data
 </script>
 
-<Listing posts={projects} {page} category="projects" />
+<Listing posts={projects} {page} />

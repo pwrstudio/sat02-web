@@ -56,6 +56,8 @@
   .list-page {
     display: flex;
 
+    min-height: 90vh;
+
     @include screen-size("phone") {
       flex-wrap: wrap;
     }

@@ -6,6 +6,7 @@
   import has from "lodash/has.js"
   import { formatFullDateTime } from "$lib/modules/date"
   import { languageStore } from "$lib/modules/stores"
+  import { ArabicTerms } from "$lib/modules/constants"
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
@@ -27,6 +28,18 @@
 
   let slideshowOpen = false
   let height = 0
+
+  const getTagText = (text: string, language: LANGUAGE) => {
+    console.log(text)
+    if (language === LANGUAGE.ENGLISH) return text
+    if (text === "project") return ArabicTerms.PROJECT_S
+    if (text === "event") return ArabicTerms.EVENT
+    if (text === "participant") return ArabicTerms.PARTICIPANT_S
+    return ""
+  }
+
+  let tagText = getTagText(page._type, $languageStore)
+  $: tagText = getTagText(page._type, $languageStore)
 
   const toogleSlideshow = () => {
     slideshowOpen = !slideshowOpen
@@ -63,7 +76,7 @@
     <div class="row header green">
       <!-- TYPE -->
       <div class="tag {LANGUAGE[$languageStore]}">
-        <Tag>{page._type}</Tag>
+        <Tag>{tagText}</Tag>
       </div>
       <!-- TITLE -->
       <h1>

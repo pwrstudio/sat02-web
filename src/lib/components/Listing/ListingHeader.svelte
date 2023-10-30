@@ -1,13 +1,13 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE, COLOR } from "$lib/modules/types"
+  import { LANGUAGE } from "$lib/modules/types"
+  import { ArabicTerms } from "$lib/modules/constants"
   import RoundTag from "../Elements/RoundTag.svelte"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
   export let posts: any[] = []
   export let page: any = {}
 
-  let sortOrder = "title"
   let showImages = false
 
   function setImageDisplay() {
@@ -21,7 +21,11 @@
     <RoundTag black={true}>{posts.length}</RoundTag>
   </div>
   <div class="image-toggle {LANGUAGE[$languageStore]}">
-    <label for="images">Show images</label>
+    <label for="images">
+      {$languageStore == LANGUAGE.ARABIC
+        ? ArabicTerms.SHOW_IMAGES
+        : "Show images"}
+    </label>
     <input
       type="checkbox"
       id="images"

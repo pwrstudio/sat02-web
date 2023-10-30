@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { COLOR, type Node } from "$lib/modules/types"
+  import { COLOR, LANGUAGE, type Node } from "$lib/modules/types"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Map from "$lib/components/Map/Map.svelte"
+  import { languageStore } from "$lib/modules/stores"
+  import { ArabicTerms } from "$lib/modules/constants"
   export let node: Node
   export let venues: any[]
 </script>
@@ -14,7 +16,11 @@
   <!-- META TOP -->
   <div class="meta-top">
     <!-- TYPE -->
-    <Tag color={COLOR.WHITE}>Venues</Tag>
+    <Tag color={COLOR.WHITE}
+      >{$languageStore === LANGUAGE.ARABIC
+        ? ArabicTerms.VENUE_S
+        : "Venues"}</Tag
+    >
   </div>
 
   <Map {venues} disableZoom={true} />
