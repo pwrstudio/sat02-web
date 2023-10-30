@@ -9,6 +9,7 @@
   import "swiper/css"
   // import { disablePageScroll, enablePageScroll } from "scroll-lock"
   import has from "lodash/has.js"
+  import { ArabicTerms } from "$lib/modules/constants"
   // import ParticipantList from "../ParticipantList.svelte"
   export let page: any
 
@@ -57,7 +58,7 @@
       <!-- <ParticipantList participants={page.participants} /> -->
     </div>
     <button class="close" on:click={sendClose}>
-      {$languageStore === LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
+      {$languageStore === LANGUAGE.ENGLISH ? "CLOSE" : ArabicTerms.CLOSE}
     </button>
   </div>
 

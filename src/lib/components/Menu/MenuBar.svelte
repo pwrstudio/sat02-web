@@ -4,7 +4,7 @@
 
   import Menu from "$lib/components/Menu/Menu.svelte"
   import { menuActive, languageStore, urlPrefix } from "$lib/modules/stores"
-  import { siteTitle } from "$lib/modules/constants"
+  import { ArabicTerms, siteTitle } from "$lib/modules/constants"
   import { LANGUAGE } from "$lib/modules/types"
   languageStore.set(LANGUAGE.ENGLISH)
 
@@ -61,10 +61,10 @@
     >
       {#if $menuActive}
         <span class="icon">&#xE000;</span>
-        {$languageStore == LANGUAGE.ENGLISH ? "CLOSE" : "أغلق"}
+        {$languageStore == LANGUAGE.ENGLISH ? "CLOSE" : ArabicTerms.CLOSE}
       {:else}
         <span class="icon"> &#xE002;</span>
-        {$languageStore == LANGUAGE.ENGLISH ? "MENU" : "قائمة"}
+        {$languageStore == LANGUAGE.ENGLISH ? "MENU" : ArabicTerms.MENU}
       {/if}
     </button>
   </div>

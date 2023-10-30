@@ -118,7 +118,7 @@
         class="open-slideshow {LANGUAGE[$languageStore]}"
       >
         {#if $languageStore === LANGUAGE.ARABIC}
-          فتح العرض التقديمي <SlidesCounter {page} />
+          {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
         {:else}
           OPEN SLIDESHOW <SlidesCounter {page} />
         {/if}
@@ -186,7 +186,7 @@
           class="open-slideshow {LANGUAGE[$languageStore]}"
         >
           {#if $languageStore === LANGUAGE.ARABIC}
-            فتح العرض التقديمي <SlidesCounter {page} />
+            {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
           {:else}
             OPEN SLIDESHOW <SlidesCounter {page} />
           {/if}
