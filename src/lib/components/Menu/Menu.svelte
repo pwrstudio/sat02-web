@@ -163,7 +163,7 @@
 
         @include screen-size("small") {
           flex-direction: column;
-          font-size: var(--font-size-large);
+          font-size: var(--font-size-phone-menu);
           height: calc(100% - 46px);
         }
 
@@ -184,6 +184,9 @@
           }
 
           .menu-item {
+            @include screen-size("small") {
+              padding-bottom: 0.2em;
+            }
             &.hidden {
               opacity: 0.5;
             }
