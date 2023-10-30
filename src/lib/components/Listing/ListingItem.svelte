@@ -1,12 +1,11 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte"
-
   import { languageStore } from "$lib/modules/stores"
+  import { urlPrefix } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
   import { formatTime } from "$lib/modules/date"
   import Thumbnail from "./Thumbnail.svelte"
   export let post: any
-  export let index: number
   export let showImages: boolean = false
   export let activeItem = ""
 
@@ -15,17 +14,17 @@
   const getPath = (post: any) => {
     switch (post._type) {
       case "event":
-        return "/calendar"
+        return "calendar"
       case "storeItem":
-        return "/design-store"
+        return "design-store"
       case "fieldNote":
-        return "/field-notes"
+        return "field-notes"
       case "project":
-        return "/projects"
+        return "projects"
       case "participant":
-        return "/participants"
+        return "participants"
       case "venue":
-        return "/venues"
+        return "venues"
       default:
         return ""
     }
@@ -50,7 +49,10 @@
   class="listing-item {post._type}"
   class:images={showImages && post.featuredImage && post.featuredImage.asset}
   class:active={activeItem === post._id}
-  href={getUrl()}
+  href={$urlPrefix + getUrl()}
+  target={post._type == "pressCoverage" || post._type == "pressRelease"
+    ? "_blank"
+    : "_self"}
   data-sveltekit-preload-data
   on:mouseenter={() => {
     dispatch("hoverstart", post._id)
@@ -72,17 +74,11 @@
   {/if}
 
   <!-- TITLE -->
-  <a
-    class="title"
-    href={getUrl()}
-    target={post._type == "pressCoverage" || post._type == "pressRelease"
-      ? "_blank"
-      : "_self"}
-  >
+  <div class="title">
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
     {post.title}
     {#if $languageStore == LANGUAGE.ARABIC}→{/if}
-  </a>
+  </div>
 
   <!-- PARTICIPANTS -->
   {#if post.participants}

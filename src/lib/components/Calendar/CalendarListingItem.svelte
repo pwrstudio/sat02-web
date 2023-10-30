@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { languageStore } from "$lib/modules/stores"
+  import { languageStore, urlPrefix } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
   import { formatTime } from "$lib/modules/date"
   import Thumbnail from "$lib/components/Listing/Thumbnail.svelte"
@@ -10,7 +10,7 @@
 <a
   class="listing-item {post._type}"
   class:images={showImages}
-  href={"/calendar/" + post.slug.current}
+  href={$urlPrefix + "calendar/" + post.slug.current}
   data-sveltekit-preload-data
 >
   <!-- DATE -->
@@ -26,11 +26,11 @@
   {/if}
 
   <!-- TITLE -->
-  <a class="title" href={"/calendar/" + post.slug.current}>
+  <div class="title">
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
     {post.title}
     {#if $languageStore == LANGUAGE.ARABIC}→{/if}
-  </a>
+  </div>
 </a>
 
 <style lang="scss">
