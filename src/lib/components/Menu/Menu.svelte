@@ -126,7 +126,7 @@
     top: var(--menubar-height);
     left: 0;
     width: 100vw;
-    height: calc(100vh - var(--menubar-height));
+    height: calc(100dvh - var(--menubar-height));
     background: var(--grey);
     z-index: var(--z-nav);
     display: flex;
@@ -135,7 +135,7 @@
 
     @include screen-size("small") {
       top: var(--menubar-height-phone);
-      height: calc(100vh - var(--menubar-height-phone));
+      height: calc(100dvh - var(--menubar-height-phone));
     }
 
     &.ARABIC {

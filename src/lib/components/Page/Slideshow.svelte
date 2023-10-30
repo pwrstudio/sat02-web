@@ -53,7 +53,9 @@
   <div class="top-bar">
     <div class="title">
       {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
-      <strong>{page.title}</strong>
+      <strong>
+        {$languageStore == LANGUAGE.ENGLISH ? page.title : page.title_ar}
+      </strong>
       {#if $languageStore == LANGUAGE.ARABIC}→{/if}&nbsp;
       <!-- <ParticipantList participants={page.participants} /> -->
     </div>
@@ -124,8 +126,8 @@
   @import "../../styles/responsive.scss";
 
   .slideshow {
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
     position: fixed;
     top: 0;
     left: 0;
@@ -178,8 +180,8 @@
   }
 
   .swiper {
-    margin-top: 10vh;
-    height: 75vh;
+    margin-top: 10dvh;
+    height: 75dvh;
 
     .swiper-wrapper {
       height: 100%;

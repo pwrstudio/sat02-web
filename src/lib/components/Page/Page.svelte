@@ -95,7 +95,11 @@
           <div class="venue">
             <PinGfx />
             <a href={"/venues/" + page.venues[0].slug.current}>
-              {page.venues[0].title}
+              {$languageStore == LANGUAGE.ENGLISH
+                ? page.venues[0].title
+                : page.venues[0].title_ar
+                ? page.venues[0].title_ar
+                : page.venues[0].title}
             </a>
           </div>
         {/if}
@@ -148,7 +152,11 @@
         <div class="venue">
           <a href={"/venues/" + page.venues[0].slug.current}>
             <PinGfx />
-            {page.venues[0].title}
+            {$languageStore == LANGUAGE.ENGLISH
+              ? page.venues[0].title
+              : page.venues[0].title_ar
+              ? page.venues[0].title_ar
+              : page.venues[0].title}
           </a>
         </div>
       {/if}

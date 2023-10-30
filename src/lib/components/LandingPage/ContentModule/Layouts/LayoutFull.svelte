@@ -46,7 +46,9 @@
         <!-- <div class="divider" /> -->
         <div class="venue">
           <PinGfx />
-          {node.post.venues[0].title}
+          {$languageStore == LANGUAGE.ENGLISH
+            ? node.post.venues[0].title
+            : node.post.venues[0].title_ar}
         </div>
       {/if}
 

@@ -112,6 +112,8 @@
     cursor: pointer;
     padding: 0;
     line-height: 1em;
+    color: var(--black);
+    text-decoration: none;
 
     &.ARABIC {
       flex-direction: row-reverse;

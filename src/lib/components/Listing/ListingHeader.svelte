@@ -17,7 +17,9 @@
 
 <div class="listing-header">
   <div class="title">
-    <strong>{page.title}</strong>
+    <strong>
+      {$languageStore == LANGUAGE.ENGLISH ? page.title : page.title_ar}
+    </strong>
     <RoundTag black={true}>{posts.length}</RoundTag>
   </div>
   <div class="image-toggle {LANGUAGE[$languageStore]}">

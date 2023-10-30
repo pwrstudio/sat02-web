@@ -76,7 +76,7 @@
   <!-- TITLE -->
   <div class="title">
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
-    {post.title}
+    {$languageStore == LANGUAGE.ENGLISH ? post.title : post.title_ar}
     {#if $languageStore == LANGUAGE.ARABIC}→{/if}
   </div>
 
