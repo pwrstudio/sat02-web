@@ -57,100 +57,106 @@ export function formatDateTime(dateTime: string): string {
 }
 
 /**
- * Formats a date and time string to the HH:mm format in the CET (Central European Time) timezone.
+ * Formats a date and time string to the HH:mm format in the Gulf Standard Time (GST) timezone.
  *
- * @param {string} dateTime - The date and time string in ISO 8601 format (e.g., "2023-10-17T17:00:00.000Z").
+ * @param {string} dateTime - The date and time string in ISO 8601 format (e.g., "2023-11-11T09:00:00.000Z").
  * @returns {string} The formatted time string in the "HH:mm" format.
  */
 export function formatTime(dateTime: string): string {
     // Create a new date object
     const myDate = new Date(dateTime);
 
-    // Convert time to HH:mm format in CET timezone
+    // Convert time to HH:mm format in Gulf Standard Time timezone
     const formattedTime = myDate.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
         hour12: false,
-        timeZone: 'CET'
+        timeZone: 'Asia/Dubai' // Dubai has the same time zone as Sharjah (GST)
     });
 
     // Return formatted string as HH:mm
-    return `${formattedTime}`;
+    return formattedTime;
 }
 
 /**
  * Converts a date and time string to the format "Day DD/MM" (e.g., "Sunday 15/10").
  *
- * @param {string} dateTime - The date and time string in ISO 8601 format (e.g., "2023-10-15T17:00:00.000Z").
+ * @param {string} dateTime - The date and time string in ISO 8601 format (e.g., "2023-11-11T09:00:00.000Z").
  * @param {string} language - The language for the output ('en' for English or 'ar' for Arabic).
  * @returns {string} The formatted date string in the "Day DD/MM" format.
  */
 export function formatCalendarDateTime(dateTime: string, language: string = 'en'): string {
-    // Create a new date object
+    // Create a new date object for the Sharjah timezone (UTC+4)
+    const offset = 4; // Gulf Standard Time offset from UTC
     const myDate = new Date(dateTime);
+    myDate.setHours(myDate.getHours() + offset); // Adjust for the Sharjah timezone
 
-    // Define day names for English and Arabic
-    const dayNames = {
-        en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        ar: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
+    // Define options for toLocaleDateString
+    const options = {
+        weekday: 'long', // long weekday format
+        day: '2-digit', // two-digit day
+        month: '2-digit', // two-digit month
+        timeZone: 'UTC' // Force UTC to correctly handle the manual offset
     };
 
-    // Get the day of the week (0 = Sunday, 1 = Monday, etc.)
-    const dayOfWeek = myDate.getUTCDay();
+    // Format the date string using the specified language and options
+    const dateString = myDate.toLocaleDateString(language === 'en' ? 'en-GB' : 'ar-AE', options);
 
-    // Get the day and month as two-digit numbers
-    const day = myDate.getUTCDate().toString().padStart(2, "0");
-    const month = (myDate.getUTCMonth() + 1).toString().padStart(2, "0");
+    // Extract and format the components based on the language
+    let [dayName, day, month] = dateString.split(/\s|,|-|\//);
 
-    // Determine the day name based on the selected language
-    const dayName = dayNames[language][dayOfWeek];
+    // For Arabic, we might need to reorder the components due to different locale date formats
+    if (language === 'ar') {
+        // Assuming the format is "dayName, day/month", we might need to adjust depending on the actual output
+        dayName = dayNames['ar'][myDate.getDay()];
+        [day, month] = [day.padStart(2, "0"), month.padStart(2, "0")];
+    }
 
-    // Build and return the formatted string
+    // Return the formatted string
     return `${dayName} ${day}/${month}`;
 }
 
 /**
- * Formats a given datetime string into the format "Thursday 8th Nov. 19:00".
+ * Formats a given datetime string into the format "Thursday 8th Nov. 19:00" for Sharjah, UAE time.
  *
  * @param {string} dateTime - An ISO datetime string to format.
  * @returns {string} The formatted datetime string.
  *
  * @example
- * formatDateTime("2023-11-08T19:00:00.000Z"); 
- * // returns "Thursday 8th Nov. 19:00" (given that CET is UTC+1)
+ * formatFullDateTime("2023-11-08T19:00:00.000Z");
+ * // returns "Thursday 8th Nov. 23:00" for Sharjah, UAE time (given that it is UTC+4)
  */
 export function formatFullDateTime(dateTime: string): string {
-    // Create a new date object
+    // Create a new date object for Sharjah, UAE timezone (UTC+4)
     const myDate = new Date(dateTime);
 
     // Get day of the week (e.g., Thursday)
     const dayOfWeek = myDate.toLocaleString('en-US', {
         weekday: 'long',
-        timeZone: 'CET'
+        timeZone: 'Asia/Dubai'
     });
 
     // Get numeric day of the month
     const numericDayOfMonth = myDate.toLocaleString('en-US', {
         day: 'numeric',
-        timeZone: 'CET'
+        timeZone: 'Asia/Dubai'
     });
 
     // Get day of the month with ordinal suffix (e.g., 8th)
-    const dayOfMonth = numericDayOfMonth + getOrdinalSuffix(Number(numericDayOfMonth));
-
+    const dayOfMonth = getOrdinalSuffix(Number(numericDayOfMonth));
 
     // Get month (e.g., Nov)
     const month = myDate.toLocaleString('en-US', {
         month: 'short',
-        timeZone: 'CET'
+        timeZone: 'Asia/Dubai'
     });
 
-    // Convert time to HH:mm format in CET timezone
+    // Convert time to HH:mm format in Sharjah, UAE timezone
     const formattedTime = myDate.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: 'numeric',
         hour12: false,
-        timeZone: 'CET'
+        timeZone: 'Asia/Dubai'
     });
 
     // Return formatted string
