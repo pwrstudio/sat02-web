@@ -31,11 +31,16 @@
 
   const getTagText = (text: string, language: LANGUAGE) => {
     console.log(text)
-    if (language === LANGUAGE.ENGLISH) return text
-    if (text === "project") return ArabicTerms.PROJECT_S
-    if (text === "event") return ArabicTerms.EVENT
-    if (text === "participant") return ArabicTerms.PARTICIPANT_S
-    return ""
+    if (language === LANGUAGE.ENGLISH) {
+      if (text === "fieldNote") return "Field Note"
+      if (text === "storeItem") return "Design store"
+      return text
+    } else {
+      if (text === "project") return ArabicTerms.PROJECT_S
+      if (text === "event") return ArabicTerms.EVENT
+      if (text === "participant") return ArabicTerms.PARTICIPANT_S
+      return ""
+    }
   }
 
   let tagText = getTagText(page._type, $languageStore)
