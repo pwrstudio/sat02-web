@@ -3,7 +3,6 @@
   import { languageStore } from "$lib/modules/stores"
   import Title from "../Elements/Title.svelte"
   export let page: any
-  console.log(page)
 
   let hasImage: boolean
   $: hasImage = page.featuredImage && page.featuredImage.asset

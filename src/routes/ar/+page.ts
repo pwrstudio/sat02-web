@@ -1,4 +1,4 @@
-import { buildFrontPage } from "$lib/modules/landingPageBuilder"
+import { buildFrontPage } from "$lib/modules/landingPageBuilder.server"
 import { loadData } from "$lib/modules/sanity"
 import { demo, demo2 } from "$lib/modules/layouts"
 

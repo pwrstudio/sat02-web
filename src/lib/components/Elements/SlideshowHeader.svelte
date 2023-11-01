@@ -8,7 +8,6 @@
   import SlidesCounter from "$lib/components/Page/SlidesCounter.svelte"
 
   export let page: any
-  console.log(page)
 
   let slideshowOpen = false
 

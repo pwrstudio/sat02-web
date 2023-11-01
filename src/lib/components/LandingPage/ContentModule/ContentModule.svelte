@@ -11,7 +11,6 @@
   export let node: Node
 
   const getTagText = (text: string, language: LANGUAGE) => {
-    console.log(text)
     if (language === LANGUAGE.ENGLISH) {
       if (text === "fieldNote") return "Field Note"
       if (text === "storeItem") return "Design store"

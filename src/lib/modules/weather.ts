@@ -1,4 +1,5 @@
-import { SHARJAH_COORDINATES, OWN_API_KEY } from "./constants";
+import { SHARJAH_COORDINATES } from "./constants";
+import { PUBLIC_OWN_API_KEY } from '$env/static/public';
 
 /**
  * Fetches and returns the current weather in Sharjah as a string, formatted as [temperature]°C / [weather description].
@@ -21,7 +22,7 @@ import { SHARJAH_COORDINATES, OWN_API_KEY } from "./constants";
  */
 export async function getSharjahWeather(): Promise<string> {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${SHARJAH_COORDINATES.lat}&lon=${SHARJAH_COORDINATES.lon}&units=metric&appid=${OWN_API_KEY}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${SHARJAH_COORDINATES.lat}&lon=${SHARJAH_COORDINATES.lon}&units=metric&appid=${PUBLIC_OWN_API_KEY}`);
 
         if (!response.ok) {
             throw new Error('Network response was not ok');

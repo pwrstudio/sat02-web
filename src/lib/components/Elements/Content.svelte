@@ -3,7 +3,6 @@
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
   export let page: any
-  console.log(page)
 </script>
 
 {#if $languageStore == LANGUAGE.ARABIC}

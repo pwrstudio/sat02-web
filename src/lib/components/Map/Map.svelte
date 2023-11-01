@@ -1,12 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import { goto } from "$app/navigation"
-  import {
-    MAPBOXGL_ACCESS_TOKEN,
-    Al_QASIMIA_SCHOOL_COORDINATES,
-  } from "$lib/modules/constants"
+  import { Al_QASIMIA_SCHOOL_COORDINATES } from "$lib/modules/constants"
   import mapboxgl from "mapbox-gl"
   import "mapbox-gl/dist/mapbox-gl.css"
+  import { PUBLIC_MAPBOX_TOKEN } from "$env/static/public"
 
   export let venues: any[] = []
   export let disableZoom: boolean = false
@@ -22,7 +20,7 @@
   onMount(async () => {
     map = new mapboxgl.Map({
       container: "map",
-      accessToken: MAPBOXGL_ACCESS_TOKEN,
+      accessToken: PUBLIC_MAPBOX_TOKEN,
       center: Al_QASIMIA_SCHOOL_COORDINATES,
       zoom: 13.5,
       style: "mapbox://styles/mapbox/light-v11",
