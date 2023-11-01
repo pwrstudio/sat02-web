@@ -30,6 +30,11 @@ export enum ArabicTerms {
 
 export const MENU_ITEMS = [
     {
+        title: "Curatorial Statement",
+        ar: ArabicTerms.ABOUT,
+        link: "curatorial-statement",
+    },
+    {
         title: "Projects",
         ar: ArabicTerms.PROJECT_S,
         link: "projects",
@@ -45,19 +50,14 @@ export const MENU_ITEMS = [
         link: "calendar",
     },
     {
-        title: "Design Store",
-        ar: ArabicTerms.DESIGN_STORE,
-        link: "design-store",
-    },
-    {
         title: "Field Notes: On Scarcity",
         ar: ArabicTerms.FIELD_NOTES_ON_SCARCITY,
         link: "field-notes",
     },
     {
-        title: "Theme",
-        ar: ArabicTerms.ABOUT,
-        link: "theme",
+        title: "Design Store",
+        ar: ArabicTerms.DESIGN_STORE,
+        link: "design-store",
     },
     {
         title: "Venues",
