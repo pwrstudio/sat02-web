@@ -43,16 +43,16 @@
       return getPath(post) + "/" + post.slug.current
     }
   }
+
+  const isPress = post._type == "pressCoverage" || post._type == "pressRelease"
 </script>
 
 <a
   class="listing-item {post._type}"
   class:images={showImages && post.featuredImage && post.featuredImage.asset}
   class:active={activeItem === post._id}
-  href={$urlPrefix + getUrl()}
-  target={post._type == "pressCoverage" || post._type == "pressRelease"
-    ? "_blank"
-    : "_self"}
+  href={(isPress ? "" : $urlPrefix) + getUrl()}
+  target={isPress ? "_blank" : "_self"}
   data-sveltekit-preload-data
   on:mouseenter={() => {
     dispatch("hoverstart", post._id)
