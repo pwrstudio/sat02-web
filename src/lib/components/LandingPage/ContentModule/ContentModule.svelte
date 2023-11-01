@@ -23,12 +23,21 @@
     }
   }
 
+  console.log(node)
+
+  const getPath = (postType: string) => {
+    switch (postType) {
+      case "event":
+        return "calendar"
+      case "fieldNote":
+        return "field-notes"
+      default:
+        return postType + "s"
+    }
+  }
+
   let href = ""
-  $: href =
-    $urlPrefix +
-    (node.post._type == "event" ? "calendar" : node.post._type + "s") +
-    "/" +
-    node.post.slug.current
+  $: href = $urlPrefix + getPath(node.post._type) + "/" + node.post.slug.current
 
   let tagText = getTagText(node.post._type, $languageStore)
   $: tagText = getTagText(node.post._type, $languageStore)

@@ -18,6 +18,10 @@
         return { component: ContentModule, props: { node } }
       case "event":
         return { component: ContentModule, props: { node } }
+      case "fieldNote":
+        return { component: ContentModule, props: { node } }
+      case "any":
+        return { component: ContentModule, props: { node } }
       case "dates":
         return { component: DatesModule, props: { node } }
       case "geo":

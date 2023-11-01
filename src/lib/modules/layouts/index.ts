@@ -121,7 +121,7 @@ export const final: Node[] = [
                 children: [
                     {
 
-                        type: "participant",
+                        type: "fieldNote",
                         // bgColor: COLOR.WHITE,
                         bgColor: COLOR.GREEN,
                         layout: LAYOUT.IMAGE,

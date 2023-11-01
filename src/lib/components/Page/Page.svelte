@@ -82,12 +82,14 @@
       <div class="tag {LANGUAGE[$languageStore]}">
         <Tag>{tagText}</Tag>
       </div>
+
       <!-- TITLE -->
       <h1>
         {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
         <Title {page} />
         {#if $languageStore == LANGUAGE.ARABIC}→{/if}
       </h1>
+
       <!-- PARTICIPANTS / AUTHORS -->
       <h2>
         {#if page._type === "fieldNote"}

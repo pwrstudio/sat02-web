@@ -8,7 +8,9 @@ export enum LANGUAGE {
 export enum POST_TYPE {
     PROJECT,
     PARTICIPANT,
-    EVENT
+    EVENT,
+    FIELD_NOTE,
+    ANY
 }
 
 export enum COLOR {
@@ -49,7 +51,7 @@ export type FrontpagePost = {
     width: string
 }
 
-export type NodeType = "section" | "column" | "squareDeco" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates" | "dotLine" | "map";
+export type NodeType = "section" | "column" | "squareDeco" | "participant" | "event" | "geo" | "project" | "fullWidthDeco" | "dates" | "dotLine" | "map" | "any" | "fieldNote";
 
 export type BorderOption = {
     top?: boolean,
@@ -78,3 +80,11 @@ export type CircleGroup = {
     verticalShiftRange: number;
     horizontalShiftRange: number;
 };
+
+export type Posts = {
+    "all": any[],
+    "project": any[];
+    "participant": any[];
+    "event": any[];
+    "fieldNote": any[]
+}

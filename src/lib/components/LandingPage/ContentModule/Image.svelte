@@ -5,20 +5,22 @@
   let imageLoaded: boolean = true
 </script>
 
-<div class="image-container">
-  <img
-    class:loaded={imageLoaded}
-    src={urlFor(node.post.featuredImage)
-      .width(700)
-      .height(500)
-      .saturation(-100)
-      .auto("format")
-      .quality(100)
-      .url()}
-    alt={node.post.title}
-    on:load={() => (imageLoaded = true)}
-  />
-</div>
+{#if node.post?.featuredImage && node.post.featuredImage.asset}
+  <div class="image-container">
+    <img
+      class:loaded={imageLoaded}
+      src={urlFor(node.post.featuredImage)
+        .width(700)
+        .height(500)
+        .saturation(-100)
+        .auto("format")
+        .quality(100)
+        .url()}
+      alt={node.post.title}
+      on:load={() => (imageLoaded = true)}
+    />
+  </div>
+{/if}
 
 <style lang="scss">
   @import "../../../styles/responsive.scss";

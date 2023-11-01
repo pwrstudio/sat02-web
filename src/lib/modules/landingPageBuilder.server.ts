@@ -1,15 +1,11 @@
 import { pickRandom } from "$lib/modules/utils"
-import type { Node } from "$lib/modules/types"
+import type { Node, Posts } from "$lib/modules/types"
+import { LAYOUT } from "$lib/modules/types";
 import { createClient } from '@sanity/client';
 import { SANITY_TOKEN } from '$env/static/private';
 import { PUBLIC_SANITY_ID } from '$env/static/public';
 
-
-type Posts = {
-    "project": any[];
-    "participant": any[];
-    "event": any[];
-}
+const PERIOD = 1800000; // 30 minutes
 
 const client = createClient({
     projectId: PUBLIC_SANITY_ID,
@@ -45,12 +41,16 @@ async function writeToSanity(landingPage: any, ids: string[]) {
 
 function getRandomPost(node: Node, postsInCategory: any[], pickedPosts: string[]) {
     for (let i = 0; i < postsInCategory.length; i++) {
-        let post = pickRandom(postsInCategory, 1)
-        // Wast the post already picked?
-        if (pickedPosts.includes(post[0]._id)) continue;
+        let post = pickRandom(postsInCategory, 1)[0]
+        // Was the post already picked?
+        if (pickedPosts.includes(post._id)) continue;
+        // If quote, must have pull quote 
+        if (node.layout == LAYOUT.QUOTE && !post.pullQuote) continue
+        // If image, must have image
+        if (node.layout == LAYOUT.IMAGE && !(post.featuredImage && post.featuredImage.asset)) continue
         // Mark as picked
-        pickedPosts.push(post[0]._id)
-        return [post[0], pickedPosts]
+        pickedPosts.push(post._id)
+        return [post, pickedPosts]
     }
     // Return the first post if for some reason we run out
     return [postsInCategory[0], pickedPosts]
@@ -58,7 +58,9 @@ function getRandomPost(node: Node, postsInCategory: any[], pickedPosts: string[]
 
 function addPostToNode(node: Node, posts: Posts, pickedPosts: string[]) {
 
-    if (['event', 'project', 'participant'].includes(node.type)) {
+    if (node.type === "any") {
+        [node.post, pickedPosts] = getRandomPost(node, posts.all, pickedPosts);
+    } else if (['event', 'project', 'participant', 'fieldNote'].includes(node.type)) {
         [node.post, pickedPosts] = getRandomPost(node, posts[node.type], pickedPosts);
     }
 
@@ -75,9 +77,9 @@ function addPostToNode(node: Node, posts: Posts, pickedPosts: string[]) {
 function addFromServer(node: Node, posts: Posts, randomSelection: string[]) {
     if (randomSelection.length === 0) return;
 
-    if (['event', 'project', 'participant'].includes(node.type)) {
+    if (['event', 'project', 'participant', 'fieldNote', 'any'].includes(node.type)) {
         let id = randomSelection.shift();
-        node.post = posts[node.type].find(post => post._id === id);
+        node.post = posts.all.find(post => post._id === id);
     }
 
     // Recursively handle children
@@ -88,12 +90,23 @@ function addFromServer(node: Node, posts: Posts, randomSelection: string[]) {
     }
 }
 
+function addTopPost(node: Node, topPost: any) {
+
+    if (['event', 'project', 'participant'].includes(node.type)) {
+        node.post = topPost;
+    }
+
+    // Recursively handle children
+    if (node.children) {
+        for (let child of node.children) {
+            addTopPost(child, topPost);
+        }
+    }
+}
+
 export async function buildFrontPage(layout: any[], landingPage: any, posts: Posts) {
 
     let frontpage: any[] = layout;
-
-    const PERIOD = 1800000; // 30 minutes
-    // const PERIOD = 0; // 10 seconds
 
     const currentTimestamp = new Date().getTime();
 
@@ -127,22 +140,15 @@ export async function buildFrontPage(layout: any[], landingPage: any, posts: Pos
     return frontpage;
 }
 
-export async function buildTopSection(layout: any[], landingPage: any) {
+export async function buildTopSection(layout: any[], landingPage: any, posts: Posts) {
     let topSection: Node[] = layout;
-    addTopPost(topSection[0], landingPage.topPost[0]);
+
+    if (!landingPage.topPost) {
+        const randomPost = pickRandom(posts.all, 1)[0]
+        addTopPost(topSection[0], randomPost);
+    } else {
+        addTopPost(topSection[0], landingPage.topPost[0]);
+    }
+
     return topSection;
-}
-
-function addTopPost(node: Node, topPost: any) {
-
-    if (['event', 'project', 'participant'].includes(node.type)) {
-        node.post = topPost;
-    }
-
-    // Recursively handle children
-    if (node.children) {
-        for (let child of node.children) {
-            addTopPost(child, topPost);
-        }
-    }
 }

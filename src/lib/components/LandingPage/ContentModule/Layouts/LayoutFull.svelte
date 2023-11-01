@@ -53,7 +53,7 @@
       {/if}
 
       <!-- TIME -->
-      {#if node.type == "event"}
+      {#if node.post._type == "event"}
         <!-- <div class="divider" /> -->
         <div class="time">
           <!-- DATE -->
