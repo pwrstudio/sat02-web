@@ -6,8 +6,6 @@
   import { toPlainText, urlFor } from "$lib/modules/sanity"
   export let page: any = {}
 
-  console.log(page)
-
   const DEFAULT_DESCRIPTION = "SAT02"
   const BASE_TITLE = "Sharjah Architecture Triennial 2023"
   const DEFAULT_IMAGE = "https://2023.sharjaharchitecture.org/images/sat02.jpg"

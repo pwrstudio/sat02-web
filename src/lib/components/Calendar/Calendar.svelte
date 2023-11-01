@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import { formatCalendarDateTime } from "$lib/modules/date"
+  import { formatFullDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
@@ -137,7 +137,7 @@
       <CalendarListingHeader
         category="Opening"
         opening={true}
-        {posts}
+        posts={posts.filter(post => post.period == "openingEvent")}
         on:sort={e => {
           sortOrder = e.detail
         }}
@@ -148,36 +148,38 @@
       {#each organizedEvents.openingEvents as openingEvent}
         <div class="date-header">
           <div class="inner">
-            {formatCalendarDateTime(openingEvent.date)}
+            {formatFullDateTime(openingEvent.date, false)}
           </div>
         </div>
         {#each openingEvent.events as post, index (index)}
-          <CalendarListingItem {post} {index} showImages={showOpeningImages} />
+          <CalendarListingItem {post} showImages={showOpeningImages} />
         {/each}
       {/each}
 
-      <!-- CLOSING -->
-      <CalendarListingHeader
-        category="Closing"
-        closing={true}
-        {posts}
-        on:sort={e => {
-          sortOrder = e.detail
-        }}
-        on:images={e => {
-          showClosingImages = e.detail
-        }}
-      />
-      {#each organizedEvents.closingEvents as closingEvent}
-        <div class="date-header">
-          <div class="inner">
-            {formatCalendarDateTime(closingEvent.date)}
+      {#if posts.filter(post => post.period == "closingEvent").length > 0}
+        <!-- CLOSING -->
+        <CalendarListingHeader
+          category="Closing"
+          closing={true}
+          posts={posts.filter(post => post.period == "closingEvent")}
+          on:sort={e => {
+            sortOrder = e.detail
+          }}
+          on:images={e => {
+            showClosingImages = e.detail
+          }}
+        />
+        {#each organizedEvents.closingEvents as closingEvent}
+          <div class="date-header">
+            <div class="inner">
+              {formatFullDateTime(closingEvent.date, false)}
+            </div>
           </div>
-        </div>
-        {#each closingEvent.events as post, index (index)}
-          <CalendarListingItem {post} {index} showImages={showClosingImages} />
+          {#each closingEvent.events as post, index (index)}
+            <CalendarListingItem {post} showImages={showClosingImages} />
+          {/each}
         {/each}
-      {/each}
+      {/if}
     </div>
   </div>
 </div>

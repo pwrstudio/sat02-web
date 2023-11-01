@@ -126,7 +126,7 @@ export function formatCalendarDateTime(dateTime: string, language: string = 'en'
  * formatFullDateTime("2023-11-08T19:00:00.000Z");
  * // returns "Thursday 8th Nov. 23:00" for Sharjah, UAE time (given that it is UTC+4)
  */
-export function formatFullDateTime(dateTime: string): string {
+export function formatFullDateTime(dateTime: string, showTime: boolean = true): string {
     // Create a new date object for Sharjah, UAE timezone (UTC+4)
     const myDate = new Date(dateTime);
 
@@ -143,7 +143,7 @@ export function formatFullDateTime(dateTime: string): string {
     });
 
     // Get day of the month with ordinal suffix (e.g., 8th)
-    const dayOfMonth = getOrdinalSuffix(Number(numericDayOfMonth));
+    const dayOfMonth = numericDayOfMonth + getOrdinalSuffix(Number(numericDayOfMonth));
 
     // Get month (e.g., Nov)
     const month = myDate.toLocaleString('en-US', {
@@ -159,8 +159,13 @@ export function formatFullDateTime(dateTime: string): string {
         timeZone: 'Asia/Dubai'
     });
 
-    // Return formatted string
-    return `${dayOfWeek} ${dayOfMonth} ${month}. ${formattedTime}`;
+    if (showTime) {
+        // Return formatted string
+        return `${dayOfWeek} ${dayOfMonth} ${month}. ${formattedTime}`;
+    } else {
+        // Return formatted string
+        return `${dayOfWeek} ${dayOfMonth} ${month}`;
+    }
 }
 
 /**
