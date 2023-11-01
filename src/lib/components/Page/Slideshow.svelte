@@ -17,6 +17,10 @@
 
   let mediaList = page.processMedia || page.media || []
 
+  if (page.featuredImage) {
+    mediaList = [page.featuredImage, ...mediaList]
+  }
+
   let swiper: Swiper
   let activeIndex = 0
 
@@ -79,13 +83,6 @@
               </div>
             {/if}
           {/each}
-        {:else if page.featuredImage}
-          <div class="swiper-slide">
-            <img
-              src={urlFor(page.featuredImage.asset).width(1200).url()}
-              alt=""
-            />
-          </div>
         {/if}
       </div>
     </div>
@@ -210,6 +207,7 @@
         justify-content: center;
         font-size: 5rem;
         user-select: none;
+        cursor: grab;
 
         img {
           max-height: 100%;

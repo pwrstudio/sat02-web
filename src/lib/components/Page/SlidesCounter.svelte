@@ -4,6 +4,10 @@
 
   let mediaList = page.processMedia || page.media || []
 
+  if (page.featuredImage) {
+    mediaList = [page.featuredImage, ...mediaList]
+  }
+
   let slideCount = 1
 
   if (mediaList?.length > 0) {
