@@ -39,7 +39,7 @@
       if (text === "project") return ArabicTerms.PROJECT_S
       if (text === "event") return ArabicTerms.EVENT
       if (text === "participant") return ArabicTerms.PARTICIPANT_S
-      return ""
+      return text
     }
   }
 

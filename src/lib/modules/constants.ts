@@ -50,7 +50,7 @@ export const MENU_ITEMS = [
         link: "calendar",
     },
     {
-        title: "Field Notes: On Scarcity",
+        title: "Field Notes on Scarcity",
         ar: ArabicTerms.FIELD_NOTES_ON_SCARCITY,
         link: "field-notes",
     },
