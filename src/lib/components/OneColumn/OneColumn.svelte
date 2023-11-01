@@ -14,6 +14,7 @@
   import ListingItem from "../Listing/ListingItem.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
   import PressKitForm from "../Elements/PressKitForm.svelte"
+  import PageHeader from "../Elements/PageHeader.svelte"
 
   export let page: any
   export let pressReleases: any[] = []
@@ -74,6 +75,8 @@
   <!-- <DecoCircleTwo color={COLOR.GREY} /> -->
 </div>
 
+<PageHeader {page} />
+
 <div class="page {page._type}" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
   <div class="column text">
@@ -106,8 +109,8 @@
         }}
       />
       <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-        {#each pressReleases as post, index}
-          <ListingItem {post} {index} showImages={showPressReleaseImages} />
+        {#each pressReleases as post}
+          <ListingItem {post} showImages={showPressReleaseImages} />
         {/each}
       </div>
       <!-- PRESS COVERAGE -->
@@ -119,8 +122,8 @@
         }}
       />
       <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-        {#each pressCoverage as post, index}
-          <ListingItem {post} {index} showImages={showPressCoverageImages} />
+        {#each pressCoverage as post}
+          <ListingItem {post} showImages={showPressCoverageImages} />
         {/each}
       </div>
     {:else}
@@ -171,6 +174,7 @@
     align-items: center;
     position: relative;
     z-index: var(--z-index-content);
+    overflow: hidden;
 
     div {
       position: relative;
@@ -190,10 +194,46 @@
     z-index: var(--z-index-content);
   }
 
-  .deco-container {
+  .header {
+    height: var(--header-height);
+    position: relative;
+    padding: var(--default-padding);
+    padding-top: 5em;
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    background: var(--green);
+    color: var(--white);
+
+    @include screen-size("phone") {
+      height: unset;
+    }
+
+    h1,
+    h2 {
+      font-size: var(--font-size-xlarge);
+      font-weight: normal;
+      position: relative;
+      z-index: var(--z-content);
+      line-height: 1.1em;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 0.5em;
+
+      @include screen-size("phone") {
+        font-size: var(--font-size-large);
+        line-height: 0.9em;
+      }
+
+      a {
+        color: var(--white);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    h2 {
+      font-style: italic;
+    }
   }
 </style>

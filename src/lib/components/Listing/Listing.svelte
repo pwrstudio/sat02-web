@@ -7,6 +7,7 @@
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingComponent from "./ListingComponent.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
+  import PageHeader from "../Elements/PageHeader.svelte"
 
   export let posts: any[] = []
   export let page: any = {}
@@ -29,6 +30,8 @@
 <div class="deco-container" style={"height:" + height + "px;"}>
   <DecoLineTwo color={COLOR.GREY} />
 </div>
+
+<PageHeader {page} />
 
 <div class="list-page">
   <!-- TEXT -->

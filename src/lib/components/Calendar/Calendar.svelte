@@ -10,6 +10,7 @@
   import CalendarListingItem from "./CalendarListingItem.svelte"
   import CalendarListingHeader from "./CalendarListingHeader.svelte"
   import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
+  import PageHeader from "../Elements/PageHeader.svelte"
 
   export let posts: any[] = []
   export let page: any = {}
@@ -116,6 +117,8 @@
 <div class="deco-container" style={"height:" + height + "px;"}>
   <DecoLineTwo />
 </div>
+
+<PageHeader {page} />
 
 <div class="calendar">
   <!-- TEXT -->
