@@ -25,7 +25,7 @@ export enum ArabicTerms {
     FIELD_NOTES_ON_SCARCITY = 'ملاحظات ميدانية: عن الندرة',
     // !!!
     PRESS = "press",
-    DESIGN_STORE = "design store",
+    DESIGN_STORE = "متجر الترينالي للتصميم",
 }
 
 export const MENU_ITEMS = [
