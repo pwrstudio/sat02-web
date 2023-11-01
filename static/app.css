@@ -104,3 +104,11 @@
   p a:hover {
     text-decoration: none;
   }
+
+  p.large:first-child {
+   margin-top: 0;
+  }
+
+  p.normal:first-child {
+    margin-top: 0;
+   }

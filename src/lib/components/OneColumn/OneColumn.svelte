@@ -162,6 +162,7 @@
         padding-bottom: 200px;
         color: var(--white);
         padding: var(--default-padding);
+        padding-top: 0;
       }
     }
   }

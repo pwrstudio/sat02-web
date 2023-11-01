@@ -92,6 +92,7 @@
         .inner {
           color: var(--white);
           padding: var(--default-padding);
+          padding-top: 0;
           line-height: 1.1em;
 
           @include screen-size("phone") {
