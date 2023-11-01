@@ -62,7 +62,7 @@
   @import "../../styles/responsive.scss";
 
   .slideshow-header {
-    height: 400px;
+    height: 500px;
     position: relative;
     width: 100%;
     background: var(--green);
