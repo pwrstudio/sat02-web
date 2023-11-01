@@ -7,7 +7,8 @@
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingComponent from "./ListingComponent.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
-  import PageHeader from "../Elements/PageHeader.svelte"
+  import TitleHeader from "../Elements/TitleHeader.svelte"
+  import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
 
   export let posts: any[] = []
   export let page: any = {}
@@ -28,14 +29,14 @@
 <Metadata {page} />
 
 <div class="deco-container" style={"height:" + height + "px;"}>
-  <DecoLineTwo color={COLOR.GREY} />
+  <!-- <DecoLineTwo color={COLOR.GREY} /> -->
 </div>
-
-<PageHeader {page} />
 
 <div class="list-page">
   <!-- TEXT -->
   <div class="column text">
+    <!-- HEADER: TITLE -->
+    <TitleHeader {page} />
     <div class="inner">
       {#if $languageStore == LANGUAGE.ARABIC}
         {#if page.content_ar}
@@ -49,6 +50,9 @@
 
   <!-- LIST -->
   <div class="column list">
+    <!-- HEADER: SLIDESHOW -->
+    <SlideshowHeader {page} />
+    <!-- LISTING COMPONENT -->
     <ListingComponent {posts} {page} />
   </div>
 </div>

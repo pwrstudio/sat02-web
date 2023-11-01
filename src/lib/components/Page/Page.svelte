@@ -10,12 +10,12 @@
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
+  import SlidesCounter from "$lib/components/Page/SlidesCounter.svelte"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Title from "$lib/components/Elements/Title.svelte"
   import Content from "$lib/components/Elements/Content.svelte"
   import Credits from "$lib/components/Elements/Credits.svelte"
   import ParticipantList from "$lib/components/Elements/ParticipantList.svelte"
-  import SlidesCounter from "./SlidesCounter.svelte"
   import DecoPage from "$lib/components/Deco/DecoPage.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
   import DecoPageThree from "$lib/components/Deco/DecoPageThree.svelte"
@@ -94,6 +94,7 @@
         <ParticipantList participants={page.participants} />
       </h2>
 
+      <!-- PHONE INFO -->
       <div class="phone-info">
         <!-- VENUE -->
         {#if has(page, "venues[0].title")}
@@ -121,6 +122,8 @@
         {/if}
       </div>
     </div>
+
+    <!-- PHONE SLIDESHOW -->
     {#if page._type != "venue" && page.featuredImage?.asset}
       <div class="row phone-slideshow">
         <button
@@ -135,6 +138,7 @@
         </button>
       </div>
     {/if}
+
     <div class="row content">
       <!-- CONTENT -->
       <Content {page} />

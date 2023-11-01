@@ -6,7 +6,7 @@
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
   import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
   import Map from "$lib/components/Map/Map.svelte"
-  import PageHeader from "../Elements/PageHeader.svelte"
+
   export let posts: any[] = []
   export let page: any = {}
 
@@ -32,8 +32,6 @@
   <DecoLineTwo />
 </div>
 
-<PageHeader {page} />
-
 <div class="list-page">
   <!-- TEXT -->
   <div class="column text">
@@ -44,6 +42,7 @@
 
   <!-- LIST -->
   <div class="column list">
+    <!-- LISTING -->
     <ListingHeader
       {page}
       {posts}

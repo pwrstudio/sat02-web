@@ -82,6 +82,7 @@
     position: relative;
     z-index: var(--z-content);
     border-top: 1.5px solid var(--white-transparent);
+    padding: var(--default-padding);
     padding-top: 1em;
     margin-top: 2em;
 

@@ -14,7 +14,8 @@
   import ListingItem from "../Listing/ListingItem.svelte"
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
   import PressKitForm from "../Elements/PressKitForm.svelte"
-  import PageHeader from "../Elements/PageHeader.svelte"
+  import TitleHeader from "../Elements/TitleHeader.svelte"
+  import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
 
   export let page: any
   export let pressReleases: any[] = []
@@ -75,11 +76,11 @@
   <!-- <DecoCircleTwo color={COLOR.GREY} /> -->
 </div>
 
-<PageHeader {page} />
-
 <div class="page {page._type}" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
   <div class="column text">
+    <!-- HEADER: TITLE -->
+    <TitleHeader {page} />
     <!-- CONTENT -->
     <div class="content">
       {#if $languageStore == LANGUAGE.ARABIC}
@@ -99,6 +100,9 @@
   </div>
 
   <div class="column list">
+    <!-- HEADER: SLIDESHOW  -->
+    <SlideshowHeader {page} />
+
     {#if page._id === "press"}
       <!-- PRESS RELEASES -->
       <ListingHeader
@@ -161,8 +165,12 @@
         background: var(--green);
         padding-bottom: 200px;
         color: var(--white);
-        padding: var(--default-padding);
         padding-top: 0;
+
+        .content {
+          padding: var(--default-padding);
+          padding-top: 0;
+        }
       }
     }
   }

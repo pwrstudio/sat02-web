@@ -10,7 +10,8 @@
   import CalendarListingItem from "./CalendarListingItem.svelte"
   import CalendarListingHeader from "./CalendarListingHeader.svelte"
   import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
-  import PageHeader from "../Elements/PageHeader.svelte"
+  import TitleHeader from "../Elements/TitleHeader.svelte"
+  import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
 
   export let posts: any[] = []
   export let page: any = {}
@@ -118,11 +119,11 @@
   <DecoLineTwo />
 </div>
 
-<PageHeader {page} />
-
 <div class="calendar">
   <!-- TEXT -->
   <div class="column text">
+    <!-- HEADER: TITLE -->
+    <TitleHeader {page} />
     <div class="inner">
       {#if $languageStore == LANGUAGE.ARABIC}
         {#if page.content_ar}
@@ -135,6 +136,8 @@
   </div>
 
   <div class="column list">
+    <!-- HEADER: SLIDESHOW -->
+    <SlideshowHeader {page} />
     <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
       <!-- OPENING -->
       <CalendarListingHeader

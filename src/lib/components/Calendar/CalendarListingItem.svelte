@@ -9,7 +9,7 @@
 
 <a
   class="listing-item {post._type}"
-  class:images={showImages}
+  class:images={showImages && post.featuredImage && post.featuredImage.asset}
   href={$urlPrefix + "calendar/" + post.slug.current}
   data-sveltekit-preload-data
 >
