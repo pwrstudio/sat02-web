@@ -18,11 +18,11 @@
   let mediaList = page.processMedia || page.media || []
 
   let swiper: Swiper
-  let activeIndex = 1
+  let activeIndex = 0
 
   $: isMultiSlide = has(swiper, "slides") && swiper.slides.length > 1
-  $: isBeginning = activeIndex === 1
-  $: isEnd = has(swiper, "slides") && activeIndex === swiper.slides.length
+  $: isBeginning = activeIndex === 0
+  $: isEnd = has(swiper, "slides") && activeIndex === swiper.slides.length - 1
 
   const sendClose = () => {
     dispatch("close")
@@ -40,7 +40,7 @@
     // disablePageScroll()
     swiper = new Swiper(".swiper")
     swiper.on("slideChange", () => {
-      activeIndex = swiper.activeIndex + 1
+      activeIndex = swiper.activeIndex
     })
   })
 
@@ -106,7 +106,7 @@
 
   <div class="caption">
     {#if isMultiSlide}
-      <div>{activeIndex}/{swiper.slides.length}</div>
+      <div>{activeIndex + 1}/{swiper.slides.length}</div>
     {/if}
     <!-- CAPTION ENGLISH -->
     {#if $languageStore == LANGUAGE.ENGLISH}
