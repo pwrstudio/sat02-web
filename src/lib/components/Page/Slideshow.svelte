@@ -60,6 +60,7 @@
       <!-- <ParticipantList participants={page.participants} /> -->
     </div>
     <button class="close" on:click={sendClose}>
+      <span class="icon">&#xE000;</span>
       {$languageStore === LANGUAGE.ENGLISH ? "CLOSE" : ArabicTerms.CLOSE}
     </button>
   </div>
@@ -151,6 +152,20 @@
       padding-left: var(--default-padding);
       padding-right: var(--double-padding);
       justify-content: space-between;
+
+      @include screen-size("phone") {
+        height: var(--menubar-height-phone);
+        padding-right: var(--default-padding);
+      }
+      .close {
+        position: relative;
+        top: -2px;
+      }
+
+      .title {
+        position: relative;
+        top: -2px;
+      }
     }
   }
 
@@ -255,5 +270,9 @@
       opacity: 0.3;
       pointer-events: none;
     }
+  }
+
+  .icon {
+    font-family: var(--font-family);
   }
 </style>

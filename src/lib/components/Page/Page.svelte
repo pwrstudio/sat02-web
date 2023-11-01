@@ -116,18 +116,20 @@
         {/if}
       </div>
     </div>
-    <div class="row phone-slideshow">
-      <button
-        on:click={toogleSlideshow}
-        class="open-slideshow {LANGUAGE[$languageStore]}"
-      >
-        {#if $languageStore === LANGUAGE.ARABIC}
-          {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
-        {:else}
-          OPEN SLIDESHOW <SlidesCounter {page} />
-        {/if}
-      </button>
-    </div>
+    {#if page._type != "venue" && page.featuredImage?.asset}
+      <div class="row phone-slideshow">
+        <button
+          on:click={toogleSlideshow}
+          class="open-slideshow {LANGUAGE[$languageStore]}"
+        >
+          {#if $languageStore === LANGUAGE.ARABIC}
+            {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
+          {:else}
+            OPEN SLIDESHOW <SlidesCounter {page} />
+          {/if}
+        </button>
+      </div>
+    {/if}
     <div class="row content">
       <!-- CONTENT -->
       <Content {page} />
