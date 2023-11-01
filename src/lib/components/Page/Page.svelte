@@ -88,9 +88,13 @@
         <Title {page} />
         {#if $languageStore == LANGUAGE.ARABIC}→{/if}
       </h1>
-      <!-- PARTICIPANTS -->
+      <!-- PARTICIPANTS / AUTHORS -->
       <h2>
-        <ParticipantList participants={page.participants} />
+        {#if page._type === "fieldNote"}
+          {$languageStore === LANGUAGE.ARABIC ? page.author_ar : page.author}
+        {:else}
+          <ParticipantList participants={page.participants} />
+        {/if}
       </h2>
 
       <!-- PHONE INFO -->
