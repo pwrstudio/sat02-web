@@ -10,7 +10,7 @@
 >
   <div class="date start">11.11.2023</div>
   <div class="line" />
-  <div class="date end">10.02.2024</div>
+  <div class="date end">10.03.2024</div>
 </div>
 
 <style lang="scss">

@@ -41,7 +41,7 @@
       </a>
     </div>
     <!-- DATES -->
-    <div dir="ltr">11.11.2023 – 10.02.2024</div>
+    <div dir="ltr">11.11.2023 – 10.03.2024</div>
   </div>
 </footer>
 
