@@ -134,13 +134,6 @@
       <!-- CONTENT -->
       <Content {page} />
 
-      <!-- ADDRESS -->
-      <!-- {#if page._type === "venue"}
-        <div class="adress">
-          {$languageStore == LANGUAGE.ENGLISH ? page.address : page.address_ar}
-        </div>
-      {/if} -->
-
       <!-- CREDITS -->
       <Credits {page} />
     </div>

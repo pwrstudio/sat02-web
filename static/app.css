@@ -112,3 +112,8 @@
   p.normal:first-child {
     margin-top: 0;
    }
+
+   blockquote {
+    position: relative;
+    z-index: var(--z-content);
+   }
