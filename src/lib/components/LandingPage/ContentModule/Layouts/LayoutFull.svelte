@@ -11,13 +11,15 @@
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
   export let href = ""
+
+  console.log(node)
 </script>
 
 <div class="layout full" class:reversed={node.alignment == ALIGNMENT.LEFT}>
   <div class="column image {LANGUAGE[$languageStore]}">
     <a {href} data-sveltekit-preload-data>
       {#if node.post.featuredImage}
-        <Image {node} />
+        <Image {node} large />
       {/if}
     </a>
   </div>
@@ -83,7 +85,8 @@
   .full {
     display: flex;
     padding-top: 2em;
-    min-height: 80vh;
+    min-height: unset;
+    width: 100%;
 
     @include screen-size("small") {
       flex-direction: row;
@@ -104,9 +107,9 @@
       &.text {
         padding: var(--default-padding);
         padding-top: 0;
-        padding-right: 40px;
+        padding-right: 0px;
         line-height: 1.1em;
-        font-size: var(--font-size-xlarge);
+        font-size: var(--font-size-xxlarge);
 
         @include screen-size("small") {
           font-size: var(--font-size-large);
@@ -138,7 +141,7 @@
           margin: 0;
           position: relative;
           z-index: var(--z-content);
-          font-size: var(--font-size-xlarge);
+          font-size: var(--font-size-xxlarge);
           margin-bottom: 0.75em;
           line-height: 1.1em;
 
@@ -151,11 +154,10 @@
         h3 {
           font-weight: normal;
           font-style: italic;
-          font-size: var(--font-size-xlarge);
+          font-size: var(--font-size-xxlarge);
           margin: 0;
           position: relative;
           z-index: var(--z-content);
-          font-size: var(--font-size-xlarge);
           @include screen-size("small") {
             font-size: var(--font-size-large);
           }

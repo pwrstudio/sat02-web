@@ -4,7 +4,7 @@ import { final, top } from "$lib/modules/layouts"
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url }) {
-    const landingPage = await loadData("*[_type == 'landingPage'][0] {..., topPost[]->{...}}", {})
+    const landingPage = await loadData("*[_type == 'landingPage'][0] {..., topPost[]->{..., venues[]->{...}, participants[]->{...}}}", {})
     const project = await loadData("*[_type == 'project'] {..., participants[]->{...}, venues[]->{...}}", {})
     const participant = await loadData("*[_type == 'participant']", {})
     const fieldNote = await loadData("*[_type == 'fieldNote'] {..., participants[]->{...}}", {})
@@ -13,9 +13,10 @@ export async function load({ url }) {
 
     const all = [...participant, ...project, ...event, ...fieldNote]
     const posts = { all, participant, project, event, fieldNote }
+    const topPosts = project
 
     const frontpage = await buildFrontPage(final, landingPage, posts);
-    const topSection = buildTopSection(top, landingPage, posts);
+    const topSection = buildTopSection(top, landingPage, topPosts);
 
     return {
         frontpage,

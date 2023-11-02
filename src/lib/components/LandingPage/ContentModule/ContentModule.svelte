@@ -23,8 +23,6 @@
     }
   }
 
-  console.log(node)
-
   const getPath = (postType: string) => {
     switch (postType) {
       case "event":

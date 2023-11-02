@@ -140,11 +140,11 @@ export async function buildFrontPage(layout: any[], landingPage: any, posts: Pos
     return frontpage;
 }
 
-export async function buildTopSection(layout: any[], landingPage: any, posts: Posts) {
+export async function buildTopSection(layout: any[], landingPage: any, posts: any[]) {
     let topSection: Node[] = layout;
 
     if (!landingPage.topPost) {
-        const randomPost = pickRandom(posts.all, 1)[0]
+        const randomPost = pickRandom(posts, 1)[0]
         addTopPost(topSection[0], randomPost);
     } else {
         addTopPost(topSection[0], landingPage.topPost[0]);

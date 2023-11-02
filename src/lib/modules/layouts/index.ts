@@ -11,7 +11,7 @@ export const top: Node[] = [
                 type: "event",
                 bgColor: COLOR.GREEN,
                 layout: LAYOUT.FULL,
-                alignment: ALIGNMENT.LEFT
+                alignment: ALIGNMENT.RIGHT
             },
             {
                 type: "dates",

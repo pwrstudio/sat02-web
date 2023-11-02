@@ -2,7 +2,8 @@
   // Set language
   import { LANGUAGE } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
-  languageStore.set(LANGUAGE.ARABIC)
+  import Metadata from "$lib/components/Metadata/Metadata.svelte"
+  languageStore.set(LANGUAGE.ENGLISH)
   // ...
   import Section from "$lib/components/LandingPage/Section.svelte"
   export let data
@@ -11,6 +12,9 @@
   console.log("topSection", topSection)
   console.log("frontpage", frontpage)
 </script>
+
+<!-- METADATA -->
+<Metadata />
 
 {#each topSection as node}
   {#if node.type === "section"}
