@@ -1,6 +1,6 @@
 import type { CircleGroup } from "./types";
 
-const DISTORTION_AMOUNT = 1.4;
+const DISTORTION_AMOUNT = 0.6;
 
 /**
  * Generates a distorted dot as an SVG path element.

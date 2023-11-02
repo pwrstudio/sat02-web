@@ -28,7 +28,11 @@
   let height = 0
   let circularOneEl: HTMLDivElement
 
-  onMount(() => {
+  color = page._type === "contact" ? COLOR.BLUE : color
+
+  const isFixed = ["theme", "contact", "team"].includes(page._type)
+
+  onMount(async () => {
     height = document.body.scrollHeight
 
     const circleGroups: CircleGroup[] = [
@@ -40,7 +44,7 @@
         horizontalShiftRange: 1,
       },
       {
-        circleCount: 10,
+        circleCount: 7,
         dotRadius: 7,
         baseDistance: 30,
         verticalShiftRange: 1,
@@ -56,12 +60,9 @@
     ]
     if (circularOneEl) {
       createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
-      // createAnimatedNestedCircularPatternWithDots(
-      //   circularOneEl,
-      //   circleGroups,
-      //   color,
-      //   1
-      // )
+      // let simpleParallax = (await import("simple-parallax-js")).simpleParallax
+      // console.log(simpleParallax)
+      // new simpleParallax(circularOneEl)
     }
   })
 </script>
@@ -73,7 +74,6 @@
   {#if page._id === "press"}
     <DecoPageTwo />
   {/if}
-  <!-- <DecoCircleTwo color={COLOR.GREY} /> -->
 </div>
 
 <div class="page {page._type}" in:fade={{ duration: 200 }}>
@@ -93,13 +93,13 @@
         {@html renderBlockText(page.content.content)}
       {/if}
     </div>
-
+    <!-- PRESS FORM  -->
     {#if page._id === "press"}
       <PressKitForm pressKitLink={page.pressKitLink} />
     {/if}
   </div>
 
-  <div class="column list">
+  <div class="column list" class:fix={isFixed}>
     <!-- HEADER: SLIDESHOW  -->
     <SlideshowHeader {page} />
 
@@ -131,7 +131,9 @@
         {/each}
       </div>
     {:else}
-      <div class="pattern-container">
+      <!-- PATTERN -->
+      <!-- style={"height:" + height + "px;"} -->
+      <div class="pattern-container {page._type}">
         <div bind:this={circularOneEl} />
       </div>
     {/if}
@@ -159,6 +161,17 @@
       &.list {
         background: var(--orange);
         padding-bottom: 200px;
+
+        &.fix {
+          position: fixed;
+          top: 0;
+          right: 0;
+
+          @include screen-size("small") {
+            position: unset;
+            height: 500px;
+          }
+        }
       }
 
       &.text {
@@ -185,9 +198,21 @@
     z-index: var(--z-index-content);
     overflow: hidden;
 
+    &.theme {
+      background: var(--orange);
+    }
+
+    &.team {
+      background: var(--blue);
+    }
+
+    &.contact {
+      background: var(--green);
+    }
+
     div {
       position: relative;
-      z-index: var(--z-index-content);
+      top: 50px;
     }
   }
 

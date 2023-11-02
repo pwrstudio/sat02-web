@@ -81,6 +81,7 @@
   p {
     position: relative;
     z-index: var(--z-content);
+    max-width: 700px;
   }
 
   body.ARABIC {
