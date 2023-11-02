@@ -114,7 +114,8 @@
         @include screen-size("small") {
           font-size: var(--font-size-large);
           line-height: 1em;
-          padding-right: var(--default-padding);
+          padding-right: unset;
+          padding-left: unset;
         }
 
         &.ARABIC {
