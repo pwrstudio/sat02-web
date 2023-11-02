@@ -6,7 +6,6 @@
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingComponent from "./ListingComponent.svelte"
-  import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
 

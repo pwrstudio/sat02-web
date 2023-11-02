@@ -16,7 +16,7 @@ export enum POST_TYPE {
 export enum COLOR {
     ORANGE = "#ff6c2f",
     BLUE = "#009eb4",
-    PURPLE = "#ED3A95",
+    PURPLE = "#EA5FAE",
     GREEN = "#7d7547",
     GREY = "#d3d3d3",
     WHITE = "#ffffff",

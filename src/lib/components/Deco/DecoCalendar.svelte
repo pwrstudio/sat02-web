@@ -8,7 +8,7 @@
   let lineTwoEl: HTMLDivElement
   let lineThreeEl: HTMLDivElement
 
-  export let color: COLOR = COLOR.ORANGE
+  export let color: COLOR = COLOR.PURPLE
 
   onMount(() => {
     createVerticalDottedLine(lineOneEl, 6000, 10, 60, color, 2, 2)

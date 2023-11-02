@@ -208,7 +208,7 @@
       }
 
       &.list {
-        background: var(--orange);
+        background: var(--purple);
         padding-bottom: 200px;
       }
 

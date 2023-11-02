@@ -41,11 +41,11 @@
     min-height: 100px;
 
     &.opening {
-      background: var(--orange);
+      background: var(--purple);
     }
 
     &.closing {
-      background: var(--orange);
+      background: var(--purple);
     }
 
     .title {

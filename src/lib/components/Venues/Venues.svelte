@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
+  import { COLOR } from "$lib/modules/types"
   import { onMount } from "svelte"
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
@@ -9,6 +10,8 @@
 
   export let posts: any[] = []
   export let page: any = {}
+
+  const color = COLOR.PURPLE
 
   let showImages = false
   let activeItem = ""
@@ -46,6 +49,7 @@
     <ListingHeader
       {page}
       {posts}
+      {color}
       on:images={e => {
         showImages = e.detail
       }}
@@ -54,7 +58,6 @@
       {#each posts as post, index}
         <ListingItem
           {post}
-          {index}
           {showImages}
           on:hoverstart={e => {
             activeItem = e.detail
@@ -87,7 +90,7 @@
       }
 
       &.list {
-        background: var(--orange);
+        background: var(--purple);
         padding-bottom: 200px;
         @include screen-size("phone") {
           padding-bottom: 60px;

@@ -29,7 +29,7 @@
   let circularOneEl: HTMLDivElement
   let decoEl: HTMLDivElement
 
-  color = page._type === "contact" ? COLOR.BLUE : color
+  color = page._type === "contact" ? COLOR.PURPLE : color
 
   const isFixed = ["theme", "contact", "team"].includes(page._type)
 

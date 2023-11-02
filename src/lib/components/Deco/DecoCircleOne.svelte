@@ -7,6 +7,7 @@
   let circleTwoEl: HTMLDivElement
   let circleThreeEl: HTMLDivElement
   let lineOneEl: HTMLDivElement
+  let decoEl: HTMLDivElement
 
   export let color: COLOR = COLOR.ORANGE
 
@@ -16,9 +17,15 @@
     createDottedCircle(circleThreeEl, 1000, 10, 80, color, 5, 5)
     // createDottedLine(lineOneEl, 2000, 10, 40, color, 5, 5)
   })
+
+  // onMount(() => {
+  //   if (decoEl) {
+  //     new simpleParallax(decoEl)
+  //   }
+  // })
 </script>
 
-<div class="deco" in:fade={{ delay: 1000 }}>
+<div class="deco" in:fade={{ delay: 1000 }} bind:this={decoEl}>
   <div class="circle one" bind:this={circleOneEl} />
   <div class="circle two" bind:this={circleTwoEl} />
   <div class="circle three" bind:this={circleThreeEl} />

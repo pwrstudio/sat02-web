@@ -81,7 +81,7 @@ export const final: Node[] = [
     },
     {
         type: "section",
-        decoColor: COLOR.ORANGE,
+        decoColor: COLOR.PURPLE,
         decoType: DECO_TYPE.LINE_ONE,
         spaced: true,
         children: [
@@ -149,7 +149,7 @@ export const final: Node[] = [
             {
                 type: "dates",
                 // bgColor: COLOR.WHITE
-                bgColor: COLOR.ORANGE
+                bgColor: COLOR.PURPLE
             }
         ]
     },
