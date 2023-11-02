@@ -9,9 +9,9 @@
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import CalendarListingItem from "./CalendarListingItem.svelte"
   import CalendarListingHeader from "./CalendarListingHeader.svelte"
-  import DecoLineTwo from "$lib/components/Deco/DecoLineTwo.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
+  import DecoCalendar from "../Deco/DecoCalendar.svelte"
 
   export let posts: any[] = []
   export let page: any = {}
@@ -116,7 +116,7 @@
 <Metadata {page} />
 
 <div class="deco-container" style={"height:" + height + "px;"}>
-  <DecoLineTwo />
+  <DecoCalendar />
 </div>
 
 <div class="calendar">

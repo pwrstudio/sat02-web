@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { COLOR } from "$lib/modules/types"
   export let black = false
+  export let color: COLOR = COLOR.ORANGE
 </script>
 
-<div class="round-tag" class:black>
+<div class="round-tag" class:black style={"color:" + color + ";"}>
   <div>
     <slot />
   </div>

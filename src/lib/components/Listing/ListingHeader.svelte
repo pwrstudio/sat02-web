@@ -2,11 +2,13 @@
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
   import { ArabicTerms } from "$lib/modules/constants"
+  import { COLOR } from "$lib/modules/types"
   import RoundTag from "../Elements/RoundTag.svelte"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
   export let posts: any[] = []
   export let page: any = {}
+  export let color: COLOR = COLOR.ORANGE
 
   let showImages = false
 
@@ -15,12 +17,12 @@
   }
 </script>
 
-<div class="listing-header">
+<div class="listing-header" style={"background:" + color + ";"}>
   <div class="title">
     <strong>
       {$languageStore == LANGUAGE.ENGLISH ? page.title : page.title_ar}
     </strong>
-    <RoundTag black={true}>{posts.length}</RoundTag>
+    <RoundTag black={true} {color}>{posts.length}</RoundTag>
   </div>
   <div class="image-toggle {LANGUAGE[$languageStore]}">
     <label for="images">
@@ -45,7 +47,6 @@
     display: flex;
     padding: var(--default-padding);
     min-height: 100px;
-    background: var(--orange);
 
     @include screen-size("phone") {
       font-size: var(--font-size-small);

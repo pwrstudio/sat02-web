@@ -10,10 +10,45 @@
   import TitleHeader from "../Elements/TitleHeader.svelte"
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
 
+  import DecoProjects from "$lib/components/Deco/DecoProjects.svelte"
+  import DecoParticipants from "$lib/components/Deco/DecoParticipants.svelte"
+  import DecoFieldNotes from "$lib/components/Deco/DecoFieldNotes.svelte"
+  import DecoDesignStore from "../Deco/DecoDesignStore.svelte"
+
   export let posts: any[] = []
   export let page: any = {}
+  console.log(page)
 
   let height = 0
+  let decoColor = COLOR.ORANGE
+  let color = COLOR.ORANGE
+
+  const setColor = () => {
+    switch (page._id) {
+      case "projects-page":
+        decoColor = COLOR.BLUE
+        color = COLOR.ORANGE
+        break
+      case "participants-page":
+        decoColor = COLOR.ORANGE
+        color = COLOR.BLUE
+        break
+      case "field-notes":
+        decoColor = COLOR.ORANGE
+        color = COLOR.BLUE
+        break
+      case "design-store":
+        decoColor = COLOR.BLUE
+        color = COLOR.BLUE
+        break
+      default:
+        decoColor = COLOR.ORANGE
+        color = COLOR.ORANGE
+        break
+    }
+  }
+
+  setColor()
 
   const handleResize = () => {
     height = document.body.scrollHeight
@@ -29,7 +64,15 @@
 <Metadata {page} />
 
 <div class="deco-container" style={"height:" + height + "px;"}>
-  <!-- <DecoLineTwo color={COLOR.GREY} /> -->
+  {#if page._id === "projects-page"}
+    <DecoProjects color={decoColor} />
+  {:else if page._id === "participants-page"}
+    <DecoParticipants color={decoColor} />
+  {:else if page._id === "field-notes"}
+    <DecoFieldNotes color={decoColor} />
+  {:else if page._id === "design-store"}
+    <DecoDesignStore color={decoColor} />
+  {/if}
 </div>
 
 <div class="list-page">
@@ -49,11 +92,11 @@
   </div>
 
   <!-- LIST -->
-  <div class="column list">
+  <div class="column list" style={"background:" + color + ";"}>
     <!-- HEADER: SLIDESHOW -->
     <SlideshowHeader {page} />
     <!-- LISTING COMPONENT -->
-    <ListingComponent {posts} {page} />
+    <ListingComponent {posts} {page} {color} />
   </div>
 </div>
 
@@ -77,7 +120,6 @@
       }
 
       &.list {
-        background: var(--orange);
         padding-bottom: 200px;
 
         @include screen-size("phone") {

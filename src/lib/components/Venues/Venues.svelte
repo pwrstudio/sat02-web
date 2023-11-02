@@ -4,7 +4,7 @@
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
-  import DecoLineTwo from "../Deco/DecoLineTwo.svelte"
+  import DecoVenues from "../Deco/DecoVenues.svelte"
   import Map from "$lib/components/Map/Map.svelte"
 
   export let posts: any[] = []
@@ -29,7 +29,7 @@
 <Metadata {page} />
 
 <div class="deco-container" style={"height:" + height + "px;"}>
-  <DecoLineTwo />
+  <DecoVenues />
 </div>
 
 <div class="list-page">
