@@ -12,7 +12,7 @@
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingHeader from "../Listing/ListingHeader.svelte"
   import ListingItem from "../Listing/ListingItem.svelte"
-  import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
+  import DecoPress from "$lib/components/Deco/DecoPress.svelte"
   import PressKitForm from "../Elements/PressKitForm.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
@@ -27,6 +27,7 @@
 
   let height = 0
   let circularOneEl: HTMLDivElement
+  let decoEl: HTMLDivElement
 
   color = page._type === "contact" ? COLOR.BLUE : color
 
@@ -64,15 +65,24 @@
       // console.log(simpleParallax)
       // new simpleParallax(circularOneEl)
     }
+
+    // if (decoEl) {
+    //   new simpleParallax(decoEl)
+    // }
   })
 </script>
 
 <Metadata {page} />
 
 <!-- DECO -->
-<div class="deco-container" style={"height:" + height + "px;"}>
+<div
+  class="deco-container"
+  bind:this={decoEl}
+  style={"height:" + height + "px;"}
+>
   {#if page._id === "press"}
-    <DecoPageTwo />
+    <!-- <DecoPageTwo /> -->
+    <DecoPress />
   {/if}
 </div>
 
@@ -132,7 +142,6 @@
       </div>
     {:else}
       <!-- PATTERN -->
-      <!-- style={"height:" + height + "px;"} -->
       <div class="pattern-container {page._type}">
         <div bind:this={circularOneEl} />
       </div>

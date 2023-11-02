@@ -11,9 +11,9 @@
   export let color: COLOR = COLOR.ORANGE
 
   onMount(() => {
-    createVerticalDottedLine(lineOneEl, 2000, 10, 60, color, 2, 2)
-    createVerticalDottedLine(lineTwoEl, 2000, 5, 60, color, 2, 2)
-    createVerticalDottedLine(lineThreeEl, 2000, 5, 60, color, 2, 2)
+    createVerticalDottedLine(lineOneEl, 6000, 10, 60, color, 2, 2)
+    createVerticalDottedLine(lineTwoEl, 6000, 5, 60, color, 2, 2)
+    createVerticalDottedLine(lineThreeEl, 6000, 5, 60, color, 2, 2)
   })
 </script>
 
@@ -44,7 +44,7 @@
 
       &.one {
         position: absolute;
-        left: calc(50% - 10px);
+        left: calc(50% - 15px);
         top: 0;
         @include screen-size("phone") {
           display: none;
@@ -54,13 +54,16 @@
       &.two {
         position: absolute;
         top: 0;
-        left: calc(25% - 10px);
+        left: calc(20% - 10px);
+        @include screen-size("phone") {
+          left: calc(50% - 10px);
+        }
       }
 
       &.three {
         position: absolute;
         top: 0;
-        left: calc(75% - 15px);
+        left: calc(85% - 15px);
       }
     }
 
