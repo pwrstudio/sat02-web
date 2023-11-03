@@ -41,12 +41,12 @@
     &.large {
       width: 700px;
       height: 498px;
-      // min-height: 500px;
       margin-bottom: var(--double-padding);
 
       img {
-        width: auto;
-        height: auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
 

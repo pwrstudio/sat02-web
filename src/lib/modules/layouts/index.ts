@@ -8,7 +8,7 @@ export const top: Node[] = [
         decoType: DECO_TYPE.CIRCLE_ONE,
         children: [
             {
-                type: "event",
+                type: "project",
                 bgColor: COLOR.GREEN,
                 layout: LAYOUT.FULL,
                 alignment: ALIGNMENT.RIGHT
