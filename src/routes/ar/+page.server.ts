@@ -9,7 +9,7 @@ export async function load({ url }) {
     const participant = await loadData("*[_type == 'participant']", {})
     const fieldNote = await loadData("*[_type == 'fieldNote'] {..., participants[]->{...}}", {})
     const event = await loadData("*[_type == 'event'] {..., participants[]->{...}, venues[]->{...}} | order(dateTime asc)", {})
-    const venues = await loadData("*[_type == 'venue']", {})
+    const venues = await loadData("*[_type == 'venue'] | order(displayOrder)", {})
 
     const all = [...participant, ...project, ...event, ...fieldNote]
     const posts = { all, participant, project, event, fieldNote }
