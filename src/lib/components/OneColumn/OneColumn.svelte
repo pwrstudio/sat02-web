@@ -33,8 +33,18 @@
 
   const isFixed = ["theme", "contact", "team"].includes(page._type)
 
-  onMount(async () => {
+  const handleResize = () => {
     height = document.body.scrollHeight
+  }
+
+  $: if ($languageStore) {
+    handleResize()
+  }
+
+  onMount(async () => {
+    handleResize()
+
+    window.addEventListener("resize", handleResize)
 
     const circleGroups: CircleGroup[] = [
       {
@@ -61,9 +71,6 @@
     ]
     if (circularOneEl) {
       createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
-      // let simpleParallax = (await import("simple-parallax-js")).simpleParallax
-      // console.log(simpleParallax)
-      // new simpleParallax(circularOneEl)
     }
 
     // if (decoEl) {
@@ -75,16 +82,15 @@
 <Metadata {page} />
 
 <!-- DECO -->
-<div
-  class="deco-container"
-  bind:this={decoEl}
-  style={"height:" + height + "px;"}
->
-  {#if page._id === "press"}
-    <!-- <DecoPageTwo /> -->
+{#if page._id === "press"}
+  <div
+    class="deco-container"
+    bind:this={decoEl}
+    style={"height:" + height + "px;"}
+  >
     <DecoPress />
-  {/if}
-</div>
+  </div>
+{/if}
 
 <div class="page {page._type}" in:fade={{ duration: 200 }}>
   <!-- LEFT -->
@@ -109,7 +115,7 @@
     {/if}
   </div>
 
-  <div class="column list" class:fix={isFixed}>
+  <div class="column list {LANGUAGE[$languageStore]}" class:fix={isFixed}>
     <!-- HEADER: SLIDESHOW  -->
     <SlideshowHeader {page} />
 
@@ -179,6 +185,13 @@
           @include screen-size("small") {
             position: unset;
             height: 500px;
+          }
+        }
+
+        &.ARABIC {
+          &.fix {
+            right: unset;
+            left: 0;
           }
         }
       }
