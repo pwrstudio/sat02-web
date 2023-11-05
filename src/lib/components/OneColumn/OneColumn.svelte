@@ -16,6 +16,7 @@
   import PressKitForm from "../Elements/PressKitForm.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
+  import { ArabicTerms } from "$lib/modules/constants"
 
   export let page: any
   export let pressReleases: any[] = []
@@ -123,7 +124,7 @@
     {#if page._id === "press"}
       <!-- PRESS RELEASES -->
       <ListingHeader
-        page={{ title: "Press Releases" }}
+        page={{ title: "Press Releases", title_ar: ArabicTerms.PRESS_RELEASES }}
         posts={pressReleases}
         on:images={e => {
           showPressReleaseImages = e.detail
@@ -136,7 +137,7 @@
       </div>
       <!-- PRESS COVERAGE -->
       <ListingHeader
-        page={{ title: "Press Coverage" }}
+        page={{ title: "Press Coverage", title_ar: ArabicTerms.PRESS_COVERAGE }}
         posts={pressCoverage}
         on:images={e => {
           showPressCoverageImages = e.detail

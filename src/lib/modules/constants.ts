@@ -23,9 +23,10 @@ export enum ArabicTerms {
     SHOW_IMAGES = 'عرض الصور',
     REQUEST_PRESS_KIT = 'طلب المعلومات الصحفية',
     FIELD_NOTES_ON_SCARCITY = 'ملاحظات ميدانية: عن الندرة',
-    // !!!
-    PRESS = "press",
+    PRESS = "المواد الاعلامية",
     DESIGN_STORE = "متجر الترينالي للتصميم",
+    PRESS_RELEASES = "البيانات الصحفية",
+    PRESS_COVERAGE = "التغطية الصحفية"
 }
 
 export const MENU_ITEMS = [
