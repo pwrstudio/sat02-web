@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, tick } from "svelte"
   import { LANGUAGE } from "$lib/modules/types"
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
@@ -49,7 +49,8 @@
     slideshowOpen = !slideshowOpen
   }
 
-  const handleResize = () => {
+  const handleResize = async () => {
+    await tick()
     height = document.body.scrollHeight
   }
 

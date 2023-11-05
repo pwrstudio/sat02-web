@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, tick } from "svelte"
   import { formatFullDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
@@ -102,7 +102,8 @@
 
   let height = 0
 
-  const handleResize = () => {
+  const handleResize = async () => {
+    await tick()
     height = document.body.scrollHeight
   }
 

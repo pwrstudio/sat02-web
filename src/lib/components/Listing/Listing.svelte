@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, tick } from "svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, COLOR } from "$lib/modules/types"
@@ -49,7 +49,8 @@
 
   setColor()
 
-  const handleResize = () => {
+  const handleResize = async () => {
+    await tick()
     height = document.body.scrollHeight
   }
 

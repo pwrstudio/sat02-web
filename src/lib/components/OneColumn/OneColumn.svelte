@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, tick } from "svelte"
   import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
   import {
     createNestedCircularPatternWithGroups,
@@ -33,7 +33,8 @@
 
   const isFixed = ["theme", "contact", "team"].includes(page._type)
 
-  const handleResize = () => {
+  const handleResize = async () => {
+    await tick()
     height = document.body.scrollHeight
   }
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
   import { COLOR } from "$lib/modules/types"
-  import { onMount } from "svelte"
+  import { onMount, tick } from "svelte"
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
   import ListingHeader from "$lib/components/Listing/ListingHeader.svelte"
@@ -18,7 +18,8 @@
 
   let height = 0
 
-  const handleResize = () => {
+  const handleResize = async () => {
+    await tick()
     height = document.body.scrollHeight
   }
 
