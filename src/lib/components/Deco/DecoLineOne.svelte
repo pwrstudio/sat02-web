@@ -6,23 +6,25 @@
     createDottedCircle,
     createDottedLine,
     createVerticalDottedLine,
+    revealGroups,
   } from "$lib/modules/graphics"
   let circleOneEl: HTMLDivElement
-  let circleTwoEl: HTMLDivElement
-  let circleThreeEl: HTMLDivElement
   let lineOneEl: HTMLDivElement
   let lineTwoEl: HTMLDivElement
+
+  let svgElements: SVGSVGElement[] = []
 
   export let color: COLOR = COLOR.ORANGE
 
   onMount(() => {
-    // createDottedCircle(circleOneEl, 2000, 10, 80, color, 5, 5)
-    // createDottedCircle(circleTwoEl, 2000, 20, 80, color, 5, 5)
-    // createDottedCircle(circleThreeEl, 1000, 10, 80, color, 5, 5)
-    createDottedLine(lineOneEl, 2000, 5, 40, color, 5, 5)
-    createVerticalDottedLine(lineTwoEl, 6000, 5, 40, color, 5, 5)
-    createDottedCircle(circleOneEl, 2600, 10, 80, color, 5, 5)
-    // createDottedLine(lineTwoEl, 2000, 5, 40, color, 5, 5)
+    svgElements = [
+      createDottedLine(lineOneEl, 2000, 5, 40, color, 5, 5),
+      createVerticalDottedLine(lineTwoEl, 6000, 5, 40, color, 5, 5),
+      createDottedCircle(circleOneEl, 2600, 10, 80, color, 5, 5),
+    ]
+    for (let i = 0; i < svgElements.length; i++) {
+      revealGroups(svgElements[i], 2000)
+    }
   })
 </script>
 

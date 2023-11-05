@@ -2,28 +2,28 @@
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
   import { COLOR } from "$lib/modules/types"
-  import {
-    createDottedCircle,
-    createVerticalDottedLine,
-  } from "$lib/modules/graphics"
+  import { createDottedCircle, revealGroups } from "$lib/modules/graphics"
   let circleOneEl: HTMLDivElement
   let circleTwoEl: HTMLDivElement
-  let lineOneEl: HTMLDivElement
+
+  let svgElements: SVGSVGElement[] = []
 
   export let color: COLOR = COLOR.ORANGE
 
   onMount(() => {
-    createDottedCircle(circleOneEl, 2200, 10, 80, color, 5, 5)
-    createDottedCircle(circleTwoEl, 3000, 20, 80, color, 5, 5)
-    // createVerticalDottedLine(lineOneEl, 2000, 10, 60, color, 2, 2)
+    svgElements = [
+      createDottedCircle(circleOneEl, 2000, 10, 80, color, 5, 5),
+      createDottedCircle(circleTwoEl, 2000, 20, 80, color, 5, 5),
+    ]
+    for (let i = 0; i < svgElements.length; i++) {
+      revealGroups(svgElements[i], 2000)
+    }
   })
 </script>
 
 <div class="deco" in:fade={{ delay: 1000 }}>
   <div class="circle one" bind:this={circleOneEl} />
   <div class="circle two" bind:this={circleTwoEl} />
-  <!-- <div class="line one" bind:this={lineOneEl} /> -->
-  <!-- <div class="circle three" bind:this={circleThreeEl} /> -->
 </div>
 
 <style lang="scss">

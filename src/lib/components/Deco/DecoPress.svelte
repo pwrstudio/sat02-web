@@ -2,18 +2,25 @@
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
   import { COLOR } from "$lib/modules/types"
-  import { createVerticalDottedLine } from "$lib/modules/graphics"
+  import { createVerticalDottedLine, revealGroups } from "$lib/modules/graphics"
 
   let lineOneEl: HTMLDivElement
   let lineTwoEl: HTMLDivElement
   let lineThreeEl: HTMLDivElement
 
+  let svgElements: SVGSVGElement[] = []
+
   export let color: COLOR = COLOR.ORANGE
 
   onMount(() => {
-    createVerticalDottedLine(lineOneEl, 6000, 10, 60, color, 2, 2)
-    createVerticalDottedLine(lineTwoEl, 6000, 5, 60, color, 2, 2)
-    createVerticalDottedLine(lineThreeEl, 6000, 5, 60, color, 2, 2)
+    svgElements = [
+      createVerticalDottedLine(lineOneEl, 6000, 10, 60, color, 2, 2),
+      createVerticalDottedLine(lineTwoEl, 6000, 5, 60, color, 2, 2),
+      createVerticalDottedLine(lineThreeEl, 6000, 5, 60, color, 2, 2),
+    ]
+    for (let i = 0; i < svgElements.length; i++) {
+      revealGroups(svgElements[i], 2000)
+    }
   })
 </script>
 

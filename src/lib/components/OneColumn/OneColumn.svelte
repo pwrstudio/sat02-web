@@ -3,7 +3,7 @@
   import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
   import {
     createNestedCircularPatternWithGroups,
-    createAnimatedNestedCircularPatternWithDots,
+    revealGroupsWithEasing,
   } from "$lib/modules/graphics"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
@@ -29,6 +29,7 @@
   let height = 0
   let circularOneEl: HTMLDivElement
   let decoEl: HTMLDivElement
+  let svgEl: SVGSVGElement
 
   color = page._type === "contact" ? COLOR.PURPLE : color
 
@@ -72,12 +73,14 @@
       },
     ]
     if (circularOneEl) {
-      createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
+      svgEl = createNestedCircularPatternWithGroups(
+        circularOneEl,
+        circleGroups,
+        color
+      )
+      await new Promise(r => setTimeout(r, 1000))
+      revealGroupsWithEasing(svgEl, 1000)
     }
-
-    // if (decoEl) {
-    //   new simpleParallax(decoEl)
-    // }
   })
 </script>
 

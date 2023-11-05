@@ -1,13 +1,18 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import { COLOR, type CircleGroup } from "$lib/modules/types"
-  import { createNestedCircularPatternWithGroups } from "$lib/modules/graphics"
+  import {
+    createNestedCircularPatternWithGroups,
+    revealGroupsWithEasing,
+  } from "$lib/modules/graphics"
   let circularOneEl: HTMLDivElement
   export let node: Node
 
   export let color: COLOR = COLOR.BLUE
 
-  onMount(() => {
+  let svgEl: SVGSVGElement
+
+  onMount(async () => {
     const circleGroups: CircleGroup[] = [
       {
         circleCount: 2,
@@ -31,7 +36,13 @@
         horizontalShiftRange: 1,
       },
     ]
-    createNestedCircularPatternWithGroups(circularOneEl, circleGroups, color)
+    svgEl = createNestedCircularPatternWithGroups(
+      circularOneEl,
+      circleGroups,
+      color
+    )
+    await new Promise(r => setTimeout(r, 1000))
+    revealGroupsWithEasing(svgEl, 1000)
   })
 </script>
 

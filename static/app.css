@@ -7,7 +7,6 @@
     --grey: rgba(211, 211, 211, 1);
     --green: rgba(125, 117, 71, 1);
 
-
     /* Highlight colors */
     --orange: rgba(255, 108, 47, 1);
     --blue: rgb(0, 158, 180);
@@ -119,3 +118,27 @@
     position: relative;
     z-index: var(--z-content);
    }
+
+   g {
+    opacity: 0;
+    transition: opacity 0.2s ease-out, transform 0.5s ease-out; /* Quick fade-in transition */
+    transform-origin: 50% 50%;
+   }
+
+   g.spin:nth-child(odd) {
+    transform: rotate(5deg);
+   }
+
+   g.spin:nth-child(even) {
+    transform: rotate(-5deg);
+   }
+
+   g.shown{
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+g.spin.shown{
+  opacity: 1;
+  transform: rotate(0deg);
+}

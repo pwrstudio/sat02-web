@@ -1,35 +1,31 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import { fade } from "svelte/transition"
   import { COLOR } from "$lib/modules/types"
-  import { createDottedCircle, createDottedLine } from "$lib/modules/graphics"
+  import { createDottedCircle, revealGroups } from "$lib/modules/graphics"
   let circleOneEl: HTMLDivElement
   let circleTwoEl: HTMLDivElement
   let circleThreeEl: HTMLDivElement
-  let lineOneEl: HTMLDivElement
-  let decoEl: HTMLDivElement
+
+  let svgElements: SVGSVGElement[] = []
 
   export let color: COLOR = COLOR.ORANGE
 
-  onMount(() => {
-    createDottedCircle(circleOneEl, 2000, 10, 80, color, 5, 5)
-    createDottedCircle(circleTwoEl, 2000, 20, 80, color, 5, 5)
-    createDottedCircle(circleThreeEl, 1000, 10, 80, color, 5, 5)
-    // createDottedLine(lineOneEl, 2000, 10, 40, color, 5, 5)
+  onMount(async () => {
+    svgElements = [
+      createDottedCircle(circleOneEl, 2000, 7, 80, color, 5, 5),
+      createDottedCircle(circleTwoEl, 2000, 20, 80, color, 5, 5),
+      createDottedCircle(circleThreeEl, 1000, 10, 60, color, 5, 5),
+    ]
+    for (let i = 0; i < svgElements.length; i++) {
+      revealGroups(svgElements[i], 2000)
+    }
   })
-
-  // onMount(() => {
-  //   if (decoEl) {
-  //     new simpleParallax(decoEl)
-  //   }
-  // })
 </script>
 
-<div class="deco" in:fade={{ delay: 1000 }} bind:this={decoEl}>
+<div class="deco">
   <div class="circle one" bind:this={circleOneEl} />
   <div class="circle two" bind:this={circleTwoEl} />
   <div class="circle three" bind:this={circleThreeEl} />
-  <!-- <div class="line one" bind:this={lineOneEl} /> -->
 </div>
 
 <style lang="scss">
@@ -46,25 +42,6 @@
     // background: rgba(255, 0, 0, 0.3);
     width: 100%;
     height: 100%;
-
-    .line {
-      &.one {
-        position: absolute;
-        bottom: -26px;
-        // left: 50px;
-        // top: 100px;
-      }
-
-      &.two {
-        position: relative;
-        top: 200px;
-      }
-
-      &.three {
-        position: relative;
-        top: 200px;
-      }
-    }
   }
 
   .circle {
@@ -85,8 +62,9 @@
 
     &.three {
       position: absolute;
-      top: 0px;
-      left: 0px;
+      top: 100px;
+      left: -500px;
+      transform: rotate(-135deg);
       // background: red;
     }
   }
