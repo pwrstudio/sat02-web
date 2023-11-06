@@ -35,7 +35,9 @@
       if (post.targetType === "link") {
         return post.link
       } else if (post.targetType === "pdf") {
-        return post.pdf_url
+        return $languageStore == LANGUAGE.ARABIC
+          ? post.pdf_ar_url
+          : post.pdf_url
       } else {
         return ""
       }
@@ -44,6 +46,8 @@
     }
   }
 
+  $: pdfUrl = $languageStore == LANGUAGE.ARABIC ? post.pdf_ar_url : post.pdf_url
+
   const isPress = post._type == "pressCoverage" || post._type == "pressRelease"
 </script>
 
@@ -51,7 +55,7 @@
   class="listing-item {post._type}"
   class:images={showImages && post.featuredImage && post.featuredImage.asset}
   class:active={activeItem === post._id}
-  href={(isPress ? "" : $urlPrefix) + getUrl()}
+  href={isPress ? pdfUrl : $urlPrefix + getUrl()}
   target={isPress ? "_blank" : "_self"}
   data-sveltekit-preload-data
   on:mouseenter={() => {
