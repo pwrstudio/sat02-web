@@ -2,11 +2,13 @@
   import { onMount } from "svelte"
   import { COLOR } from "$lib/modules/types"
   import { createDottedCircle, revealGroups } from "$lib/modules/graphics"
+
   let circleOneEl: HTMLDivElement
   let circleTwoEl: HTMLDivElement
   let circleThreeEl: HTMLDivElement
 
   let svgElements: SVGSVGElement[] = []
+  let decoEl: HTMLDivElement
 
   export let color: COLOR = COLOR.ORANGE
 
@@ -19,10 +21,16 @@
     for (let i = 0; i < svgElements.length; i++) {
       revealGroups(svgElements[i], 2000)
     }
+    new simpleParallax(decoEl, {
+      delay: 0,
+      orientation: "up",
+      scale: 1.2,
+      overflow: true,
+    })
   })
 </script>
 
-<div class="deco">
+<div class="deco" bind:this={decoEl}>
   <div class="circle one" bind:this={circleOneEl} />
   <div class="circle two" bind:this={circleTwoEl} />
   <div class="circle three" bind:this={circleThreeEl} />

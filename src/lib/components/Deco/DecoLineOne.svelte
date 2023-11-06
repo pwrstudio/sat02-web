@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import { fade } from "svelte/transition"
   import { COLOR } from "$lib/modules/types"
   import {
     createDottedCircle,
@@ -13,6 +12,7 @@
   let lineTwoEl: HTMLDivElement
 
   let svgElements: SVGSVGElement[] = []
+  let decoEl: HTMLDivElement
 
   export let color: COLOR = COLOR.ORANGE
 
@@ -25,10 +25,16 @@
     for (let i = 0; i < svgElements.length; i++) {
       revealGroups(svgElements[i], 2000)
     }
+    new simpleParallax(decoEl, {
+      delay: 0,
+      orientation: "up",
+      scale: 1.2,
+      overflow: true,
+    })
   })
 </script>
 
-<div class="deco" in:fade={{ delay: 1000 }}>
+<div class="deco" bind:this={decoEl}>
   <div class="line one" bind:this={lineOneEl} />
   <div class="line two" bind:this={lineTwoEl} />
   <div class="circle one" bind:this={circleOneEl} />
@@ -52,7 +58,7 @@
     .line {
       &.one {
         position: absolute;
-        top: 3%;
+        top: 0px;
         // left: 50px;
         // top: 100px;
       }

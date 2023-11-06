@@ -55,6 +55,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.5.2
     version: 3.5.2(sass@1.69.5)(svelte@4.2.2)
+  svelte-intersection-observer:
+    specifier: ^0.10.1
+    version: 0.10.1
   tslib:
     specifier: ^2.6.2
     version: 2.6.2
@@ -1411,6 +1414,10 @@ packages:
       svelte: ^3.19.0 || ^4.0.0
     dependencies:
       svelte: 4.2.2
+    dev: true
+
+  /svelte-intersection-observer@0.10.1:
+    resolution: {integrity: sha512-hvWZwd0S8t0osA0ChJ4uJDsLvZlULyE3roDEc8mWyeiLT9y25NKT/CKfncsDyS7EGq3B9zb4ZxsH2uNaaXWP4A==}
     dev: true
 
   /svelte-preprocess@5.0.4(sass@1.69.5)(svelte@4.2.2)(typescript@5.2.2):

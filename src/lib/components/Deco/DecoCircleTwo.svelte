@@ -6,6 +6,7 @@
   let circleTwoEl: HTMLDivElement
 
   let svgElements: SVGSVGElement[] = []
+  let decoEl: HTMLDivElement
 
   export let color: COLOR = COLOR.ORANGE
 
@@ -17,10 +18,16 @@
     for (let i = 0; i < svgElements.length; i++) {
       revealGroups(svgElements[i], 2000)
     }
+    new simpleParallax(decoEl, {
+      delay: 0,
+      orientation: "up",
+      scale: 1.2,
+      overflow: true,
+    })
   })
 </script>
 
-<div class="deco">
+<div class="deco" bind:this={decoEl}>
   <div class="circle one" bind:this={circleOneEl} />
   <div class="circle two" bind:this={circleTwoEl} />
 </div>
@@ -36,9 +43,9 @@
     z-index: var(--z-deco);
     pointer-events: none;
     overflow: hidden;
-    // background: rgba(255, 0, 0, 0.3);
     width: 100%;
     height: 100%;
+    height: 200%;
 
     .circle {
       width: 100%;
@@ -47,7 +54,7 @@
       &.one {
         position: absolute;
         left: -900px;
-        top: 100px;
+        top: 0px;
       }
 
       &.two {

@@ -422,19 +422,48 @@ function linear(x: number): number {
  */
 export function revealGroupsWithEasing(svgElement: SVGSVGElement, totalDuration: number = 2000) {
     // Get all the group (`<g>`) elements in the SVG
-    const groups = svgElement.querySelectorAll('g');
+    const groups = Array.from(svgElement.querySelectorAll('g'));
+    const startTime = performance.now();
 
-    groups.forEach((group, index) => {
-        // Calculate delay for each group based on its index and the easing function
-        const normalizedIndex = index / (groups.length - 1); // Normalize index to the range [0, 1]
-        const delay = easeOutQuad(normalizedIndex) * totalDuration;
+    function reveal(timestamp: number) {
+        const elapsedTime = timestamp - startTime;
+        const progress = elapsedTime / totalDuration;
 
-        // Set a timeout to change the opacity, based on the eased delay
-        setTimeout(() => {
-            group.classList.add('shown');
-        }, delay);
-    });
+        groups.forEach((group, index) => {
+            const normalizedIndex = index / (groups.length - 1); // Normalize index to the range [0, 1]
+            const delay = easeOutQuad(normalizedIndex);
+
+            // Calculate the progress for each group
+            if (progress >= delay && !group.classList.contains('shown')) {
+                group.classList.add('shown');
+            }
+        });
+
+        // Continue the animation until the total duration has been reached
+        if (elapsedTime < totalDuration) {
+            requestAnimationFrame(reveal);
+        }
+    }
+
+    // Start the animation
+    requestAnimationFrame(reveal);
 }
+// export function revealGroupsWithEasing(svgElement: SVGSVGElement, totalDuration: number = 2000) {
+//     // Get all the group (`<g>`) elements in the SVG
+//     const groups = svgElement.querySelectorAll('g');
+
+//     groups.forEach((group, index) => {
+//         // Calculate delay for each group based on its index and the easing function
+//         const normalizedIndex = index / (groups.length - 1); // Normalize index to the range [0, 1]
+//         const delay = easeOutQuad(normalizedIndex) * totalDuration;
+
+//         // Set a timeout to change the opacity, based on the eased delay
+//         setTimeout(() => {
+//             group.classList.add('shown');
+//         }, delay);
+//     });
+// }
+
 /**
 * Gradually reveals each SVG group by fading in with a delay modified by an easing function.
 * @param {SVGSVGElement} svgElement - The SVG element containing the groups.

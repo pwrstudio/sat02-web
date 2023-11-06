@@ -5,6 +5,7 @@
     createNestedCircularPatternWithGroups,
     revealGroupsWithEasing,
   } from "$lib/modules/graphics"
+
   let circularOneEl: HTMLDivElement
   export let node: Node
 
@@ -41,7 +42,7 @@
       circleGroups,
       color
     )
-    await new Promise(r => setTimeout(r, 1000))
+    await new Promise(resolve => setTimeout(resolve, 1000))
     revealGroupsWithEasing(svgEl, 1000)
   })
 </script>
