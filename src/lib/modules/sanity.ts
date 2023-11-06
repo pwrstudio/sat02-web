@@ -20,6 +20,19 @@ export const client = createClient({
 
 const h = blocksToHtml.h
 
+function transformFileString(fileString: string): string {
+    // Remove the "file-" prefix
+    let trimmedString = fileString.replace('file-', '');
+
+    // Replace the last hyphen with a dot
+    let lastIndex = trimmedString.lastIndexOf('-');
+    if (lastIndex !== -1) {
+        trimmedString = trimmedString.substring(0, lastIndex) + '.' + trimmedString.substring(lastIndex + 1);
+    }
+
+    return trimmedString;
+}
+
 export const renderBlockText = text =>
     blocksToHtml({
         blocks: text,
@@ -49,6 +62,16 @@ const serializers = {
                 linkOptions,
                 props.children
             )
+        },
+        pdf: props => {
+            // Accessing the full URL directly from the mark
+            const BASE_URL = "https://cdn.sanity.io/files/q6keo3xr/production/"
+            const fileUrl = BASE_URL + transformFileString(get(props, 'mark.file.asset._ref', ''))
+            return h(
+                "a",
+                { href: fileUrl, target: "_blank", rel: "noopener noreferrer" },
+                props.children
+            );
         },
     },
     types: {
