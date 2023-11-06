@@ -71,6 +71,13 @@
         verticalShiftRange: 1,
         horizontalShiftRange: 1,
       },
+      {
+        circleCount: 10,
+        dotRadius: 10,
+        baseDistance: 40,
+        verticalShiftRange: 1,
+        horizontalShiftRange: 1,
+      },
     ]
     if (circularOneEl) {
       svgEl = createNestedCircularPatternWithGroups(
