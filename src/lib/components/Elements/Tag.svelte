@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { COLOR } from "$lib/modules/types"
+  import { languageStore } from "$lib/modules/stores"
+  import { COLOR, LANGUAGE } from "$lib/modules/types"
   export let color: COLOR = COLOR.WHITE
 </script>
 
-<div class="tag" class:black={color === COLOR.BLACK}>
+<div class="tag {LANGUAGE[$languageStore]}" class:black={color === COLOR.BLACK}>
   <slot />
 </div>
 
@@ -21,6 +22,10 @@
     text-transform: capitalize;
     color: var(--white);
     border: 1px solid var(--white-transparent);
+
+    &.ARABIC {
+      font-family: var(--font-family-arabic);
+    }
 
     &.black {
       color: var(--black);
