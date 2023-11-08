@@ -76,7 +76,7 @@
       </button>
     </div>
 
-    <div class="column-container">
+    <div class="column-container {LANGUAGE[$languageStore]}">
       <!-- FIRST COLUMN -->
       <div class="column first" in:fade={{ duration: 400, delay: 100 }}>
         {#each splitArrayIntoTwoParts(MENU_ITEMS)[0] as item}
@@ -160,6 +160,10 @@
         display: flex;
         width: 100%;
         position: relative;
+
+        &.ARABIC {
+          flex-direction: row-reverse;
+        }
 
         @include screen-size("small") {
           flex-direction: column;

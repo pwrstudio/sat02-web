@@ -5,7 +5,7 @@ export enum ArabicTerms {
     PARTICIPANT_S = 'المشاركين',
     FIELD_NOTE_S = 'ملاحظات',
     CALENDAR = 'التقويم',
-    ABOUT = 'عن الترينالي',
+    ABOUT = 'بيان القيّمة',
     VENUE_S = 'المواقع',
     TEAM = 'الفريق',
     CONTACT = 'معلومات التواصل',
