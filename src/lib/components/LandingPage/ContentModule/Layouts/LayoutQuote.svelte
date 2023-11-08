@@ -13,8 +13,8 @@
     </blockquote>
     <div class="quote-title">
       {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+      {#if $languageStore == LANGUAGE.ARABIC}←{/if}
       <Title page={node.post} />
-      {#if $languageStore == LANGUAGE.ARABIC}→{/if}
     </div>
   </a>
 </div>

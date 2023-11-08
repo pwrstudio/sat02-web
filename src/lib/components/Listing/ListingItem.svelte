@@ -84,8 +84,8 @@
   <!-- TITLE -->
   <div class="title">
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+    {#if $languageStore == LANGUAGE.ARABIC}←{/if}
     {$languageStore == LANGUAGE.ENGLISH ? post.title : post.title_ar}
-    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
   </div>
 
   <!-- PARTICIPANTS -->

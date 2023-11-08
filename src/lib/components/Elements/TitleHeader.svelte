@@ -13,8 +13,8 @@
   <!-- TITLE -->
   <h1>
     {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+    {#if $languageStore == LANGUAGE.ARABIC}←{/if}
     <Title {page} />
-    {#if $languageStore == LANGUAGE.ARABIC}→{/if}
   </h1>
 </div>
 

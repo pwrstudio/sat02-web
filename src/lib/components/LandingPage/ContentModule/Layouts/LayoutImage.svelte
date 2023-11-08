@@ -19,8 +19,8 @@
   <a {href} data-sveltekit-preload-data>
     <h2>
       {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+      {#if $languageStore == LANGUAGE.ARABIC}←{/if}
       <Title page={node.post} />
-      {#if $languageStore == LANGUAGE.ARABIC}→{/if}
     </h2>
     <!-- PARTICIPANTS -->
     {#if node.type == "project" || node.type == "event"}

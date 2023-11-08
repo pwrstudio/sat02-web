@@ -57,11 +57,10 @@
   <div class="top-bar">
     <div class="title">
       {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
+      {#if $languageStore == LANGUAGE.ARABIC}←{/if}
       <strong>
         {$languageStore == LANGUAGE.ENGLISH ? page.title : page.title_ar}
       </strong>
-      {#if $languageStore == LANGUAGE.ARABIC}→{/if}&nbsp;
-      <!-- <ParticipantList participants={page.participants} /> -->
     </div>
     <button class="close" on:click={sendClose}>
       <span class="icon">&#xE000;</span>
