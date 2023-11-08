@@ -143,48 +143,6 @@ export function formatFullDateTime(dateTime: string, showTime: boolean = true): 
     });
 
     // Get day of the month with ordinal suffix (e.g., 8th)
-    const dayOfMonth = numericDayOfMonth + getOrdinalSuffix(Number(numericDayOfMonth));
-
-    // Get month (e.g., Nov)
-    const month = myDate.toLocaleString('en-US', {
-        month: 'short',
-        timeZone: 'Asia/Dubai'
-    });
-
-    // Convert time to HH:mm format in Sharjah, UAE timezone
-    const formattedTime = myDate.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: false,
-        timeZone: 'Asia/Dubai'
-    });
-
-    if (showTime) {
-        // Return formatted string
-        return `${dayOfWeek} ${dayOfMonth} ${month}. ${formattedTime}`;
-    } else {
-        // Return formatted string
-        return `${dayOfWeek} ${dayOfMonth} ${month}`;
-    }
-}
-
-export function formatCalendarFullDateTime(dateTime: string, showTime: boolean = true): string {
-    // Create a new date object for Sharjah, UAE timezone (UTC+4)
-    const myDate = new Date(dateTime);
-
-    // Get day of the week (e.g., Thursday)
-    const dayOfWeek = myDate.toLocaleString('en-US', {
-        weekday: 'long',
-        timeZone: 'Asia/Dubai'
-    });
-
-    // Get numeric day of the month
-    const numericDayOfMonth = myDate.toLocaleString('en-US', {
-        day: 'numeric',
-        timeZone: 'Asia/Dubai'
-    });
-
-    // Get day of the month with ordinal suffix (e.g., 8th)
     const dayOfMonth = numericDayOfMonth;
 
     // Get month (e.g., Nov)

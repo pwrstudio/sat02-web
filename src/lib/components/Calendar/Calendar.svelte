@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
-  import { formatCalendarFullDateTime } from "$lib/modules/date"
+  import { formatFullDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
@@ -155,7 +155,7 @@
       {#each organizedEvents.openingEvents as openingEvent}
         <div class="date-header">
           <div class="inner">
-            {formatCalendarFullDateTime(openingEvent.date, false)}
+            {formatFullDateTime(openingEvent.date, false)}
           </div>
         </div>
         {#each openingEvent.events as post, index (index)}
@@ -179,7 +179,7 @@
         {#each organizedEvents.closingEvents as closingEvent}
           <div class="date-header">
             <div class="inner">
-              {formatCalendarFullDateTime(closingEvent.date, false)}
+              {formatFullDateTime(closingEvent.date, false)}
             </div>
           </div>
           {#each closingEvent.events as post, index (index)}
