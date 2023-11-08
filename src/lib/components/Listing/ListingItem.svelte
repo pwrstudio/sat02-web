@@ -48,14 +48,18 @@
 
   $: pdfUrl = $languageStore == LANGUAGE.ARABIC ? post.pdf_ar_url : post.pdf_url
 
-  const isPress = post._type == "pressCoverage" || post._type == "pressRelease"
+  const isPressRelease = post._type == "pressRelease"
+  const isPressCoverage = post._type == "pressCoverage"
+  const isPress = isPressRelease || isPressCoverage
 </script>
 
 <a
   class="listing-item {post._type}"
   class:images={showImages && post.featuredImage && post.featuredImage.asset}
   class:active={activeItem === post._id}
-  href={isPress ? pdfUrl : $urlPrefix + getUrl()}
+  href={isPressRelease
+    ? pdfUrl
+    : (isPressCoverage ? "" : $urlPrefix) + getUrl()}
   target={isPress ? "_blank" : "_self"}
   data-sveltekit-preload-data
   on:mouseenter={() => {
