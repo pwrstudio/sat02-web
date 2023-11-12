@@ -161,10 +161,6 @@
         width: 100%;
         position: relative;
 
-        &.ARABIC {
-          flex-direction: row-reverse;
-        }
-
         @include screen-size("small") {
           flex-direction: column;
           font-size: var(--font-size-phone-menu);
@@ -174,7 +170,7 @@
         &.ARABIC {
           flex-direction: row-reverse;
           @include screen-size("small") {
-            flex-direction: column-reverse;
+            flex-direction: column;
           }
         }
 
@@ -228,7 +224,6 @@
 
     button {
       display: block;
-      margin-right: var(--default-padding);
       border: 0;
       padding: 0;
       background: transparent;
