@@ -61,7 +61,7 @@ export const MENU_ITEMS = [
         link: "design-store",
     },
     {
-        title: "Venues",
+        title: "Venues and Timings",
         ar: ArabicTerms.VENUE_S,
         link: "venues",
     },
