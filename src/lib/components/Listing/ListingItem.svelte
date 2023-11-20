@@ -103,6 +103,13 @@
       <div>{post.publication}</div>
     </div>
   {/if}
+
+  <!-- OPENING HOURS -->
+  {#if post.openingHours}
+    <div class="opening-hours">
+      <div>{post.openingHours}</div>
+    </div>
+  {/if}
 </a>
 
 <style lang="scss">
@@ -148,15 +155,6 @@
       z-index: var(--z-content);
       position: relative;
     }
-
-    // .venues {
-    //   display: block;
-    //   width: 20%;
-    //   padding-right: 30px;
-    //   z-index: var(--z-content);
-    //   position: relative;
-    //   font-size: var(--font-size-small);
-    // }
 
     &.images {
       .image {
