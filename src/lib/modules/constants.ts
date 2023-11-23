@@ -6,7 +6,7 @@ export enum ArabicTerms {
     FIELD_NOTE_S = 'ملاحظات',
     CALENDAR = 'التقويم',
     ABOUT = 'بيان القيّمة',
-    VENUE_S = 'المواقع',
+    VENUE_S = 'المواقع وساعات العمل',
     TEAM = 'الفريق',
     CONTACT = 'معلومات التواصل',
     EVENT = 'الفعالية',
