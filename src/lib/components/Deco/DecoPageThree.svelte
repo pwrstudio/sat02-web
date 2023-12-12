@@ -41,7 +41,7 @@
 
   .deco {
     position: absolute;
-    top: 0;
+    top: -10px;
     left: 0;
     width: 100%;
     z-index: var(--z-deco);
