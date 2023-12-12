@@ -107,13 +107,19 @@
   <!-- OPENING HOURS -->
   {#if post.openingHours}
     <div class="opening-hours">
-      <div>{post.openingHours}</div>
+      <pre>{post.openingHours}</pre>
     </div>
   {/if}
 </a>
 
 <style lang="scss">
   @import "../../styles/responsive.scss";
+
+  :global(.opening-hours pre) {
+    display: block;
+    font-size: var(--font-size-normal);
+    font-family: var(--font-family);
+  }
 
   .listing-item {
     display: flex;
