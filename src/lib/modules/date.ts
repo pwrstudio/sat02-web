@@ -120,13 +120,15 @@ export function formatCalendarDateTime(dateTime: string, language: string = 'en'
  * Formats a given datetime string into the format "Thursday 8th Nov. 19:00" for Sharjah, UAE time.
  *
  * @param {string} dateTime - An ISO datetime string to format.
+ * @param {boolean} showTime - Whether to include the time in the output.
+ * @param {boolean} showYear - Whether to include the year in the output.
  * @returns {string} The formatted datetime string.
  *
  * @example
  * formatFullDateTime("2023-11-08T19:00:00.000Z");
  * // returns "Thursday 8th Nov. 23:00" for Sharjah, UAE time (given that it is UTC+4)
  */
-export function formatFullDateTime(dateTime: string, showTime: boolean = true): string {
+export function formatFullDateTime(dateTime: string, showTime: boolean = true, showYear: boolean = false): string {
     // Create a new date object for Sharjah, UAE timezone (UTC+4)
     const myDate = new Date(dateTime);
 
@@ -142,31 +144,27 @@ export function formatFullDateTime(dateTime: string, showTime: boolean = true): 
         timeZone: 'Asia/Dubai'
     });
 
-    // Get day of the month with ordinal suffix (e.g., 8th)
-    const dayOfMonth = numericDayOfMonth;
-
     // Get month (e.g., Nov)
     const month = myDate.toLocaleString('en-US', {
         month: 'long',
         timeZone: 'Asia/Dubai'
     });
 
+    // Get year (e.g., 2023)
+    const year = showYear ? `, ${myDate.getFullYear()}` : '';
+
     // Convert time to HH:mm format in Sharjah, UAE timezone
-    const formattedTime = myDate.toLocaleTimeString('en-US', {
+    const formattedTime = showTime ? ` ${myDate.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: 'numeric',
         hour12: false,
         timeZone: 'Asia/Dubai'
-    });
+    })}` : '';
 
-    if (showTime) {
-        // Return formatted string
-        return `${dayOfWeek} ${month} ${dayOfMonth}. ${formattedTime}`;
-    } else {
-        // Return formatted string
-        return `${dayOfWeek}  ${month} ${dayOfMonth}`;
-    }
+    // Return formatted string with or without year
+    return `${dayOfWeek} ${numericDayOfMonth} ${month}${year}${formattedTime}`;
 }
+
 
 /**
  * Returns the ordinal suffix for a given number.

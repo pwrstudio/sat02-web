@@ -49,16 +49,19 @@
     for (const event of events) {
       const date = event.dateTime.split("T")[0]
       if (!eventsByDateAndPeriod[date]) {
-        eventsByDateAndPeriod[date] = {
-          openingEvent: [],
-          closingEvent: [],
-        }
+        eventsByDateAndPeriod[date] = { openingEvent: [], closingEvent: [] }
       }
       eventsByDateAndPeriod[date][event.period].push(event)
     }
 
-    // Sort events by date in ascending order
-    const sortedDates = Object.keys(eventsByDateAndPeriod).sort()
+    // Sort events by date in descending order
+    const sortedDates = Object.keys(eventsByDateAndPeriod).sort((a, b) => {
+      const dateA = new Date(a)
+      const dateB = new Date(b)
+      return dateB.getTime() - dateA.getTime()
+    })
+
+    console.log("sortedDates", sortedDates)
 
     // Initialize the object to store the organized events
     const organizedEvents: EventsByPeriod = {
@@ -66,32 +69,26 @@
       closingEvents: [],
     }
 
-    // Iterate through the dates and include them in the result in ascending order
+    // Iterate through the sorted dates
     for (const date of sortedDates) {
-      // Sort opening events by ascending time
+      // Sort opening events by ascending time within each date
       const openingEvents = eventsByDateAndPeriod[date].openingEvent.sort(
-        (a, b) => a.dateTime.localeCompare(b.dateTime)
+        (a, b) => a.dateTime.localeCompare(b.dateTime),
       )
 
-      // Sort closing events by ascending time
+      // Sort closing events by ascending time within each date
       const closingEvents = eventsByDateAndPeriod[date].closingEvent.sort(
-        (a, b) => a.dateTime.localeCompare(b.dateTime)
+        (a, b) => a.dateTime.localeCompare(b.dateTime),
       )
 
-      // Include the date and events if there are any opening events
+      // Add opening events for this date if any
       if (openingEvents.length > 0) {
-        organizedEvents.openingEvents.push({
-          date,
-          events: openingEvents,
-        })
+        organizedEvents.openingEvents.push({ date, events: openingEvents })
       }
 
-      // Include the date and events if there are any closing events
+      // Add closing events for this date if any
       if (closingEvents.length > 0) {
-        organizedEvents.closingEvents.push({
-          date,
-          events: closingEvents,
-        })
+        organizedEvents.closingEvents.push({ date, events: closingEvents })
       }
     }
 
@@ -99,6 +96,8 @@
   }
 
   const organizedEvents = organizeAndSortEvents(posts)
+
+  console.log(organizedEvents)
 
   let height = 0
 
@@ -140,29 +139,6 @@
     <!-- HEADER: SLIDESHOW -->
     <SlideshowHeader {page} />
     <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-      <!-- OPENING -->
-      <CalendarListingHeader
-        category="Opening"
-        opening={true}
-        posts={posts.filter(post => post.period == "openingEvent")}
-        on:sort={e => {
-          sortOrder = e.detail
-        }}
-        on:images={e => {
-          showOpeningImages = e.detail
-        }}
-      />
-      {#each organizedEvents.openingEvents as openingEvent}
-        <div class="date-header">
-          <div class="inner">
-            {formatFullDateTime(openingEvent.date, false)}
-          </div>
-        </div>
-        {#each openingEvent.events as post, index (index)}
-          <CalendarListingItem {post} showImages={showOpeningImages} />
-        {/each}
-      {/each}
-
       {#if posts.filter(post => post.period == "closingEvent").length > 0}
         <!-- CLOSING -->
         <CalendarListingHeader
@@ -179,7 +155,7 @@
         {#each organizedEvents.closingEvents as closingEvent}
           <div class="date-header">
             <div class="inner">
-              {formatFullDateTime(closingEvent.date, false)}
+              {formatFullDateTime(closingEvent.date, false, true)}
             </div>
           </div>
           {#each closingEvent.events as post, index (index)}
@@ -187,6 +163,29 @@
           {/each}
         {/each}
       {/if}
+
+      <!-- OPENING -->
+      <CalendarListingHeader
+        category="Opening"
+        opening={true}
+        posts={posts.filter(post => post.period == "openingEvent")}
+        on:sort={e => {
+          sortOrder = e.detail
+        }}
+        on:images={e => {
+          showOpeningImages = e.detail
+        }}
+      />
+      {#each organizedEvents.openingEvents as openingEvent}
+        <div class="date-header">
+          <div class="inner">
+            {formatFullDateTime(openingEvent.date, false, true)}
+          </div>
+        </div>
+        {#each openingEvent.events as post, index (index)}
+          <CalendarListingItem {post} showImages={showOpeningImages} />
+        {/each}
+      {/each}
     </div>
   </div>
 </div>
