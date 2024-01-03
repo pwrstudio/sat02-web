@@ -1,39 +1,23 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
-  import { formatFullDateTime } from "$lib/modules/date"
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE } from "$lib/modules/types"
+  import type { EventsByPeriod, Event } from "./types"
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
-  import CalendarListingItem from "./CalendarListingItem.svelte"
   import CalendarListingHeader from "./CalendarListingHeader.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
   import DecoCalendar from "../Deco/DecoCalendar.svelte"
+  import DateSection from "./DateSection.svelte"
 
   export let posts: any[] = []
   export let page: any = {}
 
-  let sortOrder = "title"
   let showOpeningImages = false
   let showClosingImages = false
-
-  interface Event {
-    dateTime: string
-    period: "openingEvent" | "closingEvent"
-  }
-
-  type EventGroupedByDate = {
-    date: string
-    events: Event[]
-  }
-
-  type EventsByPeriod = {
-    openingEvents: EventGroupedByDate[]
-    closingEvents: EventGroupedByDate[]
-  }
 
   /**
    * Organizes and sorts events by date and period, excluding dates without events of a specific type.
@@ -60,8 +44,6 @@
       const dateB = new Date(b)
       return dateB.getTime() - dateA.getTime()
     })
-
-    console.log("sortedDates", sortedDates)
 
     // Initialize the object to store the organized events
     const organizedEvents: EventsByPeriod = {
@@ -96,8 +78,6 @@
   }
 
   const organizedEvents = organizeAndSortEvents(posts)
-
-  console.log(organizedEvents)
 
   let height = 0
 
@@ -145,22 +125,15 @@
           category="Closing"
           closing={true}
           posts={posts.filter(post => post.period == "closingEvent")}
-          on:sort={e => {
-            sortOrder = e.detail
-          }}
           on:images={e => {
             showClosingImages = e.detail
           }}
         />
         {#each organizedEvents.closingEvents as closingEvent}
-          <div class="date-header">
-            <div class="inner">
-              {formatFullDateTime(closingEvent.date, false, true)}
-            </div>
-          </div>
-          {#each closingEvent.events as post, index (index)}
-            <CalendarListingItem {post} showImages={showClosingImages} />
-          {/each}
+          <DateSection
+            dateEvents={closingEvent}
+            showImages={showClosingImages}
+          />
         {/each}
       {/if}
 
@@ -169,22 +142,12 @@
         category="Opening"
         opening={true}
         posts={posts.filter(post => post.period == "openingEvent")}
-        on:sort={e => {
-          sortOrder = e.detail
-        }}
         on:images={e => {
           showOpeningImages = e.detail
         }}
       />
       {#each organizedEvents.openingEvents as openingEvent}
-        <div class="date-header">
-          <div class="inner">
-            {formatFullDateTime(openingEvent.date, false, true)}
-          </div>
-        </div>
-        {#each openingEvent.events as post, index (index)}
-          <CalendarListingItem {post} showImages={showOpeningImages} />
-        {/each}
+        <DateSection dateEvents={openingEvent} showImages={showOpeningImages} />
       {/each}
     </div>
   </div>
@@ -241,16 +204,6 @@
 
     &.closing {
       background: var(--blue);
-    }
-  }
-
-  .date-header {
-    padding: var(--default-padding);
-    background: var(--grey);
-    font-weight: bold;
-    .inner {
-      z-index: var(--z-content);
-      position: relative;
     }
   }
 

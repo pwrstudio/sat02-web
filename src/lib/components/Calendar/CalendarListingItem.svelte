@@ -44,8 +44,14 @@
     padding: var(--default-padding);
     font-size: var(--font-size-normal);
     padding-bottom: 10px;
-    border-top: 1px solid var(--black);
     background: var(--white);
+    user-select: none;
+
+    border-top: 1px solid var(--black);
+
+    &:first-child {
+      border-top: none;
+    }
 
     &:hover {
       background: var(--white-select);
