@@ -53,16 +53,16 @@ export const toPlainText = (blocks = []) => {
 }
 
 function getPlatformIcon(platform: string) {
-    if (!platform) return null;
+    if (!platform) return null
     switch (platform) {
         case "twitter":
-            return h("i", { className: 'fab fa-twitter' });
+            return h("i", { className: 'fab fa-twitter' }, "");
         case "instagram":
-            return h("i", { className: 'fab fa-instagram' });
+            return h("i", { className: 'fab fa-instagram' }, "");
         case "facebook":
-            return h("i", { className: 'fab fa-facebook' });
+            return h("i", { className: 'fab fa-facebook' }, "");
         default:
-            return null;
+            return null
     }
 }
 
@@ -73,12 +73,15 @@ const serializers = {
             let linkOptions = external ? { target: "_blank", rel: "noreferrer", href: props.mark.href } : { href: props.mark.href }
             return h(
                 "span",
-                getPlatformIcon(get(props, 'mark.platform', '')),
-                h(
-                    "a",
-                    linkOptions,
-                    props.children
-                )
+                {},
+                [
+                    getPlatformIcon(get(props, 'mark.platform', '')),
+                    h(
+                        "a",
+                        linkOptions,
+                        props.children
+                    )
+                ]
             )
         },
         pdf: props => {
