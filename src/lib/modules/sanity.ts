@@ -52,15 +52,33 @@ export const toPlainText = (blocks = []) => {
         .join("\n\n")
 }
 
+function getPlatformIcon(platform: string) {
+    if (!platform) return null;
+    switch (platform) {
+        case "twitter":
+            return h("i", { className: 'fab fa-twitter' });
+        case "instagram":
+            return h("i", { className: 'fab fa-instagram' });
+        case "facebook":
+            return h("i", { className: 'fab fa-facebook' });
+        default:
+            return null;
+    }
+}
+
 const serializers = {
     marks: {
         link: props => {
             const external = get(props, 'mark.href', '').includes('http')
             let linkOptions = external ? { target: "_blank", rel: "noreferrer", href: props.mark.href } : { href: props.mark.href }
             return h(
-                "a",
-                linkOptions,
-                props.children
+                "span",
+                getPlatformIcon(get(props, 'mark.platform', '')),
+                h(
+                    "a",
+                    linkOptions,
+                    props.children
+                )
             )
         },
         pdf: props => {

@@ -146,3 +146,8 @@ g.spin.shown{
 g {
   will-change: opacity, transform;
 }
+
+.fab {
+  margin-right: 0.5ch;
+  font-size: 0.85em;
+}
