@@ -1,10 +1,10 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { ArabicTerms } from "$lib/modules/constants"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
-  export let posts: any[] = []
+  export let posts: Post[] = []
   export let category: string
   export let opening = false
   export let closing = false
