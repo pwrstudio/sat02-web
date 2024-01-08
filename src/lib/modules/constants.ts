@@ -37,11 +37,11 @@ export const EXHIBITION_STRANDS = {
     },
     "extraction-politics": {
         en: "Extraction Politics",
-        ar: "سياسات الاستخراج",
+        ar: "سياسات الاستخراج"
     },
     "intangible-bodies": {
         en: "Intangible Bodies",
-        ar: "الأجسام غير الملموسة",
+        ar: "أبنية غير ملموسة",
     },
 }
 
