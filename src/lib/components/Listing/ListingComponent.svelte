@@ -7,16 +7,23 @@
   export let page: Post = {} as Post
   export let color: COLOR = COLOR.ORANGE
 
-  let sortOrder = "title"
+  let filter = "all"
   let showImages = false
+
+  const filterList = (posts: Post[], filter: string) =>
+    posts.filter(post =>
+      filter === "all" ? true : post.exhibitionStrand === filter,
+    )
+
+  $: filteredPosts = filterList(posts, filter)
 </script>
 
 <ListingHeader
   {page}
-  {posts}
+  posts={filteredPosts}
   {color}
-  on:sort={e => {
-    sortOrder = e.detail
+  on:filter={e => {
+    filter = e.detail
   }}
   on:images={e => {
     showImages = e.detail
@@ -24,7 +31,7 @@
 />
 
 <div class="listing" in:fade={{ duration: 200, delay: 1000 }}>
-  {#each posts as post, index}
-    <ListingItem {post} {index} {showImages} />
+  {#each filteredPosts as post}
+    <ListingItem {post} {showImages} />
   {/each}
 </div>

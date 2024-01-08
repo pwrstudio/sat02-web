@@ -1,20 +1,36 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
   import { LANGUAGE, type Post } from "$lib/modules/types"
-  import { ArabicTerms } from "$lib/modules/constants"
+  import { ArabicTerms, EXHIBITION_STRANDS } from "$lib/modules/constants"
   import { COLOR } from "$lib/modules/types"
   import RoundTag from "../Elements/RoundTag.svelte"
-  import { createEventDispatcher } from "svelte"
+  import { createEventDispatcher, onMount } from "svelte"
   const dispatch = createEventDispatcher()
   export let posts: Post[] = [] as Post[]
-  export let page: Post = {}
+  export let page: Post = {} as Post
   export let color: COLOR = COLOR.ORANGE
 
   let showImages = false
+  let filter = "all"
 
   function setImageDisplay() {
     dispatch("images", showImages)
   }
+
+  function setFilter() {
+    window.location.hash = filter
+    dispatch("filter", filter)
+  }
+
+  onMount(() => {
+    console.log("window.location.hash", window.location.hash)
+    filter = Object.keys(EXHIBITION_STRANDS).includes(
+      window.location.hash.substring(1),
+    )
+      ? window.location.hash.substring(1)
+      : "all"
+    setFilter()
+  })
 </script>
 
 <div class="listing-header" style={"background:" + color + ";"}>
@@ -38,6 +54,19 @@
       on:change={setImageDisplay}
     />
   </div>
+  <!-- PROJECT FILTER  -->
+  {#if page?._id === "projects-page"}
+    <div class="filter {LANGUAGE[$languageStore]}">
+      <select bind:value={filter} on:change={setFilter}>
+        <option value="all">All exhibition strands</option>
+        {#each Object.entries(EXHIBITION_STRANDS) as [key, value]}
+          <option value={key}>
+            {$languageStore === LANGUAGE.ARABIC ? value.ar : value.en}
+          </option>
+        {/each}
+      </select>
+    </div>
+  {/if}
 </div>
 
 <style lang="scss">
@@ -78,6 +107,21 @@
       }
     }
 
+    .filter {
+      z-index: var(--z-content);
+
+      select {
+        font-family: var(--font-family);
+        font-size: var(--font-size-small);
+        outline: none;
+        background: transparent;
+        border: 1px solid var(--black);
+        padding-right: 5px;
+        padding-left: 5px;
+        background-color: var(--form-background);
+      }
+    }
+
     .order {
       display: flex;
       position: relative;
@@ -95,8 +139,8 @@
     margin: 0;
     font: inherit;
     color: currentColor;
-    width: 1em;
-    height: 1em;
+    width: 20px;
+    height: 20px;
     border: none; /* Remove border */
     border-radius: 0; /* Remove border radius */
     display: grid;

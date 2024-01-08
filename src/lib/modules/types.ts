@@ -157,6 +157,12 @@ export type Post = {
     images: Image[];
     address: string;
     openingHours: string;
+    targetType?: string;
+    link?: string;
+    pdf_url?: string;
+    pdf_ar_url?: string;
+    dateTime?: string;
+    publication?: string;
 };
 
 export type Posts = {

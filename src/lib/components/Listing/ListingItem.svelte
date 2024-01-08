@@ -71,7 +71,7 @@
 >
   <!-- DATE -->
   {#if post._type === "event"}
-    <div class="date">{formatTime(post.dateTime)}</div>
+    <div class="date">{formatTime(post.dateTime ?? "")}</div>
   {/if}
 
   <!-- IMAGE -->
