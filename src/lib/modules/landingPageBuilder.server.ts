@@ -16,9 +16,6 @@ const client = createClient({
 });
 
 async function writeToSanity(landingPage: any, ids: string[]) {
-    console.log('write to sanity');
-    console.log(landingPage);
-    console.log(ids);
 
     // Get the current timestamp
     const timestamp = new Date().getTime();
@@ -33,7 +30,6 @@ async function writeToSanity(landingPage: any, ids: string[]) {
             })
             .commit(); // Commit the patch to make it effective
 
-        console.log('Sanity patch result:', result);
     } catch (error) {
         console.error('Error updating Sanity with patch:', error);
     }
@@ -110,32 +106,21 @@ export async function buildFrontPage(layout: any[], landingPage: any, posts: Pos
 
     const currentTimestamp = new Date().getTime();
 
-    console.log(landingPage.timestamp)
-    console.log(currentTimestamp)
-    console.log('ms passed', currentTimestamp - (landingPage.timestamp || 0))
-    console.log('period', PERIOD)
-    console.log('has period passed?', currentTimestamp - (landingPage.timestamp || 0) > PERIOD)
-
     if (currentTimestamp - (landingPage.timestamp || 0) > PERIOD) {
         // More than 30 minutes has passed, make new selection
-        console.log('new selection')
         let pickedPosts: string[] = [];
         let ids: string[] = [];
         for (let index = 0; index < frontpage.length; index++) {
             ids = addPostToNode(frontpage[index], posts, pickedPosts);
         }
-        console.log('ids', ids)
         // Write to server
         await writeToSanity(landingPage, ids)
     } else {
         // Less than 30 minutes has passed, load from server
-        console.log('from server')
         for (let index = 0; index < frontpage.length; index++) {
             addFromServer(frontpage[index], posts, landingPage.randomSelection);
         }
     }
-
-    console.log('frontpage', frontpage)
 
     return frontpage;
 }

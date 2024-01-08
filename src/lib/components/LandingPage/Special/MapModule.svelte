@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { COLOR, LANGUAGE, type Node } from "$lib/modules/types"
+  import { COLOR, LANGUAGE, type Node, type Post } from "$lib/modules/types"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Map from "$lib/components/Map/Map.svelte"
   import { languageStore } from "$lib/modules/stores"
   import { ArabicTerms } from "$lib/modules/constants"
   export let node: Node
-  export let venues: any[]
+  export let venues: Post[]
 </script>
 
 <div

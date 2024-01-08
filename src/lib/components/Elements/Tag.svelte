@@ -2,9 +2,14 @@
   import { languageStore } from "$lib/modules/stores"
   import { COLOR, LANGUAGE } from "$lib/modules/types"
   export let color: COLOR = COLOR.WHITE
+  export let linked: boolean = false
 </script>
 
-<div class="tag {LANGUAGE[$languageStore]}" class:black={color === COLOR.BLACK}>
+<div
+  class:linked
+  class="tag {LANGUAGE[$languageStore]}"
+  class:black={color === COLOR.BLACK}
+>
   <slot />
 </div>
 
@@ -22,6 +27,15 @@
     text-transform: capitalize;
     color: var(--white);
     border: 1px solid var(--white-transparent);
+    margin-right: 10px;
+
+    &.linked {
+      &:hover {
+        cursor: pointer;
+        background: var(--white-transparent);
+        color: var(--black);
+      }
+    }
 
     &.ARABIC {
       font-family: var(--font-family-arabic);

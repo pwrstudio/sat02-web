@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { fade } from "svelte/transition"
 
   import { COLOR } from "$lib/modules/types"
@@ -16,8 +16,8 @@
   import ListingComponent from "../Listing/ListingComponent.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
 
-  export let page: any
-  export let posts: any[]
+  export let page: Post
+  export let posts: Post[]
 
   let slideshowOpen = false
   let height = 0

@@ -3,7 +3,7 @@
   import { fade } from "svelte/transition"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import type { EventsByPeriod, Event } from "./types"
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
@@ -13,8 +13,8 @@
   import DecoCalendar from "../Deco/DecoCalendar.svelte"
   import DateSection from "./DateSection.svelte"
 
-  export let posts: any[] = []
-  export let page: any = {}
+  export let posts: Post[] = []
+  export let page: Post = {} as Post
 
   let showOpeningImages = false
   let showClosingImages = false

@@ -29,6 +29,22 @@ export enum ArabicTerms {
     PRESS_COVERAGE = "التغطية الصحفية"
 }
 
+// The three strands are: Renewed Contextual, Extraction Politics, Intangible Bodies.
+export const EXHIBITION_STRANDS = {
+    "renewed-contextual": {
+        en: "Renewed Contextual",
+        ar: "السياق المتجدد",
+    },
+    "extraction-politics": {
+        en: "Extraction Politics",
+        ar: "سياسات الاستخراج",
+    },
+    "intangible-bodies": {
+        en: "Intangible Bodies",
+        ar: "الأجسام غير الملموسة",
+    },
+}
+
 export const MENU_ITEMS = [
     {
         title: "Curatorial Statement",

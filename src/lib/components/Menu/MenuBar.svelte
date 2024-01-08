@@ -14,7 +14,7 @@
 
   const toggleLanguage = () => {
     languageStore.set(
-      $languageStore == LANGUAGE.ENGLISH ? LANGUAGE.ARABIC : LANGUAGE.ENGLISH
+      $languageStore == LANGUAGE.ENGLISH ? LANGUAGE.ARABIC : LANGUAGE.ENGLISH,
     )
   }
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
   import Title from "../Elements/Title.svelte"
-  export let page: any
+  export let page: Post
 
   let hasImage: boolean
   $: hasImage = page.featuredImage && page.featuredImage.asset

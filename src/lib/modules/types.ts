@@ -81,10 +81,88 @@ export type CircleGroup = {
     horizontalShiftRange: number;
 };
 
+type ContentEditor = {
+    _type: 'contentEditor';
+    content: Block[];
+};
+
+type Block = {
+    _key: string;
+    _type: 'block';
+    children: Span[];
+    markDefs: MarkDef[];
+    style: string;
+};
+
+type Span = {
+    _type: 'span';
+    marks: string[];
+    text: string;
+    _key: string;
+};
+
+type MarkDef = {
+    _key: string;
+    _type: 'link';
+    href: string;
+};
+
+type Image = {
+    _type: 'image';
+    _key: string;
+    asset: Reference;
+};
+
+type Reference = {
+    _ref: string;
+    _type: 'reference';
+};
+
+type Slug = {
+    current: string;
+    _type: 'slug';
+};
+
+type GeoPoint = {
+    lng: number;
+    lat: number;
+    alt: number;
+    _type: 'geopoint';
+};
+
+export type Post = {
+    _id: string;
+    _createdAt: string;
+    _type: string;
+    _rev: string;
+    _updatedAt: string;
+    slug: Slug;
+    title: string;
+    title_ar: string;
+    processMedia: Image[];
+    media: Image[];
+    exhibitionStrand: "renewed-contextual" | "extraction-politics" | "intangible-bodies";
+    venues: Post[];
+    pullQuote_ar: string;
+    participants: Post[];
+    location: GeoPoint;
+    pullQuote: string;
+    description: ContentEditor;
+    description_ar: ContentEditor;
+    credits_ar: ContentEditor;
+    credits: ContentEditor;
+    content_ar: ContentEditor;
+    content: ContentEditor;
+    featuredImage: Image;
+    images: Image[];
+    address: string;
+    openingHours: string;
+};
+
 export type Posts = {
-    "all": any[],
-    "project": any[];
-    "participant": any[];
-    "event": any[];
-    "fieldNote": any[]
+    "all": Post[],
+    "project": Post[];
+    "participant": Post[];
+    "event": Post[];
+    "fieldNote": Post[]
 }

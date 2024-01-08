@@ -1,6 +1,7 @@
 <script lang="ts">
   import { urlPrefix } from "$lib/modules/stores"
-  export let participants: any[]
+  import type { Post } from "$lib/modules/types"
+  export let participants: Post[]
   export let linked = true
 </script>
 

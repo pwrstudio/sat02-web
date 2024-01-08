@@ -1,7 +1,7 @@
 <script lang="ts">
   import RoundTag from "$lib/components/Elements/RoundTag.svelte"
-  import { COLOR } from "$lib/modules/types"
-  export let page: any
+  import { COLOR, type Post } from "$lib/modules/types"
+  export let page: Post
 
   let mediaList = page.processMedia || page.media || []
 

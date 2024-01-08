@@ -2,9 +2,9 @@
   import { fade } from "svelte/transition"
   import ListingItem from "./ListingItem.svelte"
   import ListingHeader from "./ListingHeader.svelte"
-  import { COLOR } from "$lib/modules/types"
-  export let posts: any[] = []
-  export let page: any = {}
+  import { COLOR, type Post } from "$lib/modules/types"
+  export let posts: Post[] = [] as Post[]
+  export let page: Post = {} as Post
   export let color: COLOR = COLOR.ORANGE
 
   let sortOrder = "title"

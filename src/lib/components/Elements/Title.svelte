@@ -1,7 +1,7 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
-  export let page: any
+  import { LANGUAGE, type Post } from "$lib/modules/types"
+  export let page: Post
 </script>
 
 {#if $languageStore == LANGUAGE.ARABIC}

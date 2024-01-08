@@ -1,9 +1,9 @@
 <script lang="ts">
   import { languageStore, urlPrefix } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { formatTime } from "$lib/modules/date"
   import Thumbnail from "$lib/components/Listing/Thumbnail.svelte"
-  export let post: any
+  export let post: Post
   export let showImages: boolean = false
 </script>
 

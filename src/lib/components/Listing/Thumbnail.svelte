@@ -1,6 +1,7 @@
 <script lang="ts">
   import { urlFor } from "$lib/modules/sanity"
-  export let post: any
+  import type { Post } from "$lib/modules/types"
+  export let post: Post
   let imageLoaded: boolean = false
 </script>
 

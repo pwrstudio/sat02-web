@@ -1,13 +1,13 @@
 <script lang="ts">
   import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { ArabicTerms } from "$lib/modules/constants"
   import { COLOR } from "$lib/modules/types"
   import RoundTag from "../Elements/RoundTag.svelte"
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
-  export let posts: any[] = []
-  export let page: any = {}
+  export let posts: Post[] = [] as Post[]
+  export let page: Post = {}
   export let color: COLOR = COLOR.ORANGE
 
   let showImages = false

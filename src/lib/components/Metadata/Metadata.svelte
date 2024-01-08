@@ -1,10 +1,10 @@
 <script lang="ts">
   import { languageStore, urlPrefix } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import truncate from "lodash/truncate.js"
   import has from "lodash/has.js"
   import { toPlainText, urlFor } from "$lib/modules/sanity"
-  export let page: any = {}
+  export let page: Post = {}
 
   const DEFAULT_DESCRIPTION = "SAT02"
   const BASE_TITLE = "Sharjah Architecture Triennial 2023"

@@ -11,8 +11,6 @@
   import { formatFullDateTime, timeUntil } from "$lib/modules/date"
   export let node: Node
   export let href = ""
-
-  console.log(node)
 </script>
 
 <div class="layout full" class:reversed={node.alignment == ALIGNMENT.LEFT}>

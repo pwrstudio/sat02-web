@@ -2,7 +2,7 @@
   import { onMount, tick } from "svelte"
   import { renderBlockText } from "$lib/modules/sanity"
   import { languageStore } from "$lib/modules/stores"
-  import { LANGUAGE, COLOR } from "$lib/modules/types"
+  import { LANGUAGE, COLOR, type Post } from "$lib/modules/types"
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingComponent from "./ListingComponent.svelte"
@@ -14,9 +14,8 @@
   import DecoFieldNotes from "$lib/components/Deco/DecoFieldNotes.svelte"
   import DecoDesignStore from "../Deco/DecoDesignStore.svelte"
 
-  export let posts: any[] = []
-  export let page: any = {}
-  console.log(page)
+  export let posts: Post[] = []
+  export let page: Post = {}
 
   let height = 0
   let decoColor = COLOR.ORANGE

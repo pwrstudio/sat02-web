@@ -1,6 +1,11 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
-  import { COLOR, LANGUAGE, type CircleGroup } from "$lib/modules/types"
+  import {
+    COLOR,
+    LANGUAGE,
+    type CircleGroup,
+    type Post,
+  } from "$lib/modules/types"
   import {
     createNestedCircularPatternWithGroups,
     revealGroupsWithEasing,
@@ -18,9 +23,9 @@
   import SlideshowHeader from "../Elements/SlideshowHeader.svelte"
   import { ArabicTerms } from "$lib/modules/constants"
 
-  export let page: any
-  export let pressReleases: any[] = []
-  export let pressCoverage: any[] = []
+  export let page: Post
+  export let pressReleases: Post[] = []
+  export let pressCoverage: Post[] = []
   export let color: COLOR = COLOR.GREEN
 
   let showPressReleaseImages = false
@@ -83,7 +88,7 @@
       svgEl = createNestedCircularPatternWithGroups(
         circularOneEl,
         circleGroups,
-        color
+        color,
       )
       await new Promise(r => setTimeout(r, 1000))
       revealGroupsWithEasing(svgEl, 1000)

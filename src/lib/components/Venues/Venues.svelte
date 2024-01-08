@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
-  import { COLOR } from "$lib/modules/types"
+  import { COLOR, type Post } from "$lib/modules/types"
   import { onMount, tick } from "svelte"
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import ListingItem from "$lib/components/Listing/ListingItem.svelte"
@@ -8,8 +8,8 @@
   import DecoVenues from "../Deco/DecoVenues.svelte"
   import Map from "$lib/components/Map/Map.svelte"
 
-  export let posts: any[] = []
-  export let page: any = {}
+  export let posts: Post[] = []
+  export let page: Post = {}
 
   const color = COLOR.PURPLE
 

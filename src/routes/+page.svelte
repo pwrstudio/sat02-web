@@ -8,9 +8,6 @@
   import Section from "$lib/components/LandingPage/Section.svelte"
   export let data
   const { frontpage, topSection, venues } = data
-
-  console.log("topSection", topSection)
-  console.log("frontpage", frontpage)
 </script>
 
 <!-- METADATA -->

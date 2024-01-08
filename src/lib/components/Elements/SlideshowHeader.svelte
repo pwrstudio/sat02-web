@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
   import { urlFor } from "$lib/modules/sanity"
   import { ArabicTerms } from "$lib/modules/constants"
@@ -7,7 +7,7 @@
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
   import SlidesCounter from "$lib/components/Page/SlidesCounter.svelte"
 
-  export let page: any
+  export let page: Post
 
   let slideshowOpen = false
 

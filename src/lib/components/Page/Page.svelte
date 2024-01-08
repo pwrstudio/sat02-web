@@ -1,12 +1,12 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
   import { formatFullDateTime } from "$lib/modules/date"
   import { languageStore } from "$lib/modules/stores"
-  import { ArabicTerms } from "$lib/modules/constants"
+  import { ArabicTerms, EXHIBITION_STRANDS } from "$lib/modules/constants"
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
@@ -23,8 +23,8 @@
   import PinGfx from "../Graphics/PinGfx.svelte"
   import ListingComponent from "../Listing/ListingComponent.svelte"
 
-  export let page: any
-  export let posts: any[]
+  export let page: Post
+  export let posts: Post[]
 
   let slideshowOpen = false
   let height = 0
@@ -82,6 +82,16 @@
       <!-- TYPE -->
       <div class="tag {LANGUAGE[$languageStore]}">
         <Tag>{tagText}</Tag>
+        {#if page.exhibitionStrand}
+          <a href={`/projects#${page.exhibitionStrand}`}>
+            {#if $languageStore == LANGUAGE.ENGLISH}
+              <Tag linked>{EXHIBITION_STRANDS[page.exhibitionStrand]?.en}</Tag>
+            {/if}
+            {#if $languageStore == LANGUAGE.ARABIC}
+              <Tag linked>{EXHIBITION_STRANDS[page.exhibitionStrand]?.ar}</Tag>
+            {/if}
+          </a>
+        {/if}
       </div>
 
       <!-- TITLE -->
@@ -110,8 +120,8 @@
               {$languageStore == LANGUAGE.ENGLISH
                 ? page.venues[0].title
                 : page.venues[0].title_ar
-                ? page.venues[0].title_ar
-                : page.venues[0].title}
+                  ? page.venues[0].title_ar
+                  : page.venues[0].title}
             </a>
           </div>
         {/if}
@@ -165,8 +175,8 @@
             {$languageStore == LANGUAGE.ENGLISH
               ? page.venues[0].title
               : page.venues[0].title_ar
-              ? page.venues[0].title_ar
-              : page.venues[0].title}
+                ? page.venues[0].title_ar
+                : page.venues[0].title}
           </a>
         </div>
       {/if}

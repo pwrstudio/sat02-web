@@ -2,10 +2,10 @@
   import { createEventDispatcher } from "svelte"
   import { languageStore } from "$lib/modules/stores"
   import { urlPrefix } from "$lib/modules/stores"
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { formatTime } from "$lib/modules/date"
   import Thumbnail from "./Thumbnail.svelte"
-  export let post: any
+  export let post: Post
   export let showImages: boolean = false
   export let activeItem = ""
 

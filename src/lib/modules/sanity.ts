@@ -52,7 +52,7 @@ export const toPlainText = (blocks = []) => {
         .join("\n\n")
 }
 
-function getPlatformIcon(platform: string) {
+function getPlatformIcon(platform: string): string | null {
     if (!platform) return null
     switch (platform) {
         case "twitter":

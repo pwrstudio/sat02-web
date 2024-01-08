@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LANGUAGE } from "$lib/modules/types"
+  import { LANGUAGE, type Post } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { createEventDispatcher, onDestroy } from "svelte"
@@ -11,7 +11,7 @@
   import has from "lodash/has.js"
   import { ArabicTerms } from "$lib/modules/constants"
   // import ParticipantList from "../ParticipantList.svelte"
-  export let page: any
+  export let page: Post
 
   const dispatch = createEventDispatcher()
 

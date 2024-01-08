@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Node } from "$lib/modules/types"
+  import type { Node, Post } from "$lib/modules/types"
   import ContentModule from "$lib/components/LandingPage/ContentModule/ContentModule.svelte"
   import DatesModule from "$lib/components/LandingPage/Special/DatesModule.svelte"
   import GeoModule from "$lib/components/LandingPage/Special/GeoModule.svelte"
@@ -8,7 +8,7 @@
   import DotLineModule from "./Special/DotLineModule.svelte"
   import MapModule from "$lib/components/LandingPage/Special/MapModule.svelte"
   export let node: Node
-  export let venues: any[]
+  export let venues: Post[]
 
   const getComponent = (type: string) => {
     switch (type) {

@@ -5,8 +5,9 @@
   import mapboxgl from "mapbox-gl"
   import "mapbox-gl/dist/mapbox-gl.css"
   import { PUBLIC_MAPBOX_TOKEN } from "$env/static/public"
+  import type { Post } from "$lib/modules/types"
 
-  export let venues: any[] = []
+  export let venues: Post[] = []
   export let disableZoom: boolean = false
   export let activeItem = ""
 

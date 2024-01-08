@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Node } from "$lib/modules/types"
+  import type { Node, Post } from "$lib/modules/types"
   import { DECO_TYPE } from "$lib/modules/types"
 
   import DecoCircleOne from "$lib/components/Deco/DecoCircleOne.svelte"
@@ -11,7 +11,7 @@
   import IntersectionObserver from "svelte-intersection-observer"
 
   export let node: Node
-  export let venues: any
+  export let venues: Post[]
   let sectionEl: HTMLElement
 
   let inView = false
@@ -38,8 +38,6 @@
     element={sectionEl}
     on:intersect={e => {
       inView = true
-      console.log(e.detail) // IntersectionObserverEntry
-      console.log(e.detail.isIntersecting) // true
     }}
   >
     <section class:spaced={node.spaced} bind:this={sectionEl}>
