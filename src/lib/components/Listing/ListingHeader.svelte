@@ -58,9 +58,13 @@
   {#if page?._id === "projects-page"}
     <div class="filter {LANGUAGE[$languageStore]}">
       <select bind:value={filter} on:change={setFilter}>
-        <option value="all">All exhibition strands</option>
+        <option value="all">
+          <span class="arrow-down">↓&nbsp;</span>
+          All exhibition strands
+        </option>
         {#each Object.entries(EXHIBITION_STRANDS) as [key, value]}
           <option value={key}>
+            <span class="arrow-down">↓&nbsp;</span>
             {$languageStore === LANGUAGE.ARABIC ? value.ar : value.en}
           </option>
         {/each}
@@ -116,9 +120,12 @@
         outline: none;
         background: transparent;
         border: 1px solid var(--black);
+        border-radius: 0;
         padding-right: 5px;
         padding-left: 5px;
-        background-color: var(--form-background);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
       }
     }
 

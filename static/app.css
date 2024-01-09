@@ -1,6 +1,6 @@
 :root {
     /* Base colors */
-    --black: rgba(30, 30, 30, 1);
+    --black: rgb(30, 30, 30);
     --white: rgba(255, 255, 255, 1);
     --white-select: rgba(240, 240, 240, 1);
     --mid-grey: rgba(222, 222, 222, 1);
