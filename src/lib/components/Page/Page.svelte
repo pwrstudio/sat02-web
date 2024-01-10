@@ -132,7 +132,7 @@
             <!-- DATE -->
             <div class="date">
               <CalendarGfx />
-              {formatFullDateTime(page.dateTime)}
+              {formatFullDateTime(page.dateTime ?? "")}
             </div>
           </div>
         {/if}

@@ -23,7 +23,8 @@
   }
 
   onMount(() => {
-    console.log("window.location.hash", window.location.hash)
+    if (page?._id !== "projects-page") return
+
     filter = Object.keys(EXHIBITION_STRANDS).includes(
       window.location.hash.substring(1),
     )

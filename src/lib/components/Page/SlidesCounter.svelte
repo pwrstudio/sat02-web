@@ -3,7 +3,7 @@
   import { COLOR, type Post } from "$lib/modules/types"
   export let page: Post
 
-  let mediaList = page.processMedia || page.media || []
+  let mediaList = page.processMedia || page.media || page.images || []
 
   if (page.featuredImage) {
     mediaList = [page.featuredImage, ...mediaList]
