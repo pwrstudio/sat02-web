@@ -42,7 +42,9 @@
       <RoundTag black={true} {color}>{posts.length}</RoundTag>
     </span>
   </div>
-  <div class="image-toggle {LANGUAGE[$languageStore]}">
+  <div
+    class="image-toggle {page.slug?.current ?? ''} {LANGUAGE[$languageStore]}"
+  >
     <label for="images">
       {$languageStore == LANGUAGE.ARABIC
         ? ArabicTerms.SHOW_IMAGES
@@ -108,6 +110,12 @@
 
       @include screen-size("phone") {
         margin-right: var(--default-padding);
+      }
+
+      &.projects {
+        @include screen-size("phone") {
+          display: none;
+        }
       }
 
       label {
