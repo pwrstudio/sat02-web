@@ -38,7 +38,9 @@
     <strong>
       {$languageStore == LANGUAGE.ENGLISH ? page.title : page.title_ar}
     </strong>
-    <RoundTag black={true} {color}>{posts.length}</RoundTag>
+    <span class="counter">
+      <RoundTag black={true} {color}>{posts.length}</RoundTag>
+    </span>
   </div>
   <div class="image-toggle {LANGUAGE[$languageStore]}">
     <label for="images">
@@ -88,16 +90,26 @@
 
     .title {
       text-transform: uppercase;
-      margin-right: 30px;
+      margin-right: var(--double-padding);
       z-index: var(--z-content);
       position: relative;
+
+      @include screen-size("phone") {
+        margin-right: var(--default-padding);
+      }
     }
 
     .image-toggle {
       margin-right: var(--double-padding);
       display: flex;
+      justify-content: center;
       z-index: var(--z-content);
       position: relative;
+
+      @include screen-size("phone") {
+        margin-right: var(--default-padding);
+      }
+
       label {
         display: block;
         margin-right: 5px;
@@ -112,9 +124,12 @@
     }
 
     .filter {
+      display: flex;
       z-index: var(--z-content);
 
       select {
+        position: relative;
+        top: 2px;
         font-family: var(--font-family);
         font-size: var(--font-size-small);
         outline: none;
@@ -127,6 +142,10 @@
         -moz-appearance: none;
         appearance: none;
         color: var(--black);
+        height: 20px !important;
+        box-sizing: border-box;
+        position: relative;
+        top: 1px;
       }
     }
 
@@ -141,14 +160,16 @@
   }
 
   input[type="checkbox"] {
+    box-sizing: border-box;
     -webkit-appearance: none;
     appearance: none;
     background-color: var(--form-background);
     margin: 0;
     font: inherit;
     color: currentColor;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    line-height: 0;
     border: none; /* Remove border */
     border-radius: 0; /* Remove border radius */
     display: grid;
@@ -156,7 +177,8 @@
     outline: 1px solid var(--black);
     cursor: pointer;
     position: relative;
-    top: 3px;
+    top: 2px;
+    aspect-ratio: 1;
   }
 
   input[type="checkbox"]::before {
@@ -177,5 +199,11 @@
     --form-control-color: var(--form-control-disabled);
     color: var(--form-control-disabled);
     cursor: not-allowed;
+  }
+
+  .counter {
+    @include screen-size("phone") {
+      display: none;
+    }
   }
 </style>
