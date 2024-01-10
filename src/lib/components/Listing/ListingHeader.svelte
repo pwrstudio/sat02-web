@@ -126,6 +126,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
+        color: var(--black);
       }
     }
 
