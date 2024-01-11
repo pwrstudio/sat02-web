@@ -94,6 +94,7 @@
     .title {
       text-transform: uppercase;
       margin-right: var(--double-padding);
+      margin-right: 30px;
       z-index: var(--z-content);
       position: relative;
 
@@ -108,6 +109,10 @@
       justify-content: center;
       z-index: var(--z-content);
       position: relative;
+
+      &.ARABIC {
+        margin-right: 30px;
+      }
 
       @include screen-size("phone") {
         margin-right: var(--default-padding);
@@ -155,6 +160,13 @@
         box-sizing: border-box;
         position: relative;
         top: 1px;
+        @include screen-size("phone") {
+          top: -1px;
+        }
+      }
+
+      &.ARABIC {
+        margin-right: var(--double-padding);
       }
     }
 
