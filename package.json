@@ -29,6 +29,7 @@
 		"@sanity/block-content-to-html": "^2.0.0",
 		"@sanity/client": "^6.11.1",
 		"@sanity/image-url": "^1.0.2",
+		"get-video-id": "^3.6.5",
 		"lodash": "^4.17.21",
 		"mapbox-gl": "^2.15.0",
 		"scroll-lock": "^2.1.5",

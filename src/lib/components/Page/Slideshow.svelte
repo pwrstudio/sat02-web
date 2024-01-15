@@ -7,6 +7,7 @@
   import { urlFor } from "$lib/modules/sanity"
   import Swiper from "swiper"
   import "swiper/css"
+  import VideoPlayer from "./VideoPlayer.svelte"
   // import { disablePageScroll, enablePageScroll } from "scroll-lock"
   import has from "lodash/has.js"
   import { ArabicTerms } from "$lib/modules/constants"
@@ -76,10 +77,16 @@
         <!-- Slides -->
         {#if mediaList.length > 0}
           {#each mediaList as media}
-            {#if has(media, "asset")}
+            {#if media._type === "video"}
               <div class="swiper-slide">
-                <img src={urlFor(media.asset).width(1200).url()} alt="" />
+                <VideoPlayer url={media.url} />
               </div>
+            {:else if media._type === "image"}
+              {#if has(media, "asset")}
+                <div class="swiper-slide">
+                  <img src={urlFor(media.asset).width(1200).url()} alt="" />
+                </div>
+              {/if}
             {/if}
           {/each}
         {/if}

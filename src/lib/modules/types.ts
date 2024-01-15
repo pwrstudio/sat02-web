@@ -86,7 +86,7 @@ type ContentEditor = {
     content: Block[];
 };
 
-type Block = {
+export type Block = {
     _key: string;
     _type: 'block';
     children: Span[];
@@ -108,9 +108,10 @@ type MarkDef = {
 };
 
 type Image = {
-    _type: 'image';
+    _type: 'image' | 'video';
     _key: string;
-    asset: Reference;
+    asset?: Reference;
+    url?: string;
 };
 
 type Reference = {
