@@ -65,7 +65,11 @@
       <select bind:value={filter} on:change={setFilter}>
         <option value="all">
           <span class="arrow-down">↓&nbsp;</span>
-          All exhibition strands
+          {#if $languageStore === LANGUAGE.ARABIC}
+            مواضيع المعرض الرئيسية
+          {:else}
+            All exhibition strands
+          {/if}
         </option>
         {#each Object.entries(EXHIBITION_STRANDS) as [key, value]}
           <option value={key}>
