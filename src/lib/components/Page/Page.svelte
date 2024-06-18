@@ -1,6 +1,14 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
   import { LANGUAGE, type Post } from "$lib/modules/types"
+  import type {
+    Page,
+    Project,
+    Event,
+    Venue,
+    Participant,
+    FieldNote,
+  } from "$lib/types/sanity.types"
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
@@ -10,6 +18,7 @@
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
+  import Matterport from "$lib/components/Page/Matterport.svelte"
   import SlidesCounter from "$lib/components/Page/SlidesCounter.svelte"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Title from "$lib/components/Elements/Title.svelte"
@@ -23,10 +32,11 @@
   import PinGfx from "../Graphics/PinGfx.svelte"
   import ListingComponent from "../Listing/ListingComponent.svelte"
 
-  export let page: Post
+  export let page: Page | Project | Event | Venue | Participant | FieldNote
   export let posts: Post[]
 
   let slideshowOpen = false
+  let matterportOpen = false
   let height = 0
 
   const getTagText = (text: string, language: LANGUAGE) => {
@@ -45,8 +55,12 @@
   let tagText = getTagText(page._type, $languageStore)
   $: tagText = getTagText(page._type, $languageStore)
 
-  const toogleSlideshow = () => {
+  const toggleSlideshow = () => {
     slideshowOpen = !slideshowOpen
+  }
+
+  const toggleMatterport = () => {
+    matterportOpen = !matterportOpen
   }
 
   const handleResize = async () => {
@@ -143,7 +157,7 @@
     {#if page._type != "venue" && page.featuredImage?.asset}
       <div class="row phone-slideshow">
         <button
-          on:click={toogleSlideshow}
+          on:click={toggleSlideshow}
           class="open-slideshow {LANGUAGE[$languageStore]}"
         >
           {#if $languageStore === LANGUAGE.ARABIC}
@@ -158,7 +172,6 @@
     <div class="row content">
       <!-- CONTENT -->
       <Content {page} />
-
       <!-- CREDITS -->
       <Credits {page} />
     </div>
@@ -207,16 +220,32 @@
             .quality(100)
             .url()}
           alt={page.title}
-          on:click={toogleSlideshow}
+          on:click={toggleSlideshow}
         />
         <button
-          on:click={toogleSlideshow}
+          on:click={toggleSlideshow}
           class="open-slideshow {LANGUAGE[$languageStore]}"
         >
           {#if $languageStore === LANGUAGE.ARABIC}
             {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
           {:else}
             OPEN SLIDESHOW <SlidesCounter {page} />
+          {/if}
+        </button>
+      </div>
+    {/if}
+
+    <!-- MATTERPORT -->
+    {#if page._type == "project" && page.matterportLink}
+      <div class="row matterport">
+        <button
+          on:click={toggleMatterport}
+          class="open-matterport {LANGUAGE[$languageStore]}"
+        >
+          {#if $languageStore === LANGUAGE.ARABIC}
+            {ArabicTerms.OPEN_MATTERPORT}
+          {:else}
+            OPEN MATTERPORT
           {/if}
         </button>
       </div>
@@ -232,7 +261,11 @@
 </div>
 
 {#if slideshowOpen}
-  <Slideshow {page} on:close={toogleSlideshow} />
+  <Slideshow {page} on:close={toggleSlideshow} />
+{/if}
+
+{#if matterportOpen}
+  <Matterport {page} on:close={toggleMatterport} />
 {/if}
 
 <style lang="scss">
@@ -281,10 +314,6 @@
       .row {
         width: 100%;
         padding: var(--default-padding);
-
-        &.right {
-          // padding-top: 8em;
-        }
       }
 
       .header {
@@ -414,6 +443,36 @@
           position: absolute;
           bottom: 0;
           right: 0;
+          width: 100%;
+          padding: var(--default-padding);
+          background: var(--orange);
+          color: var(--white);
+          text-decoration: none;
+          text-align: center;
+          border: 0;
+          cursor: pointer;
+          font-size: var(--font-size-normal);
+
+          &.ARABIC {
+            font-family: var(--font-family-arabic);
+          }
+        }
+      }
+
+      .matterport {
+        background: var(--grey);
+        position: relative;
+        padding: 0;
+        cursor: pointer;
+        z-index: var(--z-content);
+
+        @include screen-size("phone") {
+          display: none;
+          height: 400px;
+        }
+
+        .open-matterport {
+          margin-top: 20px;
           width: 100%;
           padding: var(--default-padding);
           background: var(--orange);
