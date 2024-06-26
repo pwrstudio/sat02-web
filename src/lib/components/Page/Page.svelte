@@ -124,6 +124,22 @@
         {/if}
       </h2>
 
+      <!-- MATTERPORT BUTTON -->
+      {#if page.matterportLink}
+        <div class="matterport-top">
+          <button
+            on:click={toggleMatterport}
+            class="open-matterport {LANGUAGE[$languageStore]}"
+          >
+            {#if $languageStore === LANGUAGE.ARABIC}
+              {ArabicTerms.OPEN_MATTERPORT}
+            {:else}
+              OPEN 3D TOUR
+            {/if}
+          </button>
+        </div>
+      {/if}
+
       <!-- PHONE INFO -->
       <div class="phone-info">
         <!-- VENUE -->
@@ -238,6 +254,7 @@
     <!-- MATTERPORT -->
     {#if page._type == "project" && page.matterportLink}
       <div class="row matterport">
+        <div class="divider" />
         <button
           on:click={toggleMatterport}
           class="open-matterport {LANGUAGE[$languageStore]}"
@@ -245,7 +262,7 @@
           {#if $languageStore === LANGUAGE.ARABIC}
             {ArabicTerms.OPEN_MATTERPORT}
           {:else}
-            VIEW 3D TOUR
+            OPEN 3D TOUR
           {/if}
         </button>
       </div>
@@ -456,15 +473,26 @@
           &.ARABIC {
             font-family: var(--font-family-arabic);
           }
+
+          &:hover {
+            opacity: 0.92;
+          }
         }
       }
 
       .matterport {
-        background: var(--grey);
+        background: var(--green);
         position: relative;
         padding: 0;
         cursor: pointer;
         z-index: var(--z-content);
+
+        .divider {
+          height: 0px;
+          background: var(--white-transparent);
+          margin-top: var(--half-padding);
+          margin-bottom: var(--half-padding);
+        }
 
         @include screen-size("phone") {
           display: none;
@@ -472,7 +500,6 @@
         }
 
         .open-matterport {
-          margin-top: 20px;
           width: 100%;
           padding: var(--default-padding);
           background: var(--orange);
@@ -485,6 +512,10 @@
 
           &.ARABIC {
             font-family: var(--font-family-arabic);
+          }
+
+          &:hover {
+            opacity: 0.92;
           }
         }
       }
@@ -579,5 +610,32 @@
 
   :global(.venue .content p:first-child) {
     margin-top: 0;
+  }
+
+  .matterport-top {
+    width: 100%;
+
+    .open-matterport {
+      border: 0;
+      outline: none;
+      background: var(--orange);
+      padding: var(--default-padding);
+      cursor: pointer;
+      z-index: var(--z-content);
+      position: relative;
+      user-select: none;
+      font-size: var(--font-size-small);
+      font-family: var(--font-family);
+      color: var(--white);
+
+      &.ARABIC {
+        font-family: var(--font-family-arabic);
+      }
+
+      &:hover {
+        background: var(--white-transparent);
+        color: var(--black);
+      }
+    }
   }
 </style>

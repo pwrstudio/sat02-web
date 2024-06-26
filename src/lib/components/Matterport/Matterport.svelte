@@ -36,7 +36,7 @@
     <div class="embed">
       <iframe
         title={page.title}
-        src={page.matterportLink}
+        src={`${page.matterportLink}&play=1&qs=1&mt=0`}
         allowfullscreen
         allow="xr-spatial-tracking"
         style="border: 0; width: 100%; height: 100%;"
@@ -95,7 +95,7 @@
 
       .embed {
         aspect-ratio: 16/9;
-        width: 720px;
+        width: 900px;
 
         iframe {
           width: 100%;

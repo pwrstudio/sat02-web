@@ -87,7 +87,7 @@
           {#if $languageStore === LANGUAGE.ARABIC}
             {ArabicTerms.OPEN_MATTERPORT}
           {:else}
-            → VIEW 3D TOUR
+            OPEN 3D TOUR
           {/if}
         </button>
       </div>
@@ -153,19 +153,22 @@
         border: 0;
         outline: none;
         background: var(--purple);
+        color: var(--white);
         padding: var(--default-padding);
         cursor: pointer;
         z-index: var(--z-content);
         position: relative;
         user-select: none;
         font-size: var(--font-size-normal);
+        font-family: var(--font-family);
 
         &.ARABIC {
           font-family: var(--font-family-arabic);
         }
 
         &:hover {
-          background: var(--grey);
+          background: var(--white-transparent);
+          color: var(--black);
         }
       }
     }
