@@ -18,7 +18,7 @@
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
-  import Matterport from "$lib/components/Page/Matterport.svelte"
+  import Matterport from "$lib/components/Matterport/Matterport.svelte"
   import SlidesCounter from "$lib/components/Page/SlidesCounter.svelte"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Title from "$lib/components/Elements/Title.svelte"
@@ -245,7 +245,7 @@
           {#if $languageStore === LANGUAGE.ARABIC}
             {ArabicTerms.OPEN_MATTERPORT}
           {:else}
-            OPEN MATTERPORT
+            VIEW 3D TOUR
           {/if}
         </button>
       </div>

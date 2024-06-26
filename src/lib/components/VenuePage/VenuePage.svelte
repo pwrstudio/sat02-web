@@ -1,6 +1,7 @@
 <script lang="ts">
+  import type { Project, Venue } from "$lib/types/sanity.types"
   import { onMount, tick } from "svelte"
-  import { LANGUAGE, type Post } from "$lib/modules/types"
+  import { LANGUAGE } from "$lib/modules/types"
   import { fade } from "svelte/transition"
 
   import { COLOR } from "$lib/modules/types"
@@ -15,11 +16,13 @@
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
   import ListingComponent from "../Listing/ListingComponent.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
+  import Matterport from "$lib/components/Matterport/Matterport.svelte"
 
-  export let page: Post
-  export let posts: Post[]
+  export let page: Venue
+  export let posts: Project[]
 
   let slideshowOpen = false
+  let matterportOpen = false
   let height = 0
 
   const getTagText = (text: string, language: LANGUAGE) => {
@@ -42,6 +45,10 @@
     slideshowOpen = !slideshowOpen
   }
 
+  const toggleMatterport = () => {
+    matterportOpen = !matterportOpen
+  }
+
   const handleResize = async () => {
     await tick()
     height = document.body.scrollHeight
@@ -56,6 +63,10 @@
 <!-- METADATA -->
 <Metadata {page} />
 
+{#if matterportOpen}
+  <Matterport {page} on:close={toggleMatterport} />
+{/if}
+
 <!-- DECO -->
 <div class="deco-container" style={"height:" + height + "px;"}>
   <DecoPageTwo color={COLOR.PURPLE} />
@@ -65,6 +76,22 @@
   <!-- LEFT -->
   <div class="column left">
     <TitleHeader {page} />
+
+    <!-- MATTERPORT BUTTON -->
+    {#if page.matterportLink}
+      <div class="matterport">
+        <button
+          on:click={toggleMatterport}
+          class="open-matterport {LANGUAGE[$languageStore]}"
+        >
+          {#if $languageStore === LANGUAGE.ARABIC}
+            {ArabicTerms.OPEN_MATTERPORT}
+          {:else}
+            → VIEW 3D TOUR
+          {/if}
+        </button>
+      </div>
+    {/if}
 
     <div class="row content">
       <!-- CONTENT -->
@@ -117,6 +144,32 @@
       }
     }
 
+    .matterport {
+      padding-inline: var(--default-padding);
+      margin-bottom: 2em;
+      width: 100%;
+
+      .open-matterport {
+        border: 0;
+        outline: none;
+        background: var(--purple);
+        padding: var(--default-padding);
+        cursor: pointer;
+        z-index: var(--z-content);
+        position: relative;
+        user-select: none;
+        font-size: var(--font-size-normal);
+
+        &.ARABIC {
+          font-family: var(--font-family-arabic);
+        }
+
+        &:hover {
+          background: var(--grey);
+        }
+      }
+    }
+
     .column {
       width: 50%;
       display: flex;
@@ -142,10 +195,6 @@
       .row {
         width: 100%;
         padding: var(--default-padding);
-
-        &.right {
-          // padding-top: 8em;
-        }
       }
 
       .header {
