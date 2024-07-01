@@ -16,7 +16,7 @@ export async function load({ url }) {
     const topPosts = project
 
     const frontpage = await buildFrontPage(final, landingPage, posts);
-    const topSection = buildTopSection(top, landingPage, topPosts);
+    const topSection = await buildTopSection(top, landingPage, topPosts);
 
     return {
         frontpage,
