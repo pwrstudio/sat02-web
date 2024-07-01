@@ -21,7 +21,6 @@
   export let posts: Project[]
 
   let slideshowOpen = false
-  let matterportOpen = false
   let height = 0
 
   const getTagText = (text: string, language: LANGUAGE) => {
@@ -42,10 +41,6 @@
 
   const toogleSlideshow = () => {
     slideshowOpen = !slideshowOpen
-  }
-
-  const toggleMatterport = () => {
-    matterportOpen = !matterportOpen
   }
 
   const handleResize = async () => {
@@ -121,35 +116,6 @@
       &.ARABIC {
         left: unset;
         right: 20px;
-      }
-    }
-
-    .matterport {
-      padding-inline: var(--default-padding);
-      margin-bottom: 2em;
-      width: 100%;
-
-      .open-matterport {
-        border: 0;
-        outline: none;
-        background: var(--purple);
-        color: var(--white);
-        padding: var(--default-padding);
-        cursor: pointer;
-        z-index: var(--z-content);
-        position: relative;
-        user-select: none;
-        font-size: var(--font-size-normal);
-        font-family: var(--font-family);
-
-        &.ARABIC {
-          font-family: var(--font-family-arabic);
-        }
-
-        &:hover {
-          background: var(--white-transparent);
-          color: var(--black);
-        }
       }
     }
 
