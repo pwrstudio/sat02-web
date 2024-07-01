@@ -1,14 +1,13 @@
 <script lang="ts">
   import { LANGUAGE } from "$lib/modules/types"
-  import type { Project, Venue } from "$lib/types/sanity.types"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
   import { createEventDispatcher } from "svelte"
   import { ArabicTerms } from "$lib/modules/constants"
 
-  export let page: Project | Venue
-
-  console.log(page)
+  export let matterportLink: string
+  export let title: string
+  export let title_ar: string
 
   const dispatch = createEventDispatcher()
 
@@ -23,7 +22,7 @@
       {#if $languageStore == LANGUAGE.ENGLISH}→{/if}
       {#if $languageStore == LANGUAGE.ARABIC}←{/if}
       <strong>
-        {$languageStore == LANGUAGE.ENGLISH ? page.title : page.title_ar}
+        {$languageStore == LANGUAGE.ENGLISH ? title : title_ar}
       </strong>
     </div>
     <button class="close" on:click={sendClose}>
@@ -35,8 +34,8 @@
   <div class="inner">
     <div class="embed">
       <iframe
-        title={page.title}
-        src={`${page.matterportLink}&play=1&qs=1&mt=0`}
+        {title}
+        src={`${matterportLink}&play=1&qs=1&mt=0`}
         allowfullscreen
         allow="xr-spatial-tracking"
         style="border: 0; width: 100%; height: 100%;"

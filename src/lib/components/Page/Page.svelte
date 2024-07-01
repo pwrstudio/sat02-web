@@ -124,22 +124,6 @@
         {/if}
       </h2>
 
-      <!-- MATTERPORT BUTTON -->
-      {#if page.matterportLink}
-        <div class="matterport-top">
-          <button
-            on:click={toggleMatterport}
-            class="open-matterport {LANGUAGE[$languageStore]}"
-          >
-            {#if $languageStore === LANGUAGE.ARABIC}
-              {ArabicTerms.OPEN_MATTERPORT}
-            {:else}
-              OPEN 3D TOUR
-            {/if}
-          </button>
-        </div>
-      {/if}
-
       <!-- PHONE INFO -->
       <div class="phone-info">
         <!-- VENUE -->
@@ -169,21 +153,29 @@
       </div>
     </div>
 
-    <!-- PHONE SLIDESHOW -->
-    {#if page._type != "venue" && page.featuredImage?.asset}
-      <div class="row phone-slideshow">
-        <button
-          on:click={toggleSlideshow}
-          class="open-slideshow {LANGUAGE[$languageStore]}"
-        >
+    <!-- PHONE BUTTONS -->
+    <div class="phone-buttons">
+      <!-- SLIDESHOW -->
+      {#if page._type != "venue" && page.featuredImage?.asset}
+        <button on:click={toggleSlideshow} class={LANGUAGE[$languageStore]}>
           {#if $languageStore === LANGUAGE.ARABIC}
-            {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
+            {ArabicTerms.OPEN_SLIDESHOW}
           {:else}
-            OPEN SLIDESHOW <SlidesCounter {page} />
+            OPEN SLIDESHOW
           {/if}
         </button>
-      </div>
-    {/if}
+      {/if}
+      <!-- MATTERPORT -->
+      {#if page._type == "project" && page.matterportLink}
+        <button on:click={toggleMatterport} class={LANGUAGE[$languageStore]}>
+          {#if $languageStore === LANGUAGE.ARABIC}
+            {ArabicTerms.OPEN_MATTERPORT}
+          {:else}
+            OPEN 3D TOUR
+          {/if}
+        </button>
+      {/if}
+    </div>
 
     <div class="row content">
       <!-- CONTENT -->
@@ -238,33 +230,30 @@
           alt={page.title}
           on:click={toggleSlideshow}
         />
-        <button
-          on:click={toggleSlideshow}
-          class="open-slideshow {LANGUAGE[$languageStore]}"
-        >
-          {#if $languageStore === LANGUAGE.ARABIC}
-            {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
-          {:else}
-            OPEN SLIDESHOW <SlidesCounter {page} />
+        <div class="buttons">
+          <button
+            on:click={toggleSlideshow}
+            class="open-slideshow {LANGUAGE[$languageStore]}"
+          >
+            {#if $languageStore === LANGUAGE.ARABIC}
+              {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
+            {:else}
+              OPEN SLIDESHOW <SlidesCounter {page} />
+            {/if}
+          </button>
+          {#if page._type == "project" && page.matterportLink}
+            <button
+              on:click={toggleMatterport}
+              class="open-matterport {LANGUAGE[$languageStore]}"
+            >
+              {#if $languageStore === LANGUAGE.ARABIC}
+                {ArabicTerms.OPEN_MATTERPORT}
+              {:else}
+                OPEN 3D TOUR
+              {/if}
+            </button>
           {/if}
-        </button>
-      </div>
-    {/if}
-
-    <!-- MATTERPORT -->
-    {#if page._type == "project" && page.matterportLink}
-      <div class="row matterport">
-        <div class="divider" />
-        <button
-          on:click={toggleMatterport}
-          class="open-matterport {LANGUAGE[$languageStore]}"
-        >
-          {#if $languageStore === LANGUAGE.ARABIC}
-            {ArabicTerms.OPEN_MATTERPORT}
-          {:else}
-            OPEN 3D TOUR
-          {/if}
-        </button>
+        </div>
       </div>
     {/if}
 
@@ -281,8 +270,13 @@
   <Slideshow {page} on:close={toggleSlideshow} />
 {/if}
 
-{#if matterportOpen}
-  <Matterport {page} on:close={toggleMatterport} />
+{#if page._type == "project" && matterportOpen && page.matterportLink}
+  <Matterport
+    matterportLink={page.matterportLink}
+    title={page.title ?? ""}
+    title_ar={page.title_ar ?? ""}
+    on:close={toggleMatterport}
+  />
 {/if}
 
 <style lang="scss">
@@ -423,7 +417,6 @@
         }
 
         &.right {
-          // border-left: 1.5px solid var(--white-transparent);
           @include screen-size("phone") {
             display: none;
           }
@@ -446,7 +439,6 @@
         img {
           width: 100%;
           height: 100%;
-          //   object-fit: contain;
           object-fit: cover;
           mix-blend-mode: multiply;
           object-position: center center;
@@ -456,71 +448,40 @@
           }
         }
 
-        .open-slideshow {
+        .buttons {
           position: absolute;
           bottom: 0;
           right: 0;
           width: 100%;
-          padding: var(--default-padding);
-          background: var(--orange);
-          color: var(--white);
-          text-decoration: none;
-          text-align: center;
-          border: 0;
-          cursor: pointer;
-          font-size: var(--font-size-normal);
+          display: flex;
 
-          &.ARABIC {
-            font-family: var(--font-family-arabic);
-          }
+          button {
+            padding: var(--default-padding);
+            background: var(--orange);
+            color: var(--white);
+            text-decoration: none;
+            text-align: center;
+            border: 0;
+            width: 100%;
+            cursor: pointer;
+            font-size: var(--font-size-normal);
 
-          &:hover {
-            opacity: 0.92;
-          }
-        }
-      }
+            &:first-child {
+              border-right: 1px solid var(--white-transparent);
+            }
 
-      .matterport {
-        background: var(--green);
-        position: relative;
-        padding: 0;
-        cursor: pointer;
-        z-index: var(--z-content);
+            &.ARABIC {
+              font-family: var(--font-family-arabic);
+            }
 
-        .divider {
-          height: 0px;
-          background: var(--white-transparent);
-          margin-top: var(--half-padding);
-          margin-bottom: var(--half-padding);
-        }
-
-        @include screen-size("phone") {
-          display: none;
-          height: 400px;
-        }
-
-        .open-matterport {
-          width: 100%;
-          padding: var(--default-padding);
-          background: var(--orange);
-          color: var(--white);
-          text-decoration: none;
-          text-align: center;
-          border: 0;
-          cursor: pointer;
-          font-size: var(--font-size-normal);
-
-          &.ARABIC {
-            font-family: var(--font-family-arabic);
-          }
-
-          &:hover {
-            opacity: 0.92;
+            &:hover {
+              opacity: 0.92;
+            }
           }
         }
       }
 
-      .phone-slideshow {
+      .phone-buttons {
         position: relative;
         padding: 0;
         cursor: pointer;
@@ -528,10 +489,10 @@
         display: none;
 
         @include screen-size("phone") {
-          display: block;
+          display: flex;
         }
 
-        .open-slideshow {
+        button {
           width: 100%;
           padding: var(--double-padding) var(--default-padding);
           background: var(--orange);
@@ -541,6 +502,10 @@
           border: 0;
           cursor: pointer;
           font-size: var(--font-size-normal);
+
+          &:first-child {
+            border-right: 1px solid var(--white-transparent);
+          }
 
           &.ARABIC {
             font-family: var(--font-family-arabic);

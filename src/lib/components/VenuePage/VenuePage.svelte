@@ -16,7 +16,6 @@
   import DecoPageTwo from "$lib/components/Deco/DecoPageTwo.svelte"
   import ListingComponent from "../Listing/ListingComponent.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
-  import Matterport from "$lib/components/Matterport/Matterport.svelte"
 
   export let page: Venue
   export let posts: Project[]
@@ -63,10 +62,6 @@
 <!-- METADATA -->
 <Metadata {page} />
 
-{#if matterportOpen}
-  <Matterport {page} on:close={toggleMatterport} />
-{/if}
-
 <!-- DECO -->
 <div class="deco-container" style={"height:" + height + "px;"}>
   <DecoPageTwo color={COLOR.PURPLE} />
@@ -76,22 +71,6 @@
   <!-- LEFT -->
   <div class="column left">
     <TitleHeader {page} />
-
-    <!-- MATTERPORT BUTTON -->
-    {#if page.matterportLink}
-      <div class="matterport">
-        <button
-          on:click={toggleMatterport}
-          class="open-matterport {LANGUAGE[$languageStore]}"
-        >
-          {#if $languageStore === LANGUAGE.ARABIC}
-            {ArabicTerms.OPEN_MATTERPORT}
-          {:else}
-            OPEN 3D TOUR
-          {/if}
-        </button>
-      </div>
-    {/if}
 
     <div class="row content">
       <!-- CONTENT -->
@@ -110,7 +89,8 @@
     <div class="row listing">
       {#if posts.length > 0}
         <ListingComponent
-          page={{ title: "Projects" }}
+          {page}
+          matterportLink={page.matterportLink}
           {posts}
           color={COLOR.PURPLE}
         />
