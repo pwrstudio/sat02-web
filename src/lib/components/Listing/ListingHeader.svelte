@@ -81,6 +81,19 @@
         on:change={setImageDisplay}
       />
     </div>
+    <!-- MATTERPORT LINK -->
+    {#if matterportLink}
+      <button
+        on:click={toggleMatterport}
+        class="matterport-button {LANGUAGE[$languageStore]}"
+      >
+        {#if $languageStore === LANGUAGE.ARABIC}
+          {ArabicTerms.OPEN_MATTERPORT}
+        {:else}
+          Open 3D tour
+        {/if}
+      </button>
+    {/if}
     <!-- PROJECT FILTER  -->
     {#if page?._id === "projects-page"}
       <div class="filter {LANGUAGE[$languageStore]}">
@@ -101,18 +114,6 @@
           {/each}
         </select>
       </div>
-    {/if}
-  </div>
-  <div class="right-side">
-    <!-- MATTERPORT LINK -->
-    {#if matterportLink}
-      <button on:click={toggleMatterport} class={LANGUAGE[$languageStore]}>
-        {#if $languageStore === LANGUAGE.ARABIC}
-          {ArabicTerms.OPEN_MATTERPORT}
-        {:else}
-          Open 3D Tour
-        {/if}
-      </button>
     {/if}
   </div>
 </div>
@@ -147,7 +148,7 @@
       }
 
       .image-toggle {
-        margin-right: var(--double-padding);
+        margin-right: var(--default-padding);
         display: flex;
         justify-content: center;
         z-index: var(--z-content);
@@ -181,6 +182,7 @@
       }
 
       .filter {
+        // margin-left: var(--default-padding);
         display: flex;
         z-index: var(--z-content);
 
@@ -199,7 +201,7 @@
           -moz-appearance: none;
           appearance: none;
           color: var(--black);
-          height: 20px !important;
+          height: 24px !important;
           box-sizing: border-box;
           position: relative;
           top: 1px;
@@ -221,25 +223,26 @@
           margin-right: 10px;
         }
       }
-    }
 
-    .right-side {
-      padding: var(--default-padding);
-
-      button {
+      .matterport-button {
         border: 1px solid var(--black);
         background: transparent;
-        // border-left: 1px solid var(--white-transparent);
         z-index: var(--z-content);
-        // height: 100%;
         text-align: center;
-        padding: 1em;
         cursor: pointer;
-        font-family: var(--font-family);
         position: relative;
         user-select: none;
         font-size: var(--font-size-normal);
         font-family: var(--font-family);
+        padding: 0;
+        padding-inline: 1em;
+        height: 24px;
+        line-height: 20px;
+        top: 1px;
+
+        @include screen-size("phone") {
+          font-size: var(--font-size-small);
+        }
 
         &.ARABIC {
           font-family: var(--font-family-arabic);
