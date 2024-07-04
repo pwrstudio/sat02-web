@@ -426,6 +426,7 @@
       .slideshow {
         background: var(--grey);
         height: 600px;
+        line-height: 0;
         position: relative;
         padding: 0;
         cursor: pointer;

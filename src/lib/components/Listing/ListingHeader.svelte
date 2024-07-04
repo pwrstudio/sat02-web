@@ -215,15 +215,6 @@
         }
       }
 
-      .order {
-        display: flex;
-        position: relative;
-        z-index: var(--z-modal);
-        label {
-          margin-right: 10px;
-        }
-      }
-
       .matterport-button {
         border: 1px solid var(--black);
         background: transparent;
