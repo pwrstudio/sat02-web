@@ -230,6 +230,7 @@
         height: 24px;
         line-height: 20px;
         top: 1px;
+        color: var(--black);
 
         @include screen-size("phone") {
           font-size: var(--font-size-small);
@@ -241,7 +242,6 @@
 
         &:hover {
           background: var(--white-transparent);
-          color: var(--black);
         }
       }
     }

@@ -451,7 +451,7 @@
 
         .buttons {
           position: absolute;
-          bottom: 0;
+          bottom: -5px;
           right: 0;
           width: 100%;
           display: flex;
