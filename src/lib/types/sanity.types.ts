@@ -643,6 +643,7 @@ export type DesignStore = {
   _rev: string;
   title?: string;
   title_ar?: string;
+  matterportLink?: string;
   featuredImage?: {
     asset?: {
       _ref: string;

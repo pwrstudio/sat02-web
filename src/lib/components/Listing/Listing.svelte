@@ -21,6 +21,8 @@
   let decoColor = COLOR.ORANGE
   let color = COLOR.ORANGE
 
+  let matterportLink: string | undefined = page.matterportLink
+
   const setColor = () => {
     switch (page._id) {
       case "projects-page":
@@ -95,7 +97,7 @@
     <!-- HEADER: SLIDESHOW -->
     <SlideshowHeader {page} />
     <!-- LISTING COMPONENT -->
-    <ListingComponent {posts} {page} {color} />
+    <ListingComponent {posts} {page} {color} {matterportLink} />
   </div>
 </div>
 
