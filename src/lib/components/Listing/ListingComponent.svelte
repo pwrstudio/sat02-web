@@ -5,6 +5,7 @@
   import { COLOR, type Post } from "$lib/modules/types"
   export let posts: Post[] = [] as Post[]
   export let page: Post = {} as Post
+  export let matterportLink: string | undefined = undefined
   export let color: COLOR = COLOR.ORANGE
 
   let filter = "all"
@@ -22,6 +23,7 @@
   {page}
   posts={filteredPosts}
   {color}
+  {matterportLink}
   on:filter={e => {
     filter = e.detail
   }}

@@ -1,6 +1,7 @@
 <script lang="ts">
+  import type { Project, Venue } from "$lib/types/sanity.types"
   import { onMount, tick } from "svelte"
-  import { LANGUAGE, type Post } from "$lib/modules/types"
+  import { LANGUAGE } from "$lib/modules/types"
   import { fade } from "svelte/transition"
 
   import { COLOR } from "$lib/modules/types"
@@ -16,8 +17,8 @@
   import ListingComponent from "../Listing/ListingComponent.svelte"
   import TitleHeader from "../Elements/TitleHeader.svelte"
 
-  export let page: Post
-  export let posts: Post[]
+  export let page: Venue
+  export let posts: Project[]
 
   let slideshowOpen = false
   let height = 0
@@ -83,7 +84,8 @@
     <div class="row listing">
       {#if posts.length > 0}
         <ListingComponent
-          page={{ title: "Projects" }}
+          {page}
+          matterportLink={page.matterportLink}
           {posts}
           color={COLOR.PURPLE}
         />
@@ -142,10 +144,6 @@
       .row {
         width: 100%;
         padding: var(--default-padding);
-
-        &.right {
-          // padding-top: 8em;
-        }
       }
 
       .header {

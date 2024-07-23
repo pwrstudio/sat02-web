@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { LANGUAGE, type Post } from "$lib/modules/types"
+  import { LANGUAGE } from "$lib/modules/types"
+  import type { Event, Project, Venue, Page } from "$lib/types/sanity.types"
   import { languageStore } from "$lib/modules/stores"
   import { fade } from "svelte/transition"
-  import { createEventDispatcher, onDestroy } from "svelte"
+  import { createEventDispatcher } from "svelte"
   import { onMount } from "svelte"
   import { urlFor } from "$lib/modules/sanity"
   import Swiper from "swiper"
@@ -11,8 +12,8 @@
   // import { disablePageScroll, enablePageScroll } from "scroll-lock"
   import has from "lodash/has.js"
   import { ArabicTerms } from "$lib/modules/constants"
-  // import ParticipantList from "../ParticipantList.svelte"
-  export let page: Post
+
+  export let page: Project | Event | Venue | Page
 
   const dispatch = createEventDispatcher()
 
@@ -139,9 +140,6 @@
     z-index: var(--z-modal);
     color: var(--white);
     overflow: hidden;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
 
     .top-bar {
       position: fixed;

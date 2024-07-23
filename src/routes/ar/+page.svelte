@@ -3,7 +3,7 @@
   import { LANGUAGE } from "$lib/modules/types"
   import { languageStore } from "$lib/modules/stores"
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
-  languageStore.set(LANGUAGE.ENGLISH)
+  languageStore.set(LANGUAGE.ARABIC)
   // ...
   import Section from "$lib/components/LandingPage/Section.svelte"
   export let data

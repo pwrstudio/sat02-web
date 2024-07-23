@@ -26,7 +26,8 @@ export enum ArabicTerms {
     PRESS = "المواد الاعلامية",
     DESIGN_STORE = "متجر الترينالي للتصميم",
     PRESS_RELEASES = "البيانات الصحفية",
-    PRESS_COVERAGE = "التغطية الصحفية"
+    PRESS_COVERAGE = "التغطية الصحفية",
+    OPEN_MATTERPORT = "Open 3D Tour",
 }
 
 // The three strands are: Renewed Contextual, Extraction Politics, Intangible Bodies.

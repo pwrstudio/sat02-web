@@ -1,6 +1,14 @@
 <script lang="ts">
   import { onMount, tick } from "svelte"
   import { LANGUAGE, type Post } from "$lib/modules/types"
+  import type {
+    Page,
+    Project,
+    Event,
+    Venue,
+    Participant,
+    FieldNote,
+  } from "$lib/types/sanity.types"
   import { fade } from "svelte/transition"
   import { urlFor } from "$lib/modules/sanity"
   import has from "lodash/has.js"
@@ -10,6 +18,7 @@
 
   import Metadata from "$lib/components/Metadata/Metadata.svelte"
   import Slideshow from "$lib/components/Page/Slideshow.svelte"
+  import Matterport from "$lib/components/Matterport/Matterport.svelte"
   import SlidesCounter from "$lib/components/Page/SlidesCounter.svelte"
   import Tag from "$lib/components/Elements/Tag.svelte"
   import Title from "$lib/components/Elements/Title.svelte"
@@ -23,10 +32,11 @@
   import PinGfx from "../Graphics/PinGfx.svelte"
   import ListingComponent from "../Listing/ListingComponent.svelte"
 
-  export let page: Post
+  export let page: Page | Project | Event | Venue | Participant | FieldNote
   export let posts: Post[]
 
   let slideshowOpen = false
+  let matterportOpen = false
   let height = 0
 
   const getTagText = (text: string, language: LANGUAGE) => {
@@ -45,8 +55,12 @@
   let tagText = getTagText(page._type, $languageStore)
   $: tagText = getTagText(page._type, $languageStore)
 
-  const toogleSlideshow = () => {
+  const toggleSlideshow = () => {
     slideshowOpen = !slideshowOpen
+  }
+
+  const toggleMatterport = () => {
+    matterportOpen = !matterportOpen
   }
 
   const handleResize = async () => {
@@ -139,26 +153,33 @@
       </div>
     </div>
 
-    <!-- PHONE SLIDESHOW -->
-    {#if page._type != "venue" && page.featuredImage?.asset}
-      <div class="row phone-slideshow">
-        <button
-          on:click={toogleSlideshow}
-          class="open-slideshow {LANGUAGE[$languageStore]}"
-        >
+    <!-- PHONE BUTTONS -->
+    <div class="phone-buttons">
+      <!-- SLIDESHOW -->
+      {#if page._type != "venue" && page.featuredImage?.asset}
+        <button on:click={toggleSlideshow} class={LANGUAGE[$languageStore]}>
           {#if $languageStore === LANGUAGE.ARABIC}
-            {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
+            {ArabicTerms.OPEN_SLIDESHOW}
           {:else}
-            OPEN SLIDESHOW <SlidesCounter {page} />
+            OPEN SLIDESHOW
           {/if}
         </button>
-      </div>
-    {/if}
+      {/if}
+      <!-- MATTERPORT -->
+      {#if page._type == "project" && page.matterportLink}
+        <button on:click={toggleMatterport} class={LANGUAGE[$languageStore]}>
+          {#if $languageStore === LANGUAGE.ARABIC}
+            {ArabicTerms.OPEN_MATTERPORT}
+          {:else}
+            OPEN 3D TOUR
+          {/if}
+        </button>
+      {/if}
+    </div>
 
     <div class="row content">
       <!-- CONTENT -->
       <Content {page} />
-
       <!-- CREDITS -->
       <Credits {page} />
     </div>
@@ -207,18 +228,32 @@
             .quality(100)
             .url()}
           alt={page.title}
-          on:click={toogleSlideshow}
+          on:click={toggleSlideshow}
         />
-        <button
-          on:click={toogleSlideshow}
-          class="open-slideshow {LANGUAGE[$languageStore]}"
-        >
-          {#if $languageStore === LANGUAGE.ARABIC}
-            {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
-          {:else}
-            OPEN SLIDESHOW <SlidesCounter {page} />
+        <div class="buttons">
+          <button
+            on:click={toggleSlideshow}
+            class="open-slideshow {LANGUAGE[$languageStore]}"
+          >
+            {#if $languageStore === LANGUAGE.ARABIC}
+              {ArabicTerms.OPEN_SLIDESHOW} <SlidesCounter {page} />
+            {:else}
+              OPEN SLIDESHOW <SlidesCounter {page} />
+            {/if}
+          </button>
+          {#if page._type == "project" && page.matterportLink}
+            <button
+              on:click={toggleMatterport}
+              class="open-matterport {LANGUAGE[$languageStore]}"
+            >
+              {#if $languageStore === LANGUAGE.ARABIC}
+                {ArabicTerms.OPEN_MATTERPORT}
+              {:else}
+                OPEN 3D TOUR
+              {/if}
+            </button>
           {/if}
-        </button>
+        </div>
       </div>
     {/if}
 
@@ -232,7 +267,16 @@
 </div>
 
 {#if slideshowOpen}
-  <Slideshow {page} on:close={toogleSlideshow} />
+  <Slideshow {page} on:close={toggleSlideshow} />
+{/if}
+
+{#if page._type == "project" && matterportOpen && page.matterportLink}
+  <Matterport
+    matterportLink={page.matterportLink}
+    title={page.title ?? ""}
+    title_ar={page.title_ar ?? ""}
+    on:close={toggleMatterport}
+  />
 {/if}
 
 <style lang="scss">
@@ -281,10 +325,6 @@
       .row {
         width: 100%;
         padding: var(--default-padding);
-
-        &.right {
-          // padding-top: 8em;
-        }
       }
 
       .header {
@@ -377,7 +417,6 @@
         }
 
         &.right {
-          // border-left: 1.5px solid var(--white-transparent);
           @include screen-size("phone") {
             display: none;
           }
@@ -387,6 +426,7 @@
       .slideshow {
         background: var(--grey);
         height: 600px;
+        line-height: 0;
         position: relative;
         padding: 0;
         cursor: pointer;
@@ -400,7 +440,6 @@
         img {
           width: 100%;
           height: 100%;
-          //   object-fit: contain;
           object-fit: cover;
           mix-blend-mode: multiply;
           object-position: center center;
@@ -410,27 +449,40 @@
           }
         }
 
-        .open-slideshow {
+        .buttons {
           position: absolute;
-          bottom: 0;
+          bottom: -5px;
           right: 0;
           width: 100%;
-          padding: var(--default-padding);
-          background: var(--orange);
-          color: var(--white);
-          text-decoration: none;
-          text-align: center;
-          border: 0;
-          cursor: pointer;
-          font-size: var(--font-size-normal);
+          display: flex;
 
-          &.ARABIC {
-            font-family: var(--font-family-arabic);
+          button {
+            padding: var(--default-padding);
+            background: var(--orange);
+            color: var(--white);
+            text-decoration: none;
+            text-align: center;
+            border: 0;
+            width: 100%;
+            cursor: pointer;
+            font-size: var(--font-size-normal);
+
+            &:first-child {
+              border-right: 1px solid var(--white-transparent);
+            }
+
+            &.ARABIC {
+              font-family: var(--font-family-arabic);
+            }
+
+            &:hover {
+              opacity: 0.92;
+            }
           }
         }
       }
 
-      .phone-slideshow {
+      .phone-buttons {
         position: relative;
         padding: 0;
         cursor: pointer;
@@ -438,10 +490,10 @@
         display: none;
 
         @include screen-size("phone") {
-          display: block;
+          display: flex;
         }
 
-        .open-slideshow {
+        button {
           width: 100%;
           padding: var(--double-padding) var(--default-padding);
           background: var(--orange);
@@ -451,6 +503,10 @@
           border: 0;
           cursor: pointer;
           font-size: var(--font-size-normal);
+
+          &:first-child {
+            border-right: 1px solid var(--white-transparent);
+          }
 
           &.ARABIC {
             font-family: var(--font-family-arabic);
@@ -520,5 +576,32 @@
 
   :global(.venue .content p:first-child) {
     margin-top: 0;
+  }
+
+  .matterport-top {
+    width: 100%;
+
+    .open-matterport {
+      border: 0;
+      outline: none;
+      background: var(--orange);
+      padding: var(--default-padding);
+      cursor: pointer;
+      z-index: var(--z-content);
+      position: relative;
+      user-select: none;
+      font-size: var(--font-size-small);
+      font-family: var(--font-family);
+      color: var(--white);
+
+      &.ARABIC {
+        font-family: var(--font-family-arabic);
+      }
+
+      &:hover {
+        background: var(--white-transparent);
+        color: var(--black);
+      }
+    }
   }
 </style>
